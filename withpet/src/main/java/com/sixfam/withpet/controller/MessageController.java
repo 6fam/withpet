@@ -56,7 +56,7 @@ public class MessageController {
 		if(mdto.getId().equals(receiver.getId()))
 			return "write_info_fail.tiles";
 		
-		service.writeMessage(message);
+		service.registerMessage(message);
 		return "redirect:sendmessage.do?pageNo=1";
 	}
 	
@@ -66,7 +66,7 @@ public class MessageController {
 	 */
 	@RequestMapping("sendread.do")
 	public String sendReadRequest(Model model, Authentication authentication, int messageNo) {
-		model.addAttribute("readSendMessage", service.readSendMessage(messageNo));
+		model.addAttribute("readSendMessage", service.findSendMessageByNo(messageNo));
 		messageInfo(model, authentication);
 		return "message_sendread.tiles";
 	}
@@ -76,7 +76,7 @@ public class MessageController {
 	 */
 	@RequestMapping("receiveread.do")
 	public String receiveReadRequest(Model model, Authentication authentication, int messageNo) {
-		model.addAttribute("readReceiveMessage", service.readReceiveMessage(messageNo));
+		model.addAttribute("readReceiveMessage", service.findReceiveMessageByNo(messageNo));
 		messageInfo(model, authentication);
 		return "message_receiveread.tiles";
 	}
@@ -110,7 +110,7 @@ public class MessageController {
 	 */
 	@RequestMapping("deleteSendMessage.do")
 	public String deleteSendMessageRequest(int messageNo) {
-		service.deleteSendMessage(messageNo);
+		service.removeSendMessage(messageNo);
 		return "redirect:sendmessage.do?pageNo=1";
 	}
 	
@@ -119,7 +119,7 @@ public class MessageController {
 	 */
 	@RequestMapping("deleteReceiveMessage.do")
 	public String deleteReceiveMessageRequest(int messageNo) {
-		service.deleteReceiveMessage(messageNo);
+		service.removeReceiveMessage(messageNo);
 		return "redirect:receivemessage.do?pageNo=1";
 	}
 	

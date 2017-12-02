@@ -10,38 +10,37 @@ import com.sixfam.withpet.model.dto.MemberDTO;
 
 public interface MemberService {
 
-	MemberDTO findMemberById(String id);
-
-	String idcheck(String id);
+	public String isIdcheck(String id);
 	
-	List<Authority> selectAuthorityById(String id);
+	public String isIdPwAnswer(MemberDTO member);
 
-	void registerMember(MemberDTO member);
+	public void registerMember(MemberDTO member);
 
-	ListDTO<MeetingDTO> getSetupById(String id, int pageNo);
+	public void registerDogInfo(DogDTO ddto);
 
-	ListDTO<MeetingDTO> getSympathyHistoryById(String id, int pageNo);
+	public DogDTO findDogById(String id);
 
-	ListDTO<MeetingDTO> getAttenderHistoryById(String id, int pageNo);
+	public MemberDTO findMypageInfoById(String id);
 
-	void insertDogInfo(DogDTO ddto);
+	public MemberDTO findMemberById(String id);
 
-	DogDTO selectDogById(String id);
+	public List<Object> getPWQuestion();
 
-	MemberDTO mypageInfoById(String id);
+	public List<Authority> getAuthorityListById(String id);
 
-	void updateDogInfo(DogDTO ddto);
+	public ListDTO<MeetingDTO> getSetupListById(String id, int pageNo);
 
-	void updateMemberInfo(MemberDTO member);
+	public ListDTO<MeetingDTO> getSympathyHistoryListById(String id, int pageNo);
 
-	void updateMemberPWInfo(MemberDTO member);
+	public ListDTO<MeetingDTO> getAttenderHistoryListById(String id, int pageNo);
+	
+	public void setDogInfo(DogDTO ddto);
 
-	List<Object> getPWQuestion();
+	public void setMemberInfo(MemberDTO member);
 
-	String checkIdPwAnswer(MemberDTO member);
+	public void setMemberPWInfo(MemberDTO member);
 
-	void updateMemberPW(MemberDTO member);
+	public void setMemberPW(MemberDTO member);
 
-	void exceptMember(MemberDTO member);
-
+	public void removeExceptMember(MemberDTO member);
 }

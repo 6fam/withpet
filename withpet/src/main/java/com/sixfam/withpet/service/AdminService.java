@@ -10,33 +10,33 @@ import com.sixfam.withpet.model.dto.MemberDTO;
 public interface AdminService {
 
 	//전체회원 관리 서비스
-	ListDTO<MemberDTO> totalMemberList(int pageNo);
-	ListDTO<MemberDTO> allRoleMemberList(int pageNo);
-	ListDTO<MemberDTO> allRoleDogmomList(int pageNo);
-	ListDTO<MemberDTO> allRoleStandby(int pageNo);
+	public ListDTO<MemberDTO> getTotalMemberList(int pageNo);
+	public ListDTO<MemberDTO> getAllRoleMemberList(int pageNo);
+	public ListDTO<MemberDTO> getAllRoleDogmomList(int pageNo);
+	public ListDTO<MemberDTO> getAllRoleStandby(int pageNo);
 
 	//일반회원관리 탈퇴
-	void managerMemberDelete(MemberDTO memberDTO);
+	public void removeManagerMember(MemberDTO memberDTO);
 	//견주 일반회원으로 강등
-	void managerDogmomDelete(MemberDTO memberDTO);
+	public void removeManagerDogmom(MemberDTO memberDTO);
 
 	//게시판 관리 서비스
-	ListDTO<BoardDTO> allBoardList(int pageNo);
-	ListDTO<BoardDTO> boardTypeList(int pageNo,int categoryNo);
-	ListDTO<BoardDTO> allMeetingList(int pageNo);
+	public ListDTO<BoardDTO> getAllBoardList(int pageNo);
+	public ListDTO<BoardDTO> getBoardTypeList(int pageNo,int categoryNo);
+	public ListDTO<BoardDTO> getAllMeetingList(int pageNo);
 
-	List<BoardDTO> allCareList();
+	public List<BoardDTO> getAllCareList();
 
-	List<BoardDTO> allShareMarketList();
+	public List<BoardDTO> getAllShareMarketList();
 
 	//allTierList
-	List<MemberDTO> allTierList();
+	public List<MemberDTO> getAllTierList();
 	
-	void memberTierUpdate(MemberDTO memberDTO);
+	public void setMemberTier(MemberDTO memberDTO);
 	
-	void managerDogmomPermit(MemberDTO memberDTO);
+	public void setManagerDogmomPermit(MemberDTO memberDTO);
 	//모금함 관리
-	ListDTO<DonationDTO> allDonationList();
-	ListDTO<DonationDTO> applyDonationList();
-	void acceptDonation(int boardNo);
+	public ListDTO<DonationDTO> getAllDonationList();
+	public ListDTO<DonationDTO> getApplyDonationList();
+	public void setAcceptDonation(int boardNo);
 }

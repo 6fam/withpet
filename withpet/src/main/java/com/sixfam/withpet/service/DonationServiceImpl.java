@@ -41,18 +41,4 @@ public class DonationServiceImpl implements DonationService{
 		return new ListDTO<DonationDTO>(donationBox.getAllDonationList(pagingBean), pagingBean);
 	}
 	
-	@Override
-	public DonationDTO selectOne(int boardNo) {
-		return null;
-	}
-
-	@Override
-	public void updateSuperAndThis(DonationDTO donation) {
-		
-	}
-
-	@Override
-	public void delete(DonationDTO donation) {
-		
-	}
 }

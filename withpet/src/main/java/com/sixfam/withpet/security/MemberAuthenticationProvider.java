@@ -77,7 +77,7 @@ public class MemberAuthenticationProvider implements AuthenticationProvider{
 	
 	//사용자 Auth 조회
 	public List<Authority> getUserAuth(String id) {
-		List<Authority> list = memberService.selectAuthorityById(id);
+		List<Authority> list = memberService.getAuthorityListById(id);
 		
 		if(list.size() == 0)
 			throw new UsernameNotFoundException("회원 권한이 없습니다.");

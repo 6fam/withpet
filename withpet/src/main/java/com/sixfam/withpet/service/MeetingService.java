@@ -9,35 +9,35 @@ import com.sixfam.withpet.model.dto.ReplyDTO;
 
 public interface MeetingService {
 
-	int getMeetingCount();
+	public boolean isAttenderMember(String id, int boardNo);
 
-	List<MeetingDTO> getAllMeetingList(PagingBean pb);
+	public void registerMeeting(MeetingDTO meetingDTO);
+
+	public void registerReply(ReplyDTO rdto);
+
+	public MemberDTO findMemberInfoByBoradNo(int boardNo);
+
+	public MeetingDTO findMeetingByBoardNo(int boardNo);
+
+	public int findMeetingCountByCategory(int categoryNo);
 	
-	int getCategoryNoByCategory(String category);
+	public int getMeetingCount();
 
-	void insertMeeting(MeetingDTO meetingDTO);
+	public int getReplyCount(int boardNo);
 
-	MeetingDTO getMeetingDetailByBoardNo(int boardNo);
+	public MeetingDTO getMeetingDetailByBoardNo(int boardNo);
 	
-	boolean attenderMember(String id, int boardNo);
-
-	void deleteMeetingInfo(int boardNo);
-
-	void insertReply(ReplyDTO rdto);
-
-	List<ReplyDTO> selectReply(int boardNo);
-
-	List<MemberDTO> myMeetingAttender(int boardNo);
-
-	MemberDTO getMemberInfoByBoradNo(int boardNo);
-
-	MeetingDTO selectMeetingByBoardNo(int boardNo);
-
-	List<MeetingDTO> getAllMeetingListByCategory(PagingBean pb, int categoryNo);
-
-	int getMeetingCountByCategory(int categoryNo);
+	public List<MeetingDTO> getAllMeetingList(PagingBean pb);
 	
-	void deleteReply(int replyNo);
+	public int getCategoryNoByCategory(String category);
 
-	int replyCount(int boardNo);
+	public List<ReplyDTO> getReplyList(int boardNo);
+	
+	public List<MemberDTO> getMyMeetingAttender(int boardNo);
+
+	public List<MeetingDTO> getAllMeetingListByCategory(PagingBean pb, int categoryNo);
+	
+	public void removeMeetingInfo(int boardNo);
+	
+	public void removeReply(int replyNo);
 }

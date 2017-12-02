@@ -16,7 +16,7 @@ public class CommonServiceImpl implements CommonService{
 	CommonDAO common;
 	
 	@Override
-	public void hits(HttpServletRequest request, HttpServletResponse response, String id, String boardNo) {
+	public void addHits(HttpServletRequest request, HttpServletResponse response, String id, String boardNo) {
 		int boardNumber = Integer.parseInt(boardNo);
 		String cookieNameId=null;
 		if(id.contains("@")) 

@@ -49,7 +49,7 @@ public class MeetingController {
 			meeting.setPlace("협의");
 		
 		meeting.setDate(date);
-		service.insertMeeting(meeting);
+		service.registerMeeting(meeting);
 		
 		return "redirect:home.do";
 	
@@ -84,11 +84,11 @@ public class MeetingController {
 			
 			MemberDTO member = (MemberDTO) authentication.getPrincipal();
 			//조회수 증가
-			common.hits(request, response, member.getId(), boardNo);
+			common.addHits(request, response, member.getId(), boardNo);
 			
 			//System.out.println(boardNo);
 			MeetingDTO meetingDTO = service.getMeetingDetailByBoardNo(Integer.parseInt(boardNo));
-			MemberDTO memberDTO = service.getMemberInfoByBoradNo(Integer.parseInt(boardNo));
+			MemberDTO memberDTO = service.findMemberInfoByBoradNo(Integer.parseInt(boardNo));
 			
 			model.addAttribute("meetingDetailDTO", meetingDTO);
 			model.addAttribute("memberDetailDTO", memberDTO);
@@ -108,7 +108,7 @@ public class MeetingController {
 	@RequestMapping("meetingAttend.do")
 	public String meetingAttendRequest(int boardNo, Model model,Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
-		boolean flag=service.attenderMember(mdto.getId(), boardNo);
+		boolean flag=service.isAttenderMember(mdto.getId(), boardNo);
 		model.addAttribute("boardNo",boardNo);
 		if (flag==false) {
 			return "meeting_attend_fail.tiles";
@@ -124,7 +124,7 @@ public class MeetingController {
 	@RequestMapping("meeting_delete.do")
 	public String deleteMeetingRequest(int boardNo) {
 		
-		service.deleteMeetingInfo(boardNo);
+		service.removeMeetingInfo(boardNo);
 		
 		return "home.tiles";
 	}
@@ -136,7 +136,7 @@ public class MeetingController {
 	@RequestMapping("meeting_update.do")
 	public String updateMeetingRequest(Model model, int boardNo) {
 		
-		MeetingDTO meetingDTO = service.selectMeetingByBoardNo(boardNo);
+		MeetingDTO meetingDTO = service.findMeetingByBoardNo(boardNo);
 		
 		model.addAttribute("meetingDTO", meetingDTO);
 		
@@ -150,7 +150,7 @@ public class MeetingController {
 	@RequestMapping("ajaxCategory.do")
 	@ResponseBody
 	public List<MeetingDTO> scrollByCategoryByAjaxRequest(Model model, int pageNo, int categoryNo) {
-		int meetingCount = service.getMeetingCountByCategory(categoryNo);
+		int meetingCount = service.findMeetingCountByCategory(categoryNo);
 		PagingBean pb = null;
 		
 		if(pageNo==0)
@@ -169,7 +169,7 @@ public class MeetingController {
 	@RequestMapping("meeting.do")
 	public String meetingListByCategoryNoRequest(Model model, int categoryNo) {
 		
-		int meetingCountByCategory = service.getMeetingCountByCategory(categoryNo);
+		int meetingCountByCategory = service.findMeetingCountByCategory(categoryNo);
 		PagingBean pb = new PagingBean(12, meetingCountByCategory);
 
 		List<MeetingDTO> list = service.getAllMeetingList(pb);
@@ -192,7 +192,7 @@ public class MeetingController {
 		rdto.setId(mdto.getId());
 		
 		// insert 매서드
-		service.insertReply(rdto);
+		service.registerReply(rdto);
 		
 		return "ok";
 	}
@@ -205,7 +205,7 @@ public class MeetingController {
 	@RequestMapping("listJson.do")
     @ResponseBody // 리턴데이터를 json으로 변환(생략가능)
     public List<ReplyDTO> listJsonRequest(ReplyDTO replyDTO){
-        List<ReplyDTO> list = service.selectReply(replyDTO.getBoardNo());
+        List<ReplyDTO> list = service.getReplyList(replyDTO.getBoardNo());
         return list;
     }
 	
@@ -217,21 +217,21 @@ public class MeetingController {
 	@ResponseBody
 	public String deleteReplyRequest(Authentication authentication, int replyNo) {
 		System.out.println("//////////////CareController : replyNo////////////"+replyNo);
-		service.deleteReply(replyNo);
+		service.removeReply(replyNo);
 		System.out.println("/////////////댓삭!!!!//////////////");
 		return "gg";
 	}
 	
 	@RequestMapping("meetingAttenderList.do")
 	public String meetingAttenderListRequest(int boardNo,Model model) {
-		model.addAttribute("atlist",service.myMeetingAttender(boardNo));
+		model.addAttribute("atlist",service.getMyMeetingAttender(boardNo));
 		return "popup/popup.tiles";
 	}
 	
 	@RequestMapping("replyCount.do")
 	@ResponseBody
 	public int replyCountRequest(int boardNo) {
-		System.out.println("///////////리플카운트 : "+service.replyCount(boardNo));
-		return service.replyCount(boardNo);
+		System.out.println("///////////리플카운트 : "+service.getReplyCount(boardNo));
+		return service.getReplyCount(boardNo);
 	}
 }

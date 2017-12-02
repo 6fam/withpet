@@ -5,21 +5,21 @@ import com.sixfam.withpet.model.dto.MessageDTO;
 
 public interface MessageService {
 	
-	void writeMessage(MessageDTO message);
+	public void registerMessage(MessageDTO message);
 	
-	ListDTO<MessageDTO> getAllReceiveMsgList(String id, int pageNo);
+	public MessageDTO findSendMessageByNo(int messageNo);
 	
-	ListDTO<MessageDTO> getAllSendMsgList(String id, int pageNo);
+	public MessageDTO findReceiveMessageByNo(int messageNo);
 	
-	int getNotReadMessageCount(String id);
+	public ListDTO<MessageDTO> getAllReceiveMsgList(String id, int pageNo);
 	
-	int getNotDeleteMessageCount(String id);
+	public ListDTO<MessageDTO> getAllSendMsgList(String id, int pageNo);
+	
+	public int getNotReadMessageCount(String id);
+	
+	public int getNotDeleteMessageCount(String id);
 
-	MessageDTO readSendMessage(int messageNo);
+	public void removeReceiveMessage(int messageNo);
 	
-	MessageDTO readReceiveMessage(int messageNo);
-	
-	void deleteReceiveMessage(int messageNo);
-	
-	void deleteSendMessage(int messageNo);
+	public void removeSendMessage(int messageNo);
 }

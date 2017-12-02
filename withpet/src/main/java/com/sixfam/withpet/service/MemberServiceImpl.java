@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 		return mdto;
 	}
 	@Override
-	public DogDTO selectDogById(String id) {
+	public DogDTO findDogById(String id) {
 		DogDTO dog=memberDAO.findDogById(id);
 		if(dog!=null) {			
 			System.out.println("db에서 가져온 dog : "+dog);
@@ -51,13 +51,13 @@ public class MemberServiceImpl implements MemberService {
 		return dog;
 	}
 	@Override
-	public String idcheck(String id) {
+	public String isIdcheck(String id) {
 		int count = memberDAO.isIdcheck(id);
 		return (count == 0) ? "ok" : "fail";
 	}
 
 	@Override
-	public List<Authority> selectAuthorityById(String id) {
+	public List<Authority> getAuthorityListById(String id) {
 		return memberDAO.getAuthorityListById(id);
 	}
 
@@ -73,7 +73,7 @@ public class MemberServiceImpl implements MemberService {
 	 *  마이페이지 _ 견주의 모임 개설내역 리스트 (+페이징빈)
 	 */
 	@Override
-	public ListDTO<MeetingDTO> getSetupById(String id, int pageNo) {
+	public ListDTO<MeetingDTO> getSetupListById(String id, int pageNo) {
 		int totalCount=memberDAO.getTotalCountById(id);
 		System.out.println("// service : totalCount : " +totalCount);
 		PagingBean pagingBean=null;
@@ -87,7 +87,7 @@ public class MemberServiceImpl implements MemberService {
 	 *  마이페이지 _ 일반 회원의 모임 참여내역 리스트 (+페이징빈)
 	 */
 	@Override
-	public ListDTO<MeetingDTO> getAttenderHistoryById(String id, int pageNo){
+	public ListDTO<MeetingDTO> getAttenderHistoryListById(String id, int pageNo){
 		System.out.println("********SERVICE 시작*********");
 		int totalCount=memberDAO.getTotalCountAttender(id);
 		System.out.println("SERVICE:"+totalCount);
@@ -102,7 +102,7 @@ public class MemberServiceImpl implements MemberService {
 	 *  마이페이지 _ 일반 회원의 모임 공감내역 리스트 (+페이징빈)
 	 */
 	@Override
-	public ListDTO<MeetingDTO> getSympathyHistoryById(String id, int pageNo){
+	public ListDTO<MeetingDTO> getSympathyHistoryListById(String id, int pageNo){
 		int totalCount=memberDAO.getTotalCountSympathy(id);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
@@ -114,7 +114,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Transactional
 	@Override
-	public void insertDogInfo(DogDTO ddto) {
+	public void registerDogInfo(DogDTO ddto) {
 		//업데이트치기 위해 생일 정보 리포멧
 		String bdate = ddto.getBdate().replace("-", "/");
 		String date[] = bdate.split("/");
@@ -139,7 +139,7 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.registerTierStandBy(ddto.getId());
 	}
 	@Override
-	public MemberDTO mypageInfoById(String id) {
+	public MemberDTO findMypageInfoById(String id) {
 		MemberDTO mdto=memberDAO.findMypageInfoById(id);
 		System.out.println(mdto);
 		switch (Integer.parseInt(mdto.getRole())) {
@@ -159,7 +159,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Transactional
 	@Override
-	public void updateDogInfo(DogDTO ddto) {
+	public void setDogInfo(DogDTO ddto) {
 		//받아온 이미지경로 임시저장
 		String imgPath = ddto.getImgPath();
 		//업데이트치기 위해 생일 정보 리포멧
@@ -191,11 +191,11 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.setDogInfo(ddto);
 	}
 	@Override
-	public void updateMemberInfo(MemberDTO member) {
+	public void setMemberInfo(MemberDTO member) {
 		memberDAO.setMemberInfo(member);
 	}
 	@Override
-	public void updateMemberPWInfo(MemberDTO member) {
+	public void setMemberPWInfo(MemberDTO member) {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		memberDAO.setMemberPWInfo(member);
 	}
@@ -205,18 +205,18 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.getPWQuestion(tableCode);
 	}
 	@Override
-	public String checkIdPwAnswer(MemberDTO member) {
+	public String isIdPwAnswer(MemberDTO member) {
 		int count=memberDAO.isIdPwAnswer(member);
 		return ( count == 1 ) ? "ok" : "fail";
 	}
 	@Override
-	public void updateMemberPW(MemberDTO member) {
+	public void setMemberPW(MemberDTO member) {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		memberDAO.setMemberPW(member);
 	}
 	@Transactional
 	@Override
-	public void exceptMember(MemberDTO member) {
+	public void removeExceptMember(MemberDTO member) {
 		adminDAO.removeMemberTier(member);
 		adminDAO.registerTierExcept(member);
 	}

@@ -12,6 +12,6 @@ public interface CommonService {
 	 * @param id
 	 * @param boardNo
 	 */
-	void hits(HttpServletRequest request, HttpServletResponse response, String id, String boardNo);
+	public void addHits(HttpServletRequest request, HttpServletResponse response, String id, String boardNo);
 
 }

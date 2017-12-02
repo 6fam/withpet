@@ -35,7 +35,7 @@ public class MeetingServiceImpl implements MeetingService{
 	}
 	@Override
 	
-	public void insertMeeting(MeetingDTO meetingDTO) {
+	public void registerMeeting(MeetingDTO meetingDTO) {
 		dao.registerMeeting(meetingDTO);
 	}
 
@@ -45,7 +45,7 @@ public class MeetingServiceImpl implements MeetingService{
 	}
 
 	@Override
-	public boolean attenderMember(String id, int boardNo) {
+	public boolean isAttenderMember(String id, int boardNo) {
 		MemberDTO memberId=dao.isAttender(id, boardNo);
 		if(memberId==null) {
 			dao.addAttenderMember(id, boardNo);
@@ -59,7 +59,7 @@ public class MeetingServiceImpl implements MeetingService{
 	
 	@Transactional
 	@Override
-	public void deleteMeetingInfo(int boardNo) {
+	public void removeMeetingInfo(int boardNo) {
 		MeetingDTO meeting=dao.findDetailByBoardNo(boardNo);
 		System.out.println(meeting);
 		int imgNo=meeting.getImgNo();
@@ -74,27 +74,27 @@ public class MeetingServiceImpl implements MeetingService{
 	}
 	
 	@Override
-	public void insertReply(ReplyDTO rdto) {
+	public void registerReply(ReplyDTO rdto) {
 		dao.registerReply(rdto);
 	}
 
 	@Override
-	public List<ReplyDTO> selectReply(int boardNo) {
+	public List<ReplyDTO> getReplyList(int boardNo) {
 		return dao.getReplyList(boardNo);
 	}
 
 	@Override
-	public List<MemberDTO> myMeetingAttender(int boardNo) {
+	public List<MemberDTO> getMyMeetingAttender(int boardNo) {
 		return dao.getMyMeetingAttender(boardNo);
 	}
 
 	@Override
-	public MemberDTO getMemberInfoByBoradNo(int boardNo) {
+	public MemberDTO findMemberInfoByBoradNo(int boardNo) {
 		return dao.findMemberInfoByBoradNo(boardNo);
 	}
 
 	@Override
-	public MeetingDTO selectMeetingByBoardNo(int boardNo) {
+	public MeetingDTO findMeetingByBoardNo(int boardNo) {
 		return dao.findMeetingByBoardNo(boardNo);
 	}
 
@@ -104,16 +104,16 @@ public class MeetingServiceImpl implements MeetingService{
 	}
 
 	@Override
-	public int getMeetingCountByCategory(int categoryNo) {
+	public int findMeetingCountByCategory(int categoryNo) {
 		return dao.getMeetingCountByCategory(categoryNo);
 	}
 	
 	@Override
-	public void deleteReply(int replyNo) {
+	public void removeReply(int replyNo) {
 		dao.removeReply(replyNo);
 	}
 	@Override
-	public int replyCount(int boardNo) {
+	public int getReplyCount(int boardNo) {
 		return dao.getReplyCount(boardNo);
 	}
 }

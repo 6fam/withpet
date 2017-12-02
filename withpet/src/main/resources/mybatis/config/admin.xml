@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 견주 회원목록 -->
    <resultMap id="memberdog" type="memberDTO">
-	<collection property="dogDTO" column="id" javaType="com.sixidiot.doingtogether.model.dto.DogDTO" 
+	<collection property="dogDTO" column="id" javaType="com.sixfam.withpet.model.dto.DogDTO" 
 	ofType="dogDTO" select="allDog"></collection>
    </resultMap>
    <select id="allRoleDogmom" resultMap="memberdog">

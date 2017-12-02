@@ -73,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<resultMap id="meetingAll" type="meetingDTO">
 		<result property="boardNo" column="boardNo" />
-		<collection property="date" column="boardNo" javaType="com.sixidiot.doingtogether.model.dto.DateDTO" 
+		<collection property="date" column="boardNo" javaType="com.sixfam.withpet.model.dto.DateDTO" 
 		ofType="dateDTO" select="getDateInfoByBoardNo"></collection>
 			<collection property="replyList" column="boardNo" javaType="java.util.ArrayList"
 		ofType="replyDTO" select="selectReplyByBoardNo"></collection>
@@ -110,7 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 모임폐쇄 -->
 	<resultMap type="meetingDTO" id="meetingDetail">
- 		<collection property="date" column="boardNo" javaType="com.sixidiot.doingtogether.model.dto.DateDTO"  
+ 		<collection property="date" column="boardNo" javaType="com.sixfam.withpet.model.dto.DateDTO"  
  		ofType="dateDTO" select="selectDateByBoardNo"></collection>
  	</resultMap>
  	

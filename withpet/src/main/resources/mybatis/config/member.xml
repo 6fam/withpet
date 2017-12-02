@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <resultMap id="mypage_opened" type="meetingDTO">
 	<result property="boardNo" column="boardNo" />
-	<collection property="date" column="boardNo" javaType="com.sixidiot.doingtogether.model.dto.DateDTO" 
+	<collection property="date" column="boardNo" javaType="com.sixfam.withpet.model.dto.DateDTO" 
 	ofType="dateDTO" select="getDateInfoByBoardNo"></collection>
 </resultMap>
 	<select id="getMeetingInfoById" parameterType="hashmap" resultMap="mypage_opened">
@@ -61,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <resultMap type="meetingDTO" id="attenderHistory">
 	<result property="boardNo" column="boardNo"/>
-	<collection property="date" column="boardNo" javaType="com.sixidiot.doingtogether.model.dto.DateDTO" 
+	<collection property="date" column="boardNo" javaType="com.sixfam.withpet.model.dto.DateDTO" 
 	ofType="dateDTO" select="getDateInfoByBoardNo"/>
 </resultMap>
 	<select id="getAttenderHistoryById" parameterType="hashmap" resultMap="attenderHistory">
@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <resultMap type="meetingDTO" id="sympathyHistory">
 	<result property="boardNo" column="boardNo"/>
-	<collection property="date" column="boardNo" javaType="com.sixidiot.doingtogether.model.dto.DateDTO" 
+	<collection property="date" column="boardNo" javaType="com.sixfam.withpet.model.dto.DateDTO" 
 	ofType="dateDTO" select="getDateInfoByBoardNo"/>
 </resultMap>
  

@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 	
 	<!-- Annotation Setting Bean -->
-	<context:component-scan base-package="com.sixidiot.doingtogether">
+	<context:component-scan base-package="com.sixfam.withpet">
 		<context:exclude-filter type="annotation" 
 		expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
@@ -21,8 +21,8 @@
 	<bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName"  value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username"  value="six"/>
-		<property name="password"  value="god"/>
+		<property name="username"  value="sixfam"/>
+		<property name="password"  value="withpet"/>
 	</bean>
 	
 	<!-- MyBatis 설정 -->

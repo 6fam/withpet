@@ -20,31 +20,37 @@ public class MeetingServiceImpl implements MeetingService{
 	MeetingDAO dao;
 
 	@Override
+	@Transactional
 	public int getMeetingCount() {
 		return dao.getMeetingCount();
 	}
 	
 	@Override
+	@Transactional
 	public List<MeetingDTO> getAllMeetingList(PagingBean pb) {
 		return dao.getAllMeetingList(pb);
 	}
 
 	@Override
+	@Transactional
 	public int getCategoryNoByCategory(String category) {
 		return dao.getCategoryNoByCategory(category);
 	}
-	@Override
 	
+	@Override
+	@Transactional
 	public void registerMeeting(MeetingDTO meetingDTO) {
 		dao.registerMeeting(meetingDTO);
 	}
 
 	@Override
+	@Transactional
 	public MeetingDTO getMeetingDetailByBoardNo(int boardNo) {
 		return dao.getMeetingDetailByBoardNo(boardNo);
 	}
 
 	@Override
+	@Transactional
 	public boolean isAttenderMember(String id, int boardNo) {
 		MemberDTO memberId=dao.isAttender(id, boardNo);
 		if(memberId==null) {
@@ -57,15 +63,13 @@ public class MeetingServiceImpl implements MeetingService{
 		}
 	}
 	
-	@Transactional
 	@Override
+	@Transactional
 	public void removeMeetingInfo(int boardNo) {
 		MeetingDTO meeting=dao.findDetailByBoardNo(boardNo);
 		System.out.println(meeting);
 		int imgNo=meeting.getImgNo();
-		//System.out.println("imgNO : "+imgNo);
 		int dateNo=meeting.getDate().getDateNo();
-		//System.out.println("dateNo : "+dateNo);
 		dao.removeAttenderByBoardNo(boardNo);
 		dao.removeSympathyByBoardNo(boardNo);
 		dao.removeBoardByBoardNo(boardNo);
@@ -74,21 +78,25 @@ public class MeetingServiceImpl implements MeetingService{
 	}
 	
 	@Override
+	@Transactional
 	public void registerReply(ReplyDTO rdto) {
 		dao.registerReply(rdto);
 	}
 
 	@Override
+	@Transactional
 	public List<ReplyDTO> getReplyList(int boardNo) {
 		return dao.getReplyList(boardNo);
 	}
 
 	@Override
+	@Transactional
 	public List<MemberDTO> getMyMeetingAttender(int boardNo) {
 		return dao.getMyMeetingAttender(boardNo);
 	}
 
 	@Override
+	@Transactional
 	public MemberDTO findMemberInfoByBoradNo(int boardNo) {
 		return dao.findMemberInfoByBoradNo(boardNo);
 	}
@@ -99,20 +107,25 @@ public class MeetingServiceImpl implements MeetingService{
 	}
 
 	@Override
+	@Transactional
 	public List<MeetingDTO> getAllMeetingListByCategory(PagingBean pb, int categoryNo) {
 		return dao.getAllMeetingListByCategory(pb, categoryNo);
 	}
 
 	@Override
+	@Transactional
 	public int findMeetingCountByCategory(int categoryNo) {
 		return dao.getMeetingCountByCategory(categoryNo);
 	}
 	
 	@Override
+	@Transactional
 	public void removeReply(int replyNo) {
 		dao.removeReply(replyNo);
 	}
+	
 	@Override
+	@Transactional
 	public int getReplyCount(int boardNo) {
 		return dao.getReplyCount(boardNo);
 	}

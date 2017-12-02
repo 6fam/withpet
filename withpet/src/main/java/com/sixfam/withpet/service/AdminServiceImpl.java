@@ -21,6 +21,7 @@ public class AdminServiceImpl implements AdminService {
 	AdminDAO adminDAO;
 	
 	@Override
+	@Transactional
 	public ListDTO<MemberDTO> getTotalMemberList(int pageNo) {
 		int totalCount=adminDAO.getAllMemberCount();
 		PagingBean pagingBean=null;
@@ -32,6 +33,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
+	@Transactional
 	public ListDTO<MemberDTO> getAllRoleMemberList(int pageNo) {
 		int totalCount=adminDAO.getAllRoleMemberTotalCount();
 		PagingBean pagingBean=null;
@@ -44,6 +46,7 @@ public class AdminServiceImpl implements AdminService {
 
 
 	@Override
+	@Transactional
 	public ListDTO<MemberDTO> getAllRoleDogmomList(int pageNo) {
 		int totalCount=adminDAO.getAllRoleDogmomTotalCount();
 		PagingBean pagingBean=null;
@@ -55,6 +58,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
+	@Transactional
 	public ListDTO<MemberDTO> getAllRoleStandby(int pageNo) {
 		int totalCount=adminDAO.getAllRoleStandbyTotalCount();
 		PagingBean pagingBean=null;
@@ -69,7 +73,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	
-	@Override	
+	@Override
+	@Transactional
 	public ListDTO<BoardDTO> getAllBoardList(int pageNo){
 		int totalCount=adminDAO.getAllBoardListCount();
 		PagingBean pagingBean=null;
@@ -81,6 +86,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	@Transactional
 	public ListDTO<BoardDTO> getBoardTypeList(int pageNo,int categoryNo) {
 		int totalCount=adminDAO.getBoardListCount(categoryNo);
 		PagingBean pagingBean=null;
@@ -92,17 +98,19 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	@Transactional
 	public List<BoardDTO> getAllCareList() {
 		return adminDAO.getAllCareList();
 	}
 
 	@Override
+	@Transactional
 	public List<BoardDTO> getAllShareMarketList() {
 		return adminDAO.getAllShareMarketList();
 	}
 
-	@Transactional
 	@Override
+	@Transactional
 	public void setMemberTier(MemberDTO memberDTO) {
 		int categoryNo=memberDTO.getCategoryNo();
 		switch (categoryNo) {
@@ -128,7 +136,9 @@ public class AdminServiceImpl implements AdminService {
 				break;
 		}
 	}
+	
 	@Override
+	@Transactional
 	public List<MemberDTO> getAllTierList() {
 		List<MemberDTO> totalTierList=adminDAO.getAllTierList();
 		for (int i = 0; i < totalTierList.size(); i++) {
@@ -156,26 +166,29 @@ public class AdminServiceImpl implements AdminService {
 		return totalTierList;
 	}
 
-	@Transactional
 	@Override
+	@Transactional
 	public void removeManagerMember(MemberDTO memberDTO) {
 			adminDAO.removeMemberTier(memberDTO);
 			adminDAO.registerTierExcept(memberDTO);
 	}
 
 	@Override
+	@Transactional
 	public void removeManagerDogmom(MemberDTO memberDTO) {
 			adminDAO.removeMemberTier(memberDTO);
 			adminDAO.registerTierMember(memberDTO);
 	}
 
 	@Override
+	@Transactional
 	public void setManagerDogmomPermit(MemberDTO memberDTO) {
 			adminDAO.removeMemberTier(memberDTO);
 			adminDAO.registerTierDogmom(memberDTO);
 	}
 
 	@Override
+	@Transactional
 	public ListDTO<BoardDTO> getAllMeetingList(int pageNo) {
 		int totalCount=adminDAO.getMeetingBoardListCount();
 		PagingBean pagingBean=null;
@@ -187,6 +200,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	@Transactional
 	public ListDTO<DonationDTO> getAllDonationList() {
 		int totalCount=10;
 		int pageNo=1;
@@ -196,10 +210,10 @@ public class AdminServiceImpl implements AdminService {
 		else
 			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
 		ListDTO<DonationDTO> list=new ListDTO<DonationDTO>(adminDAO.getAllDonationList(pagingBean), pagingBean);
-		//return new ListDTO<DonationDTO>(adminDAO.allDonationList(pagingBean), pagingBean);
 		return list;
 	}
 	@Override
+	@Transactional
 	public ListDTO<DonationDTO> getApplyDonationList() {
 		int totalCount=10;
 		int pageNo=1;
@@ -213,6 +227,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	@Transactional
 	public void setAcceptDonation(int boardNo) {
 		adminDAO.setAcceptDonation(boardNo);
 	}

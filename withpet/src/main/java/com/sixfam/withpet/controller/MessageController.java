@@ -2,6 +2,7 @@ package com.sixfam.withpet.controller;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ public class MessageController {
 	/*
 	 * 메세지 작성 페이지로 가기
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("messagewrite.do")
 	public String messageWriteViewRequest(Model model, Authentication authentication) {
 		messageInfo(model, authentication);
@@ -34,6 +36,7 @@ public class MessageController {
 	/*
 	 * 메세지 답장 페이지로 가기
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("messageanswer.do")
 	public String messageAnswerViewRequest(Model model, String sender, Authentication authentication) {
 		model.addAttribute("sender", sender);
@@ -44,6 +47,7 @@ public class MessageController {
 	/*
 	 * 메세지 작성 하기
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping(value = "writemessage.do", method= RequestMethod.POST)
 	public String writeMessageRequest(MessageDTO message, Authentication authentication) {
 		MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
@@ -64,6 +68,7 @@ public class MessageController {
 	/*
 	 * 보낸메세지 상세보기
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("sendread.do")
 	public String sendReadRequest(Model model, Authentication authentication, int messageNo) {
 		model.addAttribute("readSendMessage", service.findSendMessageByNo(messageNo));
@@ -74,6 +79,7 @@ public class MessageController {
 	/*
 	 * 받은메세지 상세보기
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("receiveread.do")
 	public String receiveReadRequest(Model model, Authentication authentication, int messageNo) {
 		model.addAttribute("readReceiveMessage", service.findReceiveMessageByNo(messageNo));
@@ -84,6 +90,7 @@ public class MessageController {
 	/*
 	 * 받은메세지 목록
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("receivemessage.do")
 	public String receiveMessageViewRequest(Model model, Authentication authentication, int pageNo) {
 		MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
@@ -96,6 +103,7 @@ public class MessageController {
 	/*
 	 * 보낸메세지 목록
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("sendmessage.do")
 	public String sendMessageViewRequest(Model model, Authentication authentication, int pageNo) {
 		MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
@@ -108,6 +116,7 @@ public class MessageController {
 	/*
 	 * 보낸 메세지 삭제
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("deleteSendMessage.do")
 	public String deleteSendMessageRequest(int messageNo) {
 		service.removeSendMessage(messageNo);
@@ -117,6 +126,7 @@ public class MessageController {
 	/*
 	 * 받은 메세지 삭제
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("deleteReceiveMessage.do")
 	public String deleteReceiveMessageRequest(int messageNo) {
 		service.removeReceiveMessage(messageNo);

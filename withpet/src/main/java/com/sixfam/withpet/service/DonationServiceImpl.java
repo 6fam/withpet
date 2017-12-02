@@ -3,6 +3,7 @@ package com.sixfam.withpet.service;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dao.DonationDAO;
@@ -16,6 +17,7 @@ public class DonationServiceImpl implements DonationService{
 	DonationDAO donationBox;
 
 	@Override
+	@Transactional
 	public void registerDonation(DonationDTO donation) {
 		//게시글 작성
 		donationBox.registerMotherDonation(donation);
@@ -25,6 +27,7 @@ public class DonationServiceImpl implements DonationService{
 	}
 
 	@Override
+	@Transactional
 	public ListDTO<DonationDTO> getAllDonationList(int pageNo) {
 		//전체게시물개수가져오기
 		int totalCount=donationBox.getTotalCount();

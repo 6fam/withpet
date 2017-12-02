@@ -29,53 +29,55 @@ public class MemberServiceImpl implements MemberService {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
+	@Transactional
 	public MemberDTO findMemberById(String id) {
 		MemberDTO mdto = memberDAO.findMemberById(id);
 		return mdto;
 	}
 	@Override
+	@Transactional
 	public DogDTO findDogById(String id) {
 		DogDTO dog=memberDAO.findDogById(id);
 		if(dog!=null) {			
-			System.out.println("db에서 가져온 dog : "+dog);
-			System.out.println(dog.getBdate());
 			String[] birth=dog.getBdate().split("-");
-			System.out.println("split후 : "+birth[0]+"월 "+birth[1]+"일");
 			dog.setBdate(birth[0]+"월 "+birth[1]+"일");
 			if(dog.getNeutralization().equals("1"))
 				dog.setNeutralization("O");
 			else
 				dog.setNeutralization("X");
-			System.out.println("controller로 보낼 dog : "+dog);
 		}
 		return dog;
 	}
+	
 	@Override
+	@Transactional
 	public String isIdcheck(String id) {
 		int count = memberDAO.isIdcheck(id);
 		return (count == 0) ? "ok" : "fail";
 	}
 
 	@Override
+	@Transactional
 	public List<Authority> getAuthorityListById(String id) {
 		return memberDAO.getAuthorityListById(id);
 	}
 
 	
-	@Transactional
 	@Override
+	@Transactional
 	public void registerMember(MemberDTO member) {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		memberDAO.registerMember(member);
 		memberDAO.registerRole(new Authority(member.getId(), "ROLE_MEMBER"));
 	}
+	
 	/**
 	 *  마이페이지 _ 견주의 모임 개설내역 리스트 (+페이징빈)
 	 */
 	@Override
+	@Transactional
 	public ListDTO<MeetingDTO> getSetupListById(String id, int pageNo) {
 		int totalCount=memberDAO.getTotalCountById(id);
-		System.out.println("// service : totalCount : " +totalCount);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(1, 4, totalCount);
@@ -83,14 +85,14 @@ public class MemberServiceImpl implements MemberService {
 			pagingBean=new PagingBean(pageNo, 1, 4, totalCount);
 		return new ListDTO<MeetingDTO>(memberDAO.getSetupListById(id, pagingBean), pagingBean);
 	}
+	
 	/**
 	 *  마이페이지 _ 일반 회원의 모임 참여내역 리스트 (+페이징빈)
 	 */
 	@Override
+	@Transactional
 	public ListDTO<MeetingDTO> getAttenderHistoryListById(String id, int pageNo){
-		System.out.println("********SERVICE 시작*********");
 		int totalCount=memberDAO.getTotalCountAttender(id);
-		System.out.println("SERVICE:"+totalCount);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(3,4,totalCount);
@@ -98,10 +100,12 @@ public class MemberServiceImpl implements MemberService {
 			pagingBean=new PagingBean(pageNo, 3, 4, totalCount);
 		return new ListDTO<MeetingDTO>(memberDAO.getAttenderHistoryListById(id, pagingBean), pagingBean);
 	}
+	
 	/**
 	 *  마이페이지 _ 일반 회원의 모임 공감내역 리스트 (+페이징빈)
 	 */
 	@Override
+	@Transactional
 	public ListDTO<MeetingDTO> getSympathyHistoryListById(String id, int pageNo){
 		int totalCount=memberDAO.getTotalCountSympathy(id);
 		PagingBean pagingBean=null;
@@ -112,8 +116,8 @@ public class MemberServiceImpl implements MemberService {
 		return new ListDTO<MeetingDTO>(memberDAO.getSympathyHistoryListById(id, pagingBean), pagingBean);
 	}
 	
-	@Transactional
 	@Override
+	@Transactional
 	public void registerDogInfo(DogDTO ddto) {
 		//업데이트치기 위해 생일 정보 리포멧
 		String bdate = ddto.getBdate().replace("-", "/");
@@ -138,10 +142,11 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.registerDogInfo(ddto);
 		memberDAO.registerTierStandBy(ddto.getId());
 	}
+	
 	@Override
+	@Transactional
 	public MemberDTO findMypageInfoById(String id) {
 		MemberDTO mdto=memberDAO.findMypageInfoById(id);
-		System.out.println(mdto);
 		switch (Integer.parseInt(mdto.getRole())) {
 		case WithPet.ROLE_MEMBER :
 			mdto.setRole("일반 회원");
@@ -157,8 +162,9 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return mdto;
 	}
-	@Transactional
+	
 	@Override
+	@Transactional
 	public void setDogInfo(DogDTO ddto) {
 		//받아온 이미지경로 임시저장
 		String imgPath = ddto.getImgPath();
@@ -186,36 +192,46 @@ public class MemberServiceImpl implements MemberService {
 		else
 			ddto.setNeutralization("1");
 
-		System.out.println("업데이트할 개의 최종정보 : " + ddto);
 		memberDAO.setDogImg(ddto);
 		memberDAO.setDogInfo(ddto);
 	}
+	
 	@Override
+	@Transactional
 	public void setMemberInfo(MemberDTO member) {
 		memberDAO.setMemberInfo(member);
 	}
+	
 	@Override
+	@Transactional
 	public void setMemberPWInfo(MemberDTO member) {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		memberDAO.setMemberPWInfo(member);
 	}
+	
 	@Override
+	@Transactional
 	public List<Object> getPWQuestion(){
 		int tableCode=6;
 		return memberDAO.getPWQuestion(tableCode);
 	}
+	
 	@Override
+	@Transactional
 	public String isIdPwAnswer(MemberDTO member) {
 		int count=memberDAO.isIdPwAnswer(member);
 		return ( count == 1 ) ? "ok" : "fail";
 	}
+	
 	@Override
+	@Transactional
 	public void setMemberPW(MemberDTO member) {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		memberDAO.setMemberPW(member);
 	}
-	@Transactional
+	
 	@Override
+	@Transactional
 	public void removeExceptMember(MemberDTO member) {
 		adminDAO.removeMemberTier(member);
 		adminDAO.registerTierExcept(member);

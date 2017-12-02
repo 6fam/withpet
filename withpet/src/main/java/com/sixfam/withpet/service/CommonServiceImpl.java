@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sixfam.withpet.model.CommonDAO;
 
@@ -16,6 +17,7 @@ public class CommonServiceImpl implements CommonService{
 	CommonDAO common;
 	
 	@Override
+	@Transactional
 	public void addHits(HttpServletRequest request, HttpServletResponse response, String id, String boardNo) {
 		int boardNumber = Integer.parseInt(boardNo);
 		String cookieNameId=null;

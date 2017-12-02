@@ -38,22 +38,22 @@ public class MemberDAOImpl implements MemberDAO {
 		for(int i=0;i<category.size();i++) {
 			switch (category.get(i)) {
 			case WithPet.ROLE_MEMBER :
-				authList.add(new Authority(id, "ROLE_MEMBER"));
+				authList.add(new Authority(id, WithPet.ROLE_MEMBER_STR));
 				break;
 			case WithPet.ROLE_STANDBY :
-				authList.add(new Authority(id, "ROLE_STANDBY"));
+				authList.add(new Authority(id, WithPet.ROLE_STANDBY_STR));
 				break;
 			case WithPet.ROLE_DOGMOM :
-				authList.add(new Authority(id, "ROLE_DOGMOM"));
+				authList.add(new Authority(id, WithPet.ROLE_DOGMOM_STR));
 				break;
 			case WithPet.ROLE_MANAGER :
-				authList.add(new Authority(id, "ROLE_MANAGER"));
+				authList.add(new Authority(id, WithPet.ROLE_MANAGER_STR));
 				break;
 			case WithPet.ROLE_SYSTEMADMIN :
-				authList.add(new Authority(id, "ROLE_SYSTEMADMIN"));
+				authList.add(new Authority(id, WithPet.ROLE_SYSTEMADMIN_STR));
 				break;
 			case WithPet.ROLE_EXCEPT :
-				authList.add(new Authority(id, "ROLE_EXCEPT"));
+				authList.add(new Authority(id, WithPet.ROLE_EXCEPT_STR));
 				break;
 			default:				
 				break;
@@ -89,11 +89,6 @@ public class MemberDAOImpl implements MemberDAO {
 		param.put("id", id);
 		param.put("startRNum", pagingBean.getStartRowNumber());
 		param.put("endRNum", pagingBean.getEndRowNumber());
-		System.out.println("//dao");
-		List<MeetingDTO> meeting=template.selectList("member.getMeetingInfoById", param);
-		for(MeetingDTO d : meeting)
-			System.out.println(d);
-		System.out.println("//meetingsize : "+meeting.size());
 		return template.selectList("member.getMeetingInfoById", param);
 	}
 	
@@ -132,12 +127,10 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void registerDogImg(DogDTO dog) {
 		template.insert("member.insertDogImg", dog);		
-		System.out.println("강아지 이미지 등록");
 	}
 	@Override
 	public void registerDogInfo(DogDTO dog) {
 		template.insert("member.insertDogInfo", dog);
-		System.out.println("강아지 정보 등록");
 	}
 	@Override
 	public void registerTierStandBy(String id) {

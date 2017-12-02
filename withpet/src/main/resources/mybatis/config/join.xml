@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="join">
+
+	<insert id="registermember" parameterType="memberDTO" >
+		insert into member(id,nick,password,tel,pw_answer, regdate, permitdate, category_no)
+		values(#{id},#{nick},#{password},#{tel},#{pwAnswer},sysdate, null, #{categoryNo})
+	</insert>
+	
+	<insert id="registerRole" parameterType="authority" >
+		insert into tier(id, category_no)
+		values(#{id}, #{categoryNo})
+	</insert>
+</mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

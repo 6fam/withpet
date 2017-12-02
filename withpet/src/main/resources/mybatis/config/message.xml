@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="message">
+	<!-- 쪽지작성 -->
+	<insert id="writeMessage" parameterType="messageDTO">
+		insert into messagebox(message_no, sender, receivemsg, regdate, receiver)
+		values(message_seq.nextval, #{sender}, #{receivemsg}, sysdate, #{receiver})
+	</insert>
+	
+	<!-- 받은메세지함 -->
+	<select id="receiverMessage" resultType="messageDTO" parameterType="hashmap">
+		select rnum, messageNo, sender, receivemsg, regdate, receiver, sender_dflag, flag
+		from (select row_number() over(order by message_no desc) as rnum, message_no as messageNo, sender, receivemsg, regdate, receiver, sender_dflag, flag
+		from messagebox
+		where receiver = #{id} and receiver_dflag=1)
+		where rnum between #{startRNum} and #{endRNum} order by regdate desc
+	</select>
+	
+	<!-- 보낸메세지함 -->
+	<select id="senderMessage" resultType="messageDTO" parameterType="hashmap">
+		select rnum, messageNo, sender, receivemsg, regdate, receiver, sender_dflag
+		from (select row_number() over(order by message_no desc) as rnum, message_no as messageNo, sender, receivemsg, regdate, receiver, sender_dflag
+		from messagebox
+		where sender = #{id} and sender_dflag=1)
+		where rnum between #{startRNum} and #{endRNum} order by regdate desc
+	</select>
+	
+	<!-- 보낸 메세지, 총 카운트 -->
+	<select id="getTotalCountSendMsg" resultType="int" parameterType="string">
+		select count(*) from messagebox where sender=#{value} and sender_dflag = 1
+	</select>
+	
+	<!-- 받은 메세지, 총 카운트 -->
+	<select id="getTotalCountReceiveMsg" resultType="int" parameterType="string">
+		select count(*) from messagebox where receiver=#{value} and receiver_dflag = 1
+	</select>
+	
+	<!-- 회원이 안읽은 메세지 개수 -->
+	<select id="getNotReadMessageCount" resultType="int" parameterType="string">
+		select count(*) from messagebox where receiver = #{value} and flag=1
+	</select>
+	
+	<!-- 회원이 삭제하지않은 총 메세지 개수 -->
+	<select id="getNotDeleteMessageCount" resultType="int" parameterType="string">
+		select count(*) from messagebox where receiver = #{value} and receiver_dflag=1
+	</select>
+	
+	<!-- 받은메세지 상세보기 -->
+	<select id="readReceiveMessage" resultType="messageDTO" parameterType="int">
+		select message_no as messageNo, sender, receivemsg, regdate
+		from messagebox
+		where message_no = #{value}
+	</select>
+	
+	<!-- 메세지 읽음확인 -->
+	<update id="messageReadChk" parameterType="int">
+		UPDATE messagebox SET flag = 0 WHERE message_no = #{value}
+	</update>
+	
+	<!-- 보낸메세지 상세보기 -->
+	<select id="readSendMessage" resultType="messageDTO" parameterType="int">
+		select message_no as messageNo, receiver, receivemsg, regdate
+		from messagebox
+		where message_no = #{value}
+	</select>
+	
+	<!-- 보낸사람이 삭제했는지 확인 -->
+	<select id="getSenderDeleteInfo" resultType="int" parameterType="int">
+		select sender_dflag from messagebox where message_no = #{value}
+	</select>
+	
+	<!-- 받는사람이 삭제했는지 확인 -->
+	<select id="getReceiverDeleteInfo" resultType="int" parameterType="int">
+		select receiver_dflag from messagebox where message_no = #{value}
+	</select>
+	
+	<!-- 보낸쪽지 삭제 -->
+	<update id="updateSenderDFlag" parameterType="int">
+		UPDATE messagebox SET sender_dflag = 0 WHERE message_no = #{value}
+	</update>
+	
+	<!-- 받는쪽지 삭제 -->
+	<update id="updateReceiverDFlag" parameterType="int">
+		UPDATE messagebox SET receiver_dflag = 0 WHERE message_no = #{value}
+	</update>
+	
+	<!-- 보낸사람,받는사람 둘다 삭제시 REAL!! REAL!! 삭제 -->
+	<delete id="deleteMessage" parameterType="int">
+		delete from messagebox where message_no = #{value}
+	</delete>
+</mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

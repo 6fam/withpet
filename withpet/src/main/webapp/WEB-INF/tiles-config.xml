@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE tiles-definitions PUBLIC 
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+<tiles-definitions>  
+	<!-- home.tiles로 요청 시 실행됨 -->
+	<definition name="home.tiles" template="/WEB-INF/views/layout/home.jsp">
+		<put-attribute name="title" value="Hot Dog!!" />
+		<put-attribute name="header" value="/WEB-INF/views/layout/header/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/body/home.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer/footer.jsp" />
+	</definition>
+	
+	<!-- .tiles로 요청시 home.tiles를 상속받은 이놈이 실행됨 -->
+	<definition name="*.tiles" extends="home.tiles">
+		<put-attribute name="body" value="/WEB-INF/views/layout/body/{1}.jsp" />
+	</definition>
+	
+
+	<!-- popup -->
+	<definition name="popup/*.tiles" extends="popup.tiles">
+		<put-attribute name="body" value="/WEB-INF/views/layout/body/popup/{1}.jsp" />
+	</definition>
+	
+		<!-- popup.tiles로 요청 시 실행됨 -->
+	<definition name="popup.tiles" template="/WEB-INF/views/layout/popup.jsp">
+		<put-attribute name="body" value="/WEB-INF/views/layout/popup.jsp" />
+	</definition>
+	
+	<!-- dir 밑의 .tiles로 요청시 home.tiles를 상속받은 이놈이 실행됨 -->
+	<!-- {1}의 경우 앞의*, {2}의 경우 뒤의* -->
+	<definition name="*/*.tiles" extends="together.tiles">
+		<put-attribute name="body" value="/WEB-INF/views/layout/body/{1}/{2}.jsp" />
+	</definition>
+	
+	<!-- together.tiles로 요청 시 실행됨 -->
+	<definition name="together.tiles" template="/WEB-INF/views/layout/together.jsp">
+		<put-attribute name="title" value="같이 가치" />
+		<put-attribute name="header" value="/WEB-INF/views/layout/header/h_together.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/body/together/together.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer/footer.jsp" />
+	</definition>
+</tiles-definitions>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

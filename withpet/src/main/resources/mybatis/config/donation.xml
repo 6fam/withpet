@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="donation">
+	<!-- 모금함작성&부모 -->
+	<insert id="writeDonationSuper" parameterType="donationDTO" >
+		<selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
+       		SELECT board_seq.nextval FROM DUAL
+		</selectKey>
+		insert into board(board_no, title, content, wdate, category_no, id)
+		values(#{boardNo}, #{title}, #{content}, sysdate, #{categoryNo}, #{id})
+	</insert>
+
+	<!-- 모금함작성&자식 -->
+	<insert id="writeDonation" parameterType="donationDTO" >
+		insert into donation(board_no, donation_org, bank_name, account_no, account_host, final_money, category_no)
+		values(#{boardNo}, #{donationOrg}, #{bankName}, #{accountNo}, #{accountHost}, #{dreamMoney}, #{donationStateNo})
+	</insert>
+	
+	<!-- 모금함 이미지 작성 -->
+	<insert id="insertImg" parameterType="imgDTO">
+		insert into boardimg(img_no, img_path, board_no)
+		values(boardimg_seq.nextval, #{imgPath}, board_seq.currval)
+	</insert>
+	
+	<!-- 모금함상세보기 -->
+	<select id="selectDonationDetail" parameterType="int" resultType="donationDTO" >
+	
+	</select>
+	
+	<!-- 모금함 목록 -->
+	<select id="selectDonationList" parameterType="pagingBean" resultType="donationDTO" >
+		SELECT b.board_no as boardNo, b.id,b.title, b.content,b.hits,b.wdate,d.category_no as categoryNo,d.donation_org as donationOrg,d.bank_name as bankName,d.account_no as accountNo, d.account_host as accountHost,d.final_money as dreamMoney, d.donation_flag as donationFlag,d.img as imgPath
+		FROM(SELECT row_number() over(order by dd.board_no desc) as rnum,dd.board_no, dd.donation_org, dd.bank_name,dd.account_no,dd.account_host,dd.final_money,dd.donation_flag,dd.category_no,i.img
+		FROM(SELECT board_no, donation_org, bank_name,account_no,account_host,final_money,donation_flag,category_no FROM donation) dd,
+		(SELECT board_no,LISTAGG(img_path,',') WITHIN GROUP (ORDER BY board_no) as img FROM boardimg GROUP BY board_no) i
+		WHERE dd.board_no=i.board_no) d,(SELECT board_no, title, content, hits, wdate, category_no, id FROM board WHERE category_no between 31 and 34) b
+		WHERE b.board_no=d.board_no and rnum between #{startRowNumber} and #{endRowNumber}
+	</select>
+	
+	<update id="updateDonationSuper" parameterType="donationDTO" >
+		
+	</update>
+	
+	<update id="updateDonation" parameterType="donationDTO" >
+		
+	</update>
+	
+	<delete id="deleteDonation" parameterType="int" >
+		
+	</delete>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from donation where category_no between 31 and 33
+	</select>
+</mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

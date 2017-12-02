@@ -34,7 +34,7 @@
 		FROM(SELECT row_number() over(order by dd.board_no desc) as rnum,dd.board_no, dd.donation_org, dd.bank_name,dd.account_no,dd.account_host,dd.final_money,dd.donation_flag,dd.category_no,i.img
 		FROM(SELECT board_no, donation_org, bank_name,account_no,account_host,final_money,donation_flag,category_no FROM donation) dd,
 		(SELECT board_no,LISTAGG(img_path,',') WITHIN GROUP (ORDER BY board_no) as img FROM boardimg GROUP BY board_no) i
-		WHERE dd.board_no=i.board_no) d,(SELECT board_no, title, content, hits, wdate, category_no, id FROM board WHERE category_no between 31 and 34) b
+		WHERE dd.board_no=i.board_no) d,(SELECT board_no, title, content, hits, wdate, category_no, id FROM board WHERE category_no between 28 and 30) b
 		WHERE b.board_no=d.board_no and rnum between #{startRowNumber} and #{endRowNumber}
 	</select>
 	
@@ -51,7 +51,7 @@
 	</delete>
 	
 	<select id="getTotalCount" resultType="int">
-		select count(*) from donation where category_no between 31 and 33
+		select count(*) from donation where category_no between 28 and 30
 	</select>
 </mapper>
  

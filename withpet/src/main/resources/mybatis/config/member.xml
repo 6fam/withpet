@@ -3,7 +3,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="jh">
+<mapper namespace="member">
 
 	<select id="findMemberById" resultType="memberDTO">
 		 SELECT id, nick, password
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE id=#{value}
 	</select>
 	
-	<select id="selectAuthorityById" resultType="string">
+	<select id="selectAuthorityById" resultType="int">
 		SELECT category_no
 		FROM tier
 		WHERE id=#{value}
@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM (select board_no, row_number() over(order by board_no desc) as rnum, title, id, category_no from board) b, category cg,
 		(select m.board_no, m.img_no, m.place, c.category_name from meeting m, category c
 		where m.category_no=c.category_no) al, img i, meetingType mt
-		WHERE b.category_no between 4 and 7 and b.id=#{id} and al.board_no=b.board_no and i.img_no=al.img_no
+		WHERE b.category_no between 20 and 23 and b.id=#{id} and al.board_no=b.board_no and i.img_no=al.img_no
 		and mt.board_no=b.board_no and mt.category_no=cg.category_no and rnum between #{startRNum} and #{endRNum} order by rnum asc
 	</select>
 	
@@ -89,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getTotalCountById" parameterType="string" resultType="int">
-		select count(*) from board where id=#{value} and category_no between 4 and 7
+		select count(*) from board where id=#{value} and category_no between 20 and 23
 	</select>
 	
 	<select id="getTotalCountAttender" parameterType="string" resultType="int">
@@ -107,11 +107,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		insert into img(img_no , img_path) values(#{imgNo},#{imgPath})
  	</insert>
  	<insert id="insertDogInfo" parameterType="dogDTO">
- 		insert into dog(dog_no, name, bdate, intro, neutralization, id, img_no, category_no)
- 		values(dog_seq.nextval, #{name}, TO_DATE(#{bdate}, 'MM/DD/YYYY'), #{intro}, #{neutralization}, #{id}, #{imgNo}, #{categoryNo})
+ 		insert into dog(dog_no, name, bdate, intro, neutralization, reg_date, id, img_no, category_no)
+ 		values(dog_seq.nextval, #{name}, TO_DATE(#{bdate}, 'MM/DD/YYYY'), #{intro}, #{neutralization}, sysdate, #{id}, #{imgNo}, #{categoryNo})
  	</insert>
  	<insert id="insertTierStandBy" parameterType="string">
- 		insert into tier(id, category_no) values(#{value}, 28)
+ 		insert into tier(id, category_no) values(#{value}, 11)
  	</insert>
  	<update id="updateDogImg" parameterType="dogDTO">
  		update img set img_path=#{imgPath} where img_no = #{imgNo}

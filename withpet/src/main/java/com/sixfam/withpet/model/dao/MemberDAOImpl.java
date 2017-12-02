@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.sixfam.withpet.model.PagingBean;
+import com.sixfam.withpet.model.WithPet;
 import com.sixfam.withpet.model.dto.Authority;
 import com.sixfam.withpet.model.dto.DogDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
@@ -22,33 +23,36 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public MemberDTO findMemberById(String id) {
-		return template.selectOne("jh.findMemberById", id);
+		return template.selectOne("member.findMemberById", id);
 	}
 	
 	@Override
-	public int idcheck(String id) {
-		return template.selectOne("jh.findAjaxMemberById", id);
+	public int isIdcheck(String id) {
+		return template.selectOne("member.findAjaxMemberById", id);
 	}
 	
 	@Override					     
-	public List<Authority> selectAuthorityById(String id) {
-		List<String> category=template.selectList("jh.selectAuthorityById", id);
+	public List<Authority> getAuthorityListById(String id) {
+		List<Integer> category=template.selectList("member.selectAuthorityById", id);
 		List<Authority> authList=new ArrayList<Authority>();
 		for(int i=0;i<category.size();i++) {
 			switch (category.get(i)) {
-			case "27":
+			case WithPet.ROLE_MEMBER :
 				authList.add(new Authority(id, "ROLE_MEMBER"));
 				break;
-			case "28":
+			case WithPet.ROLE_STANDBY :
 				authList.add(new Authority(id, "ROLE_STANDBY"));
 				break;
-			case "29":
+			case WithPet.ROLE_DOGMOM :
 				authList.add(new Authority(id, "ROLE_DOGMOM"));
 				break;
-			case "30":
-				authList.add(new Authority(id, "ROLE_ADMIN"));
+			case WithPet.ROLE_MANAGER :
+				authList.add(new Authority(id, "ROLE_MANAGER"));
 				break;
-			case "26":
+			case WithPet.ROLE_SYSTEMADMIN :
+				authList.add(new Authority(id, "ROLE_SYSTEMADMIN"));
+				break;
+			case WithPet.ROLE_EXCEPT :
 				authList.add(new Authority(id, "ROLE_EXCEPT"));
 				break;
 			default:				
@@ -58,8 +62,8 @@ public class MemberDAOImpl implements MemberDAO {
 		return authList;
 	}
 	@Override			
-	public DogDTO selectDogById(String id) {
-		return template.selectOne("jh.selectDogById", id);
+	public DogDTO findDogById(String id) {
+		return template.selectOne("member.selectDogById", id);
 	}
 	
 	@Override
@@ -69,7 +73,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public void registerRole(Authority authority) {
-		authority.setCategoryNo(27);
+		authority.setCategoryNo(WithPet.ROLE_MEMBER );
 		template.insert("join.registerRole",authority);
 	}
 	
@@ -80,97 +84,97 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public List<MeetingDTO> getSetupById(String id, PagingBean pagingBean){
+	public List<MeetingDTO> getSetupListById(String id, PagingBean pagingBean){
 		HashMap<String, Object>param=new HashMap<String, Object>();
 		param.put("id", id);
 		param.put("startRNum", pagingBean.getStartRowNumber());
 		param.put("endRNum", pagingBean.getEndRowNumber());
 		System.out.println("//dao");
-		List<MeetingDTO> meeting=template.selectList("jh.getMeetingInfoById", param);
+		List<MeetingDTO> meeting=template.selectList("member.getMeetingInfoById", param);
 		for(MeetingDTO d : meeting)
 			System.out.println(d);
 		System.out.println("//meetingsize : "+meeting.size());
-		return template.selectList("jh.getMeetingInfoById", param);
+		return template.selectList("member.getMeetingInfoById", param);
 	}
 	
 	@Override
-	public List<MeetingDTO> getAttenderHistoryById(String id, PagingBean pagingBean){
+	public List<MeetingDTO> getAttenderHistoryListById(String id, PagingBean pagingBean){
 		HashMap<String, Object>param=new HashMap<String, Object>();
 		param.put("id", id);
 		param.put("startRNum", pagingBean.getStartRowNumber());
 		param.put("endRNum", pagingBean.getEndRowNumber());
-		return template.selectList("jh.getAttenderHistoryById", param);
+		return template.selectList("member.getAttenderHistoryById", param);
 	}
 	
 	@Override
-	public List<MeetingDTO> getSympathyHistoryById(String id, PagingBean pagingBean){
+	public List<MeetingDTO> getSympathyHistoryListById(String id, PagingBean pagingBean){
 		HashMap<String, Object>param=new HashMap<String, Object>();
 		param.put("id", id);
 		param.put("startRNum", pagingBean.getStartRowNumber());
 		param.put("endRNum", pagingBean.getEndRowNumber());
-		return template.selectList("jh.getSympathyHistoryById", param);
+		return template.selectList("member.getSympathyHistoryById", param);
 	}
 	
 	@Override
 	public int getTotalCountById(String id) {
-		int count = template.selectOne("jh.getTotalCountById", id);
+		int count = template.selectOne("member.getTotalCountById", id);
 		System.out.println("count : "+count);
-		return template.selectOne("jh.getTotalCountById", id);
+		return template.selectOne("member.getTotalCountById", id);
 	}
 	@Override
 	public int getTotalCountAttender(String id) {
-		return template.selectOne("jh.getTotalCountAttender", id);
+		return template.selectOne("member.getTotalCountAttender", id);
 	}
 	@Override
 	public int getTotalCountSympathy(String id) {
-		return template.selectOne("jh.getTotalCountSympathy", id);
+		return template.selectOne("member.getTotalCountSympathy", id);
 	}
 	@Override
-	public void insertDogImg(DogDTO dog) {
-		template.insert("jh.insertDogImg", dog);		
+	public void registerDogImg(DogDTO dog) {
+		template.insert("member.insertDogImg", dog);		
 		System.out.println("강아지 이미지 등록");
 	}
 	@Override
-	public void insertDogInfo(DogDTO dog) {
-		template.insert("jh.insertDogInfo", dog);
+	public void registerDogInfo(DogDTO dog) {
+		template.insert("member.insertDogInfo", dog);
 		System.out.println("강아지 정보 등록");
 	}
 	@Override
-	public void insertTierStandBy(String id) {
-		template.insert("jh.insertTierStandBy", id);
+	public void registerTierStandBy(String id) {
+		template.insert("member.insertTierStandBy", id);
 	}
 	
 	@Override
-	public MemberDTO mypageInfoById(String id) {
-		return template.selectOne("jh.mypageInfoById", id);
+	public MemberDTO findMypageInfoById(String id) {
+		return template.selectOne("member.mypageInfoById", id);
 	}
 	@Override
-	public void updateDogImg(DogDTO dog) {
-		template.insert("jh.updateDogImg", dog);		
+	public void setDogImg(DogDTO dog) {
+		template.insert("member.updateDogImg", dog);		
 	}
 	@Override
-	public void updateDogInfo(DogDTO dog) {
-		template.insert("jh.updateDogInfo", dog);
+	public void setDogInfo(DogDTO dog) {
+		template.insert("member.updateDogInfo", dog);
 	}
 	@Override
-	public void updateMemberInfo(MemberDTO member) {
-		template.update("jh.updateMemberInfo", member);
+	public void setMemberInfo(MemberDTO member) {
+		template.update("member.updateMemberInfo", member);
 	}
 	//PW 찾기 질문 추가하기!!!!!!!!!
 	@Override
-	public void updateMemberPWInfo(MemberDTO member) {
-		template.update("jh.updateMemberPWInfo", member);
+	public void setMemberPWInfo(MemberDTO member) {
+		template.update("member.updateMemberPWInfo", member);
 	}
 	@Override
 	public List<Object> getPWQuestion(int tableCode){
-		return template.selectList("jh.getPWQuestion", tableCode);
+		return template.selectList("member.getPWQuestion", tableCode);
 	}
 	@Override
-	public int checkIdPwAnswer(MemberDTO member) {
-		return template.selectOne("jh.checkIdPwAnswer", member);
+	public int isIdPwAnswer(MemberDTO member) {
+		return template.selectOne("member.checkIdPwAnswer", member);
 	}
 	@Override
-	public void updateMemberPW(MemberDTO member) {
-		template.update("jh.updateMemberPW", member);
+	public void setMemberPW(MemberDTO member) {
+		template.update("member.updateMemberPW", member);
 	}
 }

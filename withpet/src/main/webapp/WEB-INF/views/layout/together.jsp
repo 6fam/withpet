@@ -48,9 +48,9 @@
     
     <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/jquery.jscrollpane.css" />
-	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
+<!-- 	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
 	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
-	<link href='http://fonts.googleapis.com/css?family=Ovo' rel='stylesheet' type='text/css' />
+	<link href='http://fonts.googleapis.com/css?family=Ovo' rel='stylesheet' type='text/css' /> -->
 	<!-- Fullscreen jQuery template -->
 	<script id="fullviewTmpl" type="text/x-jquery-tmpl"></script>
   </head>

@@ -7,33 +7,33 @@ import com.sixfam.withpet.model.dto.MessageDTO;
 
 public interface MessageDAO {
 
-	void writeMessage(MessageDTO message);
+	public void isMessageReadChk(int messageNo);
 	
-	int getTotalCountReceiveMsg(String id);
+	public void registerMessage(MessageDTO message);
 	
-	int getTotalCountSendMsg(String id);
+	public MessageDTO findSendMessageByNo(int messageNo);
+	
+	public MessageDTO findReceiveMessageByNo(int messageNo);
+	
+	public int getSenderDeleteInfo(int messageNo);
+	
+	public int getReceiverDeleteInfo(int messageNo);
+	
+	public int getTotalCountReceiveMsg(String id);
+	
+	public int getTotalCountSendMsg(String id);
 
-	List<MessageDTO> getAllReceiveMsgList(String id, PagingBean pagingBean);
+	public List<MessageDTO> getAllReceiveMsgList(String id, PagingBean pagingBean);
 	
-	List<MessageDTO> getAllSendMsgList(String id, PagingBean pagingBean);
+	public List<MessageDTO> getAllSendMsgList(String id, PagingBean pagingBean);
 	
-	int getNotReadMessageCount(String id);
+	public int getNotReadMessageCount(String id);
 	
-	int getNotDeleteMessageCount(String id);
+	public int getNotDeleteMessageCount(String id);
 	
-	MessageDTO readSendMessage(int messageNo);
+	public void setSenderDFlag(int messageNo);
 	
-	MessageDTO readReceiveMessage(int messageNo);
+	public void setReceiverDFlag(int messageNo);
 	
-	int getSenderDeleteInfo(int messageNo);
-	
-	int getReceiverDeleteInfo(int messageNo);
-	
-	void messageReadChk(int messageNo);
-	
-	void updateSenderDFlag(int messageNo);
-	
-	void updateReceiverDFlag(int messageNo);
-	
-	void deleteMessage(int messageNo);
+	void removeMessage(int messageNo);
 }

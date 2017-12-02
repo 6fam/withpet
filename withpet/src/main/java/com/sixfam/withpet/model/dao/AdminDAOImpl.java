@@ -19,141 +19,141 @@ public class AdminDAOImpl implements AdminDAO {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public List<MemberDTO> totalMemberList(PagingBean pagingBean) {
-		return template.selectList("jy.totalMemberList",pagingBean);
+	public List<MemberDTO> getTotalMemberList(PagingBean pagingBean) {
+		return template.selectList("admin.totalMemberList",pagingBean);
 	}
 	@Override
-	public List<MemberDTO> allRoleMemberList(PagingBean pagingBean) {
-		return  template.selectList("jy.allRoleMemberList",pagingBean);
-	}
-	
-	@Override
-	public List<MemberDTO> allRoleStandby(PagingBean pagingBean) {
-		return  template.selectList("jy.allRoleStandby",pagingBean);
+	public List<MemberDTO> getAllRoleMemberList(PagingBean pagingBean) {
+		return  template.selectList("admin.allRoleMemberList",pagingBean);
 	}
 	
 	@Override
-	public int allMemberCount() {
-		return template.selectOne("jy.allMemberCount");
+	public List<MemberDTO> getAllRoleStandby(PagingBean pagingBean) {
+		return  template.selectList("admin.allRoleStandby",pagingBean);
+	}
+	
+	@Override
+	public int getAllMemberCount() {
+		return template.selectOne("admin.allMemberCount");
 	}
 	@Override
-	public int allRoleMemberTotalCount() {
-		return template.selectOne("jy.allRolrMemberTotalCount");
+	public int getAllRoleMemberTotalCount() {
+		return template.selectOne("admin.allRolrMemberTotalCount");
 	}
 	@Override
-	public int allRoleDogmomTotalCount() {
-		return template.selectOne("jy.allRolDogmomTotalCount");
+	public int getAllRoleDogmomTotalCount() {
+		return template.selectOne("admin.allRolDogmomTotalCount");
 	}
 	@Override
-	public int allRoleStandbyTotalCount() {
-		return template.selectOne("jy.allRoleStandbyTotalCount");
+	public int getAllRoleStandbyTotalCount() {
+		return template.selectOne("admin.allRoleStandbyTotalCount");
 	}
 	@Override
-	public List<MemberDTO> tierMemberList() {
-		return template.selectList("jy.tierMemberList");
+	public List<MemberDTO> getTierMemberList() {
+		return template.selectList("admin.tierMemberList");
 	}
 
 
 
 	@Override
-	public List<MemberDTO> allRoleDogmomList(PagingBean pagingBean) {
-		List<MemberDTO> memberList = template.selectList("jy.allRoleDogmom",pagingBean);
+	public List<MemberDTO> getAllRoleDogmomList(PagingBean pagingBean) {
+		List<MemberDTO> memberList = template.selectList("admin.allRoleDogmom",pagingBean);
 		return memberList;
 	}
 
 	@Override
-	public List<BoardDTO> allBoardList(PagingBean pagingBean){
-		return template.selectList("jy.allBoardList",pagingBean);
+	public List<BoardDTO> getAllBoardList(PagingBean pagingBean){
+		return template.selectList("admin.allBoardList",pagingBean);
 	}
 	@Override
-	public List<BoardDTO> boardTypeList(PagingBean pagingBean,int categoryNo){
+	public List<BoardDTO> getBoardTypeList(PagingBean pagingBean,int categoryNo){
 		HashMap<String, Object>param=new HashMap<String, Object>();
 		param.put("categoryNo",categoryNo);
 		param.put("startRNum", pagingBean.getStartRowNumber());
 		param.put("endRNum", pagingBean.getEndRowNumber());
-		return template.selectList("jy.categoryBoardList",param);
+		return template.selectList("admin.categoryBoardList",param);
 	}
 	@Override
-	public List<BoardDTO> allCareList(){
-		return template.selectList("jy.allCareList");
+	public List<BoardDTO> getAllCareList(){
+		return template.selectList("admin.allCareList");
 	}
 	@Override
-	public List<BoardDTO> allShareMarketList(){
-		return template.selectList("jy.allShareMarketList");
+	public List<BoardDTO> getAllShareMarketList(){
+		return template.selectList("admin.allShareMarketList");
 	}
 	
 ////Tier Except	
 	@Override
-	public void insertTierExcept(MemberDTO memberDTO) {
-		template.insert("jy.insertTierExcept",memberDTO);	
+	public void registerTierExcept(MemberDTO memberDTO) {
+		template.insert("admin.insertTierExcept",memberDTO);	
 	}
 ////Tier Member
 	@Override
-	public void insertTierMember(MemberDTO memberDTO) {
-		template.insert("jy.insertTierMember",memberDTO);
+	public void registerTierMember(MemberDTO memberDTO) {
+		template.insert("admin.insertTierMember",memberDTO);
 	}
 ////tier StandBy	
 	@Override
-	public void insertTierStandby(MemberDTO memberDTO) {
-		template.insert("jy.insertTierMember",memberDTO);
-		template.insert("jy.insertTierStandby",memberDTO);
+	public void registerTierStandby(MemberDTO memberDTO) {
+		template.insert("admin.insertTierMember",memberDTO);
+		template.insert("admin.insertTierStandby",memberDTO);
 	}
 ////tier Dogmon
 	@Override
-	public void insertTierDogmom(MemberDTO memberDTO) {
-		template.insert("jy.insertTierMember",memberDTO);
-		template.insert("jy.insertTierDogmom",memberDTO);
+	public void registerTierDogmom(MemberDTO memberDTO) {
+		template.insert("admin.insertTierMember",memberDTO);
+		template.insert("admin.insertTierDogmom",memberDTO);
 	}
 ////tier Admin
 	@Override
-	public void insertTierAdmin(MemberDTO memberDTO) {
-		template.insert("jy.insertTierMember",memberDTO);
-		template.insert("jy.insertTierDogmom",memberDTO);
-		template.insert("jy.insertTierAdmin",memberDTO);
+	public void registerTierAdmin(MemberDTO memberDTO) {
+		template.insert("admin.insertTierMember",memberDTO);
+		template.insert("admin.insertTierDogmom",memberDTO);
+		template.insert("admin.insertTierAdmin",memberDTO);
 	}
 ////delete member tier
 	@Override
-	public void deleteMemberTier(MemberDTO memberDTO) {
-		template.delete("jy.deleteMemberTier",memberDTO);
+	public void removeMemberTier(MemberDTO memberDTO) {
+		template.delete("admin.deleteMemberTier",memberDTO);
 	}
 	@Override
-	public List<MemberDTO> allTierList() {
-		return template.selectList("jy.allTierList");
+	public List<MemberDTO> getAllTierList() {
+		return template.selectList("admin.allTierList");
 	}
 	@Override
-	public int allBoardListCount() {
-		return template.selectOne("jy.allBoardListCount");
+	public int getAllBoardListCount() {
+		return template.selectOne("admin.allBoardListCount");
 	}
 	@Override
-	public int boardListCount(int categoryNo) {
-		return template.selectOne("jy.boardListCount",categoryNo);
+	public int getBoardListCount(int categoryNo) {
+		return template.selectOne("admin.boardListCount",categoryNo);
 	}
 	@Override
-	public int meetingBoardListCount() {
-		return template.selectOne("jy.meetingBoardListCount");
+	public int getMeetingBoardListCount() {
+		return template.selectOne("admin.meetingBoardListCount");
 	}
 	@Override
-	public List<BoardDTO> allMeetingList(PagingBean pagingBean){
+	public List<BoardDTO> getAllMeetingList(PagingBean pagingBean){
 		HashMap<String, Object>param=new HashMap<String, Object>();
 		param.put("startRNum", pagingBean.getStartRowNumber());
 		param.put("endRNum", pagingBean.getEndRowNumber());
-		return template.selectList("jy.allMeetingList",param);
+		return template.selectList("admin.allMeetingList",param);
 	}
 	
 	@Override
-	public List<DonationDTO> allDonationList(PagingBean pagingBean){
-		List<DonationDTO> list= template.selectList("jy.allDonationList");
+	public List<DonationDTO> getAllDonationList(PagingBean pagingBean){
+		List<DonationDTO> list= template.selectList("admin.allDonationList");
 		return list;
 	}
 	
 	@Override
-	public List<DonationDTO> applyDonationList(PagingBean pagingBean){
-		List<DonationDTO> list= template.selectList("jy.applyDonationList");
+	public List<DonationDTO> getApplyDonationList(PagingBean pagingBean){
+		List<DonationDTO> list= template.selectList("admin.applyDonationList");
 		return list;
 	}
 	
 	@Override
-	public void acceptDonation(int boardNo) {
-		template.update("jy.acceptDonation",boardNo);
+	public void setAcceptDonation(int boardNo) {
+		template.update("admin.acceptDonation",boardNo);
 	}
 }

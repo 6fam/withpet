@@ -12,7 +12,7 @@ public class CommonDAOImpl implements CommonDAO{
 	SqlSessionTemplate template;
 
 	@Override
-	public void hits(int boardNo) {
+	public void addHits(int boardNo) {
 		template.update("common.updateBoardHits", boardNo);
 	}
 }

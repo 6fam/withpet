@@ -13,7 +13,7 @@ public interface DonationService {
 	/**
 	 * 모금함 개설하기
 	 */
-	void insertSuperAndThis(DonationDTO donation);
+	void registerDonation(DonationDTO donation);
 	
 	/**
 	 * 모금함 상세보기

@@ -37,7 +37,7 @@ public class CommonServiceImpl implements CommonService{
 				newCookie.setMaxAge(60*60*24);
 				response.addCookie(newCookie);
 				//조회 수 업데이트
-				common.hits(boardNumber);
+				common.addHits(boardNumber);
 			}	
 		}
 	}

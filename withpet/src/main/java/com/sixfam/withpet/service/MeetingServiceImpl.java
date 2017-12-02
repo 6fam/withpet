@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sixfam.withpet.model.PagingBean;
-import com.sixfam.withpet.model.dao.BoardDAO;
 import com.sixfam.withpet.model.dao.MeetingDAO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
@@ -16,9 +15,6 @@ import com.sixfam.withpet.model.dto.ReplyDTO;
 
 @Service
 public class MeetingServiceImpl implements MeetingService{
-
-	@Resource
-	BoardDAO<MeetingDTO> boardDAO;
 	
 	@Resource
 	MeetingDAO dao;
@@ -30,7 +26,7 @@ public class MeetingServiceImpl implements MeetingService{
 	
 	@Override
 	public List<MeetingDTO> getAllMeetingList(PagingBean pb) {
-		return boardDAO.selectList("meeting.getAllMeetingList", pb);
+		return dao.getAllMeetingList(pb);
 	}
 
 	@Override
@@ -40,19 +36,19 @@ public class MeetingServiceImpl implements MeetingService{
 	@Override
 	
 	public void insertMeeting(MeetingDTO meetingDTO) {
-		dao.insertMeeting(meetingDTO);
+		dao.registerMeeting(meetingDTO);
 	}
 
 	@Override
 	public MeetingDTO getMeetingDetailByBoardNo(int boardNo) {
-		return boardDAO.selectOne("meeting.getMeetingDetailByBoardNo", boardNo);
+		return dao.getMeetingDetailByBoardNo(boardNo);
 	}
 
 	@Override
 	public boolean attenderMember(String id, int boardNo) {
-		MemberDTO memberId=dao.checkingAttender(id, boardNo);
+		MemberDTO memberId=dao.isAttender(id, boardNo);
 		if(memberId==null) {
-			dao.attenderMember(id, boardNo);
+			dao.addAttenderMember(id, boardNo);
 			return true;
 		}
 		else {
@@ -64,42 +60,42 @@ public class MeetingServiceImpl implements MeetingService{
 	@Transactional
 	@Override
 	public void deleteMeetingInfo(int boardNo) {
-		MeetingDTO meeting=dao.selectDetailByBoardNo(boardNo);
+		MeetingDTO meeting=dao.findDetailByBoardNo(boardNo);
 		System.out.println(meeting);
 		int imgNo=meeting.getImgNo();
 		//System.out.println("imgNO : "+imgNo);
 		int dateNo=meeting.getDate().getDateNo();
 		//System.out.println("dateNo : "+dateNo);
-		dao.deleteAttenderByBoardNo(boardNo);
-		dao.deleteSympathyByBoardNo(boardNo);
-		dao.deleteBoardByBoardNo(boardNo);
-		dao.deleteImgByBoardNo(imgNo);
-		dao.deleteGatheringDateByBoardNo(dateNo);
+		dao.removeAttenderByBoardNo(boardNo);
+		dao.removeSympathyByBoardNo(boardNo);
+		dao.removeBoardByBoardNo(boardNo);
+		dao.removeImgByBoardNo(imgNo);
+		dao.removeGatheringDateByBoardNo(dateNo);
 	}
 	
 	@Override
 	public void insertReply(ReplyDTO rdto) {
-		boardDAO.insertReply("meeting.insertReply", rdto);
+		dao.registerReply(rdto);
 	}
 
 	@Override
 	public List<ReplyDTO> selectReply(int boardNo) {
-		return boardDAO.selectReply("meeting.selectReply", boardNo);
+		return dao.getReplyList(boardNo);
 	}
 
 	@Override
 	public List<MemberDTO> myMeetingAttender(int boardNo) {
-		return dao.myMeetingAttender(boardNo);
+		return dao.getMyMeetingAttender(boardNo);
 	}
 
 	@Override
 	public MemberDTO getMemberInfoByBoradNo(int boardNo) {
-		return dao.getMemberInfoByBoradNo(boardNo);
+		return dao.findMemberInfoByBoradNo(boardNo);
 	}
 
 	@Override
 	public MeetingDTO selectMeetingByBoardNo(int boardNo) {
-		return boardDAO.selectOne("meeting.getMeetingDetailByBoardNo", boardNo);
+		return dao.findMeetingByBoardNo(boardNo);
 	}
 
 	@Override
@@ -114,10 +110,10 @@ public class MeetingServiceImpl implements MeetingService{
 	
 	@Override
 	public void deleteReply(int replyNo) {
-		dao.deleteReply(replyNo);
+		dao.removeReply(replyNo);
 	}
 	@Override
 	public int replyCount(int boardNo) {
-		return dao.replyCount(boardNo);
+		return dao.getReplyCount(boardNo);
 	}
 }

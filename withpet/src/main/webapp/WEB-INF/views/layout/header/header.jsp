@@ -40,19 +40,18 @@
 							style="float: right; width: 248px; padding-left: 20px; padding-top: 10px">
 							<div class="row" style="margin-left: 0px; margin-right: 0px">
 								<div class="col-sm-5">
-									<font style="font-size: 12px"> <a href="meeting.do?categoryNo=4">친목</a>
-									</font>
+									<font style="font-size: 12px"> <a href="meeting.do?categoryNo=20">친목</a></font>
 								</div>
 								<div class="col-sm-6">
-									<font style="font-size: 12px"><a href="meeting.do?categoryNo=6">훈련</a></font>
+									<font style="font-size: 12px"><a href="meeting.do?categoryNo=21">산책</a></font>
 								</div>
 							</div>
 							<div class="row" style="margin-left: 0px; margin-right: 0px">
 								<div class="col-sm-5">
-									<font style="font-size: 12px"><a href="meeting.do?categoryNo=5">산책</a></font>
+									<font style="font-size: 12px"><a href="meeting.do?categoryNo=22">훈련</a></font>
 								</div>
 								<div class="col-sm-6">
-									<font style="font-size: 12px"><a href="meeting.do?categoryNo=7">교육/세미나</a></font>
+									<font style="font-size: 12px"><a href="meeting.do?categoryNo=23">교육/세미나</a></font>
 								</div>
 							</div>
 						</div>

@@ -5,40 +5,51 @@ import java.util.List;
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
+import com.sixfam.withpet.model.dto.ReplyDTO;
 
-public interface MeetingDAO extends BoardDAO<MeetingDTO>{
-
-	int getCategoryNoByCategory(String category);
-
-	int getMeetingCount();
+public interface MeetingDAO{
 	
-	void insertMeeting(MeetingDTO meetingDTO);
-
-	void attenderMember(String id, int boardNo);
+	public void registerMeeting(MeetingDTO meetingDTO);
 	
-	void deleteAttenderByBoardNo(int boardNo);
+	public void registerReply(ReplyDTO rdto);
 
-	void deleteSympathyByBoardNo(int boardNo);
+	public void addAttenderMember(String id, int boardNo);
 
-	void deleteBoardByBoardNo(int boardNo);
+	public MemberDTO isAttender(String id, int boardNo);
 
-	void deleteGatheringDateByBoardNo(int dateNo);
+	public MemberDTO findMemberInfoByBoradNo(int boardNo);
 
-	void deleteImgByBoardNo(int imgNo);
+	public MeetingDTO findDetailByBoardNo(int boardNo);
 
-	MeetingDTO selectDetailByBoardNo(int boardNo);
+	public MeetingDTO findMeetingByBoardNo(int boardNo);
 
-	MemberDTO checkingAttender(String id, int boardNo);
+	public List<MeetingDTO> getAllMeetingListByCategory(PagingBean pb, int categoryNo);
+	
+	public List<MemberDTO> getMyMeetingAttender(int boardNo);
 
-	List<MemberDTO> myMeetingAttender(int boardNo);
+	public MeetingDTO getMeetingDetailByBoardNo(int boardNo);
 
-	MemberDTO getMemberInfoByBoradNo(int boardNo);
+	public List<MeetingDTO> getAllMeetingList(PagingBean pb);
+	
+	public List<ReplyDTO> getReplyList(int boardNo);
+	
+	public int getMeetingCountByCategory(int categoryNo);
 
-	List<MeetingDTO> getAllMeetingListByCategory(PagingBean pb, int categoryNo);
+	public int getCategoryNoByCategory(String category);
 
-	int getMeetingCountByCategory(int categoryNo);
+	public int getMeetingCount();
+	
+	public int getReplyCount(int boardNo);
+	
+	public void removeAttenderByBoardNo(int boardNo);
 
-	void deleteReply(int replyNo);
+	public void removeSympathyByBoardNo(int boardNo);
 
-	int replyCount(int boardNo);
+	public void removeBoardByBoardNo(int boardNo);
+
+	public void removeGatheringDateByBoardNo(int dateNo);
+
+	public void removeImgByBoardNo(int imgNo);
+
+	public void removeReply(int replyNo);
 }

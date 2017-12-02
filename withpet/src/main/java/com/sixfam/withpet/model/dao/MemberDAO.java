@@ -10,56 +10,51 @@ import com.sixfam.withpet.model.dto.MemberDTO;
 
 public interface MemberDAO {
 
-	MemberDTO findMemberById(String id);
+	public int isIdcheck(String id);
 	
-	int idcheck(String id);
-
-	List<Authority> selectAuthorityById(String id);
-
-	DogDTO selectDogById(String id);
+	public int isIdPwAnswer(MemberDTO member);
 	
-	void registerMember(MemberDTO member);
+	public void registerMember(MemberDTO member);
 	
-	void registerRole(Authority authority);
+	public void registerRole(Authority authority);
 	
-	void registerRole(Authority authority, int categoryNo);
+	public void registerRole(Authority authority, int categoryNo);
+	
+	public void registerDogInfo(DogDTO ddto);
 
-	int getTotalCountById(String id);
+	public void registerDogImg(DogDTO dog);
 
-	List<MeetingDTO> getSetupById(String id, PagingBean pagingBean);
+	public void registerTierStandBy(String id);
+	
+	public MemberDTO findMemberById(String id);
 
-	List<MeetingDTO> getAttenderHistoryById(String id, PagingBean pagingBean);
+	public DogDTO findDogById(String id);
 
-	List<MeetingDTO> getSympathyHistoryById(String id, PagingBean pagingBean);
+	public MemberDTO findMypageInfoById(String id);
+	
+	public int getTotalCountById(String id);
+	
+	public List<Authority> getAuthorityListById(String id);
 
-	int getTotalCountAttender(String id);
+	public List<MeetingDTO> getSetupListById(String id, PagingBean pagingBean);
 
-	int getTotalCountSympathy(String id);
+	public List<MeetingDTO> getAttenderHistoryListById(String id, PagingBean pagingBean);
 
-	void insertDogInfo(DogDTO ddto);
+	public List<MeetingDTO> getSympathyHistoryListById(String id, PagingBean pagingBean);
 
-	void insertDogImg(DogDTO dog);
+	public List<Object> getPWQuestion(int tableCode);
 
-	void insertTierStandBy(String id);
+	public int getTotalCountAttender(String id);
 
-	MemberDTO mypageInfoById(String id);
+	public int getTotalCountSympathy(String id);
 
-	void updateDogInfo(DogDTO dog);
+	public void setDogInfo(DogDTO dog);
 
-	void updateDogImg(DogDTO dog);
+	public void setDogImg(DogDTO dog);
 
-	void updateMemberInfo(MemberDTO member);
+	public void setMemberInfo(MemberDTO member);
 
-	void updateMemberPWInfo(MemberDTO member);
+	public void setMemberPWInfo(MemberDTO member);
 
-	List<Object> getPWQuestion(int tableCode);
-
-	int checkIdPwAnswer(MemberDTO member);
-
-	void updateMemberPW(MemberDTO member);
-
-
-
-
-
+	public void setMemberPW(MemberDTO member);
 }

@@ -6,7 +6,6 @@ drop sequence img_seq;
 drop sequence dog_seq;
 drop sequence reply_seq;
 drop sequence message_seq;
-drop sequence donation_seq;
 drop sequence boardimg_seq;
 
 ---시퀀스 생성
@@ -18,8 +17,10 @@ create sequence boardimg_seq;
 create sequence dog_seq;
 create sequence reply_seq;
 create sequence message_seq;
-create sequence donation_seq;
 
+insert into tier values('admin', 13);
+
+delete board where board_no = 2
 
 -- 카테고리 분류 테이블 시작
 insert into category(category_no,table_code,category_name) values(category_seq.nextval,1,'나의 좌우명은?');--1
@@ -65,6 +66,8 @@ insert into category(category_no,table_code,category_name) values(category_seq.n
 insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'돌보미');--34
 
 
+
+------------------------------------------------------------------------------------------------------------------------------------------
 -- 회원 테이블 시작
 insert into member(id, nick, password, tel,pw_answer, regdate, permitdate, category_no) values('sc@gmail.com', 'sc', '1234', '010', '개발자는 나의 기',sysdate , null,16);
 insert into tier (id, category_no) values('sc@gmail.com', 27);

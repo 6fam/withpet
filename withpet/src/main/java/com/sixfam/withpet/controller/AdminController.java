@@ -28,13 +28,12 @@ public class AdminController {
    
    @Resource
    DonationService donationService;
-/*
-* **************************************회원관리**************************************
-*/
-	
+	/*
+	* **************************************회원관리**************************************
+	*/
 	//전체회원관리
 	@RequestMapping("manager_allmember.do")
-	public String managerAllMemberPage(Model model, int pageNo) {
+	public String managerAllMemberPageRequest(Model model, int pageNo) {
 		ListDTO<MemberDTO> list = adminService.totalMemberList(pageNo);
 		List<MemberDTO> tier = adminService.allTierList();
 		model.addAttribute("amemberList", list);
@@ -44,16 +43,16 @@ public class AdminController {
 	
 	//일반회원관리
 	@RequestMapping("manager_member.do")
-	public String managerMemberPage(Model model, int pageNo) {
+	public String managerMemberPageRequest(Model model, int pageNo) {
 		ListDTO<MemberDTO> list = adminService.allRoleMemberList(pageNo);
 		model.addAttribute("mlist", list);
 		return "manager_member.tiles";
 	}
 	
 	//견주 회원관리
-	@Secured("ROLE_ADMIN")
+	@Secured("ROLE_MANAGER")
 	@RequestMapping("manager_petowner.do")
-	public String managerPetOwnerPage(Model model, Authentication authentication, int pageNo) {
+	public String managerPetOwnerPageRequest(Model model, Authentication authentication, int pageNo) {
 		ListDTO<MemberDTO> list = adminService.allRoleDogmomList(pageNo);
 		model.addAttribute("dogmomlist", list);
 		return "manager_petowner.tiles";
@@ -61,47 +60,47 @@ public class AdminController {
 	
 	//견주대기자 회원관리
 	@RequestMapping("manager_ownerwaiting.do")
-	public String managerOwnerWaiting(Model model, int pageNo) {
+	public String managerOwnerWaitingRequest(Model model, int pageNo) {
 		ListDTO<MemberDTO> list = adminService.allRoleStandby(pageNo);
 		model.addAttribute("standbylist", list);
 		return "manager_ownerwaiting.tiles";
 	}
 	
 	//회원등급 업데이트
-	@Secured("ROLE_ADMIN")
+	@Secured("ROLE_MANAGER")
 	@RequestMapping(value = "managertierupdate.do", method = RequestMethod.POST)
-	public String managerTierUpdate(Model model, Authentication authentication, MemberDTO memberDTO) {
+	public String managerTierUpdateRequest(Model model, Authentication authentication, MemberDTO memberDTO) {
 		adminService.memberTierUpdate(memberDTO);
 		return "redirect:manager_allmember.do?pageNo=1";
 	}
 
 	//견주탈퇴
-	@Secured("ROLE_ADMIN")
+	@Secured("ROLE_MANAGER")
 	@RequestMapping("managermemberdelete.do")
-	public String managerMemberDelete(Model model, MemberDTO memberDTO) {
+	public String managerMemberDeleteRequest(Model model, MemberDTO memberDTO) {
 		adminService.managerMemberDelete(memberDTO);
 		return "redirect:manager_member.do?pageNo=1";
 	}
 
 	//견주강등
-	@Secured("ROLE_ADMIN")
+	@Secured("ROLE_MANAGER")
 	@RequestMapping("managerdogmomdelete.do")
-	public String managerDogmomDelete(Model model, MemberDTO memberDTO, Authentication authentication) {
+	public String managerDogmomDeleteRequest(Model model, MemberDTO memberDTO, Authentication authentication) {
 		adminService.managerDogmomDelete(memberDTO);
 		return "redirect:manager_petowner.do?pageNo=1";
 	}
 
 	//견주승인
-	@Secured("ROLE_ADMIN")
+	@Secured("ROLE_MANAGER")
 	@RequestMapping("managerdogmompermit.do")
-	public String managerDogmomPermit(Model model, MemberDTO memberDTO, Authentication authentication) {
+	public String managerDogmomPermitRequest(Model model, MemberDTO memberDTO, Authentication authentication) {
 		adminService.managerDogmomPermit(memberDTO);
 		return "redirect:manager_ownerwaiting.do?pageNo=1";
 	}
 	
 	//미팅 참여하기
 	@RequestMapping("mypage_myattenders.do")
-	public String myMeetingManager(Model model, int pageNo) {
+	public String myMeetingManagerRequest(Model model, int pageNo) {
 		return "mypage_management.tiles";
 	}
  /*
@@ -110,7 +109,7 @@ public class AdminController {
    
     //전체 게시글 관리
    @RequestMapping("manager_allboard.do")
-   public String managerAllBoardPage(Model model, int pageNo) {
+   public String managerAllBoardPageRequest(Model model, int pageNo) {
 	   model.addAttribute("ablist",adminService.allBoardList(pageNo));
       return "manager_allboard.tiles";
    }
@@ -162,10 +161,10 @@ public class AdminController {
 	   return path;
    }
    */
-   //모임 폐쇠
-   @Secured("ROLE_ADMIN")
+   //모임 폐쇄
+   @Secured("ROLE_MANAGER")
    @RequestMapping(value="managerDeleteMeeting.do", method=RequestMethod.POST)
-   public String managerDeleteMeeting(Model model,Authentication authentication,int boardNo) {
+   public String managerDeleteMeetingRequest(Model model,Authentication authentication,int boardNo) {
 	   meetingService.deleteMeetingInfo(boardNo);
 	   return "redirect:manager_boardtype.do?pageNo=1&categoryNo=1";
    }
@@ -175,19 +174,19 @@ public class AdminController {
    */	
    //전체 모금함 관리
   @RequestMapping("manager_alldonation.do")
-  public String managerAllDonationPage(Model model) {
+  public String managerAllDonationPageRequest(Model model) {
 	  model.addAttribute("dlist", adminService.allDonationList());
 	  return "manager_alldonation.tiles";
   }
   //신청 모금함 관리
   @RequestMapping("manager_acceptDonationList.do")
-  public String managerAcceptDonationList(Model model) {
+  public String managerAcceptDonationListRequest(Model model) {
 	  model.addAttribute("dlist",adminService.applyDonationList());
 	  return "manager_applydonationlist.tiles";
   }
   //모금함 승인
   @RequestMapping("manager_acceptDonation.do")
-  public String managerAcceptDonation(Model model,int boardNo) {
+  public String managerAcceptDonationRequest(Model model,int boardNo) {
 	  adminService.acceptDonation(boardNo);
 	  return "redirect:manager_acceptDonationList.do";
 	  

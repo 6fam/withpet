@@ -36,7 +36,7 @@ public class MeetingController {
 	
 	@Secured("ROLE_DOGMOM")
 	@RequestMapping(value = "registerMeeting.do", method = RequestMethod.POST)
-	public String registerMeeting(HttpServletRequest request, Authentication authentication, MeetingDTO meeting, DateDTO date) {
+	public String registerMeetingRequest(HttpServletRequest request, Authentication authentication, MeetingDTO meeting, DateDTO date) {
 		MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
 		UploadFileImage<MeetingDTO> upload = new UploadFileImage<MeetingDTO>();
 		upload.setImageUpload(request, meeting);
@@ -60,7 +60,7 @@ public class MeetingController {
 	 */
 	@RequestMapping("ajaxHome.do")
 	@ResponseBody
-	public List<MeetingDTO> scrollByAjax(Model model, int pageNo) {
+	public List<MeetingDTO> scrollByAjaxRequest(Model model, int pageNo) {
 		int meetingCount = service.getMeetingCount();
 		PagingBean pb = null;
 		
@@ -78,7 +78,7 @@ public class MeetingController {
 	 * 모임 상세페이지
 	 */
 	@RequestMapping("meetingDetail.do")
-	public String meetingDetail(HttpServletRequest request, HttpServletResponse response, Authentication authentication,
+	public String meetingDetailRequest(HttpServletRequest request, HttpServletResponse response, Authentication authentication,
 			String boardNo, Model model) {
 		try {
 			
@@ -106,7 +106,7 @@ public class MeetingController {
 	 * 모임 등록
 	 */
 	@RequestMapping("meetingAttend.do")
-	public String meetingAttend(int boardNo, Model model,Authentication authentication) {
+	public String meetingAttendRequest(int boardNo, Model model,Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		boolean flag=service.attenderMember(mdto.getId(), boardNo);
 		model.addAttribute("boardNo",boardNo);
@@ -122,7 +122,7 @@ public class MeetingController {
 	 * 모임 폐쇄
 	 */
 	@RequestMapping("meeting_delete.do")
-	public String deleteMeeting(int boardNo) {
+	public String deleteMeetingRequest(int boardNo) {
 		
 		service.deleteMeetingInfo(boardNo);
 		
@@ -134,7 +134,7 @@ public class MeetingController {
 	 * 모임 수정
 	 */
 	@RequestMapping("meeting_update.do")
-	public String updateMeeting(Model model, int boardNo) {
+	public String updateMeetingRequest(Model model, int boardNo) {
 		
 		MeetingDTO meetingDTO = service.selectMeetingByBoardNo(boardNo);
 		
@@ -149,7 +149,7 @@ public class MeetingController {
 	 */
 	@RequestMapping("ajaxCategory.do")
 	@ResponseBody
-	public List<MeetingDTO> scrollByCategoryByAjax(Model model, int pageNo, int categoryNo) {
+	public List<MeetingDTO> scrollByCategoryByAjaxRequest(Model model, int pageNo, int categoryNo) {
 		int meetingCount = service.getMeetingCountByCategory(categoryNo);
 		PagingBean pb = null;
 		
@@ -167,7 +167,7 @@ public class MeetingController {
 	 * 모임 카테고리 별 리스트 보여주기
 	 */
 	@RequestMapping("meeting.do")
-	public String meetingListByCategoryNo(Model model, int categoryNo) {
+	public String meetingListByCategoryNoRequest(Model model, int categoryNo) {
 		
 		int meetingCountByCategory = service.getMeetingCountByCategory(categoryNo);
 		PagingBean pb = new PagingBean(12, meetingCountByCategory);
@@ -187,7 +187,7 @@ public class MeetingController {
 	@Secured("ROLE_MEMBER")
 	@ResponseBody
 	@RequestMapping(value="insertReply.do", method=RequestMethod.POST)
-	public String insertReply(ReplyDTO rdto, Model model, Authentication authentication) {
+	public String insertReplyRequest(ReplyDTO rdto, Model model, Authentication authentication) {
 		MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
 		rdto.setId(mdto.getId());
 		
@@ -204,7 +204,7 @@ public class MeetingController {
 	 */
 	@RequestMapping("listJson.do")
     @ResponseBody // 리턴데이터를 json으로 변환(생략가능)
-    public List<ReplyDTO> listJson(ReplyDTO replyDTO){
+    public List<ReplyDTO> listJsonRequest(ReplyDTO replyDTO){
         List<ReplyDTO> list = service.selectReply(replyDTO.getBoardNo());
         return list;
     }
@@ -215,7 +215,7 @@ public class MeetingController {
 	@Secured("ROLE_MEMBER")
 	@RequestMapping(value = "deleteReply.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String deleteReply(Authentication authentication, int replyNo) {
+	public String deleteReplyRequest(Authentication authentication, int replyNo) {
 		System.out.println("//////////////CareController : replyNo////////////"+replyNo);
 		service.deleteReply(replyNo);
 		System.out.println("/////////////댓삭!!!!//////////////");
@@ -223,14 +223,14 @@ public class MeetingController {
 	}
 	
 	@RequestMapping("meetingAttenderList.do")
-	public String meetingAttenderList(int boardNo,Model model) {
+	public String meetingAttenderListRequest(int boardNo,Model model) {
 		model.addAttribute("atlist",service.myMeetingAttender(boardNo));
 		return "popup/popup.tiles";
 	}
 	
 	@RequestMapping("replyCount.do")
 	@ResponseBody
-	public int replyCount(int boardNo) {
+	public int replyCountRequest(int boardNo) {
 		System.out.println("///////////리플카운트 : "+service.replyCount(boardNo));
 		return service.replyCount(boardNo);
 	}

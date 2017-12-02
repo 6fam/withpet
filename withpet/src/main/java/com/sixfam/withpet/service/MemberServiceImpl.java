@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sixfam.withpet.model.PagingBean;
+import com.sixfam.withpet.model.WithPet;
 import com.sixfam.withpet.model.dao.AdminDAO;
 import com.sixfam.withpet.model.dao.MemberDAO;
 import com.sixfam.withpet.model.dto.Authority;
@@ -34,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public DogDTO selectDogById(String id) {
-		DogDTO dog=memberDAO.selectDogById(id);
+		DogDTO dog=memberDAO.findDogById(id);
 		if(dog!=null) {			
 			System.out.println("db에서 가져온 dog : "+dog);
 			System.out.println(dog.getBdate());
@@ -51,13 +52,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public String idcheck(String id) {
-		int count = memberDAO.idcheck(id);
+		int count = memberDAO.isIdcheck(id);
 		return (count == 0) ? "ok" : "fail";
 	}
 
 	@Override
 	public List<Authority> selectAuthorityById(String id) {
-		return memberDAO.selectAuthorityById(id);
+		return memberDAO.getAuthorityListById(id);
 	}
 
 	
@@ -80,7 +81,7 @@ public class MemberServiceImpl implements MemberService {
 			pagingBean=new PagingBean(1, 4, totalCount);
 		else
 			pagingBean=new PagingBean(pageNo, 1, 4, totalCount);
-		return new ListDTO<MeetingDTO>(memberDAO.getSetupById(id, pagingBean), pagingBean);
+		return new ListDTO<MeetingDTO>(memberDAO.getSetupListById(id, pagingBean), pagingBean);
 	}
 	/**
 	 *  마이페이지 _ 일반 회원의 모임 참여내역 리스트 (+페이징빈)
@@ -95,7 +96,7 @@ public class MemberServiceImpl implements MemberService {
 			pagingBean=new PagingBean(3,4,totalCount);
 		else
 			pagingBean=new PagingBean(pageNo, 3, 4, totalCount);
-		return new ListDTO<MeetingDTO>(memberDAO.getAttenderHistoryById(id, pagingBean), pagingBean);
+		return new ListDTO<MeetingDTO>(memberDAO.getAttenderHistoryListById(id, pagingBean), pagingBean);
 	}
 	/**
 	 *  마이페이지 _ 일반 회원의 모임 공감내역 리스트 (+페이징빈)
@@ -108,7 +109,7 @@ public class MemberServiceImpl implements MemberService {
 			pagingBean=new PagingBean(2,4,totalCount);
 		else
 			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
-		return new ListDTO<MeetingDTO>(memberDAO.getSympathyHistoryById(id, pagingBean), pagingBean);
+		return new ListDTO<MeetingDTO>(memberDAO.getSympathyHistoryListById(id, pagingBean), pagingBean);
 	}
 	
 	@Transactional
@@ -124,30 +125,32 @@ public class MemberServiceImpl implements MemberService {
 		
 		ddto.setBdate(bdate);
 		if(ddto.getGender().equals("female"))
-			ddto.setCategoryNo(13);
+			ddto.setCategoryNo(WithPet.DOG_FEMALE);
 		else
-			ddto.setCategoryNo(12);
+			ddto.setCategoryNo(WithPet.DOG_MALE);
+		
 		if(ddto.getNeutralization()==null)
 			ddto.setNeutralization("0");
 		else
 			ddto.setNeutralization("1");
-		memberDAO.insertDogImg(ddto);
-		memberDAO.insertDogInfo(ddto);
-		memberDAO.insertTierStandBy(ddto.getId());
+		
+		memberDAO.registerDogImg(ddto);
+		memberDAO.registerDogInfo(ddto);
+		memberDAO.registerTierStandBy(ddto.getId());
 	}
 	@Override
 	public MemberDTO mypageInfoById(String id) {
-		MemberDTO mdto=memberDAO.mypageInfoById(id);
+		MemberDTO mdto=memberDAO.findMypageInfoById(id);
 		System.out.println(mdto);
-		switch (mdto.getRole()) {
-		case "27":
-			mdto.setRole("일반회원");
+		switch (Integer.parseInt(mdto.getRole())) {
+		case WithPet.ROLE_MEMBER :
+			mdto.setRole("일반 회원");
 			break;
-		case "28":
+		case WithPet.ROLE_STANDBY :
 			mdto.setRole("견주 대기자");
 			break;
-		case "29":
-			mdto.setRole("반려견주");
+		case WithPet.ROLE_DOGMOM :
+			mdto.setRole("댕댕이 맘");
 			break;
 		default:
 			break;
@@ -168,15 +171,15 @@ public class MemberServiceImpl implements MemberService {
 		bdate = month+"/"+days+"/"+year;
 		
 		//반려견 정보 조회
-		ddto = memberDAO.selectDogById(ddto.getId());
+		ddto = memberDAO.findDogById(ddto.getId());
 		//사용자가 입력한 개생일과 개사진 등록
 		ddto.setBdate(bdate);
 		ddto.setImgPath(imgPath);
 		
 		if(ddto.getGender().equals("female"))
-			ddto.setCategoryNo(13);
+			ddto.setCategoryNo(WithPet.DOG_FEMALE);
 		else
-			ddto.setCategoryNo(12);
+			ddto.setCategoryNo(WithPet.DOG_MALE);
 		
 		if(ddto.getNeutralization()==null)
 			ddto.setNeutralization("0");
@@ -184,17 +187,17 @@ public class MemberServiceImpl implements MemberService {
 			ddto.setNeutralization("1");
 
 		System.out.println("업데이트할 개의 최종정보 : " + ddto);
-		memberDAO.updateDogImg(ddto);
-		memberDAO.updateDogInfo(ddto);
+		memberDAO.setDogImg(ddto);
+		memberDAO.setDogInfo(ddto);
 	}
 	@Override
 	public void updateMemberInfo(MemberDTO member) {
-		memberDAO.updateMemberInfo(member);
+		memberDAO.setMemberInfo(member);
 	}
 	@Override
 	public void updateMemberPWInfo(MemberDTO member) {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
-		memberDAO.updateMemberPWInfo(member);
+		memberDAO.setMemberPWInfo(member);
 	}
 	@Override
 	public List<Object> getPWQuestion(){
@@ -203,18 +206,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public String checkIdPwAnswer(MemberDTO member) {
-		int count=memberDAO.checkIdPwAnswer(member);
+		int count=memberDAO.isIdPwAnswer(member);
 		return ( count == 1 ) ? "ok" : "fail";
 	}
 	@Override
 	public void updateMemberPW(MemberDTO member) {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
-		memberDAO.updateMemberPW(member);
+		memberDAO.setMemberPW(member);
 	}
 	@Transactional
 	@Override
 	public void exceptMember(MemberDTO member) {
-		adminDAO.deleteMemberTier(member);
-		adminDAO.insertTierExcept(member);
+		adminDAO.removeMemberTier(member);
+		adminDAO.registerTierExcept(member);
 	}
 }

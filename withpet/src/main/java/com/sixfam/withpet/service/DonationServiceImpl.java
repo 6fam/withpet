@@ -5,7 +5,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.sixfam.withpet.model.PagingBean;
-import com.sixfam.withpet.model.dao.BoardDAO;
 import com.sixfam.withpet.model.dao.DonationDAO;
 import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.ListDTO;
@@ -14,34 +13,32 @@ import com.sixfam.withpet.model.dto.ListDTO;
 public class DonationServiceImpl implements DonationService{
 	
 	@Resource
-	BoardDAO<DonationDTO> boardBox;
-	
-	@Resource
 	DonationDAO donationBox;
 
 	@Override
-	public void insertSuperAndThis(DonationDTO donation) {
+	public void registerDonation(DonationDTO donation) {
 		//게시글 작성
-		boardBox.insertSuperAndThis("donation.writeDonationSuper", "donation.writeDonation", donation);
+		donationBox.registerMotherDonation(donation);
+		donationBox.registerDonation(donation);
 		//게시글의 관련된 이미지 넣기
-		donationBox.insertImg(donation.getImgPathList());
+		donationBox.registerImg(donation.getImgPathList());
 	}
 
 	@Override
 	public ListDTO<DonationDTO> getAllDonationList(int pageNo) {
 		//전체게시물개수가져오기
 		int totalCount=donationBox.getTotalCount();
-		PagingBean pagingBean=null;
 		
+		
+		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(10, 5, totalCount);
 		else
 			pagingBean=new PagingBean(pageNo, 10, 5, totalCount);
 		
 		
-		System.out.println(pagingBean.getStartRowNumber());
-		System.out.println(pagingBean.getEndRowNumber());
-		return new ListDTO<DonationDTO>(boardBox.selectList("donation.selectDonationList", pagingBean), pagingBean);
+		
+		return new ListDTO<DonationDTO>(donationBox.getAllDonationList(pagingBean), pagingBean);
 	}
 	
 	@Override
@@ -58,6 +55,4 @@ public class DonationServiceImpl implements DonationService{
 	public void delete(DonationDTO donation) {
 		
 	}
-	
-	
 }

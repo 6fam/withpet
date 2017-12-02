@@ -17,7 +17,7 @@ public class MessageDAOImpl implements MessageDAO {
 	SqlSessionTemplate template;
 
 	@Override
-	public void writeMessage(MessageDTO message) {
+	public void registerMessage(MessageDTO message) {
 		template.insert("message.writeMessage", message);
 	}
 
@@ -60,12 +60,12 @@ public class MessageDAOImpl implements MessageDAO {
 	}
 
 	@Override
-	public MessageDTO readSendMessage(int messageNo) {
+	public MessageDTO findSendMessageByNo(int messageNo) {
 		return template.selectOne("message.readSendMessage",messageNo);
 	}
 
 	@Override
-	public MessageDTO readReceiveMessage(int messageNo) {
+	public MessageDTO findReceiveMessageByNo(int messageNo) {
 		return template.selectOne("message.readReceiveMessage", messageNo);
 	}
 
@@ -80,22 +80,22 @@ public class MessageDAOImpl implements MessageDAO {
 	}
 
 	@Override
-	public void updateSenderDFlag(int messageNo) {
+	public void setSenderDFlag(int messageNo) {
 		template.update("message.updateSenderDFlag",messageNo);
 	}
 
 	@Override
-	public void updateReceiverDFlag(int messageNo) {
+	public void setReceiverDFlag(int messageNo) {
 		template.update("message.updateReceiverDFlag",messageNo);
 	}
 
 	@Override
-	public void deleteMessage(int messageNo) {
+	public void removeMessage(int messageNo) {
 		template.delete("message.deleteMessage",messageNo);	
 	}
 
 	@Override
-	public void messageReadChk(int messageNo) {
+	public void isMessageReadChk(int messageNo) {
 		template.update("message.messageReadChk", messageNo);
 	}
 

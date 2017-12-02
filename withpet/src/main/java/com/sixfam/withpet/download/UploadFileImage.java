@@ -13,57 +13,57 @@ import com.sixfam.withpet.model.dto.UploadDTO;
 
 public class UploadFileImage<T extends UploadDTO> {
 	private String uploadPath;
-	
+
 	/*
 	 * 단일업로드
 	 */
 	public void setImageUpload(HttpServletRequest request, T dto) {
-		uploadPath=request.getSession().getServletContext().getRealPath("/resources/upload/");
-		File uploadDir=new File(uploadPath);
-		
-		if(uploadDir.exists()==false)
-			uploadDir.mkdirs();
-		
-		MultipartFile file=dto.getUploadFile();
+		uploadPath = request.getSession().getServletContext().getRealPath("/resources/upload/");
+		File uploadDir = new File(uploadPath);
 
-		if(file!=null&&file.isEmpty()==false) {
+		if (uploadDir.exists() == false)
+			uploadDir.mkdirs();
+
+		MultipartFile file = dto.getUploadFile();
+
+		if (file != null && file.isEmpty() == false) {
 			dto.setImgPath(file.getOriginalFilename());
-			File uploadFile=new File(uploadPath+file.getOriginalFilename());
+			File uploadFile = new File(uploadPath + file.getOriginalFilename());
 			try {
 				file.transferTo(uploadFile);
-			}catch(IllegalStateException | IOException e) {
+			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	
+
 	/*
 	 * 다중 업로드
 	 */
 	public ArrayList<ImgDTO> setImageUploadList(HttpServletRequest request, T dto) {
-		uploadPath=request.getSession().getServletContext().getRealPath("/resources/upload/");
+		uploadPath = request.getSession().getServletContext().getRealPath("/resources/upload/");
 		System.out.println(uploadPath);
-		File uploadDir=new File(uploadPath);
+		File uploadDir = new File(uploadPath);
 		ArrayList<ImgDTO> imgPath = new ArrayList<ImgDTO>();
-		
-		if(uploadDir.exists()==false)
+
+		if (uploadDir.exists() == false)
 			uploadDir.mkdirs();
-		
-		for(MultipartFile file : dto.getUploadFileList()) {			
-			if(file!=null&&file.isEmpty()==false) {
+
+		for (MultipartFile file : dto.getUploadFileList()) {
+			if (file != null && file.isEmpty() == false) {
 				dto.setImgPathList(imgPath);
 				dto.getImgPathList().add(new ImgDTO(file.getOriginalFilename()));
-				//dto.getImgPathList().add(file.getOriginalFilename());
-				File uploadFile=new File(uploadPath+file.getOriginalFilename());
+				// dto.getImgPathList().add(file.getOriginalFilename());
+				File uploadFile = new File(uploadPath + file.getOriginalFilename());
 				try {
 					file.transferTo(uploadFile);
-				}catch(IllegalStateException | IOException e) {
+				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		
+
 		return imgPath;
 	}
 }
-       

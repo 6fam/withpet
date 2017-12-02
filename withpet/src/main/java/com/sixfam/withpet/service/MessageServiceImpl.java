@@ -17,7 +17,7 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public void writeMessage(MessageDTO messageDTO) {
-		message.writeMessage(messageDTO);
+		message.registerMessage(messageDTO);
 	}
 
 	@Override
@@ -56,31 +56,31 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public MessageDTO readSendMessage(int messageNo) {
-		return message.readSendMessage(messageNo);
+		return message.findSendMessageByNo(messageNo);
 	}
 
 	@Override
 	public MessageDTO readReceiveMessage(int messageNo) {
-		message.messageReadChk(messageNo);
-		return message.readReceiveMessage(messageNo);
+		message.isMessageReadChk(messageNo);
+		return message.findReceiveMessageByNo(messageNo);
 	}
 
 	@Override
 	public void deleteReceiveMessage(int messageNo) {
 		int flag = message.getSenderDeleteInfo(messageNo);
 		if(flag == 1)
-			message.updateReceiverDFlag(messageNo);
+			message.setReceiverDFlag(messageNo);
 		else
-			message.deleteMessage(messageNo);
+			message.removeMessage(messageNo);
 	}
 
 	@Override
 	public void deleteSendMessage(int messageNo) {
 		int flag = message.getReceiverDeleteInfo(messageNo);
 		if(flag == 1)
-			message.updateSenderDFlag(messageNo);
+			message.setSenderDFlag(messageNo);
 		else
-			message.deleteMessage(messageNo);
+			message.removeMessage(messageNo);
 	}
 
 

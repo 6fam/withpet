@@ -14,19 +14,15 @@
 					style="text-decoration:none ;color:black ;display:inline-block; height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				모임
 				</a>
-				<font style="color: #ddd">|</font>
-				<!-- 돌보미게시판 -->
-				<a href="carer.do?pageNo=1" style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
-				돌보미
-				</a>
-				<font style="color: #ddd">|</font>
-				<a href="sharemarket.do" style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
-				나눔마켓
-				</a>
 				<!-- 반려견기부게시판 -->
 				<font style="color: #ddd">|</font> 
 				<a href="togetherdog.do?pageNo=1"style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				같이가치
+				</a>
+				<!-- 반려견기부게시판 -->
+				<font style="color: #ddd">|</font> 
+				<a href="#"style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
+				커뮤니티
 				</a>
 				<!-- 반려견기부게시판 -->
 				<font style="color: #ddd">|</font> 

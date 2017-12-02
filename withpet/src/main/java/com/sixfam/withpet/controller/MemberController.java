@@ -38,7 +38,7 @@ public class MemberController {
 	 */
 	@Secured("ROLE_DOGMOM")
 	@RequestMapping("mypage_opened.do")
-	public String mypage_opened(int pageNo, Model model, Authentication authentication) {
+	public String mypage_openedRequest(int pageNo, Model model, Authentication authentication) {
 		MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
 		System.out.println("//controller 처음 : id "+mdto.getId());
 		model.addAttribute("listdto", service.getSetupById(mdto.getId(), pageNo));
@@ -54,7 +54,7 @@ public class MemberController {
 	 * 마이페이지>참여내역 페이지
 	 */
 	@RequestMapping("mypage_participate.do")
-	public String mypage_partcipate(int pageNo, Model model, Authentication authentication) {
+	public String mypage_partcipateRequest(int pageNo, Model model, Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		model.addAttribute("listdto", service.getAttenderHistoryById(mdto.getId(), pageNo));
 		return "mypage_participate.tiles";
@@ -64,7 +64,7 @@ public class MemberController {
 	 * 마이페이지>공감내역 페이지
 	 */
 	@RequestMapping("mypage_liked.do")
-	public String mypage_liked(int pageNo, Model model, Authentication authentication) {
+	public String mypage_likedRequest(int pageNo, Model model, Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		model.addAttribute("listdto", service.getSympathyHistoryById(mdto.getId(), pageNo));
 		return "mypage_liked.tiles";
@@ -74,9 +74,9 @@ public class MemberController {
 	 * 회원가입
 	 */
 	@RequestMapping(value="memberJoin.do",  method= RequestMethod.POST)
-	public String registerMember(MemberDTO member) {
+	public String registerMemberRequest(MemberDTO member) {
 		System.out.println("post 방식으로 넘어온 member값 "+member);
-		member.setCategoryNo(18);
+		member.setCategoryNo(4);
 		service.registerMember(member);
 		return "redirect:home.do";
 	}
@@ -84,7 +84,7 @@ public class MemberController {
 	
 	@RequestMapping("findMemberByIdAjax.do")
 	@ResponseBody
-	public String idcheckAjax(String id) {
+	public String idcheckAjaxRequest(String id) {
 		return service.idcheck(id);
 	}
 
@@ -93,7 +93,7 @@ public class MemberController {
 	 */
 	@Secured("ROLE_MEMBER")
 	@RequestMapping("mypage.do")
-	public String mypage(Authentication authentication, Model model) {
+	public String mypageRequest(Authentication authentication, Model model) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		MemberDTO member=service.mypageInfoById(mdto.getId());
 		model.addAttribute("member", member);
@@ -110,7 +110,7 @@ public class MemberController {
 	 */
 	@Secured({"ROLE_STANDBY", "ROLE_DOGMOM"})
 	@RequestMapping("dog_update.do")
-	public String dogUpdate(Authentication authentication, Model model) {
+	public String dogUpdateRequest(Authentication authentication, Model model) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		DogDTO dog=service.selectDogById(mdto.getId());
 		if(dog!=null)
@@ -125,7 +125,7 @@ public class MemberController {
 	//private String uploadPath; //업로드 경로
 	@Secured("ROLE_MEMBER")
 	@RequestMapping(value="insertDogInfo.do", method=RequestMethod.POST)
-	public String insertDogInfo(HttpServletRequest request, Authentication authentication, DogDTO ddto) {
+	public String insertDogInfoRequest(HttpServletRequest request, Authentication authentication, DogDTO ddto) {
 		UploadFileImage<DogDTO> upload = new UploadFileImage<DogDTO>();
 		
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
@@ -141,7 +141,7 @@ public class MemberController {
 	 */
 	@Secured("ROLE_MEMBER")
 	@RequestMapping("updateMemberAuth.do")
-	public String updateMemberAuth(HttpServletRequest request) {
+	public String updateMemberAuthRequest(HttpServletRequest request) {
 		System.out.println("updateMemberAUTH method");
 		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
 		List<GrantedAuthority> updatedAuthorities=new ArrayList<>(auth.getAuthorities());
@@ -155,7 +155,7 @@ public class MemberController {
 	 */
 	@Secured({"ROLE_STANDBY", "ROLE_DOGMOM"})
 	@RequestMapping(value="updateDogInfo.do", method=RequestMethod.POST)
-	public String updateDogInfo(HttpServletRequest request, Authentication authentication, DogDTO ddto) {
+	public String updateDogInfoRequest(HttpServletRequest request, Authentication authentication, DogDTO ddto) {
 		System.out.println(ddto.getBdate());
 		
 		UploadFileImage<DogDTO> upload = new UploadFileImage<DogDTO>();
@@ -173,7 +173,7 @@ public class MemberController {
 	 * 회원정보수정 폼
 	 */
 	@RequestMapping("information_modification.do")
-	public String informationModification(Authentication authentication, Model model) {
+	public String informationModificationRequest(Authentication authentication, Model model) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		MemberDTO member=service.mypageInfoById(mdto.getId());
 		model.addAttribute("member", member);
@@ -183,7 +183,7 @@ public class MemberController {
 	 * 비밀번호수정 폼
 	 */
 	@RequestMapping("information_pw_modification.do")
-	public String informationPwModification(Authentication authentication, Model model) {
+	public String informationPwModificationRequest(Authentication authentication, Model model) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		MemberDTO member=service.mypageInfoById(mdto.getId());
 		model.addAttribute("member", member);
@@ -194,7 +194,7 @@ public class MemberController {
 	 *  회원정보 수정
 	 */
 	@RequestMapping(value="updateMemberInfo.do", method=RequestMethod.POST)
-	public String updateMemberInfo(MemberDTO member, Authentication authentication) {
+	public String updateMemberInfoRequest(MemberDTO member, Authentication authentication) {
 		System.out.println("회원 정보 수정 memberDTO: "+member);
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		member.setId(mdto.getId());
@@ -205,7 +205,7 @@ public class MemberController {
 	 * 회원 비밀번호 수정
 	 */
 	@RequestMapping(value="updateMemberPWInfo.do", method=RequestMethod.POST)
-	public String updateMemberPWInfo(MemberDTO member) {
+	public String updateMemberPWInfoRequest(MemberDTO member) {
 		System.out.println("비밀번호 수정 memberDTO : "+member);
 		service.updateMemberPWInfo(member);
 		return "redirect:mypage.do";
@@ -215,26 +215,26 @@ public class MemberController {
 	 * 비밀번호 찾기 - 비번 질문, 답 입력 폼
 	 */
 	@RequestMapping("f_idbyquestion.do")
-	public String fidByQuestion(Model model) {
+	public String fidByQuestionRequest(Model model) {
 		model.addAttribute("pwQuestion", service.getPWQuestion());
 		return "f_idbyquestion.tiles";
 	}
 
 	@ResponseBody
 	@RequestMapping("checkIdPwAnswer.do")
-	public String checkIdPwAnswer( MemberDTO member ) {
+	public String checkIdPwAnswerRequest( MemberDTO member ) {
 		return service.checkIdPwAnswer(member);
 	}
 	/*
 	 * 비밀번호 찾기 - 비밀번호 변경 폼
 	 */
 	@RequestMapping("f_changePw.do")
-	public String fChangePw(String id, Model model) {
+	public String fChangePwRequest(String id, Model model) {
 		model.addAttribute("id", id);
 		return "f_changePw.tiles";
 	}
 	@RequestMapping(value="changePw.do", method=RequestMethod.POST)
-	public String changePw(MemberDTO member) {
+	public String changePwRequest(MemberDTO member) {
 		service.updateMemberPW(member);
 		return "redirect:home.do";
 	}
@@ -242,7 +242,7 @@ public class MemberController {
 	 * 회원 탈퇴 폼
 	 */
 	@RequestMapping("dropMemberForm.do")
-	public String dropMemberForm(Authentication authentication, Model model) {
+	public String dropMemberFormRequest(Authentication authentication, Model model) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		MemberDTO member=service.mypageInfoById(mdto.getId());
 		model.addAttribute("member", member);
@@ -250,7 +250,7 @@ public class MemberController {
 	}
 	@ResponseBody
 	@RequestMapping(value="dropMember.do", method=RequestMethod.POST)
-	public String dropMember(Authentication authentication, Model model, MemberDTO dropMember) {
+	public String dropMemberRequest(Authentication authentication, Model model, MemberDTO dropMember) {
 		System.out.println("//////////////dropMember//////////////////");
 		System.out.println("dropMember: "+dropMember);
 		String result=" ";
@@ -267,7 +267,7 @@ public class MemberController {
 		return result;
 	}
 	@RequestMapping("exceptMember.do")
-	public String exceptMember(Authentication authentication) {
+	public String exceptMemberRequest(Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		service.exceptMember(mdto);
 		return "redirect:logout.do";

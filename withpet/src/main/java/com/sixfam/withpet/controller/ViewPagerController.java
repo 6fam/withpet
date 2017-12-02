@@ -23,7 +23,7 @@ public class ViewPagerController {
 	 * 홈페이지
 	 */
 	@RequestMapping("home.do")
-	public String home(Model model) {
+	public String homeRequest(Model model) {
 		
 		int meetingCount = meetingService.getMeetingCount();
 		PagingBean pb = new PagingBean(12, meetingCount);
@@ -40,7 +40,7 @@ public class ViewPagerController {
 	 * 회원가입 페이지
 	 */
 	@RequestMapping("join.do")
-	public String join() {
+	public String joinRequest() {
 		return "join.tiles";
 	}
 	
@@ -48,7 +48,7 @@ public class ViewPagerController {
 	 * 로그인 페이지
 	 */
 	@RequestMapping("loginForm.do")
-	public String login() {
+	public String loginRequest() {
 		return "loginForm.tiles";
 	}
 	
@@ -56,7 +56,7 @@ public class ViewPagerController {
 	 * 로그인 실패 페이지
 	 */
 	@RequestMapping("login_fail.do")
-	public String loginfail() {
+	public String loginfailRequest() {
 		return "login_fail.tiles";
 	}
 	
@@ -73,41 +73,15 @@ public class ViewPagerController {
 	 * 모임 개설 페이지
 	 */
 	@RequestMapping("meetingwrite.do")
-	public String meetingwrite() {
+	public String meetingwriteRequest() {
 		return "meetingwrite.tiles";
-	}
-	
-	
-	/**
-	 * 나눔마켓작성
-	 */
-	@RequestMapping("sharemarket_write.do")
-	public String sharemarketWrite() {
-		return "sharemarket_write.tiles";
-	}
-
-	
-	/**
-	 * 나눔마켓상세보기
-	 */
-	@RequestMapping("sharemarket_detail.do")
-	public String shareMarketDetail() {
-		return "sharemarket_detail.tiles";
-	}
-	
-	/**
-	 * 나눔마켓 수정
-	 */
-	@RequestMapping("sharemarket_update.do")
-	public String shareMarketUpdate() {
-		return "sharemarket_update.tiles";
 	}
 	
 	/*
 	 *  댕댕이 등록 
 	 */
 	@RequestMapping("dog_check.do")
-	public String dogCheckForm() {
+	public String dogCheckFormRequest() {
 		return "dog_check.tiles";
 	}
 	
@@ -115,7 +89,7 @@ public class ViewPagerController {
 	 * 타일즈 테스트
 	 */
 	@RequestMapping("togetherpagemove.do")
-	public String togetherDogMove() {
+	public String togetherDogMoveRequest() {
 		return "together/togetherpagemove.tiles";
 	}
 }

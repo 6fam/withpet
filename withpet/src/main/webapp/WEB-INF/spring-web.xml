@@ -53,7 +53,7 @@
 	
 	<!-- 파일 다운로드를 위한 설정 -->
 	<!-- 클래스 설정해줘야 함 -->
-	<bean name="downloadView" class="com.sixfam.withpet.download.DownloadView"/>
+	<!-- <bean name="downloadView" class="com.sixfam.withpet.download.DownloadView"/> -->
 	
 	<!-- 파일 다운로드 서비스를 위해 ViewResolver를 추가한다 -->
 	<bean id="beanNameViewResolver" 

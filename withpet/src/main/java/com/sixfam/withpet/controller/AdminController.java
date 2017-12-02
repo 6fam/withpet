@@ -140,7 +140,7 @@ public class AdminController {
 	   return "manager_sharemarket.tiles";
    }
  */ 
-   
+/*   
    //타입별 게시글 목록
    @RequestMapping("manager_boardtype.do")
    public String managerBoardType(Model model,int pageNo,int categoryNo) {
@@ -161,7 +161,7 @@ public class AdminController {
 	   }
 	   return path;
    }
-   
+   */
    //모임 폐쇠
    @Secured("ROLE_ADMIN")
    @RequestMapping(value="managerDeleteMeeting.do", method=RequestMethod.POST)

@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <configuration>	
 	<typeAliases>		
-		<package name="com.sixidiot.doingtogether.model"/>
+		<package name="com.sixfam.withpet.model"/>
 	</typeAliases>	
 	<mappers>
 		<!-- 공통게시판 -->		

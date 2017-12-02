@@ -12,25 +12,25 @@ public interface DonationDAO {
 	/**
 	 * 전체 게시물 갯수
 	 */
-	int getTotalCount();
+	public int getTotalCount();
 	
 	/**
 	 * 모금함 개설시 등록된 이미지 경로 작성
 	 */
-	void registerImg(ArrayList<ImgDTO> imgList);
+	public void registerImg(ArrayList<ImgDTO> imgList);
 
 	/*
 	 * 모금함 상위게시판 개설
 	 */
-	void registerMotherDonation(DonationDTO donation);
+	public void registerMotherDonation(DonationDTO donation);
 
 	/*
 	 * 모금함 게시판 개설
 	 */
-	void registerDonation(DonationDTO donation);
+	public void registerDonation(DonationDTO donation);
 
 	/*
 	 * 모금함목록
 	 */
-	List<DonationDTO> getAllDonationList(PagingBean pagingBean);
+	public List<DonationDTO> getAllDonationList(PagingBean pagingBean);
 }

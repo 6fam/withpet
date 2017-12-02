@@ -9,51 +9,51 @@ import com.sixfam.withpet.model.dto.MemberDTO;
 
 public interface AdminDAO {
 	//회원 관련 DAO
-	List<MemberDTO>  getTotalMemberList(PagingBean pagingBean);
-	List<MemberDTO> getAllRoleMemberList(PagingBean pagingBean);
-	List<MemberDTO> getAllRoleStandby(PagingBean pagingBean);
-	List<MemberDTO> getAllRoleDogmomList(PagingBean pagingBean);
-	int getAllRoleMemberTotalCount();
-	int getAllRoleStandbyTotalCount();
+	public List<MemberDTO>  getTotalMemberList(PagingBean pagingBean);
+	public List<MemberDTO> getAllRoleMemberList(PagingBean pagingBean);
+	public List<MemberDTO> getAllRoleStandby(PagingBean pagingBean);
+	public List<MemberDTO> getAllRoleDogmomList(PagingBean pagingBean);
+	public int getAllRoleMemberTotalCount();
+	public int getAllRoleStandbyTotalCount();
 
 
 	
 	//게시판 관련 DAO
-	List<BoardDTO> getAllBoardList(PagingBean pagingBean);
-	List<BoardDTO> getBoardTypeList(PagingBean pagingBean,int categoryNo);
-	List<BoardDTO> getAllMeetingList(PagingBean pagingBean);
+	public List<BoardDTO> getAllBoardList(PagingBean pagingBean);
+	public List<BoardDTO> getBoardTypeList(PagingBean pagingBean,int categoryNo);
+	public List<BoardDTO> getAllMeetingList(PagingBean pagingBean);
 
-	List<BoardDTO> getAllCareList();
+	public List<BoardDTO> getAllCareList();
 
-	List<BoardDTO> getAllShareMarketList();
+	public List<BoardDTO> getAllShareMarketList();
 
-	List<MemberDTO> getTierMemberList();
+	public List<MemberDTO> getTierMemberList();
 
 	////Tier Except
-	void registerTierExcept(MemberDTO memberDTO);
+	public void registerTierExcept(MemberDTO memberDTO);
 	////Tier Member
-	void registerTierMember(MemberDTO memberDTO);
+	public void registerTierMember(MemberDTO memberDTO);
 	////Tier Standby
-	void registerTierStandby(MemberDTO memberDTO);
+	public void registerTierStandby(MemberDTO memberDTO);
 	////Tier Dogmom
-	void registerTierDogmom(MemberDTO memberDTO);
+	public void registerTierDogmom(MemberDTO memberDTO);
 	////Tier Admin
-	void registerTierAdmin(MemberDTO memberDTO);
+	public void registerTierAdmin(MemberDTO memberDTO);
 
-	void removeMemberTier(MemberDTO memberDTO);
+	public void removeMemberTier(MemberDTO memberDTO);
 	////Tier List
-	List<MemberDTO> getAllTierList();
+	public List<MemberDTO> getAllTierList();
 
-	int getAllMemberCount();
-	int getAllRoleDogmomTotalCount();
-	int getAllBoardListCount();
-	int getBoardListCount(int categoryNo);
-	int getMeetingBoardListCount();
+	public int getAllMemberCount();
+	public int getAllRoleDogmomTotalCount();
+	public int getAllBoardListCount();
+	public int getBoardListCount(int categoryNo);
+	public int getMeetingBoardListCount();
 	
 	////모금함
-	List<DonationDTO> getAllDonationList(PagingBean pagingBean);
-	List<DonationDTO> getApplyDonationList(PagingBean pagingBean);
-	void setAcceptDonation(int boardNo);
+	public List<DonationDTO> getAllDonationList(PagingBean pagingBean);
+	public List<DonationDTO> getApplyDonationList(PagingBean pagingBean);
+	public void setAcceptDonation(int boardNo);
 
 
 }

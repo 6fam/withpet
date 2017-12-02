@@ -1,8 +1,0 @@
-package com.sixidiot.doingtogether.controller;
-
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class LoginController {
-
-}

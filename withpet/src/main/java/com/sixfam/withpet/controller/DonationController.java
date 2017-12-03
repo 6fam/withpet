@@ -44,7 +44,6 @@ public class DonationController {
 				list.get(i).getImgPathList().add(new ImgDTO(imgPathList[j]));
 			}
 		}
-		System.out.println(list);
 		model.addAttribute("donationList", list);
 		return "together.tiles";
 	}

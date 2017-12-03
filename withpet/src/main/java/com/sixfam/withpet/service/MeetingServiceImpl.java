@@ -58,7 +58,6 @@ public class MeetingServiceImpl implements MeetingService{
 			return true;
 		}
 		else {
-			System.out.println("이미 참여를 하고 있습니니다");
 			return false;
 		}
 	}
@@ -67,7 +66,6 @@ public class MeetingServiceImpl implements MeetingService{
 	@Transactional
 	public void removeMeetingInfo(int boardNo) {
 		MeetingDTO meeting=dao.findDetailByBoardNo(boardNo);
-		System.out.println(meeting);
 		int imgNo=meeting.getImgNo();
 		int dateNo=meeting.getDate().getDateNo();
 		dao.removeAttenderByBoardNo(boardNo);

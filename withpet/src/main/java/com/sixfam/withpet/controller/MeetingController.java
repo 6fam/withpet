@@ -86,14 +86,11 @@ public class MeetingController {
 			//조회수 증가
 			common.addHits(request, response, member.getId(), boardNo);
 			
-			//System.out.println(boardNo);
 			MeetingDTO meetingDTO = service.getMeetingDetailByBoardNo(Integer.parseInt(boardNo));
 			MemberDTO memberDTO = service.findMemberInfoByBoradNo(Integer.parseInt(boardNo));
 			
 			model.addAttribute("meetingDetailDTO", meetingDTO);
 			model.addAttribute("memberDetailDTO", memberDTO);
-			//System.out.println(meetingDTO.getDate().getGatheringStart());
-			//System.out.println(meetingDTO.getDate().getGatheringEnd());
 			
 			return "meeting_detail.tiles";
 		}catch(NullPointerException e){
@@ -216,9 +213,7 @@ public class MeetingController {
 	@RequestMapping(value = "deleteReply.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String deleteReplyRequest(Authentication authentication, int replyNo) {
-		System.out.println("//////////////CareController : replyNo////////////"+replyNo);
 		service.removeReply(replyNo);
-		System.out.println("/////////////댓삭!!!!//////////////");
 		return "gg";
 	}
 	
@@ -231,7 +226,6 @@ public class MeetingController {
 	@RequestMapping("replyCount.do")
 	@ResponseBody
 	public int replyCountRequest(int boardNo) {
-		System.out.println("///////////리플카운트 : "+service.getReplyCount(boardNo));
 		return service.getReplyCount(boardNo);
 	}
 }

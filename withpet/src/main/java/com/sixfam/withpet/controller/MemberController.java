@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sixfam.withpet.download.UploadFileImage;
 import com.sixfam.withpet.model.dto.DogDTO;
-import com.sixfam.withpet.model.dto.ListDTO;
-import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.service.MemberService;
 
@@ -40,13 +38,7 @@ public class MemberController {
 	@RequestMapping("mypage_opened.do")
 	public String mypage_openedRequest(int pageNo, Model model, Authentication authentication) {
 		MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
-		System.out.println("//controller 처음 : id "+mdto.getId());
 		model.addAttribute("listdto", service.getSetupListById(mdto.getId(), pageNo));
-		ListDTO<MeetingDTO> llistff=service.getSetupListById(mdto.getId(), pageNo);
-		List<MeetingDTO> list=llistff.getList();
-		System.out.println("//controller 끝 : list"+list.size());
-		for(MeetingDTO m:list)
-			System.out.println(m);
 		return "mypage_opened.tiles";
 	}
 	
@@ -75,7 +67,6 @@ public class MemberController {
 	 */
 	@RequestMapping(value="memberJoin.do",  method= RequestMethod.POST)
 	public String registerMemberRequest(MemberDTO member) {
-		System.out.println("post 방식으로 넘어온 member값 "+member);
 		member.setCategoryNo(4);
 		service.registerMember(member);
 		return "redirect:home.do";
@@ -98,11 +89,10 @@ public class MemberController {
 		MemberDTO member=service.findMypageInfoById(mdto.getId());
 		model.addAttribute("member", member);
 		DogDTO dog=service.findDogById(mdto.getId());
-		System.out.println("강아지정보!:"+dog);
-		if(dog!=null) {
+		
+		if(dog!=null) 
 			model.addAttribute("ddto", dog);
-			System.out.println(dog);
-		}
+		
 		return "mypage.tiles";
 	}
 	/**
@@ -142,7 +132,6 @@ public class MemberController {
 	@Secured("ROLE_MEMBER")
 	@RequestMapping("updateMemberAuth.do")
 	public String updateMemberAuthRequest(HttpServletRequest request) {
-		System.out.println("updateMemberAUTH method");
 		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
 		List<GrantedAuthority> updatedAuthorities=new ArrayList<>(auth.getAuthorities());
 		updatedAuthorities.add(new SimpleGrantedAuthority("ROLE_STANDBY"));
@@ -156,7 +145,6 @@ public class MemberController {
 	@Secured({"ROLE_STANDBY", "ROLE_DOGMOM"})
 	@RequestMapping(value="updateDogInfo.do", method=RequestMethod.POST)
 	public String updateDogInfoRequest(HttpServletRequest request, Authentication authentication, DogDTO ddto) {
-		System.out.println(ddto.getBdate());
 		
 		UploadFileImage<DogDTO> upload = new UploadFileImage<DogDTO>();
 		
@@ -195,7 +183,6 @@ public class MemberController {
 	 */
 	@RequestMapping(value="updateMemberInfo.do", method=RequestMethod.POST)
 	public String updateMemberInfoRequest(MemberDTO member, Authentication authentication) {
-		System.out.println("회원 정보 수정 memberDTO: "+member);
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		member.setId(mdto.getId());
 		service.setMemberInfo(member);
@@ -206,7 +193,6 @@ public class MemberController {
 	 */
 	@RequestMapping(value="updateMemberPWInfo.do", method=RequestMethod.POST)
 	public String updateMemberPWInfoRequest(MemberDTO member) {
-		System.out.println("비밀번호 수정 memberDTO : "+member);
 		service.setMemberPWInfo(member);
 		return "redirect:mypage.do";
 	}
@@ -251,19 +237,15 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="dropMember.do", method=RequestMethod.POST)
 	public String dropMemberRequest(Authentication authentication, Model model, MemberDTO dropMember) {
-		System.out.println("//////////////dropMember//////////////////");
-		System.out.println("dropMember: "+dropMember);
 		String result=" ";
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
-		System.out.println("사용자가 입력한 password: "+dropMember.getPassword());
 		
 		MemberDTO member=service.findMemberById(mdto.getId());
-		System.out.println("db정보 : "+member);
 		if (!passwordEncoder.matches(dropMember.getPassword(), member.getPassword())) {
 			result="fail";			
 		}else
 			result="ok";
-		System.out.println("결과: "+result);
+		
 		return result;
 	}
 	@RequestMapping("exceptMember.do")

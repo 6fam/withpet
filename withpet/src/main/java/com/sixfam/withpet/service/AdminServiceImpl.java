@@ -68,7 +68,6 @@ public class AdminServiceImpl implements AdminService {
 			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
 		//List<MemberDTO> list =adminDAO.allRoleStandby(pagingBean);
 		//ListDTO<MemberDTO> list=  new ListDTO<MemberDTO>(adminDAO.allRoleDogmomList(pagingBean), pagingBean);
-		//System.out.println("서비스"+list);
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleStandby(pagingBean), pagingBean);
 	}
 

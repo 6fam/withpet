@@ -43,7 +43,6 @@ public class UploadFileImage<T extends UploadDTO> {
 	 */
 	public ArrayList<ImgDTO> setImageUploadList(HttpServletRequest request, T dto) {
 		uploadPath = request.getSession().getServletContext().getRealPath("/resources/upload/");
-		System.out.println(uploadPath);
 		File uploadDir = new File(uploadPath);
 		ArrayList<ImgDTO> imgPath = new ArrayList<ImgDTO>();
 

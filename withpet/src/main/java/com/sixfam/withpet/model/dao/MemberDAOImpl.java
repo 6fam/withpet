@@ -112,8 +112,6 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public int getTotalCountById(String id) {
-		int count = template.selectOne("member.getTotalCountById", id);
-		System.out.println("count : "+count);
 		return template.selectOne("member.getTotalCountById", id);
 	}
 	@Override

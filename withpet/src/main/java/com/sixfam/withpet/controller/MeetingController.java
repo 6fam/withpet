@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sixfam.withpet.download.UploadFileImage;
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dto.DateDTO;
 import com.sixfam.withpet.model.dto.ListDTO;
@@ -23,6 +22,7 @@ import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.model.dto.ReplyDTO;
 import com.sixfam.withpet.service.CommonService;
 import com.sixfam.withpet.service.MeetingService;
+import com.sixfam.withpet.upload.UploadFileImage;
 
 @Controller
 public class MeetingController {

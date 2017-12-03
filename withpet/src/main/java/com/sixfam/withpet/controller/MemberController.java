@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sixfam.withpet.download.UploadFileImage;
 import com.sixfam.withpet.model.dto.DogDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.service.MemberService;
+import com.sixfam.withpet.upload.UploadFileImage;
 
 @Controller
 public class MemberController {

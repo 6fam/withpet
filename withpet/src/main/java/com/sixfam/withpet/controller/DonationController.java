@@ -12,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sixfam.withpet.common.WithPet;
 import com.sixfam.withpet.download.UploadFileImage;
-import com.sixfam.withpet.model.WithPet;
 import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.ImgDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;

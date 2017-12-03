@@ -8,8 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sixfam.withpet.common.WithPet;
 import com.sixfam.withpet.model.PagingBean;
-import com.sixfam.withpet.model.WithPet;
 import com.sixfam.withpet.model.dao.AdminDAO;
 import com.sixfam.withpet.model.dao.MemberDAO;
 import com.sixfam.withpet.model.dto.Authority;

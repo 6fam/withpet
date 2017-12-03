@@ -9,8 +9,8 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.sixfam.withpet.common.WithPet;
 import com.sixfam.withpet.model.PagingBean;
-import com.sixfam.withpet.model.WithPet;
 import com.sixfam.withpet.model.dto.Authority;
 import com.sixfam.withpet.model.dto.DogDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;

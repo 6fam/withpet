@@ -1,19 +1,25 @@
-package com.sixfam.withpet.model;
+package com.sixfam.withpet.common;
 
 /*
  * 공통상수를 선언하는 클래스입니다.
  */
 public interface WithPet {
+	
 	//탈퇴회원
 	public final static int ROLE_EXCEPT = 9;
+	
 	//일반회원
 	public final static int ROLE_MEMBER = 10;
+	
 	//견주대기자
 	public final static int ROLE_STANDBY = 11;
+	
 	//댕댕이맘
 	public final static int ROLE_DOGMOM = 12;
+	
 	//관리자
 	public final static int ROLE_MANAGER = 13;
+	
 	//시스템관리자
 	public final static int ROLE_SYSTEMADMIN = 14;
 

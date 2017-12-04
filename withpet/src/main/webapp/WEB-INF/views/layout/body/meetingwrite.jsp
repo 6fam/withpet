@@ -207,6 +207,19 @@
 		<div class="row" style="margin-top: 40px;margin-bottom: 40px">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-1" style="padding-left:0px;margin-top: 5px;margin-right: 0px;padding-right: 0px">
+				<font style="color: #4f4f4f"><b>간단소개</b></font></div>
+			<div class="col-sm-9" style="margin-left: 0px; padding-left: 0px">
+				<textarea name="intro" rows="5" cols="100" class="form-control" style="resize: none"></textarea>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+		
+		<hr>
+		
+		<!-- 내용입력 시작 -->
+		<div class="row" style="margin-top: 40px;margin-bottom: 40px">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-1" style="padding-left:0px;margin-top: 5px;margin-right: 0px;padding-right: 0px">
 				<font style="color: #4f4f4f"><b>내용</b></font></div>
 			<div class="col-sm-9" style="margin-left: 0px; padding-left: 0px">
 				<textarea name="content" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea>

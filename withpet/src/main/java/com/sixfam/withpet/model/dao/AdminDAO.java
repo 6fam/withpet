@@ -52,6 +52,11 @@ public interface AdminDAO {
 	public List<DonationDTO> getAllDonationList(PagingBean pagingBean);
 	public List<DonationDTO> getApplyDonationList(PagingBean pagingBean);
 	public void setAcceptDonation(int boardNo);
+	/**
+	 * 견주 승인 날짜 업데이트
+	 * @param memberDTO
+	 */
+	public void setDogmomPermitDate(MemberDTO memberDTO);
 	
 
 

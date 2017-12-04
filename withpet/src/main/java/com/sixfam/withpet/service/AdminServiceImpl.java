@@ -124,6 +124,9 @@ public class AdminServiceImpl implements AdminService {
 				adminDAO.removeMemberTier(memberDTO);
 				adminDAO.registerTierAdmin(memberDTO);
 				break;
+		case WithPet.ROLE_SYSTEMADMIN : //최고관리자등록
+			adminDAO.removeMemberTier(memberDTO);
+			break;
 		case WithPet.ROLE_EXCEPT : //탈퇴회원등록
 				adminDAO.removeMemberTier(memberDTO);
 				adminDAO.registerTierExcept(memberDTO);
@@ -181,6 +184,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	@Transactional
 	public void setManagerDogmomPermit(MemberDTO memberDTO) {
+			adminDAO.setDogmomPermitDate(memberDTO);
 			adminDAO.removeMemberTier(memberDTO);
 			adminDAO.registerTierDogmom(memberDTO);
 	}

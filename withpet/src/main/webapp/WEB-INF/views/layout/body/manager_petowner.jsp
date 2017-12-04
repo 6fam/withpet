@@ -71,7 +71,7 @@ $(document).ready(function() {
 												<td>${ml.dogDTO.id}</td>
 												<td>${ml.nick}</td>
 												<td>${ml.dogDTO.name}</td>
-												<td>${ml.dogDTO.bdate}</td>
+												<td>${ml.dogDTO.bdate+1}</td>
 												<td>${ml.permitdate}</td>
 												<td><button type="submit"
 														class="btn btn-outline-danger dogmomdelete"

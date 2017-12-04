@@ -50,9 +50,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into img(img_no, img_path) values(img_seq.nextval, #{value})
 	</insert>
 	
+	<!-- category_no ==> 25(모집중) 다음에 날짜별로 상태 바꾸기 -->
 	<insert id="insertMeeting" parameterType="meetingDTO">
 		insert into meeting(board_no,people_count,place,date_no,img_no,category_no)
-		values(board_seq.currval, #{peopleCount}, #{place}, gatheringdate_seq.currval,img_seq.currval, 8)
+		values(board_seq.currval, #{peopleCount}, #{place}, gatheringdate_seq.currval,img_seq.currval, 25)
 	</insert>
 	
 	<insert id="insertMeetingType" parameterType="int">

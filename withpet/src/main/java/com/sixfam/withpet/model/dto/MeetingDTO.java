@@ -35,16 +35,27 @@ public class MeetingDTO extends BoardDTO {
 	 * 모임 썸네일 이미지 컬럼명 : img_no
 	 */
 	private int imgNo;
+	
+	/*
+	 * 모임 한줄 소개
+	 */
+	private String intro;
+	
 	/*
 	 * 모임 상태 분류 -모집대기/모집중/모집만료 등의 정보가 올 수 있습니다. 컬럼명 : category_no
 	 */
 	private int categoryStateNo;
 	
-	// 모집중 상태
+	/*
+	 * 모집중 상태??
+	 */
 	private String meetingState;
 	
-	// 모임의 종류
+	/*
+	 *  모임의 종류 (친목, 훈련, 산책, 세미나)
+	 */
 	private String meetingType;
+	
 	
 	private String tel;
 	
@@ -56,7 +67,6 @@ public class MeetingDTO extends BoardDTO {
 	/**
 	 * Default Constructor
 	 */
-
 	public MeetingDTO() {
 		super();
 	}
@@ -101,12 +111,13 @@ public class MeetingDTO extends BoardDTO {
 	 * All has Constructor
 	 */
 	public MeetingDTO(int boardNo, String id, String title, String content, int hits, String wdate, int categoryNo,
-			List<ReplyDTO> replyList, String place, int peopleCount, int imgNo, int categoryStateNo,
+			List<ReplyDTO> replyList, String place, int peopleCount, int imgNo, String intro, int categoryStateNo,
 			String meetingState, String meetingType, String tel, MultipartFile uploadFile, DateDTO date) {
 		super(boardNo, id, title, content, hits, wdate, categoryNo, replyList, uploadFile);
 		this.place = place;
 		this.peopleCount = peopleCount;
 		this.imgNo = imgNo;
+		this.intro = intro;
 		this.categoryStateNo = categoryStateNo;
 		this.meetingState = meetingState;
 		this.meetingType = meetingType;
@@ -125,13 +136,9 @@ public class MeetingDTO extends BoardDTO {
 		this.date = date;
 	}
 
-	
-
 	public String getPlace() {
 		return place;
 	}
-
-
 
 	public void setPlace(String place) {
 		this.place = place;
@@ -151,6 +158,14 @@ public class MeetingDTO extends BoardDTO {
 
 	public void setImgNo(int imgNo) {
 		this.imgNo = imgNo;
+	}
+
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
 	}
 
 	public int getCategoryStateNo() {
@@ -181,7 +196,6 @@ public class MeetingDTO extends BoardDTO {
 		return tel;
 	}
 
-
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
@@ -198,7 +212,6 @@ public class MeetingDTO extends BoardDTO {
 		return detailPlace;
 	}
 
-
 	public void setDetailPlace(String detailPlace) {
 		this.detailPlace = detailPlace;
 	}
@@ -206,8 +219,8 @@ public class MeetingDTO extends BoardDTO {
 	@Override
 	public String toString() {
 		return "MeetingDTO [place=" + place + ", detailPlace=" + detailPlace + ", peopleCount=" + peopleCount
-				+ ", imgNo=" + imgNo + ", categoryStateNo=" + categoryStateNo + ", meetingState=" + meetingState
-				+ ", meetingType=" + meetingType + ", tel=" + tel + ", date=" + date + "]";
+				+ ", imgNo=" + imgNo + ", intro=" + intro + ", categoryStateNo=" + categoryStateNo + ", meetingState="
+				+ meetingState + ", meetingType=" + meetingType + ", tel=" + tel + ", date=" + date + "]";
 	}
-	
+
 }

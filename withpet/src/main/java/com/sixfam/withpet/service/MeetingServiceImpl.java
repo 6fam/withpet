@@ -40,7 +40,11 @@ public class MeetingServiceImpl implements MeetingService{
 	@Override
 	@Transactional
 	public void registerMeeting(MeetingDTO meetingDTO) {
+		dao.registerBoard(meetingDTO);
+		dao.registerGatheringdate(meetingDTO);
+		dao.registerImg(meetingDTO);
 		dao.registerMeeting(meetingDTO);
+		dao.registerMeetingType(meetingDTO);
 	}
 
 	@Override

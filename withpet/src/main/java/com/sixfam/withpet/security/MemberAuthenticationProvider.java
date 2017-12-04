@@ -79,7 +79,7 @@ public class MemberAuthenticationProvider implements AuthenticationProvider{
 	public List<Authority> getUserAuth(String id) {
 		List<Authority> list = memberService.getAuthorityListById(id);
 		
-		if(list.size() == 0)
+		if(list.size() == 0 || list.get(0).getAuth().equals("ROLE_EXCEPT"))
 			throw new UsernameNotFoundException("회원 권한이 없습니다.");
 		else {
 			for(int i=0;i<list.size();i++) {

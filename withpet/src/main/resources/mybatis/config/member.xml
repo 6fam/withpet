@@ -29,9 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE id=#{value}
 	</select>
 
-	<select id="selectDogById" parameterType="string" resultType="dogDTO">
+	<select id="findDogById" parameterType="string" resultType="dogDTO">
 		SELECT d.dog_no as dogNo, d.name, trunc(months_between(sysdate, d.bdate)/12)+1 as age,
-						to_char(d.bdate, 'mm-dd') as bdate, neutralization,
+						to_char(d.bdate, 'mm-dd') as bdate, neutralization, to_char(d.reg_date, 'yyyy-mm-dd') as regDate,
 						d.intro, d.id, i.img_path as imgPath, c.category_name as gender,
 						d.img_no as imgNo 
 		FROM dog d, img i, category c

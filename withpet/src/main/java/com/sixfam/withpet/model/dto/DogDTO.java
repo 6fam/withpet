@@ -16,6 +16,7 @@ package com.sixfam.withpet.model.dto;
  *  -반려견의 정보를 담고 있는 클래스 입니다.<br>
  */
 public class DogDTO extends UploadDTO{
+	
 	/*
 	 * 회원 아이디
 	 * 컬럼명 : id
@@ -161,7 +162,6 @@ public class DogDTO extends UploadDTO{
 	public String toString() {
 		return "DogDTO [id=" + id + ", dogNo=" + dogNo + ", bdate=" + bdate + ", age=" + age + ", name=" + name
 				+ ", intro=" + intro + ", neutralization=" + neutralization + ", imgNo=" + imgNo + ", categoryNo="
-				+ categoryNo + ", gender=" + gender + ", regDate=" + regDate + "]";
+				+ categoryNo + ", gender=" + gender + ", regDate=" + regDate + ", toString()=" + super.toString() + "]";
 	}
-
 }

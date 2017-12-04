@@ -72,6 +72,10 @@
 							<td>${ddto.neutralization }</td>
 						</tr>
 						<tr>
+							<td style="text-align: center; font-weight: bold; width: 45%">댕댕이 등록일자</td>
+							<td>${ddto.regDate }</td>
+						</tr>
+						<tr>
 							<td style="text-align: center; font-weight: bold; width: 45%">댕댕이 성격</td>
 							<td colspan="3">${ddto.intro}</td>
 						</tr>

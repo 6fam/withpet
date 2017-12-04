@@ -40,7 +40,6 @@
 		$(document).ready(function(){
 			var id=$("#id").val();
 			$("#dropMemberBtn").click(function(){
-				alert(1);
 				$.ajax({
 					type: "post",
 					url: "dropMember.do",

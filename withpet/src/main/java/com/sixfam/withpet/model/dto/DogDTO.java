@@ -65,6 +65,10 @@ public class DogDTO extends UploadDTO{
 	 */
 	private String gender;
 	/**
+	 * 댕댕이 등록 날짜 
+	 */
+	private String regDate;
+	/**
 	 * Default Constructor
 	 */
 	public DogDTO() {
@@ -147,10 +151,17 @@ public class DogDTO extends UploadDTO{
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
 	@Override
 	public String toString() {
 		return "DogDTO [id=" + id + ", dogNo=" + dogNo + ", bdate=" + bdate + ", age=" + age + ", name=" + name
-				+ ", intro=" + intro + ", neutralization=" + neutralization + ", imgNo=" + imgNo + ", categoryNo=" + categoryNo + ", gender=" + gender + "]";
+				+ ", intro=" + intro + ", neutralization=" + neutralization + ", imgNo=" + imgNo + ", categoryNo="
+				+ categoryNo + ", gender=" + gender + ", regDate=" + regDate + "]";
 	}
+
 }

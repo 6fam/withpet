@@ -11,16 +11,16 @@ public interface WithPet {
 	//일반회원
 	public final static int ROLE_MEMBER = 10;
 	
-	//견주대기자
+	//예비주인님
 	public final static int ROLE_STANDBY = 11;
 	
-	//댕댕이맘
+	//댕댕이주인님
 	public final static int ROLE_DOGMOM = 12;
 	
 	//관리자
 	public final static int ROLE_MANAGER = 13;
 	
-	//시스템관리자
+	//운영자
 	public final static int ROLE_SYSTEMADMIN = 14;
 
 	//게시판:모임
@@ -40,6 +40,9 @@ public interface WithPet {
 	
 	//댕댕이 성별 : 암컷
 	public final static int DOG_FEMALE = 16;
+
+	//비밀번호 질문 table_code
+	public final static int PW_QUESTION = 1;
 	
 	//탈퇴회원
 	public final static String ROLE_EXCEPT_STR = "ROLE_EXCEPT";

@@ -1,3 +1,5 @@
+delete from category;
+
 ---시퀀스 삭제
 drop sequence category_seq;
 drop sequence board_seq;
@@ -45,18 +47,19 @@ insert into category(category_no,table_code,category_name) values(category_seq.n
 insert into category(category_no,table_code,category_name) values(category_seq.nextval,5,'친목');--20
 insert into category(category_no,table_code,category_name) values(category_seq.nextval,5,'산책');--21
 insert into category(category_no,table_code,category_name) values(category_seq.nextval,5,'훈련');--22
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,5,'세미나');--23
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,5,'교육');--23
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,5,'세미나');--24
 
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,6,'모집대기');--24
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,6,'모집중');--25
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,6,'모집마감');--26
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,6,'모임종료');--27
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,6,'모집대기');--25
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,6,'모집중');--26
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,6,'모집마감');--27
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,6,'모임종료');--28
 
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,7,'모금대기');--28
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,7,'모금중');--29
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,7,'모금마감');--30
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,7,'모금대기');--29
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,7,'모금중');--30
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,7,'모금마감');--31
 
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'나눔마켓');--31
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'모임후기');--32
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'반려정보');--33
-insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'돌보미');--34
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'나눔마켓');--32
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'모임후기');--33
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'반려정보');--34
+insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'돌보미');--35

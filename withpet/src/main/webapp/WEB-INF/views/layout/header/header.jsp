@@ -118,7 +118,7 @@
 					</sec:authorize>
 					
 					<!-- 관리자 -->
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<sec:authorize access="hasRole('ROLE_MANAGER')">
 					<div style="float: right; height: 30px; font-size: 13px; margin-top: 10px; margin-right: 15px; margin-bottom: 8px; padding-top: 0px; cursor: pointer; margin-left: 10px">
 						<font style="margin-right: 5px">
 							<a href="receivemessage.do?pageNo=1" style="color: black">

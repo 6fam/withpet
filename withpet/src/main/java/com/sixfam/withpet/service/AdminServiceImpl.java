@@ -23,7 +23,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	@Transactional
 	public ListDTO<MemberDTO> getTotalMemberList(int pageNo) {
-		int totalCount=adminDAO.getAllMemberCount();
+		int totalCount=adminDAO.getTotalCountAllMember();
 		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(10,4,totalCount);
@@ -35,7 +35,8 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	@Transactional
 	public ListDTO<MemberDTO> getAllRoleMemberList(int pageNo) {
-		int totalCount=adminDAO.getAllRoleMemberTotalCount();
+		int categoryNo=10;
+		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(5,4,totalCount);
@@ -44,11 +45,24 @@ public class AdminServiceImpl implements AdminService {
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleMemberList(pagingBean), pagingBean);
 	}
 
+	@Override
+	@Transactional
+	public ListDTO<MemberDTO> getAllRoleStandby(int pageNo) {
+		int categoryNo=11;
+		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
+		PagingBean pagingBean=null;
+		if(pageNo==1)
+			pagingBean=new PagingBean(2,4,totalCount);
+		else
+			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
+		return new ListDTO<MemberDTO>(adminDAO.getAllRoleStandby(pagingBean), pagingBean);
+	}
 
 	@Override
 	@Transactional
 	public ListDTO<MemberDTO> getAllRoleDogmomList(int pageNo) {
-		int totalCount=adminDAO.getAllRoleDogmomTotalCount();
+		int categoryNo=12;
+		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(5,4,totalCount);
@@ -56,21 +70,6 @@ public class AdminServiceImpl implements AdminService {
 			pagingBean=new PagingBean(pageNo, 5, 4, totalCount);
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleDogmomList(pagingBean), pagingBean);
 	}
-	
-	@Override
-	@Transactional
-	public ListDTO<MemberDTO> getAllRoleStandby(int pageNo) {
-		int totalCount=adminDAO.getAllRoleStandbyTotalCount();
-		PagingBean pagingBean=null;
-		if(pageNo==1)
-			pagingBean=new PagingBean(2,4,totalCount);
-		else
-			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
-		//List<MemberDTO> list =adminDAO.allRoleStandby(pagingBean);
-		//ListDTO<MemberDTO> list=  new ListDTO<MemberDTO>(adminDAO.allRoleDogmomList(pagingBean), pagingBean);
-		return new ListDTO<MemberDTO>(adminDAO.getAllRoleStandby(pagingBean), pagingBean);
-	}
-
 	
 	@Override
 	@Transactional

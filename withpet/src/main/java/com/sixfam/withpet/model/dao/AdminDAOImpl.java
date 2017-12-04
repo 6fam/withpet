@@ -33,21 +33,14 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	
 	@Override
-	public int getAllMemberCount() {
+	public int getTotalCountPerTier(int categoryNo) {
+		return template.selectOne("admin.totalCountPerTier",categoryNo);
+	}
+	@Override
+	public int getTotalCountAllMember() {
 		return template.selectOne("admin.allMemberCount");
 	}
-	@Override
-	public int getAllRoleMemberTotalCount() {
-		return template.selectOne("admin.allRolrMemberTotalCount");
-	}
-	@Override
-	public int getAllRoleDogmomTotalCount() {
-		return template.selectOne("admin.allRolDogmomTotalCount");
-	}
-	@Override
-	public int getAllRoleStandbyTotalCount() {
-		return template.selectOne("admin.allRoleStandbyTotalCount");
-	}
+	
 	@Override
 	public List<MemberDTO> getTierMemberList() {
 		return template.selectList("admin.tierMemberList");

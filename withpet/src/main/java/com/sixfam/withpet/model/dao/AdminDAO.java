@@ -9,13 +9,13 @@ import com.sixfam.withpet.model.dto.MemberDTO;
 
 public interface AdminDAO {
 	//회원 관련 DAO
-	public List<MemberDTO>  getTotalMemberList(PagingBean pagingBean);
 	public List<MemberDTO> getAllRoleMemberList(PagingBean pagingBean);
 	public List<MemberDTO> getAllRoleStandby(PagingBean pagingBean);
 	public List<MemberDTO> getAllRoleDogmomList(PagingBean pagingBean);
-	public int getAllRoleMemberTotalCount();
-	public int getAllRoleStandbyTotalCount();
+	public List<MemberDTO> getTotalMemberList(PagingBean pagingBean);
 
+	public int getTotalCountAllMember();
+	public int getTotalCountPerTier(int categoryNo);
 
 	
 	//게시판 관련 DAO
@@ -44,8 +44,6 @@ public interface AdminDAO {
 	////Tier List
 	public List<MemberDTO> getAllTierList();
 
-	public int getAllMemberCount();
-	public int getAllRoleDogmomTotalCount();
 	public int getAllBoardListCount();
 	public int getBoardListCount(int categoryNo);
 	public int getMeetingBoardListCount();
@@ -54,6 +52,7 @@ public interface AdminDAO {
 	public List<DonationDTO> getAllDonationList(PagingBean pagingBean);
 	public List<DonationDTO> getApplyDonationList(PagingBean pagingBean);
 	public void setAcceptDonation(int boardNo);
+	
 
 
 }

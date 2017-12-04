@@ -32,25 +32,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="allMemberCount" resultType="int">
 		SELECT count(*) FROM member 
    </select>
-   <!-- 일반회원 총인원수 -->
-   <select id="allRolrMemberTotalCount" resultType="int">
+   <!--회원 등급별 총인원 수 -->
+   <select id="totalCountPerTier" resultType="int" parameterType="int">
 		SELECT count(*) 
 		FROM member m,tier t 
-		WHERE m.id=t.id and t.category_no=10
+		WHERE m.id=t.id and t.category_no=#{categoryNo}
    </select>
-   <!-- 견주대기자 총인원수 -->
-   <select id="allRoleStandbyTotalCount" resultType="int">
-		SELECT count(*) 
-		FROM member m,tier t 
-		WHERE m.id=t.id and t.category_no=11
-   </select>
-   <!-- 견주 총인원수 -->
-   <select id="allRolDogmomTotalCount" resultType="int">
-		SELECT count(*) 
-		FROM member m,tier t 
-		WHERE m.id=t.id and t.category_no=12
-   </select>
-   
    <!-- 견주 회원목록 -->
    <resultMap id="memberdog" type="memberDTO">
 	<collection property="dogDTO" column="id" javaType="com.sixfam.withpet.model.dto.DogDTO" 
@@ -108,18 +95,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    </select>
    
-   <!-- 돌보미 게시물 가져오기 -->
-      <!-- <select id="allCareList" resultType="boardDTO">
-    	SELECT b.board_no as boardNo,b.id,b.title,b.content,b.hits,b.wdate,c.category_no as categoryNo,c.category_name as categoryName
-		FROM board b, category c 
-		WHERE b.category_no=c.category_no and b.category_no='2' order by b.board_no desc
-   	</select> -->
-   <!-- 나눔 게시물 가져오기 -->
-    <!-- <select id="allShareMarketList" resultType="boardDTO">
-    	SELECT b.board_no as boardNo,b.id,b.title,b.content,b.hits,b.wdate,c.category_no as categoryNo,c.category_name as categoryName
-		FROM board b, category c 
-		WHERE b.category_no=c.category_no and b.category_no='3' order by b.board_no desc		
-   	</select> -->
    	
 	<!-- Tier Except categoryNo 9 -->
 	<insert id="insertTierExcept" parameterType="memberDTO">

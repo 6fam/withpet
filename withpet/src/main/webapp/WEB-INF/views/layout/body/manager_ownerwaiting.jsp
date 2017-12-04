@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<sec:authorize access="!hasRole('ROLE_ADMIN')">
+<sec:authorize access="!hasRole('ROLE_MANAGER')">
 	<script type="text/javascript">
 		alert("로그인 하세요!");
 		location.href = "${pageContext.request.contextPath}/loginForm.do";

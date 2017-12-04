@@ -35,7 +35,7 @@ public class CommunityController {
 	 */
 	@RequestMapping("communityUpdate.do")
 	public String communityUpdateRequest() {
-		return "community_update.tiles";
+		return "community/community_update.tiles";
 	}
 	
 	/**
@@ -43,6 +43,6 @@ public class CommunityController {
 	 */
 	@RequestMapping("communityDelete.do")
 	public String communityDeleteRequest() {
-		return "community_delete.tiles";
+		return "community/community_delete.tiles";
 	}
 }

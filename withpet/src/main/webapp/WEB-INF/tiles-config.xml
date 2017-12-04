@@ -16,13 +16,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/layout/body/{1}.jsp" />
 	</definition>
 	
-
 	<!-- popup -->
 	<definition name="popup/*.tiles" extends="popup.tiles">
 		<put-attribute name="body" value="/WEB-INF/views/layout/body/popup/{1}.jsp" />
 	</definition>
 	
-		<!-- popup.tiles로 요청 시 실행됨 -->
+	<!-- popup.tiles로 요청 시 실행됨 -->
 	<definition name="popup.tiles" template="/WEB-INF/views/layout/popup.jsp">
 		<put-attribute name="body" value="/WEB-INF/views/layout/popup.jsp" />
 	</definition>

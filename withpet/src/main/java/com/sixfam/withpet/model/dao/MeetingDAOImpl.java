@@ -29,18 +29,33 @@ public class MeetingDAOImpl implements MeetingDAO {
 		return template.selectOne("meeting.getMeetingCount");
 	}
 
+	//**************** 모임 등록 시작 ****************
+	@Override
+	public void registerBoard(MeetingDTO meetingDTO) {
+		template.insert("meeting.insertBoard", meetingDTO);
+	}
+	
+	@Override
+	public void registerGatheringdate(MeetingDTO meetingDTO) {
+		template.insert("meeting.insertGathertingdate", meetingDTO.getDate());
+	}
+	
+	@Override
+	public void registerImg(MeetingDTO meetingDTO) {
+		template.insert("meeting.insertImg", meetingDTO.getImgPath());
+	}
+	
 	@Override
 	public void registerMeeting(MeetingDTO meetingDTO) {
-		template.insert("meeting.insertBoard", meetingDTO);
-		template.insert("meeting.insertGathertingdate", meetingDTO.getDate());
-		template.insert("meeting.insertImg", meetingDTO.getImgPath());
 		template.insert("meeting.insertMeeting", meetingDTO);
+	}
+	
+	@Override
+	public void registerMeetingType(MeetingDTO meetingDTO) {
 		template.insert("meeting.insertMeetingType", meetingDTO.getCategoryNo());
 	}
-
-	/*
-	 * 모임 참여한 여부 확인
-	 */
+	//**************** 모임 등록 끝 ****************
+	
 	@Override
 	public MemberDTO isAttender(String id, int boardNo) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
@@ -49,9 +64,6 @@ public class MeetingDAOImpl implements MeetingDAO {
 		return template.selectOne("meeting.checkingAttender", param);
 	}
 
-	/*
-	 * 모임 참여하기
-	 */
 	@Override
 	public void addAttenderMember(String id, int boardNo) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
@@ -60,57 +72,36 @@ public class MeetingDAOImpl implements MeetingDAO {
 		template.insert("meeting.attenderMember", param);
 	}
 
-	/*
-	 * 모임 dateNo, imgNo 조회
-	 */
 	@Override
 	public MeetingDTO findDetailByBoardNo(int boardNo) {
 		return template.selectOne("meeting.selectDetailByBoardNo", boardNo);
 	}
 
-	/*
-	 * 모임 참여 내역 삭제
-	 */
 	@Override
 	public void removeAttenderByBoardNo(int boardNo) {
 		template.delete("meeting.deleteAttenderByBoardNo", boardNo);
 	}
 
-	/*
-	 * 모임 공감 내역 삭제
-	 */
 	@Override
 	public void removeSympathyByBoardNo(int boardNo) {
 		template.delete("meeting.deleteSympathyByBoardNo", boardNo);
 	}
 
-	/*
-	 * 모임 게시글 삭제
-	 */
 	@Override
 	public void removeBoardByBoardNo(int boardNo) {
 		template.delete("meeting.deleteBoardByBoardNo", boardNo);
 	}
 
-	/*
-	 * 모임 날짜 삭제
-	 */
 	@Override
 	public void removeGatheringDateByBoardNo(int dateNo) {
 		template.delete("meeting.deleteGatheringDateByBoardNo", dateNo);
 	}
 
-	/*
-	 * 모임 이미지 삭제
-	 */
 	@Override
 	public void removeImgByBoardNo(int imgNo) {
 		template.delete("meeting.deleteImgByBoardNo", imgNo);
 	}
 
-	/*
-	 * 모임 참여자 관리
-	 */
 	@Override
 	public List<MemberDTO> getMyMeetingAttender(int boardNo) {
 		return template.selectList("meeting.myMeetingAttender", boardNo);
@@ -169,4 +160,5 @@ public class MeetingDAOImpl implements MeetingDAO {
 	public MeetingDTO findMeetingByBoardNo(int boardNo) {
 		return template.selectOne("meeting.getMeetingDetailByBoardNo", boardNo);
 	}
+
 }

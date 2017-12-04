@@ -9,7 +9,15 @@ import com.sixfam.withpet.model.dto.ReplyDTO;
 
 public interface MeetingDAO{
 	
+	public void registerBoard(MeetingDTO meetingDTO);
+	
+	public void registerGatheringdate(MeetingDTO meetingDTO);
+	
+	public void registerImg(MeetingDTO meetingDTO);
+	
 	public void registerMeeting(MeetingDTO meetingDTO);
+	
+	public void registerMeetingType(MeetingDTO meetingDTO);
 	
 	public void registerReply(ReplyDTO rdto);
 
@@ -52,4 +60,5 @@ public interface MeetingDAO{
 	public void removeImgByBoardNo(int imgNo);
 
 	public void removeReply(int replyNo);
+
 }

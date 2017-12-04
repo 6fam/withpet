@@ -29,4 +29,20 @@ public class CommunityController {
 	public String communityDetailRequest() {
 		return "community_detail.tiles";
 	}
+	
+	/**
+	 * 커뮤니티 게시글 수정
+	 */
+	@RequestMapping("communityUpdate.do")
+	public String communityUpdateRequest() {
+		return "community_update.tiles";
+	}
+	
+	/**
+	 * 커뮤니티 게시글 삭제
+	 */
+	@RequestMapping("communityDelete.do")
+	public String communityDeleteRequest() {
+		return "community_delete.tiles";
+	}
 }

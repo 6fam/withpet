@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<style>
+	.form-group input{font-weight:bold;font-family: 'Noto Sans KR', sans-serif;font-size: 14px;}
+	.form-group select.form-control{font-weight:bold;font-family: 'Noto Sans KR', sans-serif;font-size: 14px;}
+</style>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-1"></div>		
@@ -29,7 +33,7 @@
 						    </div>
 						    <div class="form-group">
 						      <label for="exampleInputPassword1"><font style="font-size: 14px"><b>비밀번호</b></font></label>
-						      <input type="password" name="password" class="form-control" id="pw" placeholder="비밀번호를 입력해주세요." onkeyup="chkPassword()">
+						      <input type="password" name="password" class="form-control" placeholder="비밀번호를 입력해주세요." onkeyup="chkPassword()">
 						      <small id="checkPwMessage" class="form-text" style="color: #c1bfbf">비밀번호를 입력 해주세요.</small>
 						    </div>
 						    <div class="form-group">

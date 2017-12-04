@@ -2,11 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+	<style>
+		a{color:#000;}
+	</style>
 <div class="row" style="border-bottom: 1px solid #cecece; background-color: white; height: 60px; position: fixed ; top: 0px; z-index: 1000; width: 100%; margin-right: 0px; padding-right: 0px; margin-left: 0px ">
 	<div class="col-sm-2">
 		<a href="home.do?pageNo=1"><img src="resources/img/logo_text1.png" style="width: 160px; margin-top: 8px"></a>
 	</div>
-	<div class="col-sm-9 	">
+	<div class="col-sm-9">
 		<div class="row">
 			<div class="col-sm-8" style="text-align: left; padding-left: 0px;">
 				<!-- 모임버튼 -->
@@ -37,11 +40,10 @@
 							style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 80px">
 							<font style="font-size: 12px"><b>카테고리</b></font>
 						</div>
-						<div
-							style="float: right; width: 248px; padding-left: 20px; padding-top: 10px">
+						<div id="fontFamily" style="float: right; width: 248px; padding-left: 20px; padding-top: 10px">
 							<div class="row" style="margin-left: 0px; margin-right: 0px">
 								<div class="col-sm-5">
-									<font style="font-size: 12px"> <a href="meeting.do?categoryNo=4">친목</a>
+									<font style="font-size: 12px;"> <a href="meeting.do?categoryNo=4">친목</a>
 									</font>
 								</div>
 								<div class="col-sm-6">

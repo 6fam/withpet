@@ -31,6 +31,7 @@ public class MemberController {
 	MemberService service;
 	@Resource
     private BCryptPasswordEncoder passwordEncoder;
+	
 	/**
 	 * 마이페이지>개설내역 페이지
 	 */
@@ -45,16 +46,19 @@ public class MemberController {
 	/**
 	 * 마이페이지>참여내역 페이지
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("mypage_participate.do")
 	public String mypage_partcipateRequest(int pageNo, Model model, Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		model.addAttribute("listdto", service.getAttenderHistoryListById(mdto.getId(), pageNo));
+		System.out.println("참여내역 : "+service.getAttenderHistoryListById(mdto.getId(), pageNo).getList());
 		return "mypage_participate.tiles";
 	}
 	
 	/**
 	 * 마이페이지>공감내역 페이지
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("mypage_liked.do")
 	public String mypage_likedRequest(int pageNo, Model model, Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
@@ -71,7 +75,6 @@ public class MemberController {
 		service.registerMember(member);
 		return "redirect:home.do";
 	}
-	
 	
 	@RequestMapping("findMemberByIdAjax.do")
 	@ResponseBody
@@ -95,6 +98,7 @@ public class MemberController {
 		
 		return "mypage.tiles";
 	}
+	
 	/**
 	 * 강아지 정보 수정페이지 
 	 */
@@ -107,9 +111,8 @@ public class MemberController {
 			model.addAttribute("ddto", dog);
 		return "dog_update.tiles";
 	}
-
 	
-	/*
+	/**
 	 *  댕댕이등록 (견주신청)
 	 */
 	//private String uploadPath; //업로드 경로
@@ -126,7 +129,8 @@ public class MemberController {
 		service.registerDogInfo(ddto);
 		return "redirect:updateMemberAuth.do";
 	}
-	/*
+	
+	/**
 	 *		댕댕이 등록시 견주대기자로 회원 등급 추가
 	 */
 	@Secured("ROLE_MEMBER")
@@ -139,7 +143,8 @@ public class MemberController {
 		SecurityContextHolder.getContext().setAuthentication(newAuth);
 		return "redirect:mypage.do";
 	}
-	/*
+	
+	/**
 	 *  	댕댕이 정보 수정
 	 */
 	@Secured({"ROLE_STANDBY", "ROLE_DOGMOM"})
@@ -159,6 +164,7 @@ public class MemberController {
 	/**
 	 * 회원정보수정 폼
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("information_modification.do")
 	public String informationModificationRequest(Authentication authentication, Model model) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
@@ -166,9 +172,11 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "information_modification.tiles";
 	}
+	
 	/**
 	 * 비밀번호수정 폼
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("information_pw_modification.do")
 	public String informationPwModificationRequest(Authentication authentication, Model model) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
@@ -177,9 +185,11 @@ public class MemberController {
 		model.addAttribute("pwQuestion", service.getPWQuestion());
 		return "information_pw_modification.tiles";
 	}
-	/*
+	
+	/**
 	 *  회원정보 수정
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping(value="updateMemberInfo.do", method=RequestMethod.POST)
 	public String updateMemberInfoRequest(MemberDTO member, Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
@@ -187,9 +197,11 @@ public class MemberController {
 		service.setMemberInfo(member);
 		return "redirect:mypage.do";
 	}
-	/*
+	
+	/**
 	 * 회원 비밀번호 수정
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping(value="updateMemberPWInfo.do", method=RequestMethod.POST)
 	public String updateMemberPWInfoRequest(MemberDTO member) {
 		service.setMemberPWInfo(member);
@@ -210,7 +222,8 @@ public class MemberController {
 	public String checkIdPwAnswerRequest( MemberDTO member ) {
 		return service.isIdPwAnswer(member);
 	}
-	/*
+	
+	/**
 	 * 비밀번호 찾기 - 비밀번호 변경 폼
 	 */
 	@RequestMapping("f_changePw.do")
@@ -223,9 +236,11 @@ public class MemberController {
 		service.setMemberPW(member);
 		return "redirect:home.do";
 	}
-	/*
+	
+	/**
 	 * 회원 탈퇴 폼
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("dropMemberForm.do")
 	public String dropMemberFormRequest(Authentication authentication, Model model) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
@@ -233,6 +248,8 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "information_dropMemberForm.tiles";
 	}
+	
+	@Secured("ROLE_MEMBER")
 	@ResponseBody
 	@RequestMapping(value="dropMember.do", method=RequestMethod.POST)
 	public String dropMemberRequest(Authentication authentication, Model model, MemberDTO dropMember) {
@@ -247,14 +264,19 @@ public class MemberController {
 		
 		return result;
 	}
+	
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("exceptMember.do")
 	public String exceptMemberRequest(Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		service.removeExceptMember(mdto);
 		return "redirect:member_drop_result.do";
 	}
+	
+	@Secured("ROLE_EXCEPT")
 	@RequestMapping("member_drop_result.do")
-	public String sendDropResult(Authentication authentication) {
+	public String sendDropResultRequest(Authentication authentication) {
 		return "member_drop_result.tiles";
 	}
+	
 }

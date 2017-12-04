@@ -34,18 +34,18 @@
 					meetingList += "<figcaption class='figure' style='cursor: pointer'>";
 					meetingList += "<div><input type='hidden' id='bNo' value='"+data[i].boardNo+"'>";
 					meetingList += "<font size='3px'>♥ 12</font>";
-					meetingList += "<h4>친목</h4></div></figcaption></figure></div>";
+					meetingList += "<h4>"+data[i].meetingState+"</h4></div></figcaption></figure></div>";
 					meetingList += "<div class='row' style='margin: 20px 0 0 0; padding: 0px'>";
 					meetingList += "<span class='badge badge-danger' style='margin: 0px; padding: 10px 10px 5px 10px;'>찜하기</span>";
 					meetingList += "<span class='badge badge-dark' style='margin: 0px 0px 0px 10px; padding: 10px 10px 5px 10px'>";
 					meetingList += data[i].title;
 					meetingList += "</span><br><font style='font-size: 12px; margin: 20px 0 0 0; padding: 0px'>";
-					meetingList += "모집기간 :"+"2017-11-10"+"~"+"2017-11-20 <br>";
+					meetingList += "모집기간 :"+data[i].gatheringStart+"~"+data[i].gatheringStart+"<br>";
 					meetingList += "</font> <font style='font-size: 12px; margin: 5px 0 0 0; padding: 0px'>";
-					meetingList += "모임시간 :"+"2017-12-3"+"<br></font></div>";
+					meetingList += "모임시간 :"+data[i].meetingStart+"<br></font></div>";
 					meetingList += "<div class='row' style='margin: 5px 0 0 0; padding: 0px'>";
 					meetingList += "<font style='font-size: 12px; margin: 0px; padding: 0px'>";
-					meetingList += "참여현황 :"+ "0"+"/"+"20"+"</font></div></div>";
+					meetingList += "참여현황 :"+ "0"+"/"+data[i].peopleCount+"</font></div></div>";
 				}
 
 				var container = $("#meetingData .row").html();
@@ -160,7 +160,7 @@
 							<div>
 								<input type="hidden" id="bNo" value="${list.boardNo}"> <font
 									size="3px">♥ 12</font>
-								<h4>친목</h4>
+								<h4>${list.meetingState}</h4>
 							</div>
 						</figcaption>
 					</figure>
@@ -171,14 +171,14 @@
 						class="badge badge-dark"
 						style="margin: 0px 0px 0px 10px; padding: 10px 10px 5px 10px;">${list.title}</span><br>
 					<font style="font-size: 12px; margin: 20px 0 0 0; padding: 0px;">
-						모집기간 : 2017-11-10 ~ 2017-11-20 <br>
+						모집기간 : ${list.date.gatheringStart} ~ ${list.date.gatheringEnd} <br>
 					</font> <font style="font-size: 12px; margin: 5px 0 0 0; padding: 0px;">
-						모임시간 : 2017-12-3 <br>
+						모임시간 : ${list.date.meetingStart} <br>
 					</font>
 				</div>
 				<div class="row" style="margin: 5px 0 0 0; padding: 0px;">
 					<font style="font-size: 12px; margin: 0px; padding: 0px;">
-						참여현황 : 0/20 </font>
+						참여현황 : 0/${list.peopleCount} </font>
 				</div>
 			</div>
 			<!-- 끝 -->

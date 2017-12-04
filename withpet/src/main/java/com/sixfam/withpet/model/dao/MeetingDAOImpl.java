@@ -115,9 +115,9 @@ public class MeetingDAOImpl implements MeetingDAO {
 	@Override
 	public List<MeetingDTO> getAllMeetingListByCategory(PagingBean pb, int categoryNo) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
-		param.put("pb", pb);
+		param.put("startRowNumber", pb.getStartRowNumber());
+		param.put("endRowNumber", pb.getEndRowNumber());
 		param.put("categoryNo", categoryNo);
-		template.insert("meeting.attenderMember", param);
 		return template.selectList("meeting.getMeetingSearchByCategoryType", param);
 	}
 

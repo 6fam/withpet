@@ -4,7 +4,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<sec:authorize access="!hasRole('ROLE_MANAGER')">
+<sec:authorize access="!hasRole('ROLE_MEMBER')">
 	<script>
 		alert("로그인 하세요!");
 		location.href = "${pageContext.request.contextPath}/loginForm.do";

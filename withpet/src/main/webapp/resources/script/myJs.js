@@ -282,6 +282,12 @@ $(document).ready(function (){
 		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
 		$("#frame").submit();
 	});
+    
+    $(".registerCommunityPost").click(function() {
+    	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
+    	alert("작성 버튼 눌렸어! myJs.js 286번째줄 확인해!");
+    	//$("#frame").submit();
+    });
 });
 
 

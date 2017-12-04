@@ -101,12 +101,17 @@ insert into img(img_no, img_path) values(img_seq.nextval, '이미지2.jpg');
 insert into img(img_no, img_path) values(img_seq.nextval, '이미지3.jpg');
 select * from img;
 
-
+select * from board
 select * from meeting
+select * from member
+insert into tier (id, category_no) values('a', 11);
+insert into tier (id, category_no) values('a', 12);
+insert into tier (id, category_no) values('a', 13);
+insert into tier (id, category_no) values('a', 14);
 -----------------------------------모임 테이블 시작----------------------------------------
 --1)board table
 insert into board(board_no, title, content, hits, wdate, category_no, id) 
-values(board_seq.nextval, '뚝섬 반려견 산책모임', '이번주말 12시에 반포대교 산책하실분?', 200, '2017-5-5',1,'sh@gmail.com');
+values(board_seq.nextval, '뚝섬 반려견 산책모임', '이번주말 12시에 반포대교 산책하실분?', 200, '2017-5-5',17,'a');
 --2)gatheringdate table
 insert into gatheringdate(date_no, gathering_start, gathering_end, meeting_start, meeting_end) 
 values(gatheringdate_seq.nextval, '2017-12-1', '2017-12-25', sysdate, sysdate);
@@ -116,10 +121,10 @@ values(img_seq.nextval, '이미지1.jpg');
 --4)meeting table
 -----모집중으로 모임 생성
 insert into MEETING(board_no, intro, people_count,place,date_no,img_no,category_no)
-values (board_seq.currval,'시바견',10,'경기도 성남시 분당구 삼평동 유스페이스 한국소프트웨어진흥협회 802호',gatheringdate_seq.currval,img_seq.currval,9);
+values (board_seq.currval,'시바견과 함께',10,'경기도 성남시 분당구 삼평동 유스페이스 한국소프트웨어진흥협회 802호',gatheringdate_seq.currval,img_seq.currval,25);
 --5)meeting type 훈련
 insert into MEETINGTYPE(board_no,category_no) 
-values (board_seq.currval,4);
+values (board_seq.currval,20);
 
 
 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-    
+    <link rel="stylesheet" type="text/css" href="resources/css/sh.css"/>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-1"></div>		
@@ -24,8 +24,8 @@
 					<div class="col-sm-6">
 						<form id="loginForm" action="${pageContext.request.contextPath }/login.do" method="post" style="margin: 0px; padding: 0px">
 							<sec:csrfInput/><%--csrf 토큰 --%>
-							<input type="text" name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="아이디" style="margin-bottom: 10px; font-size: 14px">
-							<input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="비밀번호" style="font-size: 14px">
+							<input type="text" name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="아이디" style="margin-bottom: 10px;font-family: 'Noto Sans KR', sans-serif;font-weight:bold;font-size: 13px">
+							<input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="비밀번호" style="font-weight:bold;font-family: 'Noto Sans KR', sans-serif;font-size: 13px">
 							<Button class="btn btn-outline-info" type="submit"
 								style="height: 35px; width:144px; font-size: 12px; margin-top: 4px; margin-bottom: 8px; padding-top: 6px;cursor: pointer">
 								로그인
@@ -42,7 +42,6 @@
 					</div>
 					<div class="col-sm-3"></div>
 				</div>
-				
 			</div>
 			</sec:authorize>
 		</div>

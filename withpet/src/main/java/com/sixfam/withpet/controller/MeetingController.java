@@ -66,7 +66,6 @@ public class MeetingController {
 		
 		if(pageNo==0)
 			pb = new PagingBean(12, meetingCount);
-			
 		else
 			pb = new PagingBean(pageNo, 12, 0, meetingCount);
 		
@@ -169,7 +168,7 @@ public class MeetingController {
 		int meetingCountByCategory = service.findMeetingCountByCategory(categoryNo);
 		PagingBean pb = new PagingBean(12, meetingCountByCategory);
 
-		List<MeetingDTO> list = service.getAllMeetingList(pb);
+		List<MeetingDTO> list = service.getAllMeetingListByCategory(pb, categoryNo);
 		ListDTO<MeetingDTO> meetingListDTO = new ListDTO<MeetingDTO>(list, pb);
 		
 		model.addAttribute("meetingList", meetingListDTO);

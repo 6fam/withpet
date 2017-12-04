@@ -10,9 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT count(*) FROM meeting
 	</select>
 	
-	<!--  -->
+	<!-- 모임종류별 총 모임 갯수 얻는 쿼리 -->
 	<select id="getMeetingCountByCategory" parameterType="int" resultType="int">
-		select count(*) from meeting me, category ca where ca.category_no=#{value}
+		select count(*) from meetingtype where category_no=#{value}
 	</select>
 	
 	
@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE memtca.board_no=b.board_no and memtca.date_no=ga.date_no and rnum between #{startRowNumber} and #{endRowNumber}
 		ORDER BY boardNo desc
 	</select>
-	
+
 	<select id="getCategoryNoByCategory" parameterType="string" resultType="int">
 		select category_no from category where category_name=#{value}
 	</select>
@@ -54,19 +54,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(board_seq.nextval, #{title}, #{content}, 0, sysdate, 17, #{id})
 	</insert>
 	
+
 	<insert id="insertGathertingdate" parameterType="dateDTO">
 		insert into gatheringdate(date_no, gathering_start, gathering_end, meeting_start, meeting_end) 
 		values(gatheringdate_seq.nextval, #{gatheringStart}, #{gatheringEnd}, #{meetingStart}, #{meetingEnd})
 	</insert>
-	
+
 	<insert id="insertImg" parameterType="string">
 		insert into img(img_no, img_path) values(img_seq.nextval, #{value})
 	</insert>
 	
 	<!-- category_no ==> 25(모집중) 다음에 날짜별로 상태 바꾸기 -->
 	<insert id="insertMeeting" parameterType="meetingDTO">
-		insert into meeting(board_no,people_count,place,date_no,img_no,category_no)
-		values(board_seq.currval, #{peopleCount}, #{place}, gatheringdate_seq.currval,img_seq.currval, 25)
+		insert into meeting(board_no,intro,people_count,place,date_no,img_no,category_no)
+		values(board_seq.currval, #{intro}, #{peopleCount}, #{place}, gatheringdate_seq.currval,img_seq.currval, 25)
 	</insert>
 	
 	<insert id="insertMeetingType" parameterType="int">
@@ -104,12 +105,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE mbmti.img_no=i.img_no and mbmti.date_no=ga.date_no and mbmti.board_no=#{value}
 	</select>
 	
-	<select id="getMeetingSearchByCategoryType" parameterType="map" resultType="meetingDTO">
-		select rnum, board_no, meetingType, people_count, place, date_no, img_no, categoryStateNo
-		from (select row_number() over(order by m.board_no desc) as rnum, m.board_no, mt.category_no as meetingType, m.people_count, m.place, m.date_no, m.img_no, m.category_no as categoryStateNo
-		from meeting m, meetingtype mt
-		where m.board_no = mt.board_no and mt.category_no = #{categoryType})
-		where rnum between #{startRowNumber} and #{endRowNumber}
+	<select id="getMeetingSearchByCategoryType" parameterType="map" resultMap="meetingList">
+		SELECT memtca.rnum, memtca.board_no as boardNo, memtca.peopleCount, memtca.img_no, memtca.meetingState, memtca.meetingType, memtca.imgPath, b.title, b.hits, ga.gathering_start as gatheringStart, ga.gathering_end as gatheringEnd, ga.meeting_start as meetingStart, ga.meeting_end as meetingEnd
+		FROM
+			(select meca.rnum, meca.board_no, meca.people_count as peopleCount, meca.img_no, meca.meetingState, mtca.meetingType, i.img_path as imgPath, meca.date_no
+			from 
+				(select me.rnum, me.board_no, me.people_count, me.img_no, ca.category_name as meetingState, me.date_no
+				from 
+					(select row_number() over(order by board_no desc) as rnum, board_no, people_count, img_no, category_no, date_no
+					from meeting) me, category ca 
+				where me.category_no=ca.category_no) meca,
+				
+				(select mt.board_no, ca.category_name as meetingType
+				from meetingtype mt, category ca 
+				where mt.category_no=ca.category_no and mt.category_no=#{categoryNo}) mtca, img i
+			where meca.board_no=mtca.board_no and meca.img_no=i.img_no) memtca, board b, gatheringdate ga
+		WHERE memtca.board_no=b.board_no and memtca.date_no=ga.date_no and rnum between #{startRowNumber} and #{endRowNumber}
+		ORDER BY boardNo desc
 	</select>
 	
 	

@@ -98,15 +98,24 @@ public class MeetingDTO extends BoardDTO {
 		this.peopleCount = peopleCount;
 		this.date = date;
 	}
-
 	
 	
 	public MeetingDTO(int boardNo, String title, int hits, int peopleCount, String imgPath) {
 		super(boardNo, title, hits);
 		this.peopleCount = peopleCount;
 	}
+	
 
-
+	// 모임 상세보기
+	public MeetingDTO(int boardNo, String id, String title, String content, 
+			String place, int peopleCount, String tel, DateDTO date, List<ReplyDTO> replyList) {
+		super(boardNo, id, title, content, replyList);
+		this.place = place;
+		this.peopleCount = peopleCount;
+		this.tel = tel;
+		this.date = date;
+	}
+	
 	/**
 	 * All has Constructor
 	 */
@@ -125,17 +134,6 @@ public class MeetingDTO extends BoardDTO {
 		this.date = date;
 	}
 	
-	// 모임 상세보기
-	//	id, tel, board_no, title, content, hits, people_count, place, img_path
-	public MeetingDTO(int boardNo, String id, String title, String content, 
-			String place, int peopleCount, String tel, DateDTO date, List<ReplyDTO> replyList) {
-		super(boardNo, id, title, content, replyList);
-		this.place = place;
-		this.peopleCount = peopleCount;
-		this.tel = tel;
-		this.date = date;
-	}
-
 	public String getPlace() {
 		return place;
 	}

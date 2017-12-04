@@ -90,7 +90,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap id="meetingAll" type="meetingDTO">
 		<result property="boardNo" column="boardNo" />
 		<collection property="date" column="boardNo" javaType="com.sixfam.withpet.model.dto.DateDTO" 
-				ofType="dateDTO" select="getDateInfoByBoardNo"></collection>
+		ofType="dateDTO" select="getDateInfoByBoardNo"></collection>
+			<collection property="replyList" column="boardNo" javaType="java.util.ArrayList"
+		ofType="replyDTO" select="selectReplyByBoardNo"></collection>
 	</resultMap>
 	
 	<select id="getMeetingDetailByBoardNo" parameterType="int" resultMap="meetingAll">
@@ -106,15 +108,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMeetingSearchByCategoryType" parameterType="map" resultMap="meetingList">
 		SELECT memtca.rnum, memtca.board_no as boardNo, memtca.peopleCount, memtca.img_no, memtca.meetingState, memtca.meetingType, memtca.imgPath, b.title, b.hits, ga.gathering_start as gatheringStart, ga.gathering_end as gatheringEnd, ga.meeting_start as meetingStart, ga.meeting_end as meetingEnd
 		FROM
-			(select meca.rnum, meca.board_no, meca.people_count as peopleCount, meca.img_no, meca.meetingState, mtca.meetingType, i.img_path as imgPath, meca.date_no
+			(select  row_number() over(order by meca.board_no desc) as rnum, meca.board_no, meca.people_count as peopleCount, meca.img_no, meca.meetingState, mtca.meetingType, i.img_path as imgPath, meca.date_no, mtca.typeCategoryNo
 			from 
-				(select me.rnum, me.board_no, me.people_count, me.img_no, ca.category_name as meetingState, me.date_no
-				from 
-					(select row_number() over(order by board_no desc) as rnum, board_no, people_count, img_no, category_no, date_no
-					from meeting) me, category ca 
+				(select me.board_no, me.people_count, me.img_no, ca.category_name as meetingState, me.date_no
+				from meeting me, category ca 
 				where me.category_no=ca.category_no) meca,
 				
-				(select mt.board_no, ca.category_name as meetingType
+				(select mt.board_no, ca.category_name as meetingType, mt.category_no as typeCategoryNo
 				from meetingtype mt, category ca 
 				where mt.category_no=ca.category_no and mt.category_no=#{categoryNo}) mtca, img i
 			where meca.board_no=mtca.board_no and meca.img_no=i.img_no) memtca, board b, gatheringdate ga
@@ -188,6 +188,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE m.date_no=g.date_no and m.board_no=#{value}
 	</select>
  	
+ 	<select id="selectReplyByBoardNo" parameterType="int" resultType="replyDTO">
+ 		select reply_no as replyNo, id, content
+ 		from reply
+ 		where board_no=#{value}
+ 	</select>
  	<select id="myMeetingAttender" parameterType="int" resultType="memberDTO">
  		SELECT m.nick,m.tel
 		FROM MEMBER m,(SELECT b.board_no, b.title, b.content, b.hits, b.wdate, b.category_no, a.id 

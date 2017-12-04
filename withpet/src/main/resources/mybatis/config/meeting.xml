@@ -90,9 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap id="meetingAll" type="meetingDTO">
 		<result property="boardNo" column="boardNo" />
 		<collection property="date" column="boardNo" javaType="com.sixfam.withpet.model.dto.DateDTO" 
-		ofType="dateDTO" select="getDateInfoByBoardNo"></collection>
-			<collection property="replyList" column="boardNo" javaType="java.util.ArrayList"
-		ofType="replyDTO" select="selectReplyByBoardNo"></collection>
+				ofType="dateDTO" select="getDateInfoByBoardNo"></collection>
 	</resultMap>
 	
 	<select id="getMeetingDetailByBoardNo" parameterType="int" resultMap="meetingAll">
@@ -190,11 +188,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE m.date_no=g.date_no and m.board_no=#{value}
 	</select>
  	
- 	<select id="selectReplyByBoardNo" parameterType="int" resultType="replyDTO">
- 		select reply_no as replyNo, id, content
- 		from reply
- 		where board_no=#{value}
- 	</select>
  	<select id="myMeetingAttender" parameterType="int" resultType="memberDTO">
  		SELECT m.nick,m.tel
 		FROM MEMBER m,(SELECT b.board_no, b.title, b.content, b.hits, b.wdate, b.category_no, a.id 

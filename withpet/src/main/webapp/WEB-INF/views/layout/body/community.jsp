@@ -9,7 +9,7 @@
 		<div class="col-sm-12">
 			<h1 id="navbars">
 				<font style="font-size: 35px">나눔마켓</font>
-				<a href="meetingwrite.do" class="btn btn-outline-danger"
+				<a href="communityWrite.do" class="btn btn-outline-danger"
 					style="width: 100px; height: 25px; font-size: 12px; margin-left: 10px; margin-top: 14px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				글쓰기
 				</a>
@@ -19,7 +19,7 @@
 
 	<div class="row" style="padding-top: 20px; padding-bottom: 20px">
 		<div class="col-sm-12">
-			<table class="table table-hover table-bordered">
+			<table class="table table-hover table-border">
 			  <thead class="thead-dark">
 			    <tr>
 			      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">#</th>
@@ -32,12 +32,12 @@
 			  </thead>
 			  <tbody>
 			    <tr>
-			      <td>1</td>
-			      <td>Column</td>
-			      <td>Column</td>
-			      <td>Column</td>
-			      <td>Column</td>
-			      <td>Column</td>
+			      <td style="padding: .45rem">1</td>
+			      <td style="padding: .45rem">Column</td>
+			      <td style="padding: .45rem">Column</td>
+			      <td style="padding: .45rem">Column</td>
+			      <td style="padding: .45rem">Column</td>
+			      <td style="padding: .45rem">Column</td>
 			    </tr>
 			  </tbody>
 			</table>

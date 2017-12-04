@@ -79,12 +79,6 @@
 				  </div>
 				</div>
 				
-				
-				<font style="color: #ddd">|</font>
-				<!-- 반려견기부 게시판 -->
-				<a href="togetherdog.do?pageNo=1"style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
-				같이가치
-				</a>
 				<!-- 커뮤니티 게시판 -->
 				<font style="color: #ddd">|</font> 
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -95,13 +89,19 @@
 				  		커뮤니티
 				  	</a>
 				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-				    	<a class="dropdown-item" href="community.do">나눔마켓</a>
-				    	<a class="dropdown-item" href="community.do">돌보미</a>
-				    	<a class="dropdown-item" href="community.do">반려견정보</a>
-				    	<a class="dropdown-item" href="community.do">모임후기</a>
+				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">나눔마켓</a>
+				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">돌보미</a>
+				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">반려견정보</a>
+				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">모임후기</a>
 				    </div>
 				  </div>
 				</div>
+				
+				<font style="color: #ddd">|</font>
+				<!-- 반려견기부 게시판 -->
+				<a href="togetherdog.do?pageNo=1"style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
+				같이가치
+				</a>
 				
 				<!-- 서비스 소개 -->
 				<font style="color: #ddd">|</font> 

@@ -12,87 +12,103 @@
 	<div class="col-sm-9">
 		<div class="row">
 			<div class="col-sm-8" style="text-align: left; padding-left: 0px;">
-				<!-- 모임버튼 -->
-				<a href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
-					style="text-decoration:none ;color:black ;display:inline-block; height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
-				모임
-				</a>
-				<!-- 반려견기부게시판 -->
+				<!-- 모임 버튼 -->
+				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+				  <div class="btn-group show" role="group">
+				   	<a href="#"  id="btnGroupDrop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+					style="text-decoration:none ;color:black ;display:inline-block; height: 30px; font-size: 18px; margin-top: 2px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
+						모임
+					</a>				
+					<div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="padding-top: 0px; padding-bottom: 0px; width: 400px; border: 1px solid #757575">
+						<div class="row" style="margin-left: 0px; margin-right: 0px">
+							<div
+								style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 80px">
+								<font style="font-size: 12px"><b>카테고리</b></font>
+							</div>
+							<div
+								style="float: right; width: 248px; padding-left: 20px; padding-top: 10px">
+								<div class="row" style="margin-left: 0px; margin-right: 0px">
+									<div class="col-sm-5">
+										<font style="font-size: 12px"> <a href="meeting.do?categoryNo=20">친목</a></font>
+									</div>
+									<div class="col-sm-6">
+										<font style="font-size: 12px"><a href="meeting.do?categoryNo=21">산책</a></font>
+									</div>
+								</div>
+								<div class="row" style="margin-left: 0px; margin-right: 0px">
+									<div class="col-sm-5">
+										<font style="font-size: 12px"><a href="meeting.do?categoryNo=22">훈련</a></font>
+									</div>
+									<div class="col-sm-6">
+										<font style="font-size: 12px"><a href="meeting.do?categoryNo=23">교육/세미나</a></font>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="margin-left: 0px; margin-right: 0px; border-top: 1px solid #cecece">
+							<div style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 100px">
+								<font style="font-size: 12px"><b>일정/시간</b></font>
+							</div>
+							<div style="float: right; width: 248px; padding-left: 20px; padding-top: 10px">
+								<div class="row" style="margin-left: 0px; margin-right: 0px">
+									<div class="col-sm-5">
+										<font style="font-size: 12px">오전</font>
+									</div>
+									<div class="col-sm-6">
+										<font style="font-size: 12px">새벽</font>
+									</div>
+								</div>
+								<div class="row" style="margin-left: 0px; margin-right: 0px">
+									<div class="col-sm-5">
+										<font style="font-size: 12px">오후</font>
+									</div>
+									<div class="col-sm-6">
+										<font style="font-size: 12px">주말</font>
+									</div>
+								</div>
+								<div class="row" style="margin-left: 0px; margin-right: 0px">
+									<div class="col-sm-5">
+										<font style="font-size: 12px">저녁</font>
+									</div>
+									<div class="col-sm-6">
+										<font style="font-size: 12px">주중</font>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				  </div>
+				</div>
+				
+				<!-- 커뮤니티 게시판 -->
 				<font style="color: #ddd">|</font> 
+				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+				  <div class="btn-group" role="group">
+				  	<a href="#"
+				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+				  		style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 2px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
+				  		커뮤니티
+				  	</a>
+				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">나눔마켓</a>
+				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">돌보미</a>
+				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">반려견정보</a>
+				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">모임후기</a>
+				    </div>
+				  </div>
+				</div>
+				
+				<font style="color: #ddd">|</font>
+				<!-- 반려견기부 게시판 -->
 				<a href="togetherdog.do?pageNo=1"style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				같이가치
 				</a>
-				<!-- 반려견기부게시판 -->
-				<font style="color: #ddd">|</font> 
-				<a href="community.do"style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
-				커뮤니티
-				</a>
-				<!-- 반려견기부게시판 -->
+				
+				<!-- 서비스 소개 -->
 				<font style="color: #ddd">|</font> 
 				<a href="#" style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				서비스소개
 				</a>
-
-				<div class="dropdown-menu" aria-labelledby="btnGroupDrop2"
-					style="padding-top: 0px; padding-bottom: 0px; width: 400px; border: 1px solid #757575">
-					<div class="row" style="margin-left: 0px; margin-right: 0px">
-						<div
-							style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 80px">
-							<font style="font-size: 12px"><b>카테고리</b></font>
-						</div>
-						<div id="fontFamily" style="float: right; width: 248px; padding-left: 20px; padding-top: 10px">
-							<div class="row" style="margin-left: 0px; margin-right: 0px">
-								<div class="col-sm-5">
-									<font style="font-size: 12px;"> <a href="meeting.do?categoryNo=4">친목</a>
-									</font>
-								</div>
-								<div class="col-sm-6">
-									<font style="font-size: 12px"><a href="meeting.do?categoryNo=6">훈련</a></font>
-								</div>
-							</div>
-							<div class="row" style="margin-left: 0px; margin-right: 0px">
-								<div class="col-sm-5">
-									<font style="font-size: 12px"><a href="meeting.do?categoryNo=5">산책</a></font>
-								</div>
-								<div class="col-sm-6">
-									<font style="font-size: 12px"><a href="meeting.do?categoryNo=7">교육/세미나</a></font>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row"
-						style="margin-left: 0px; margin-right: 0px; border-top: 1px solid #cecece">
-						<div style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 100px">
-							<font style="font-size: 12px"><b>일정/시간</b></font>
-						</div>
-						<div style="float: right; width: 248px; padding-left: 20px; padding-top: 10px">
-							<div class="row" style="margin-left: 0px; margin-right: 0px">
-								<div class="col-sm-5">
-									<font style="font-size: 12px">오전</font>
-								</div>
-								<div class="col-sm-6">
-									<font style="font-size: 12px">새벽</font>
-								</div>
-							</div>
-							<div class="row" style="margin-left: 0px; margin-right: 0px">
-								<div class="col-sm-5">
-									<font style="font-size: 12px">오후</font>
-								</div>
-								<div class="col-sm-6">
-									<font style="font-size: 12px">주말</font>
-								</div>
-							</div>
-							<div class="row" style="margin-left: 0px; margin-right: 0px">
-								<div class="col-sm-5">
-									<font style="font-size: 12px">저녁</font>
-								</div>
-								<div class="col-sm-6">
-									<font style="font-size: 12px">주중</font>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 			<sec:authorize access="!hasRole('ROLE_MEMBER')">
 			<div class="col-sm-4" style="text-align: right; padding-right: 0px;">

@@ -63,7 +63,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	@Override			
 	public DogDTO findDogById(String id) {
-		return template.selectOne("member.selectDogById", id);
+		return template.selectOne("member.findDogById", id);
 	}
 	
 	@Override
@@ -141,6 +141,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	@Override
 	public void setDogImg(DogDTO dog) {
+		System.out.println("dog DAO imgPath: "+dog.getImgPath()+"imgNo : "+dog.getImgNo());
 		template.insert("member.updateDogImg", dog);		
 	}
 	@Override

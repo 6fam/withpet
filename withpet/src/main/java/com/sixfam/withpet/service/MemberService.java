@@ -28,10 +28,19 @@ public interface MemberService {
 
 	public List<Authority> getAuthorityListById(String id);
 
+	/**
+	 *  마이페이지 _ 견주의 모임 개설내역 리스트 (+페이징빈)
+	 */
 	public ListDTO<MeetingDTO> getSetupListById(String id, int pageNo);
 
+	/**
+	 *  마이페이지 _ 일반 회원의 모임 공감내역 리스트 (+페이징빈)
+	 */
 	public ListDTO<MeetingDTO> getSympathyHistoryListById(String id, int pageNo);
 
+	/**
+	 *  마이페이지 _ 일반 회원의 모임 참여내역 리스트 (+페이징빈)
+	 */
 	public ListDTO<MeetingDTO> getAttenderHistoryListById(String id, int pageNo);
 	
 	public void setDogInfo(DogDTO ddto);

@@ -115,14 +115,14 @@ public class MemberController {
 	//private String uploadPath; //업로드 경로
 	@Secured("ROLE_MEMBER")
 	@RequestMapping(value="insertDogInfo.do", method=RequestMethod.POST)
-	public String insertDogInfoRequest(HttpServletRequest request, Authentication authentication, DogDTO ddto) {
+	public String registerDogInfoRequest(HttpServletRequest request, Authentication authentication, DogDTO ddto) {
 		UploadFileImage<DogDTO> upload = new UploadFileImage<DogDTO>();
 		
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		ddto.setId(mdto.getId());
 		
 		upload.setImageUpload(request, ddto);
-		
+		System.out.println("댕댕이 등록 전 : "+ddto);
 		service.registerDogInfo(ddto);
 		return "redirect:updateMemberAuth.do";
 	}
@@ -145,7 +145,6 @@ public class MemberController {
 	@Secured({"ROLE_STANDBY", "ROLE_DOGMOM"})
 	@RequestMapping(value="updateDogInfo.do", method=RequestMethod.POST)
 	public String updateDogInfoRequest(HttpServletRequest request, Authentication authentication, DogDTO ddto) {
-		
 		UploadFileImage<DogDTO> upload = new UploadFileImage<DogDTO>();
 		
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
@@ -252,6 +251,10 @@ public class MemberController {
 	public String exceptMemberRequest(Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		service.removeExceptMember(mdto);
-		return "redirect:logout.do";
+		return "redirect:member_drop_result.do";
+	}
+	@RequestMapping("member_drop_result.do")
+	public String sendDropResult(Authentication authentication) {
+		return "member_drop_result.tiles";
 	}
 }

@@ -31,9 +31,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public MemberDTO findMemberById(String id) {
-		MemberDTO mdto = memberDAO.findMemberById(id);
-		return mdto;
+		return memberDAO.findMemberById(id);
 	}
+	
 	@Override
 	@Transactional
 	public DogDTO findDogById(String id) {
@@ -41,6 +41,10 @@ public class MemberServiceImpl implements MemberService {
 		if(dog!=null) {			
 			String[] birth=dog.getBdate().split("-");
 			dog.setBdate(birth[0]+"월 "+birth[1]+"일");
+			
+			String[] regDate=dog.getRegDate().split("-");
+			dog.setRegDate(regDate[0]+"년 "+regDate[1]+"월 "+regDate[2]+"일");
+			
 			if(dog.getNeutralization().equals("1"))
 				dog.setNeutralization("O");
 			else
@@ -62,7 +66,6 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.getAuthorityListById(id);
 	}
 
-	
 	@Override
 	@Transactional
 	public void registerMember(MemberDTO member) {
@@ -71,9 +74,6 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.registerRole(new Authority(member.getId(), "ROLE_MEMBER"));
 	}
 	
-	/**
-	 *  마이페이지 _ 견주의 모임 개설내역 리스트 (+페이징빈)
-	 */
 	@Override
 	@Transactional
 	public ListDTO<MeetingDTO> getSetupListById(String id, int pageNo) {
@@ -86,9 +86,6 @@ public class MemberServiceImpl implements MemberService {
 		return new ListDTO<MeetingDTO>(memberDAO.getSetupListById(id, pagingBean), pagingBean);
 	}
 	
-	/**
-	 *  마이페이지 _ 일반 회원의 모임 참여내역 리스트 (+페이징빈)
-	 */
 	@Override
 	@Transactional
 	public ListDTO<MeetingDTO> getAttenderHistoryListById(String id, int pageNo){
@@ -101,9 +98,6 @@ public class MemberServiceImpl implements MemberService {
 		return new ListDTO<MeetingDTO>(memberDAO.getAttenderHistoryListById(id, pagingBean), pagingBean);
 	}
 	
-	/**
-	 *  마이페이지 _ 일반 회원의 모임 공감내역 리스트 (+페이징빈)
-	 */
 	@Override
 	@Transactional
 	public ListDTO<MeetingDTO> getSympathyHistoryListById(String id, int pageNo){
@@ -119,7 +113,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public void registerDogInfo(DogDTO ddto) {
-		//업데이트치기 위해 생일 정보 리포멧
 		String bdate = ddto.getBdate().replace("-", "/");
 		String date[] = bdate.split("/");
 		String year = date[0];
@@ -152,10 +145,16 @@ public class MemberServiceImpl implements MemberService {
 			mdto.setRole("일반 회원");
 			break;
 		case WithPet.ROLE_STANDBY :
-			mdto.setRole("견주 대기자");
+			mdto.setRole("예비주인님");
 			break;
 		case WithPet.ROLE_DOGMOM :
-			mdto.setRole("댕댕이 맘");
+			mdto.setRole("댕댕이주인님");
+			break;
+		case WithPet.ROLE_MANAGER :
+			mdto.setRole("관리자");
+			break;
+		case WithPet.ROLE_SYSTEMADMIN :
+			mdto.setRole("운영자");
 			break;
 		default:
 			break;
@@ -176,11 +175,10 @@ public class MemberServiceImpl implements MemberService {
 		String days = date[2];
 		bdate = month+"/"+days+"/"+year;
 		
-		//반려견 정보 조회
-		ddto = memberDAO.findDogById(ddto.getId());
 		//사용자가 입력한 개생일과 개사진 등록
-		ddto.setBdate(bdate);
+		ddto.setImgNo(memberDAO.findDogById(ddto.getId()).getImgNo());
 		ddto.setImgPath(imgPath);
+		ddto.setBdate(bdate);
 		
 		if(ddto.getGender().equals("female"))
 			ddto.setCategoryNo(WithPet.DOG_FEMALE);
@@ -212,8 +210,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public List<Object> getPWQuestion(){
-		int tableCode=6;
-		return memberDAO.getPWQuestion(tableCode);
+		return memberDAO.getPWQuestion(WithPet.PW_QUESTION);
 	}
 	
 	@Override

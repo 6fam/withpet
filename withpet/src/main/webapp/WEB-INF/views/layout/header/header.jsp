@@ -125,14 +125,36 @@
 					<!-- 회원 -->
 					<sec:authorize access="!hasRole('ROLE_MANAGER')">
 					<div style="float: right; height: 30px; font-size: 13px; margin-top: 16px; margin-right: 15px; margin-bottom: 8px; padding-top: 7px; cursor: pointer; margin-left: 10px">
-						<font style="margin-right: 5px">
-							<a href="receivemessage.do?pageNo=1">
-								<sec:authentication property="principal.nick" />
-							</a>님
-						</font>
-						<a href="mypage.do" style="color: black; margin-top: 7px">
+						<a href="#"
+					  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+					  		style="cursor: pointer">
+					  		<font style="margin-right: 5px">
+					  			<img src="resources/img/tier_red.png" style="width: 15px; height: 15px; margin-right:5px"><sec:authentication property="principal.nick" /> 님
+					  		</font>
+					  	</a>
+					    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="margin-top:15px;margin-left: -115px; width: 300px; height: 120px; cursor: default">
+					    	<div class="row">
+								<div class="col-sm-4">
+									<img src="resources/img/dog_profile2.png" style="height:80px;width: 80px; border: solid 1px black; border-radius: 200px; margin-left: 20px; margin-top: 10px">
+								</div>
+								<div class="col-sm-7" style="margin-left: 10px">
+									<div class="row" style="margin:0px; padding: 0px; margin-top: 15px">
+										<sec:authentication property="principal.nick" />님 <font style="font-size: 12px; color: #3f3f3f; padding-top: 4px;margin-left: 8px"><a href="mypage.do">내정보</a><img src="resources/img/padlock-lock-icon.png" style="width: 15px; height: 15px"></font>
+									</div>
+									<div class="row" style="margin:0px; padding: 0px; margin-top: 7px">
+										<font style="font-size: 13px">일반회원</font><br>
+									</div>
+									<div class="row" style="margin:0px; padding: 0px; margin-top: 2px">
+										<a href="receivemessage.do?pageNo=1" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;font-size: 13px; margin-bottom: 8px;cursor: pointer">
+											<img src="resources/img/messageico.png" style="height: 15px; width: 15px; margin-top: 5px">쪽지함 <font style="color: green"><b>0</b></font>
+										</a>
+									</div>
+								</div>
+					    	</div>
+					    </div>
+						<!-- <a href="mypage.do" style="color: black; margin-top: 7px">
 							마이페이지
-						</a>
+						</a> -->
 					</div>
 					</sec:authorize>
 					

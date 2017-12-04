@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <sec:authorize access="!hasRole('ROLE_MEMBER')">
 	<script>
 		alert("로그인 하세요!");
@@ -46,46 +47,52 @@
 		<div class="col-sm-12">
 			<!-- 반복구간 -->
 				<!-- 1 -->
-				<c:forEach var="alist" items="${requestScope.listdto.list }">
-					<div class="row"
-						style="margin-left: 0px; border: 1px solid #ddd; width: 100%; margin: 0 auto; margin-bottom: 30px">
-						<!-- 섬네일시작 -->
-						<div class="col-sm-2" style="margin: 30px 0 30px 30px;">
-							<img src="${pageContext.request.contextPath }/resources/img/${alist.imgPath}" width="150px" height="150px">
-						</div>
-						<!-- 섬네일끝 -->
-						<div class="col-sm-9" style="margin: 30px 0 0 30px">
-							<table class="table table-bordered">
-								<tbody>
-									<tr>
-										<td style="text-align: center; font-weight: bold">모임제목</td>
-										<td>${alist.title }</td>
-										<td style="text-align: center; font-weight: bold">모임상태</td>
-										<td>${alist.meetingState }</td>
-									</tr>
-									<tr>
-										<td style="text-align: center; font-weight: bold">모임기간</td>
-										<td>${alist.date.meetingStart } ~ ${alist.date.meetingEnd }</td>
-										<td style="text-align: center; font-weight: bold">모임종류</td>
-										<td>${alist.meetingType}</td>
-									</tr>
-									<tr>
-										<td style="text-align: center; font-weight: bold">모임장소</td>
-										<td colspan="3">${alist.place }</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div> 
-				</c:forEach> 
+				<c:choose>
+					<c:when test="${fn:length(requestScope.listdto.list)==0 }">
+						<br><div align="center"><b>참여한 모임 내역이 없습니다. </b></div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="alist" items="${requestScope.listdto.list }">
+							<div class="row"
+								style="margin-left: 0px; border: 1px solid #ddd; width: 100%; margin: 0 auto; margin-bottom: 30px">
+								<!-- 섬네일시작 -->
+								<div class="col-sm-2" style="margin: 30px 0 30px 30px;">
+									<img src="${pageContext.request.contextPath }/resources/img/${alist.imgPath}" width="150px" height="150px">
+								</div>
+								<!-- 섬네일끝 -->
+								<div class="col-sm-9" style="margin: 30px 0 0 30px">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<td style="text-align: center; font-weight: bold">모임제목</td>
+												<td>${alist.title }</td>
+												<td style="text-align: center; font-weight: bold">모임상태</td>
+												<td>${alist.meetingState }</td>
+											</tr>
+											<tr>
+												<td style="text-align: center; font-weight: bold">모임기간</td>
+												<td>${alist.date.meetingStart } ~ ${alist.date.meetingEnd }</td>
+												<td style="text-align: center; font-weight: bold">모임종류</td>
+												<td>${alist.meetingType}</td>
+											</tr>
+											<tr>
+												<td style="text-align: center; font-weight: bold">모임장소</td>
+												<td colspan="3">${alist.place }</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div> 
+						</c:forEach> 
+					</c:otherwise>
+				</c:choose>
 				<!-- 반복종료 -->
 
 			<!-- 총회원게시판 끝 -->
 			<!-- 돌보미 페이징 시작 -->
 			<div class="row" style="margin-left: 0px">
-				<div class="col-sm-4"></div>
-				<div class="col-sm-6">
-					<div>
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6" align="center">
 						<c:set var="pb" value="${requestScope.listdto.pagingBean }"/>
 						<ul class="pagination">
 								<c:if test="${pb.previousPageGroup }">
@@ -107,8 +114,7 @@
 								</c:if>
 						</ul>
 					</div>
-				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-3"></div>
 			</div>
 
 		</div>

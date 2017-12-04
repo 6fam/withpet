@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM (select board_no, row_number() over(order by board_no desc) as rnum, title, id, category_no from board) b, category cg,
 		(select m.board_no, m.img_no, m.place, c.category_name from meeting m, category c
 		where m.category_no=c.category_no) al, img i, meetingType mt
-		WHERE b.category_no between 20 and 23 and b.id=#{id} and al.board_no=b.board_no and i.img_no=al.img_no
+		WHERE b.category_no=17 and b.id=#{id} and al.board_no=b.board_no and i.img_no=al.img_no
 		and mt.board_no=b.board_no and mt.category_no=cg.category_no and rnum between #{startRNum} and #{endRNum} order by rnum asc
 	</select>
 	
@@ -89,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getTotalCountById" parameterType="string" resultType="int">
-		select count(*) from board where id=#{value} and category_no between 20 and 23
+		select count(*) from board where id=#{value} and category_no=17
 	</select>
 	
 	<select id="getTotalCountAttender" parameterType="string" resultType="int">

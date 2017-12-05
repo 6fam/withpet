@@ -16,7 +16,7 @@
 	<div class="row" style="padding-bottom: 20px;margin-top: 20px">
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8" style="border-bottom: solid 1px #cecece; padding-bottom: 20px">
-			<font style="font-size: 32px">제목제목</font>
+			<font style="font-size: 32px">${cdinfo.title}</font>
 		</div>
 		<div class="col-sm-2"></div>
 	</div>
@@ -25,24 +25,7 @@
 		<div class="col-sm-2"></div>
 		<!-- 글내용 -->
 		<div class="col-sm-8">
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
-			내용내용<br>
+			${cdinfo.content}
 		</div>
 		<div class="col-sm-2"></div>
 	</div>

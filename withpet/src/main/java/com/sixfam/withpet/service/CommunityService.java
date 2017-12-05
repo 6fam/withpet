@@ -10,5 +10,11 @@ public interface CommunityService {
 	
 	public List<BoardDTO> getCommunityListPerCategory(int categoryNo);
 	
-	public BoardDTO getCommunityDetailInfo(BoardDTO boardDTO);
+	public BoardDTO getCommunityDetailInfo(int boardNo);
+	
+	public BoardDTO registerCommunityInfo(BoardDTO boardDTO);
+
+	public void removeCommunityInfo(int boardNo);
+
+	public void updateCommunityInfo(BoardDTO boardDTO);
 }

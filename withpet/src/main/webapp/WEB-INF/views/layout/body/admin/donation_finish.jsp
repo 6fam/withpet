@@ -26,25 +26,27 @@
 						
 						
 							<!-- 전체회원관리 -->
-							<table class="table table-hover table-border">
-							  <thead class="thead-dark">
+							<table style="width: 100%">
+							  <thead>
 							    <tr>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">#</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 12%">분류</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 55%">제목</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 13%">작성자</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">조회수</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 10%">작성일자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 5%">글번호</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 13%">모금상태</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 16%">제목</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">작성자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 13%">모금액</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">모금참여자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">등록일자</th>
 							    </tr>
 							  </thead>
 							  <tbody>
 							    <tr>
-							      <td style="padding: .45rem">1</td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
 							    </tr>
 							    </tbody>
 							</table>

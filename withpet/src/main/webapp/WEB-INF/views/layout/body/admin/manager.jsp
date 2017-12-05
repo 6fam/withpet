@@ -27,32 +27,30 @@
 						<div class="col-sm-12">
 						
 						
-							<!-- 전체회원관리 -->
 							<table style="width: 100%">
-							  <thead>
-							    <tr>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">회원번호</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">이메일</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">닉네임</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 20%">연락처</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">포인트</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 27%">가입일자</th>
-							    </tr>
-							  </thead>
-							  <tbody>
-							  
-							  	<!-- for -->
-							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">java@gmail.com</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">010-9966-1391</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">0</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">2017-12-05</td>
-							    </tr>
+							  	<thead>
+								    <tr>
+								      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">회원번호</th>
+								      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">이메일</th>
+								      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">닉네임</th>
+								      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 20%">연락처</th>
+								      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">포인트</th>
+								      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 27%">가입일자</th>
+								    </tr>
+							 	</thead>
+							  	<tbody>
+								  	<!-- for -->
+								    <tr>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">java@gmail.com</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">포기란배승찬셀때나하는소리</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">010-9966-1391</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">0</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">2017-12-05</td>
+								    </tr>
+								    <!-- for끝 -->
 							    </tbody>
 							</table>
-							<!-- 전체회원관리 끝 -->
 							
 						</div>
 					</div>

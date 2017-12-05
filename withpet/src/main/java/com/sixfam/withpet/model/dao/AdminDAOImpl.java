@@ -102,7 +102,7 @@ public class AdminDAOImpl implements AdminDAO {
 	public void registerTierAdmin(MemberDTO memberDTO) {
 		template.insert("admin.insertTierMember",memberDTO);
 		template.insert("admin.insertTierDogmom",memberDTO);
-		template.insert("admin.insertTierAdmin",memberDTO);
+		template.insert("admin.insertTierManager",memberDTO);
 	}
 ////delete member tier
 	@Override
@@ -148,5 +148,9 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public void setAcceptDonation(int boardNo) {
 		template.update("admin.acceptDonation",boardNo);
+	}
+	@Override
+	public void setDogmomPermitDate(MemberDTO memberDTO) {
+		template.update("admin.dogmomPermitDate",memberDTO);
 	}
 }

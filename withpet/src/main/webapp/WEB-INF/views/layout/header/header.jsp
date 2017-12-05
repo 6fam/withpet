@@ -39,7 +39,15 @@
 										<font style="font-size: 12px"><a href="meeting.do?categoryNo=22">훈련</a></font>
 									</div>
 									<div class="col-sm-6">
-										<font style="font-size: 12px"><a href="meeting.do?categoryNo=23">교육/세미나</a></font>
+										<font style="font-size: 12px"><a href="meeting.do?categoryNo=23">교육</a></font>
+									</div>
+								</div>
+								<div class="row" style="margin-left: 0px; margin-right: 0px">
+									<div class="col-sm-5">
+										<font style="font-size: 12px"><a href="meeting.do?categoryNo=24">세미나</a></font>
+									</div>
+									<div class="col-sm-6">
+										<font style="font-size: 12px"><a href="meeting.do?categoryNo=25">#</a></font>
 									</div>
 								</div>
 							</div>

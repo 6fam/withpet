@@ -201,6 +201,7 @@ public class MeetingController {
 	@RequestMapping("listJson.do")
     @ResponseBody // 리턴데이터를 json으로 변환(생략가능)
     public List<ReplyDTO> listJsonRequest(ReplyDTO replyDTO){
+		System.out.println("MeetingController listJson");
         List<ReplyDTO> list = service.getReplyList(replyDTO.getBoardNo());
         return list;
     }

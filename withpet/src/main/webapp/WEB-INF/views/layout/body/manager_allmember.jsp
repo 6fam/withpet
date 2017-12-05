@@ -73,6 +73,7 @@ $(document).ready(function() {
 										</tr>
 									</thead>
 									<tbody>
+									
 									<c:forEach items="${amemberList.list}" var="aml"> 
 										<tr>
 											<td>${aml.id}</td>
@@ -81,6 +82,7 @@ $(document).ready(function() {
 											<td>${aml.regdate}</td>
 											<td class="tdtier"><select class="form-control tier-select" id="membertierselect" name="ccategoryNo">
 														<c:forEach items="${requestScope.tier}" var="tr">
+														<c:if test="${tr.categoryNo<14}">
 															<c:choose>
 																<c:when test="${tr.categoryNo==aml.categoryNo}">
 																	<option value="${tr.categoryNo}" selected="selected">${tr.categoryName}</option>
@@ -89,12 +91,15 @@ $(document).ready(function() {
 																	<option value="${tr.categoryNo}">${tr.categoryName}</option>
 																</c:otherwise>
 															</c:choose>
+														</c:if>
 														</c:forEach>
 											</select></td>
 											<td>
 												<input type="hidden" name="iid"  id="iid" value="${aml.id}">
+												<c:if test="${aml.categoryNo<13}">
 												<input type="submit" class="btn btn-outline-danger tierupdate" value="수정"
 												 style="height: 30px; font-size: 12px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px;">
+												</c:if>
 											</td>
 										</tr>
 									</c:forEach>
@@ -107,6 +112,9 @@ $(document).ready(function() {
 						<div class="col-sm-3"></div>
 					</div>
 					<!-- 총회원게시판 끝 -->
+					
+					<sec:authentication property="authorities" var="ooo"/>
+					${ooo}
 					<!-- 돌보미 페이징 시작 -->
 					<div class="row" style="margin-left: 0px">
 						<div class="col-sm-4"></div>

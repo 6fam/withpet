@@ -70,7 +70,8 @@
 											<option style="font-size: 13px">친목</option>
 											<option style="font-size: 13px">훈련</option>
 											<option style="font-size: 13px">산책</option>
-											<option style="font-size: 13px">교육/세미나</option>
+											<option style="font-size: 13px">교육</option>
+											<option style="font-size: 13px">세미나</option>
 										</select>
 									</div>
 									<div class="col-sm-8">

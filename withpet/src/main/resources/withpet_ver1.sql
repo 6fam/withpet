@@ -121,10 +121,10 @@ values(img_seq.nextval, '이미지1.jpg');
 --4)meeting table
 -----모집중으로 모임 생성
 insert into MEETING(board_no, intro, people_count,place,date_no,img_no,category_no)
-values (board_seq.currval,'시바견과 함께',10,'경기도 성남시 분당구 삼평동 유스페이스 한국소프트웨어진흥협회 802호',gatheringdate_seq.currval,img_seq.currval,25);
+values (board_seq.currval,'시바견과 함께',10,'경기도 성남시 분당구 삼평동 유스페이스 한국소프트웨어진흥협회 802호',gatheringdate_seq.currval,img_seq.currval,26);
 --5)meeting type 훈련
 insert into MEETINGTYPE(board_no,category_no) 
-values (board_seq.currval,20);
+values (board_seq.currval,23);
 
 
 

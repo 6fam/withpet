@@ -10,83 +10,16 @@
 		location.href = "${pageContext.request.contextPath}/loginForm.do";
 	</script>
 </sec:authorize>
+
 <script type="text/javascript">
-	$(document).ready(function() {
-		listReply();
-		$("#submitReply").click(function() {
-			var replytext = $("#replytext").val();
-			var replyForm = $(".replyForm").serialize();
-			alert(replytext);
-			$.ajax({
-				type : "post",
-				url : "insertReply.do",
-				data : replyForm,
-				beforeSend : function(xhr) {
-					xhr.setRequestHeader(
-						"${_csrf.headerName}","${_csrf.token}");
-				},
-				success : function(data) {
-					/* alert("댓글이 등록되었습니다.");*/
-					listReply();
-				}
-			});
-		});
-		
-		/* 댓글 삭제 버튼 클릭 시 이벤트 */
-		function deleteReply() {
-			alert("들어오나");
-		}
 
-
-		/* 댓글 리스트 보여주는 함수 */
-		function listReply() {
-			var replyForm = $(".replyForm").serialize();
-			$.ajax({
-				type : "get",
-				//contentType: "application/json", ==> 생략가능(RestController이기때문에 가능)
-				url : "listJson.do",
-				data : replyForm,
-				success : function(result) {
-				console.log(result);
-				var output = "<table>";
-				for ( var i in result) {
-					output += "<tr>";
-					output += "<td >id: " + result[i].id + "<br>";
-					output += result[i].content + "</td>";
-					output += "<td><button type='button' onclick='deleteReply()'>삭제</button></td>"
-					output += "<tr>";
-				}
-				output += "</table>";
-				$("#listReply").html(output);
-				}
-			});
-		}
-		
-		$(function(){
-			$("#btn_sky .contentLocate").click(function(){
-				var posY = $("#contentLocate").position();
-				$("html,body").stop().animate({'scrollTop':posY.top -90},700);
-			});
-			$("#btn_sky .mapLocate").click(function(){
-				var posY = $("#mapLocate").position();
-				$("html,body").stop().animate({'scrollTop':posY.top -90},700);
-			});
-			$("#btn_sky .replyLocate").click(function(){
-				var posY = $("#replyLocate").position();
-				$("html,body").stop().animate({'scrollTop':posY.top -90},700);
-			});
-			$("#btn_sky .guideLocate").click(function(){
-				var posY = $("#guideLocate").position();
-				$("html,body").stop().animate({'scrollTop':posY.top -90},700);
-			});
-		});
-
-	});
 </script>
+
 <style>
 	#btn_sky span{font-size: 12px;display:block; cursor:pointer; font-weight:bold; padding:7px; margin:5px 0; background:#666; color:#fff; text-decoration:none;}
 	#btn_sky span:hover {background:#ff5555;}
 </style>
+
 <div id="btn_sky" style="position:fixed; right:0; top:20%">	 
 	<span class="contentLocate">내용</span> 
 	<span class="mapLocate">지도</span>
@@ -135,7 +68,7 @@
 		<div class="col-sm-7" style="margin-left: 20px">
 			<div class="row">
 				<div class="col-sm-12">
-					<font style="font-size: 24px"><b>${meetingDetailDTO.title}</b></font>
+					<font style="font-size: 24px"><b>${meetingDetailDTO.intro}</b></font>
 				</div>
 			</div>
 			<div class="row" style="margin-top: 20px">
@@ -158,13 +91,6 @@
 						<b>신청인원</b>&nbsp;&nbsp;&nbsp;총 80명  | ${meetingDetailDTO.peopleCount}명 신청가능
 					</font>
 				
-					
-					<script type="text/javascript">
-						function openPopup(bNo){
-							var boardNo=bNo;
-							open("${pageContext.request.contextPath}/meetingAttenderList.do?boardNo="+boardNo,"mypopup","width=400,height=500,top=150,left=200");
-						}
-					</script>
 					<sec:authentication property="principal.id" var="ooo"/>
 					<c:if test="${ooo==meetingDetailDTO.id}">
 					
@@ -206,12 +132,6 @@
 	<br>
 	<hr>
 	<br>
-
-	<script type="text/javascript">
-		function checked() {
-			document.getElementById('exampleInputText').readOnly = true;
-		}
-	</script>
 
 	<!-- 모임상세보기-내용 -->
 	<div class="row" style="margin-top: 40px;">
@@ -257,18 +177,18 @@
 	<div class="row" style="margin-top: 40px;  border-top: solid 1px #cecece; padding-top: 40px">
 		<div class="col-sm-1"></div>
 		<div class="col-sm-2" style="margin-top: 5px;margin-left:40px" id="replyLocate">
-			<b>함께하시개 덧글 (0건)</b>
+			<b>함께하시개 덧글 (<span class="rcount"></span>건)</b>
 		</div>
 		<div class="col-sm-9" style="margin-top: 5px"></div>
 	</div>
 	
-	<form name="replyForm" class="replyForm" method="post">
+	<form name="replyForm" class="replyForm" method="post" id="replyForm">
 		<div class="row" style="margin-top:0px;">
 			<div class="col-sm-12" style="margin: 0px; padding-left: 150px; padding-right: 130px">
 				<div class="row">
 					<div class="col-sm-10">
 						<input type="hidden" name="boardNo" value="${meetingDetailDTO.boardNo}">
-						<input type="text" name="content" class="form-control" id="replytext" aria-describedby="emailHelp" placeholder="덧글을 입력해주세요.">
+						<input type="text" name="content" class="form-control" id="replytext" aria-describedby="emailHelp" placeholder="댓글을 입력해주세요.">
 					</div>
 					<div class="col-sm-2">
 						<button type="button" id="submitReply">댓글 작성</button>
@@ -342,7 +262,7 @@
 <script>
 	$(document).ready(function() {
 		//alert("뜨나?");
-		var address = $("#address").html();
+		/* var address = $("#address").html();
 		//alert(address);
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		
@@ -387,14 +307,143 @@
 				}
 			}); 
 	
-	
-	
 			$("#deleteBtn").click(function(){
 				if(confirm("게시글을 삭제하시겠습니까?"))
 					location.href="${pageContext.request.contextPath}/meeting_delete.do?boardNo=${meetingDetailDTO.boardNo}";		
 			})
-	});
+			 */
+			
+			/* 승찬스 지도끝*/
+			
+			
+			
+			
+			
+			
+			alert("document ready");
+			//댓글 리스트 보기
+			listReply();
+			//댓글 카운트 보기
+			replyCount();
+				    
+			//댓글 카운트 보기
+			 function replyCount(){
+				alert("댓글카운트");
+				var boardNo=${meetingDetailDTO.boardNo};
+				$.ajax({
+					type:"get",
+					url:"replyCount.do",
+					data:"boardNo="+boardNo,
+					success:function(data){
+						alert("댓글 수 : "+data);
+						$(".rcount").text(data);
+					}
+				}); // ajax
+			} // 댓글 카운트 끝 
+			 
+			
+			// 댓글 작성
+			$("#submitReply").click(function() {
+				var replytext = $("#replytext").val();
+				alert(replytext);
+				
+				$.ajax({
+					type : "post",
+					url : "insertReply.do",
+					data : $(".replyForm").serialize(),
+					beforeSend : function(xhr) {
+						xhr.setRequestHeader(
+							"${_csrf.headerName}","${_csrf.token}");
+					},
+					success : function(data) {
+						alert("댓글이 등록되었습니다.");
+						document.getElementById("replyForm").reset();
+						listReply();
+						replyCount();
+					}
+				});
+			});  //댓글 작성 끝
+			
+			
+			function listReply() {
+				alert("댓글리스트");
+				var boardNo=${meetingDetailDTO.boardNo};
+				alert(boardNo);
+				 $.ajax({
+					type : "get",
+					url : "${pageContext.request.contextPath}/listJson.do",
+					data : "boardNo="+boardNo,
+					success:function(result) {
+						alert("댓글 리스트 가져오기 success ");
+						var output = "<table>";
+						for ( var i in result) {
+							output += "<tr>";
+							output += "<td>사진</td>";
+							output += "<td >id: " + result[i].id + "<br>" + result[i].content + "</td>";
+							output += "<td><button type='button' class='replyDelete' value="+result[i].replyNo+">삭제"+result[i].replyNo+"</button></td>"
+							output += "</tr>";
+						}
+						output += "</table>";
+						$("#listReply").html(output);
+					} //success
+				}); //ajax
+			} //listReply
+			/*
+			// 댓글 삭제
+			$(document).on('click', '.replyDelete', function(e){
+				alert("1replyNo: "+$(this).attr('value')); //버튼 value 
+				var replyNo=$(this).attr('value');
+				alert("2: "+replyNo);
+				if(confirm("댓글을 삭제하시겠습니까?")){
+					$.ajax({
+						type:"post",
+						url:"deleteReply.do",
+						data: "replyNo="+replyNo,
+						beforeSend : function(xhr) {
+							xhr.setRequestHeader(
+								"${_csrf.headerName}","${_csrf.token}");
+						},
+						success: function(data){
+							alert("댓삭");
+							listReply();
+							replyCount();
+						} //success
+					})// ajax
+				}//if 
+			});  */// on click 
+			
+			/* $(function(){
+				$("#btn_sky .contentLocate").click(function(){
+					var posY = $("#contentLocate").position();
+					$("html,body").stop().animate({'scrollTop':posY.top -90},700);
+				});
+				$("#btn_sky .mapLocate").click(function(){
+					var posY = $("#mapLocate").position();
+					$("html,body").stop().animate({'scrollTop':posY.top -90},700);
+				});
+				$("#btn_sky .replyLocate").click(function(){
+					var posY = $("#replyLocate").position();
+					$("html,body").stop().animate({'scrollTop':posY.top -90},700);
+				});
+				$("#btn_sky .guideLocate").click(function(){
+					var posY = $("#guideLocate").position();
+					$("html,body").stop().animate({'scrollTop':posY.top -90},700);
+				});
+			}); */
+			
+	}); //document ready
 
+		
+	/* 	function openPopup(bNo){
+			var boardNo=bNo;
+			open("${pageContext.request.contextPath}/meetingAttenderList.do?boardNo="+boardNo,"mypopup","width=400,height=500,top=150,left=200");
+		}
+		
+		function checked() {
+			document.getElementById('exampleInputText').readOnly = true;
+		}  */
+	
+	
 	
 </script>
 

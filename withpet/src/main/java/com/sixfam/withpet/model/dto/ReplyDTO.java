@@ -16,6 +16,8 @@ package com.sixfam.withpet.model.dto;
 public class ReplyDTO {
 	
 
+	
+
 	/*
 	 * 덧글 번호
 	 * 컬럼명 : reply_no
@@ -32,14 +34,14 @@ public class ReplyDTO {
 	 */
 	private String id;
 	/*
-	 * 덧글 작성자 닉네임
-	 */
-	private String nick;
-	/*
 	 * 덧글 해당 글 번호
 	 * 컬럼명 : board_no
 	 */
 	private int boardNo;
+	/*
+	 * 덧글 입력 날짜
+	 */
+	private String regDate;
 	/**
 	 * Default Constructor
 	 */
@@ -80,14 +82,19 @@ public class ReplyDTO {
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
-	public String getNick() {
-		return nick;
+	public String getRegDate() {
+		return regDate;
 	}
-	public void setNick(String nick) {
-		this.nick = nick;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
+
+	
 	@Override
 	public String toString() {
-		return "ReplyDTO [replyNo=" + replyNo + ", content=" + content + ", id=" + id + ", boardNo=" + boardNo + "]";
+		return "ReplyDTO [replyNo=" + replyNo + ", content=" + content + ", id=" + id + ", boardNo=" + boardNo
+				+ ", regDate=" + regDate + "]";
 	}
+	
+	
 }

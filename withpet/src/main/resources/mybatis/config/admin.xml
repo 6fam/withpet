@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="totalMemberList" parameterType="pagingBean" resultType="memberDTO">
 		SELECT m.id,m.nick,m.password,m.tel,m.pw_answer as pwAnswer,m.regdate,m.permitdate,t.category_no as categoryNo,c.category_name as categoryName
 		FROM (select row_number() over(order by regdate desc) as rnum,id,nick,password,tel,pw_answer,regdate,permitdate,category_no from member) m,category c,(SELECT MAX(category_no) as category_no,id FROM TIER GROUP BY id) t
-		WHERE t.category_no=c.category_no and m.id=t.id	 and rnum between #{startRowNumber} and #{endRowNumber} order by rnum desc
+		WHERE t.category_no=c.category_no and m.id=t.id	 and rnum between #{startRowNumber} and #{endRowNumber} order by m.regdate desc
    </select>
    
    <!-- 회원별 등급 목록 -->
@@ -47,17 +47,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	SELECT m.id,m.nick,m.tel,m.pw_answer as pwAnswer,m.regdate,m.permitdate,m.category_no as categoryNo
 		FROM(select id,nick,password,tel,pw_answer,regdate,permitdate,category_no from member) m, 
 		(SELECT row_number() over(order by id desc) as rnum,id,category_no FROM TIER WHERE category_no='11') t
-		WHERE m.id=t.id and rnum between #{startRowNumber} and #{endRowNumber}
+		WHERE m.id=t.id and rnum between #{startRowNumber} and #{endRowNumber} order by m.regdate desc	
    </select>
    <select id="allRoleDogmom" resultMap="memberdog">
      	SELECT m.id,m.nick,m.tel,m.pw_answer as pwAnswer,m.regdate,m.permitdate,m.category_no as categoryNo
 		FROM(select id,nick,password,tel,pw_answer,regdate,permitdate,category_no from member) m, 
 		(SELECT row_number() over(order by id desc) as rnum,id,category_no FROM TIER WHERE category_no='12') t
-		WHERE m.id=t.id and rnum between #{startRowNumber} and #{endRowNumber}
+		WHERE m.id=t.id and rnum between #{startRowNumber} and #{endRowNumber} order by m.regdate desc	
    </select>
    <select id="allDog" parameterType="string" resultType="dogDTO">
-		SELECT d.id,d.dog_no as dogNo,d.name,trunc(months_between(sysdate, bdate)/12) as bdate,d.intro,d.neutralization,d.img_no as imgNo,d.category_no as categoryno,d.category_name as gender
-		FROM(SELECT dd.dog_no,dd.bdate,dd.name,dd.intro,dd.neutralization,dd.id,dd.img_no,dd.category_no,cc.category_name,ii.img_path
+		SELECT d.id,d.dog_no as dogNo,d.name,trunc(months_between(sysdate, bdate)/12) as bdate,d.intro,d.neutralization,d.img_no as imgNo,d.category_no as categoryno,d.category_name as gender,d.reg_date as regDate
+		FROM(SELECT dd.dog_no,dd.bdate,dd.name,dd.intro,dd.neutralization,dd.id,dd.img_no,dd.category_no,dd.reg_date,cc.category_name,ii.img_path
 		FROM DOG dd, CATEGORY cc,IMG ii WHERE dd.category_no=cc.category_no and dd.img_no=ii.img_no) d,member m
 		WHERE d.id=m.id and d.id=#{value}
    </select>
@@ -95,31 +95,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    </select>
    
-   	
-	<!-- Tier Except categoryNo 9 -->
+   	<!-- 견주 승인 날짜 업데이트 -->
+  	<update id="dogmomPermitDate" parameterType="memberDTO">
+   		UPDATE MEMBER SET permitdate=sysdate WHERE id=#{id}
+   	</update>
+	<!-- 회원 등급 등록 : 탈퇴회원 categoryNo 9 -->
 	<insert id="insertTierExcept" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},9)	
 	</insert>
-	<!-- Tier Member categoryNo 10 -->
+	<!-- 회원 등급 등록: 일반회원  categoryNo 10 -->
 	<insert id="insertTierMember" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},10)	
 	</insert>
-	<!-- Tier StandBy 	-->
+	<!-- 회원 등급 등록: 예비주인  StandBy 	-->
 	<insert id="insertTierStandby" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},11)	
 	</insert>
-	<!-- Tier Dogmom -->
+	<!-- 회원 등급 등록: 댕댕이주인님 Dogmom  -->
 	<insert id="insertTierDogmom" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},12)	
 	</insert>
-	<!-- Tier Admin -->
-	<insert id="insertTierAdmin" parameterType="memberDTO">
+	<!-- 회원 등급 등록: Manager -->
+	<insert id="insertTierManager" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},13)	
+	</insert>
+	<!-- Tier SystemAdmin -->
+	<insert id="insertTierSystemAdmin" parameterType="memberDTO">
+		insert into TIER(id,category_no) 
+		values(#{id},14)	
 	</insert>
 	<delete id="deleteMemberTier" parameterType="memberDTO">
 		delete from TIER where id=#{id}

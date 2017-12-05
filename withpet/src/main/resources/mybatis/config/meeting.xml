@@ -164,13 +164,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	<!-- 댓글 -->
  	<insert id="insertReply" parameterType="replyDTO">
-		insert into reply(reply_no, board_no, id, content) 
-		values(reply_seq.nextval,#{boardNo}, #{id}, #{content})
+		insert into reply(reply_no, board_no, id, content, reg_date) 
+		values(reply_seq.nextval,#{boardNo}, #{id}, #{content}, sysdate)
 	</insert>
 	
 
 	<select id="selectReply" parameterType="int" resultType="replyDTO">
-		select reply_no as replyNo, content, id 
+		select reply_no as replyNo, content, id, to_char(reg_date, 'yyyy.mm.dd') as regDate
 		from reply
 		where board_no = #{value}
 	</select>

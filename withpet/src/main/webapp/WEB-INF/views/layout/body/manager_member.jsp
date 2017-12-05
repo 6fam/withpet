@@ -67,6 +67,7 @@ $(document).ready(function() {
 									</thead>
 									<tbody>
 										<c:forEach items="${requestScope.mlist.list}" var="ml">
+											<c:if test="${ml.categoryNo<13}">
 											<tr>
 												<td>${ml.id}</td>
 												<td>${ml.nick}</td>
@@ -80,6 +81,7 @@ $(document).ready(function() {
 														style="height: 30px; font-size: 12px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px; " value="${ml.id}">탈퇴</button>
 												</td>
 											</tr>
+											</c:if>
 										</c:forEach>
 									</tbody>
 								</table>

@@ -102,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					FROM member mem, board b, meeting mee
 					WHERE mem.id=b.id and b.board_no=mee.board_no
 				) mbmti, img i, gatheringdate ga
-		WHERE mbmti.img_no=i.img_no and mbmti.date_no=ga.date_no and mbmti.board_no=#{value}
+		WHERE mbmti.img_no=i.img_no and mbmti.date_no=ga.date_no and mbmti.board_no=#{value} 
 	</select>
 	
 	<select id="getMeetingSearchByCategoryType" parameterType="map" resultMap="meetingList">

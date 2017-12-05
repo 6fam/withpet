@@ -138,6 +138,9 @@ public class MeetingDAOImpl implements MeetingDAO {
 
 	@Override
 	public List<MeetingDTO> getAllMeetingList(PagingBean pb) {
+		List<MeetingDTO> list=template.selectList("meeting.getAllMeetingList", pb);
+		for(MeetingDTO l:list)
+			System.out.println(l);
 		return template.selectList("meeting.getAllMeetingList", pb);
 	}
 
@@ -179,4 +182,9 @@ public class MeetingDAOImpl implements MeetingDAO {
 		return template.selectOne("meeting.getPossibleCount", boardNo);
 	}
 
+	@Override
+	public void setMeetingState(HashMap<String, Object> param) {
+		System.out.println("DAO setMeetingState");
+		template.update("meeting.setMeetingState", param);
+	}
 }

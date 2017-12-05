@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sixfam.withpet.common.WithPet;
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dto.ListDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
@@ -27,7 +28,8 @@ public class ViewPagerController {
 		
 		int meetingCount = meetingService.getMeetingCount();
 		PagingBean pb = new PagingBean(12, meetingCount);
-
+		
+		meetingService.setMeetingState(WithPet.MEETING_CLOSE);
 		List<MeetingDTO> list = meetingService.getAllMeetingList(pb);
 		ListDTO<MeetingDTO> meetingListDTO = new ListDTO<MeetingDTO>(list, pb);
 		

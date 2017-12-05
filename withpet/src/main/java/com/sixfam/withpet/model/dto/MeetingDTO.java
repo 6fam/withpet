@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class MeetingDTO extends BoardDTO {
 
+	
 	/*
 	 * 모임 장소 컬럼명 : place
 	 */
@@ -227,13 +228,14 @@ public class MeetingDTO extends BoardDTO {
 		this.possibleCount = possibleCount;
 	}
 
-
 	@Override
 	public String toString() {
 		return "MeetingDTO [place=" + place + ", detailPlace=" + detailPlace + ", peopleCount=" + peopleCount
 				+ ", possibleCount=" + possibleCount + ", imgNo=" + imgNo + ", intro=" + intro + ", categoryStateNo="
 				+ categoryStateNo + ", meetingState=" + meetingState + ", meetingType=" + meetingType + ", tel=" + tel
-				+ ", date=" + date + "]";
+				+ ", date=" + date + ", toString()=" + super.toString() + "]";
 	}
+
+	
 	
 }

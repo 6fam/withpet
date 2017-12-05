@@ -34,6 +34,15 @@ public interface WithPet {
 	
 	//게시판:커뮤니티
 	public final static int BOARD_COMUNITY = 19;
+
+	//모임 :  모집중
+	public final static int MEETING_ING = 25;
+	
+	//모임 :  모집마감
+	public final static int MEETING_CLOSE = 26;
+	
+	//모임 :  모임종료
+	public final static int MEETING_RUNOUT = 27;
 	
 	//댕댕이 성별 : 수컷
 	public final static int DOG_MALE = 15;

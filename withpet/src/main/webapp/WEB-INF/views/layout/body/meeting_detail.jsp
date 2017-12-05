@@ -121,19 +121,24 @@
 						</div>
 						<div class="col-sm-4">
 							<c:choose>
-							
-								<c:when test="${flag==true}">
-									<form id="addAttend" action="${pageContext.request.contextPath}/meetingAttend.do" onsubmit="return checkAttend()">
-										<input type="hidden" name="boardNo" value="${meetingDetailDTO.boardNo}">
-										<input class="btn btn-info" type="submit" value="모임 참여" style="width: 100%; margin-top: 15px; cursor: pointer">
-									</form>
+								<c:when test="${meetingDetailDTO.meetingState eq '모집마감'}">
+									<button class="btn btn-danger" id="meetingClose" type="button" style="width: 100%; margin-top: 15px; cursor: pointer">모집 마감</button>
 								</c:when>
-								<c:otherwise>
-									<form id="cancelAttend" action="#" onsubmit="return checkAttendCancel()">
-										<input type="hidden" name="boardNo" value="${meetingDetailDTO.boardNo}">
-										<input class="btn btn-danger" type="submit" value="모임 취소" style="width: 100%; margin-top: 15px; cursor: pointer">
-									</form>
-								</c:otherwise> 
+								<c:when test="${meetingDetailDTO.meetingState eq '모임종료'}">
+									<button class="btn btn-danger" id="meetingRunOut" type="button" style="width: 100%; margin-top: 15px; cursor: pointer">모임 종료</button>
+								</c:when>
+										<c:when test="${flag==true}">
+											<form id="addAttend" action="${pageContext.request.contextPath}/meetingAttend.do" onsubmit="return checkAttend()">
+												<input type="hidden" name="boardNo" value="${meetingDetailDTO.boardNo}">
+												<input class="btn btn-info" type="submit" value="모임 참여" style="width: 100%; margin-top: 15px; cursor: pointer">
+											</form>
+										</c:when>
+										<c:otherwise>
+											<form id="cancelAttend" action="#" onsubmit="return checkAttendCancel()">
+												<input type="hidden" name="boardNo" value="${meetingDetailDTO.boardNo}">
+												<input class="btn btn-danger" type="submit" value="모임 취소" style="width: 100%; margin-top: 15px; cursor: pointer">
+											</form>
+										</c:otherwise> 
 								
 							</c:choose>
 						</div>
@@ -471,6 +476,14 @@
 					return false;
 			}
 			
+			$("#meetingClose").click(function(){
+				alert("해당 모임은 모집이 마감되었습니다.");
+			});
+			
+			$("#meetingRunOut").click(function(){
+				alert("해당 모임은 모임이 종료되었습니다.");				
+			});
+			
 	}); //document ready
 
 		
@@ -482,6 +495,7 @@
 	function checked() {
 		document.getElementById('exampleInputText').readOnly = true;
 	}  
+	
 	
 </script>
 

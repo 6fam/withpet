@@ -160,5 +160,23 @@ public class MeetingDAOImpl implements MeetingDAO {
 	public MeetingDTO findMeetingByBoardNo(int boardNo) {
 		return template.selectOne("meeting.getMeetingDetailByBoardNo", boardNo);
 	}
+	
+	@Override
+	public void removeAttenderMember(String id, int boardNo) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("boardNo", boardNo);
+		template.delete("meeting.removeAttenderMember", param);
+	}
+
+	@Override
+	public void setAttendCount(int boardNo) {
+		template.update("meeting.setAttendCount", boardNo);
+	}
+
+	@Override
+	public int getPossibleCount(int boardNo) {
+		return template.selectOne("meeting.getPossibleCount", boardNo);
+	}
 
 }

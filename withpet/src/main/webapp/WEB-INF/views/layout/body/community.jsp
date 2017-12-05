@@ -31,110 +31,17 @@
 			    </tr>
 			  </thead>
 			  <tbody>
+			  <c:forEach items="${cmulist}" var="cl">
 			    <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
+			      <td style="padding: .45rem">${cl.boardNo}</td>
+			      <td style="padding: .45rem">${cl.categoryName}</td>
+			      <td style="padding: .45rem"><a href="communityDetail.do?${cl.boardNo}">${cl.title}</a></td>
+			      <td style="padding: .45rem">${cl.id}</td>
+			      <td style="padding: .45rem">${cl.hits}</td>
+			      <td style="padding: .45rem">${cl.wdate}</td>
 			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
-			     <tr>
-			      <td style="padding: .45rem">1</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			      <td style="padding: .45rem">Column</td>
-			    </tr>
+			  </c:forEach>
+			    
 			    
 			  </tbody>
 			</table>

@@ -8,7 +8,7 @@
 	<div class="col-sm-2">
 		<a href="home.do?pageNo=1"><img src="resources/img/logo_text1.png" style="width: 160px; margin-top: 8px"></a>
 	</div>
-	<div class="col-sm-9 	">
+	<div class="col-sm-9">
 		<div class="row">
 			<div class="col-sm-8" style="text-align: left; padding-left: 0px;">
 				<!-- 모임 버튼 -->
@@ -21,7 +21,7 @@
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="padding-top: 0px; padding-bottom: 0px; width: 400px; border: 1px solid #757575">
 						<div class="row" style="margin-left: 0px; margin-right: 0px">
 							<div
-								style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 80px">
+								style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 90px">
 								<font style="font-size: 12px"><b>카테고리</b></font>
 							</div>
 							<div
@@ -116,7 +116,45 @@
 				<a href="#" style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				서비스소개
 				</a>
+				
+				<!-- 관리자페이지 -->
+				<sec:authorize access="hasRole('ROLE_MANAGER')">
+				<font style="color: #ddd">|</font>
+				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+					<div class="btn-group" role="group">
+						<a href="#" id="btnGroupDrop3" class="btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+							style="padding-left:0px ;text-decoration:none ; color:black; display:inline-block; height: 30px; font-size: 18px; margin-top: 2px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
+						관리자페이지
+						</a>
+						<div class="dropdown-menu" aria-labelledby="btnGroupDrop3" x-placement="bottom-start"
+							style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform; min-width: 140px; padding-top: 5px; padding-bottom: 5px">
+							<div style="border-bottom: solid 1px #cecece">
+								<a class="dropdown-item" href="allmember.do" style="padding-top: 0px; padding-bottom: 5px">
+									<font style="font-size: 12px">회원 관리</font>
+								</a>
+							</div>
+							<div style="border-bottom: solid 1px #cecece">
+								<a class="dropdown-item" href="allmeeting.do" style="padding-top: 0px; padding-bottom: 5px">
+									<font style="font-size: 12px">모임 관리</font>
+								</a>
+							</div>
+							<div style="border-bottom: solid 1px #cecece">
+								<a class="dropdown-item" href="alldonation.do" style="padding-top: 0px; padding-bottom: 5px">
+									<font style="font-size: 12px">모금함 관리</font>
+								</a>
+							</div>
+							<div>
+								<a class="dropdown-item" href="allcommunity.do" style="padding-top: 0px">
+									<font style="font-size: 12px">커뮤니티 관리</font>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				</sec:authorize>
 			</div>
+			
+			<!-- 로그아웃 상태 -->
 			<sec:authorize access="!hasRole('ROLE_MEMBER')">
 			<div class="col-sm-4" style="text-align: right; padding-right: 0px;">
 				<!-- 돌보미게시판 -->
@@ -128,10 +166,10 @@
 				</a>
 			</div>
 			</sec:authorize>
+			
+			<!-- 로그인 상태 -->
 			<sec:authorize access="hasRole('ROLE_MEMBER')">
-			<div class="col-sm-3" style="padding-right: 0px; text-align: right">
-					<!-- 회원 -->
-					<sec:authorize access="!hasRole('ROLE_MANAGER')">
+				<div class="col-sm-3" style="padding-right: 0px; text-align: right">
 					<div style="float: right; height: 30px; font-size: 13px; margin-top: 16px; margin-right: 15px; margin-bottom: 8px; padding-top: 7px; cursor: pointer; margin-left: 10px">
 						<a href="#"
 					  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -140,14 +178,21 @@
 					  			<img src="resources/img/tier_red.png" style="width: 15px; height: 15px; margin-right:5px"><sec:authentication property="principal.nick" /> 님
 					  		</font>
 					  	</a>
-					    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="margin-top:15px;margin-left: -115px; width: 300px; height: 120px; cursor: default">
+					    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="margin-top:15px;margin-left: -125px; width: 360px; height: 120px; cursor: default">
 					    	<div class="row">
 								<div class="col-sm-4">
 									<img src="resources/img/dog_profile2.png" style="height:80px;width: 80px; border: solid 1px black; border-radius: 200px; margin-left: 20px; margin-top: 10px">
 								</div>
 								<div class="col-sm-7" style="margin-left: 10px">
 									<div class="row" style="margin:0px; padding: 0px; margin-top: 15px">
-										<sec:authentication property="principal.nick" />님 <font style="font-size: 12px; color: #3f3f3f; padding-top: 4px;margin-left: 8px"><a href="mypage.do">내정보</a><img src="resources/img/padlock-lock-icon.png" style="width: 15px; height: 15px"></font>
+										<sec:authentication property="principal.nick" />님
+										<font style="font-size: 12px; color: #3f3f3f; padding-top: 4px;margin-left: 8px">
+											<!-- 관리자일때는 안보여주기 -->
+											<sec:authorize access="!hasRole('ROLE_MANAGER')">
+											<a href="mypage.do">내정보</a>
+											<img src="resources/img/padlock-lock-icon.png" style="width: 15px; height: 15px">
+											</sec:authorize>
+										</font>
 									</div>
 									<div class="row" style="margin:0px; padding: 0px; margin-top: 7px">
 										<font style="font-size: 13px">일반회원</font><br>
@@ -164,46 +209,8 @@
 							마이페이지
 						</a> -->
 					</div>
-					</sec:authorize>
-					
-					<!-- 관리자 -->
-					<sec:authorize access="hasRole('ROLE_MANAGER')">
-					<div style="float: right; height: 30px; font-size: 13px; margin-top: 10px; margin-right: 15px; margin-bottom: 8px; padding-top: 0px; cursor: pointer; margin-left: 10px">
-						<font style="margin-right: 5px">
-							<a href="receivemessage.do?pageNo=1" style="color: black">
-								<sec:authentication property="principal.nick" />
-							</a>님
-						</font>
-						<div class="btn-group" role="group" style="margin-top: 7px" aria-label="Button group with nested dropdown">
-							<div class="btn-group" role="group">
-								<a id="btnGroupDrop3" class="btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-										style="margin-top: 5px; margin-bottom: 4px; padding-top: 0px; cursor: pointer; color: black">
-									관리자페이지
-								</a>
-								<div class="dropdown-menu" aria-labelledby="btnGroupDrop3" x-placement="bottom-start"
-										style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform; min-width: 140px; padding-top: 5px; padding-bottom: 5px">
-									<div style="border-bottom: solid 1px #cecece">
-										<a class="dropdown-item" href="manager_allmember.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
-											<font style="font-size: 12px">회원 관리</font>
-										</a>
-									</div>
-									<div style="border-bottom: solid 1px #cecece">
-										<a class="dropdown-item" href="manager_allboard.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
-											<font style="font-size: 12px">게시글 관리</font>
-										</a>
-									</div>
-									<div>
-										<a class="dropdown-item" href="manager_alldonation.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
-											<font style="font-size: 12px">모금함 관리</font>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</sec:authorize>
-			</div>
-			<div class="col-sm-1" style="padding-left: 0px; text-align: left">
+				</div>
+				<div class="col-sm-1" style="padding-left: 0px; text-align: left">
 					<script type="text/javascript">
 						$(document).ready(function() {
 							$("#logoutAction").click(function() {
@@ -218,8 +225,9 @@
 						method="post" style="display: none">
 						<sec:csrfInput />
 					</form>
-			</div>
+				</div>
 			</sec:authorize>
+			
 		</div>
 	</div>
 	<div class="col-sm-1"></div>

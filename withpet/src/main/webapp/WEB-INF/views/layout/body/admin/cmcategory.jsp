@@ -4,7 +4,7 @@
 	<div class="row page-header" style="margin-top: 20px">
 		<div class="col-sm-12">
 			<h1 id="navbars">
-				<font style="font-size: 35px">관리자페이지</font>
+				<font style="font-size: 35px">아이콘이 들어올공간입니다.</font>
 			</h1>
 		</div>
 	</div>
@@ -21,7 +21,6 @@
 				<div class="tab-pane fade in active show" id="allmember" style="padding: 0px 0px 20px 0px;">
 					<div class="row" style="padding-top: 20px; padding-bottom: 20px">
 						<div class="col-sm-12">
-						
 						
 							<!-- 전체회원관리 -->
 							<input type="text">

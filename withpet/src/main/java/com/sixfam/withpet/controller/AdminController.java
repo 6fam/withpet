@@ -119,4 +119,12 @@ public class AdminController {
 		return "admin/cmcategory.tiles";
 	}
 
+	/**
+	 * 커뮤니티 카테고리 관리
+	 */
+	@RequestMapping("activecommunity.do")
+	public String communityActiveRequest() {
+		return "admin/activecommunity.tiles";
+	}
+
 }

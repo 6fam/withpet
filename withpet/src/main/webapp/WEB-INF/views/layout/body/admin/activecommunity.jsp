@@ -15,11 +15,10 @@
 	</div>
 	
 	<!-- 총회원게시판 시작 -->
-	<div class="row"
-		style="margin-left: 0px; margin-bottom: 60px; margin-right: 0px">
+	<div class="row" style="margin-left: 0px; margin-bottom: 60px; margin-right: 0px">
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
-				<li class="nav-item"><a class="nav-link active community" href="#">전체 커뮤니티 목록</a></li>
+				<li class="nav-item"><a class="nav-link community" href="allcommunity.do">전체 커뮤니티 목록</a></li>
 				<li class="nav-item"><a class="nav-link" href="communitycategory.do">커뮤니티 카테고리 관리</a></li>
 			</ul>
 			<div class="communityBox" style="position: absolute; top:45px; z-index: 1000; background: #aaa;
@@ -45,8 +44,7 @@
 				<div class="tab-pane fade in active show" id="allmember" style="padding: 0px 0px 20px 0px;">
 					<div class="row" style="padding-top: 20px; padding-bottom: 20px">
 						<div class="col-sm-12">
-							<h2>총 게시물</h2>
-						
+							<h2>돌보미</h2>
 							<!-- 전체회원관리 -->
 							<table class="table table-hover table-border">
 							  <thead class="thead-dark">

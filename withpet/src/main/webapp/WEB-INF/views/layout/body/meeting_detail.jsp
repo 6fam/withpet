@@ -86,9 +86,10 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top: 20px">
+			
 				<div class="col-sm-12" style="border-bottom:  solid 1px #cecece;margin-bottom: 20px; padding-bottom: 20px">
 					<font style="font-size: 13px">
-						<b>신청인원</b>&nbsp;&nbsp;&nbsp;총 80명  | ${meetingDetailDTO.peopleCount}명 신청가능
+						<b>신청인원</b>&nbsp;&nbsp;&nbsp;총 <font id="totalCount">${meetingDetailDTO.peopleCount}</font>명  | <font color="red" id="possibleCount">${meetingDetailDTO.possibleCount}</font>명 신청가능
 					</font>
 				
 					<sec:authentication property="principal.id" var="ooo"/>
@@ -116,13 +117,25 @@
 					<div class="row">
 						<div class="col-sm-8">
 							<font style="font-size: 20px"><b>${meetingDetailDTO.title}</b></font><br>
-							선착순 | 총 80명 | ${meetingDetailDTO.peopleCount}명 신청가능
+							선착순 | 총 ${meetingDetailDTO.peopleCount}명 | <font color="red">${meetingDetailDTO.possibleCount}</font>명 신청가능
 						</div>
 						<div class="col-sm-4">
-							<form action="${pageContext.request.contextPath}/meetingAttend.do">
-							<input type="hidden" name="boardNo" value="${meetingDetailDTO.boardNo}">
-							<input class="btn btn-danger" type="submit" value="모임 참여" style="width: 100%; margin-top: 15px; cursor: pointer">
-							</form>
+							<c:choose>
+							
+								<c:when test="${flag==true}">
+									<form id="addAttend" action="${pageContext.request.contextPath}/meetingAttend.do" onsubmit="return checkAttend()">
+										<input type="hidden" name="boardNo" value="${meetingDetailDTO.boardNo}">
+										<input class="btn btn-info" type="submit" value="모임 참여" style="width: 100%; margin-top: 15px; cursor: pointer">
+									</form>
+								</c:when>
+								<c:otherwise>
+									<form id="cancelAttend" action="#" onsubmit="return checkAttendCancel()">
+										<input type="hidden" name="boardNo" value="${meetingDetailDTO.boardNo}">
+										<input class="btn btn-danger" type="submit" value="모임 취소" style="width: 100%; margin-top: 15px; cursor: pointer">
+									</form>
+								</c:otherwise> 
+								
+							</c:choose>
 						</div>
 					</div>
 				</div>
@@ -275,7 +288,7 @@
 <script>
 	$(document).ready(function() {
 		//alert("뜨나?");
-		/* var address = $("#address").html();
+		var address = $("#address").html();
 		//alert(address);
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		
@@ -324,14 +337,8 @@
 				if(confirm("게시글을 삭제하시겠습니까?"))
 					location.href="${pageContext.request.contextPath}/meeting_delete.do?boardNo=${meetingDetailDTO.boardNo}";		
 			})
-			 */
 			
 			/* 승찬스 지도끝*/
-			
-			
-			
-			
-			
 			
 			//댓글 리스트 보기
 			listReply();
@@ -420,7 +427,7 @@
 				}//if 
 			});  // on click 
 			
-			/* $(function(){
+			$(function(){
 				$("#btn_sky .contentLocate").click(function(){
 					var posY = $("#contentLocate").position();
 					$("html,body").stop().animate({'scrollTop':posY.top -90},700);
@@ -437,25 +444,47 @@
 					var posY = $("#guideLocate").position();
 					$("html,body").stop().animate({'scrollTop':posY.top -90},700);
 				});
-			}); */
+			});
+			
+			
+			var totalCount = $("#totalCount").text();
+			var boardNo=${meetingDetailDTO.boardNo};
+			
+			function checkAttend(){
+				if(confirm("참가하시겠습니까")){
+					$.ajax({
+						type:"post",
+						url:"addAttend.do",
+						data:"totalCount="+totalCount+"boardNo="+boardNo,
+						success:function(data){
+							alert(data)
+							$("#possibleCount").text(data);
+						}
+					}); // ajax
+				}else{
+					return false
+				}
+			}
+
+			function checkAttendCancel(){
+				if(confirm("참가 취소하시겠습니까"))
+					return false;
+			}
 			
 	}); //document ready
 
 		
-	/* 	function openPopup(bNo){
-			var boardNo=bNo;
-			open("${pageContext.request.contextPath}/meetingAttenderList.do?boardNo="+boardNo,"mypopup","width=400,height=500,top=150,left=200");
-		}
-		
-		function checked() {
-			document.getElementById('exampleInputText').readOnly = true;
-		}  */
+	function openPopup(bNo){
+		var boardNo=bNo;
+		open("${pageContext.request.contextPath}/meetingAttenderList.do?boardNo="+boardNo,"mypopup","width=400,height=500,top=150,left=200");
+	}
 	
-	
+	function checked() {
+		document.getElementById('exampleInputText').readOnly = true;
+	}  
 	
 </script>
 
-<!--  -->
 
 
 

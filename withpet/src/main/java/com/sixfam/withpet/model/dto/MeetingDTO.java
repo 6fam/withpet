@@ -32,6 +32,11 @@ public class MeetingDTO extends BoardDTO {
 	private int peopleCount;
 	
 	/*
+	 * 모임 참여 가능인원
+	 */
+	private int possibleCount;
+	
+	/*
 	 * 모임 썸네일 이미지 컬럼명 : img_no
 	 */
 	private int imgNo;
@@ -214,11 +219,21 @@ public class MeetingDTO extends BoardDTO {
 		this.detailPlace = detailPlace;
 	}
 
+	public int getPossibleCount() {
+		return possibleCount;
+	}
+
+	public void setPossibleCount(int possibleCount) {
+		this.possibleCount = possibleCount;
+	}
+
+
 	@Override
 	public String toString() {
 		return "MeetingDTO [place=" + place + ", detailPlace=" + detailPlace + ", peopleCount=" + peopleCount
-				+ ", imgNo=" + imgNo + ", intro=" + intro + ", categoryStateNo=" + categoryStateNo + ", meetingState="
-				+ meetingState + ", meetingType=" + meetingType + ", tel=" + tel + ", date=" + date + "]";
+				+ ", possibleCount=" + possibleCount + ", imgNo=" + imgNo + ", intro=" + intro + ", categoryStateNo="
+				+ categoryStateNo + ", meetingState=" + meetingState + ", meetingType=" + meetingType + ", tel=" + tel
+				+ ", date=" + date + "]";
 	}
-
+	
 }

@@ -117,4 +117,18 @@ public interface MeetingService {
 	 * @param replyNo
 	 */
 	public void removeReply(int replyNo);
+	
+	/**
+	 * 참가 취소 메서드
+	 * @param id
+	 * @param boardNo
+	 */
+	public void removeAttenderMember(String id, int boardNo);
+
+	/**
+	 * 참가 가능 인원 얻는 메서드
+	 * @param parseInt
+	 * @return
+	 */
+	public int getPossibleCount(int boardNo);
 }

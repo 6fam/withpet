@@ -173,11 +173,11 @@
 	
 	
 	
-	<!-- 모임상세보기-덧글 -->
+	<!-- 모임상세보기-댓글 -->
 	<div class="row" style="margin-top: 40px;  border-top: solid 1px #cecece; padding-top: 40px">
 		<div class="col-sm-1"></div>
 		<div class="col-sm-2" style="margin-top: 5px;margin-left:40px" id="replyLocate">
-			<b>함께하시개 덧글 (<span class="rcount"></span>건)</b>
+			<b>함께하시개 댓글 (<span class="rcount"></span>건)</b>
 		</div>
 		<div class="col-sm-9" style="margin-top: 5px"></div>
 	</div>
@@ -192,6 +192,7 @@
 					</div>
 					<div class="col-sm-2">
 						<button type="button" id="submitReply">댓글 작성</button>
+						<input type="hidden" id="boardId"  name="boardId" value="${memberDetailDTO.id}">
 					</div>
 				</div>
 			</div>
@@ -199,11 +200,23 @@
 	</form>	
 	
 	<div class="row" style="margin-top:20px;">
-		<div class="col-sm-1"></div>
-		<div class="col-sm-10" style="margin-top: 5px;margin-left: 40px">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-1" id="replyImg">
+			<img src="${pageContext.request.contextPath }/resources/img/dog_profile2.png" 
+					style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left: 20px">
+		</div>
+		<div class="col-sm-6" id="replyContent" align="left">
+			<b>id님</b><br>냐나나나ㅏ
+		</div>
+		<div class="col-sm-3" id="replyTrash">
+			삭제
+		</div>
+		<div class="col-sm-3" id="replyTrash">
+		</div>
+		<br><br>
 			<table id="listReply">
 			</table>
-		</div>
+			
 		<div class="col-sm-1" style="margin-top: 5px"></div>
 	</div>
 	
@@ -320,33 +333,28 @@
 			
 			
 			
-			alert("document ready");
 			//댓글 리스트 보기
 			listReply();
 			//댓글 카운트 보기
 			replyCount();
 				    
 			//댓글 카운트 보기
-			 function replyCount(){
-				alert("댓글카운트");
+			function replyCount(){
 				var boardNo=${meetingDetailDTO.boardNo};
 				$.ajax({
 					type:"get",
 					url:"replyCount.do",
 					data:"boardNo="+boardNo,
 					success:function(data){
-						alert("댓글 수 : "+data);
 						$(".rcount").text(data);
 					}
-				}); // ajax
-			} // 댓글 카운트 끝 
+				}); // ajax 
+			} // 댓글 카운트 끝
 			 
 			
 			// 댓글 작성
 			$("#submitReply").click(function() {
 				var replytext = $("#replytext").val();
-				alert(replytext);
-				
 				$.ajax({
 					type : "post",
 					url : "insertReply.do",
@@ -366,34 +374,35 @@
 			
 			
 			function listReply() {
-				alert("댓글리스트");
 				var boardNo=${meetingDetailDTO.boardNo};
-				alert(boardNo);
-				 $.ajax({
+				var idd = $("#boardId").val();
+				
+				$.ajax({
 					type : "get",
 					url : "${pageContext.request.contextPath}/listJson.do",
-					data : "boardNo="+boardNo,
+					data : "boardNo="+ boardNo+"&boardId="+idd,
 					success:function(result) {
-						alert("댓글 리스트 가져오기 success ");
 						var output = "<table>";
 						for ( var i in result) {
 							output += "<tr>";
-							output += "<td>사진</td>";
-							output += "<td >id: " + result[i].id + "<br>" + result[i].content + "</td>";
-							output += "<td><button type='button' class='replyDelete' value="+result[i].replyNo+">삭제"+result[i].replyNo+"</button></td>"
-							output += "</tr>";
-						}
+							output += "<td><img src='${pageContext.request.contextPath }/resources/upload/"+result[i].imgPath+"' style='width: 45px; height: 45px'> </td>'";
+							output += "<td ><b>" + result[i].nick + "님 </b><br>" + result[i].content + "</td>";
+							output += "<td > " + result[i].regDate + "<br></td>";
+							 if(result[i].flag==true){
+								output += "<td><a class='replyDelete' value="+result[i].replyNo+">";
+								output += "<img src='resources/img/trash.png' style='width: 15px; height: 15px'></a></td>";
+							}
+							output += "</tr>"; 
+					 	}
 						output += "</table>";
 						$("#listReply").html(output);
 					} //success
-				}); //ajax
+				}); //ajax 
 			} //listReply
-			/*
+			
 			// 댓글 삭제
 			$(document).on('click', '.replyDelete', function(e){
-				alert("1replyNo: "+$(this).attr('value')); //버튼 value 
 				var replyNo=$(this).attr('value');
-				alert("2: "+replyNo);
 				if(confirm("댓글을 삭제하시겠습니까?")){
 					$.ajax({
 						type:"post",
@@ -404,13 +413,12 @@
 								"${_csrf.headerName}","${_csrf.token}");
 						},
 						success: function(data){
-							alert("댓삭");
 							listReply();
 							replyCount();
 						} //success
 					})// ajax
 				}//if 
-			});  */// on click 
+			});  // on click 
 			
 			/* $(function(){
 				$("#btn_sky .contentLocate").click(function(){

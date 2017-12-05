@@ -170,9 +170,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	<select id="selectReply" parameterType="int" resultType="replyDTO">
-		select reply_no as replyNo, content, id, to_char(reg_date, 'yyyy.mm.dd') as regDate
-		from reply
-		where board_no = #{value}
+		SELECT r.reply_no as replyNo, r.content, to_char(r.reg_date, 'yyyy-mm-dd hh24:mi') as regDate, r.id, m.nick, i.img_path as imgPath
+		FROM
+			( select img_path, id from img i, dog d where i.img_no=d.img_no) i, reply r, member m
+		WHERE r.board_no=#{value} and m.id=r.id and i.id(+)=r.id order by r.reply_no desc
 	</select>
 	<!-- 댓글 끝 -->
 	

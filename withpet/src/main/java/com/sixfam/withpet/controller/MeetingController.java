@@ -200,9 +200,21 @@ public class MeetingController {
 	 */
 	@RequestMapping("listJson.do")
     @ResponseBody // 리턴데이터를 json으로 변환(생략가능)
-    public List<ReplyDTO> listJsonRequest(ReplyDTO replyDTO){
-		System.out.println("MeetingController listJson");
-        List<ReplyDTO> list = service.getReplyList(replyDTO.getBoardNo());
+    public List<ReplyDTO> listJsonRequest(int boardNo, String boardId, Authentication authentication){
+		MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
+        List<ReplyDTO> list = service.getReplyList(boardNo);
+        for(ReplyDTO l : list) {
+        	if(l.getImgPath()==null)
+        		l.setImgPath("dog_profile2.png");
+        	
+        	//삭제버튼처리
+        	if(l.getId().equals(mdto.getId()))
+        		l.setFlag(true);
+        	else if(boardId.equals(mdto.getId()))
+        		l.setFlag(true);
+        	else
+        		l.setFlag(false);
+        }
         return list;
     }
 	
@@ -212,9 +224,8 @@ public class MeetingController {
 	@Secured("ROLE_MEMBER")
 	@RequestMapping(value = "deleteReply.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String deleteReplyRequest(Authentication authentication, int replyNo) {
+	public void deleteReplyRequest(Authentication authentication, int replyNo) {
 		service.removeReply(replyNo);
-		return "gg";
 	}
 	
 	@RequestMapping("meetingAttenderList.do")

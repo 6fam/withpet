@@ -21,7 +21,7 @@
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="padding-top: 0px; padding-bottom: 0px; width: 400px; border: 1px solid #757575">
 						<div class="row" style="margin-left: 0px; margin-right: 0px">
 							<div
-								style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 80px">
+								style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 90px">
 								<font style="font-size: 12px"><b>카테고리</b></font>
 							</div>
 							<div
@@ -135,12 +135,17 @@
 							</div>
 							<div style="border-bottom: solid 1px #cecece">
 								<a class="dropdown-item" href="manager_allboard.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
-									<font style="font-size: 12px">게시글 관리</font>
+									<font style="font-size: 12px">모임 관리</font>
+								</a>
+							</div>
+							<div style="border-bottom: solid 1px #cecece">
+								<a class="dropdown-item" href="manager_alldonation.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
+									<font style="font-size: 12px">모금함 관리</font>
 								</a>
 							</div>
 							<div>
-								<a class="dropdown-item" href="manager_alldonation.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
-									<font style="font-size: 12px">모금함 관리</font>
+								<a class="dropdown-item" href="#" style="padding-top: 0px">
+									<font style="font-size: 12px">커뮤니티 관리</font>
 								</a>
 							</div>
 						</div>
@@ -173,7 +178,7 @@
 					  			<img src="resources/img/tier_red.png" style="width: 15px; height: 15px; margin-right:5px"><sec:authentication property="principal.nick" /> 님
 					  		</font>
 					  	</a>
-					    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="margin-top:15px;margin-left: -115px; width: 300px; height: 120px; cursor: default">
+					    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="margin-top:15px;margin-left: -125px; width: 360px; height: 120px; cursor: default">
 					    	<div class="row">
 								<div class="col-sm-4">
 									<img src="resources/img/dog_profile2.png" style="height:80px;width: 80px; border: solid 1px black; border-radius: 200px; margin-left: 20px; margin-top: 10px">

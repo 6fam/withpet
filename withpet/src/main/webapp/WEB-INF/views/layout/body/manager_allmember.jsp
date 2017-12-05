@@ -30,8 +30,7 @@ $(document).ready(function() {
 		style="margin-top: 20px; margin-bottom: 20px">
 		<div class="col-sm-11" style="margin-left: 20px">
 			<h1 id="navbars">
-				<img src="resources/img/adminpage.png"
-					style="width: 198px; display: block;">
+				<img src="resources/img/adminpage.png" style="width: 198px; display: block;">
 			</h1>
 		</div>
 		<div class="col-sm-1"></div>
@@ -105,8 +104,8 @@ $(document).ready(function() {
 									</c:forEach>
 									</tbody>
 								</table>
-												<input type="hidden" name="categoryNo"  id="categoryNo" value="">
-												<input type="hidden" name="id"  id="id" value="">
+								<input type="hidden" name="categoryNo"  id="categoryNo" value="">
+								<input type="hidden" name="id"  id="id" value="">
 							</form>
 						</div>
 						<div class="col-sm-3"></div>
@@ -114,7 +113,6 @@ $(document).ready(function() {
 					<!-- 총회원게시판 끝 -->
 					
 					<sec:authentication property="authorities" var="ooo"/>
-					${ooo}
 					<!-- 돌보미 페이징 시작 -->
 					<div class="row" style="margin-left: 0px">
 						<div class="col-sm-4"></div>

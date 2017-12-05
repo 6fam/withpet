@@ -22,7 +22,7 @@
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="padding-top: 0px; padding-bottom: 0px; width: 400px; border: 1px solid #757575">
 						<div class="row" style="margin-left: 0px; margin-right: 0px">
 							<div
-								style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 80px">
+								style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 90px">
 								<font style="font-size: 12px"><b>카테고리</b></font>
 							</div>
 							<div
@@ -128,12 +128,17 @@
 							</div>
 							<div style="border-bottom: solid 1px #cecece">
 								<a class="dropdown-item" href="manager_allboard.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
-									<font style="font-size: 12px">게시글 관리</font>
+									<font style="font-size: 12px">모임 관리</font>
+								</a>
+							</div>
+							<div style="border-bottom: solid 1px #cecece">
+								<a class="dropdown-item" href="manager_alldonation.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
+									<font style="font-size: 12px">모금함 관리</font>
 								</a>
 							</div>
 							<div>
-								<a class="dropdown-item" href="manager_alldonation.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
-									<font style="font-size: 12px">모금함 관리</font>
+								<a class="dropdown-item" href="#" style="padding-top: 0px">
+									<font style="font-size: 12px">커뮤니티 관리</font>
 								</a>
 							</div>
 						</div>

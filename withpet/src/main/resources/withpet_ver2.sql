@@ -18,6 +18,7 @@ create sequence dog_seq;
 create sequence reply_seq;
 create sequence message_seq;
 
+
 -- 카테고리 분류 테이블 시작
 insert into category(category_no,table_code,category_name) values(category_seq.nextval,1,'나의 좌우명은?');--1
 insert into category(category_no,table_code,category_name) values(category_seq.nextval,1,'내가 존경하는 인물은?');--2

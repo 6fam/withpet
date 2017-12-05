@@ -97,10 +97,10 @@
 				  		커뮤니티
 				  	</a>
 				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">나눔마켓</a>
-				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">돌보미</a>
-				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">반려견정보</a>
-				    	<a class="dropdown-item" href="community.do" style="font-size: 13px">모임후기</a>
+				    	<a class="dropdown-item" href="community.do?categoryNo=31" style="font-size: 13px">나눔마켓</a>
+				    	<a class="dropdown-item" href="community.do?categoryNo=34" style="font-size: 13px">돌보미</a>
+				    	<a class="dropdown-item" href="community.do?categoryNo=33" style="font-size: 13px">반려견정보</a>
+				    	<a class="dropdown-item" href="community.do?categoryNo=32" style="font-size: 13px">모임후기</a>
 				    </div>
 				  </div>
 				</div>

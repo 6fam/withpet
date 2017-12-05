@@ -47,30 +47,35 @@
 						<div class="col-sm-12">
 							<h2>총 게시물</h2>
 						
-							<!-- 전체회원관리 -->
-							<table class="table table-hover table-border">
-							  <thead class="thead-dark">
+							<!-- 전체 커뮤니티 관리 -->
+							<table style="width: 100%">
+							  <thead>
 							    <tr>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">#</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 12%">분류</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 55%">제목</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 13%">작성자</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">조회수</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 10%">작성일자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 5%">글번호</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 13%">카테고리명</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 33%">제목</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 20%">작성자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 5%">조회수</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 19%">등록일자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 5%">삭제</th>
 							    </tr>
 							  </thead>
 							  <tbody>
 							    <tr>
-							      <td style="padding: .45rem">1</td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
+							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
+										삭제
+									</a>
+							      </td>
 							    </tr>
 							    </tbody>
 							</table>
-							<!-- 전체회원관리 끝 -->
 							
 						</div>
 					</div>

@@ -83,8 +83,8 @@
 		</div>
 		<div style="margin-top:15px;" class="col-sm-3"><input class="form-control mr-sm-2" type="text" placeholder="Search">
      </div>
-      <div style="margin-top:15px;" class="col-sm-1"> <button style="margin-left:-13px" class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button></div>
-		<div class="col-sm-1"></div>
+     <div style="margin-top:15px;" class="col-sm-1"> <button style="margin-left:-13px" class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button></div>
+	<div class="col-sm-1"></div>
 	</div>
 	<c:set var="pb" value="${meetingList.pagingBean}"></c:set>
 	<input type="hidden" id="totalPage" value="${pb.totalPage}"/>

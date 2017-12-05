@@ -18,6 +18,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/message.xml"/>
 		<!-- 모임 -->
 		<mapper resource="mybatis/config/meeting.xml"/>
+		<!-- 커뮤니티 -->
+		<mapper resource="mybatis/config/community.xml"/>
 		<!-- 관리자페이지 -->
 		<mapper resource="mybatis/config/admin.xml"/>		
 		<!-- 회원관련&로그인&마이페이지 -->

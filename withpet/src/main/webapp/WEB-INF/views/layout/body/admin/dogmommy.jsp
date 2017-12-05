@@ -28,25 +28,118 @@
 						
 						
 							<!-- 전체회원관리 -->
-							<table class="table table-hover table-border">
-							  <thead class="thead-dark">
+							<!-- 전체회원관리 -->
+							<table style="width: 100%">
+							  <thead>
 							    <tr>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">#</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 12%">분류</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 55%">제목</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 13%">작성자</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">조회수</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 10%">작성일자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">회원번호</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">이메일</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">닉네임</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 14%">댕댕이이름</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">성별</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">댕댕이생일</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">댕댕이등록일자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">견주승인일자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">강등</th>
 							    </tr>
 							  </thead>
 							  <tbody>
+							  	<!-- for -->
 							    <tr>
-							      <td style="padding: .45rem">1</td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">댕댕이</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">남</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">
+							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
+										강등
+									</a>
+							      </td>
+							    </tr>
+							    <!-- for 끝 -->
+							    
+							    <tr>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">댕댕이</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">남</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">
+							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
+										강등
+									</a>
+							      </td>
+							    </tr>
+							    
+							    <tr>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">댕댕이</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">남</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">
+							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
+										강등
+									</a>
+							      </td>
+							    </tr>
+							    
+							    <tr>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">댕댕이</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">남</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">
+							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
+										강등
+									</a>
+							      </td>
+							    </tr>
+							    
+							    <tr>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">댕댕이</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">남</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">
+							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
+										강등
+									</a>
+							      </td>
+							    </tr>
+							    
+							    <tr>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">댕댕이</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">남</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">
+							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
+										강등
+									</a>
+							      </td>
 							    </tr>
 							    </tbody>
 							</table>

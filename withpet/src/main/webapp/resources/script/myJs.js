@@ -23,6 +23,18 @@ $(document).ready(function (){
 			$("html,body").stop().animate({'scrollTop':posY.top -90},700);
 		});
 	});
+	
+	$(".community").mouseover(function(){
+		$(".communityBox").show();
+	});
+	
+	$(".communityBox").mouseover(function(){
+		$(".communityBox").show();
+	});
+	
+	$(".communityBox").mouseout(function(){
+		$(".communityBox").hide();
+	});
 });
 
 /**

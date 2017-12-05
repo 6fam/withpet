@@ -129,22 +129,22 @@
 						<div class="dropdown-menu" aria-labelledby="btnGroupDrop3" x-placement="bottom-start"
 							style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform; min-width: 140px; padding-top: 5px; padding-bottom: 5px">
 							<div style="border-bottom: solid 1px #cecece">
-								<a class="dropdown-item" href="manager_allmember.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
+								<a class="dropdown-item" href="allmember.do" style="padding-top: 0px; padding-bottom: 5px">
 									<font style="font-size: 12px">회원 관리</font>
 								</a>
 							</div>
 							<div style="border-bottom: solid 1px #cecece">
-								<a class="dropdown-item" href="manager_allboard.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
+								<a class="dropdown-item" href="allmeeting.do" style="padding-top: 0px; padding-bottom: 5px">
 									<font style="font-size: 12px">모임 관리</font>
 								</a>
 							</div>
 							<div style="border-bottom: solid 1px #cecece">
-								<a class="dropdown-item" href="manager_alldonation.do?pageNo=1" style="padding-top: 0px; padding-bottom: 5px">
+								<a class="dropdown-item" href="alldonation.do" style="padding-top: 0px; padding-bottom: 5px">
 									<font style="font-size: 12px">모금함 관리</font>
 								</a>
 							</div>
 							<div>
-								<a class="dropdown-item" href="#" style="padding-top: 0px">
+								<a class="dropdown-item" href="allcommunity.do" style="padding-top: 0px">
 									<font style="font-size: 12px">커뮤니티 관리</font>
 								</a>
 							</div>

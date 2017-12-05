@@ -1,4 +1,13 @@
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 *{font-family: 'Jeju Gothic', serif;}
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}

@@ -28,27 +28,40 @@
 						
 						
 							<!-- 전체회원관리 -->
-							<table class="table table-hover table-border">
-							  <thead class="thead-dark">
+							<table style="width: 100%">
+							  <thead>
 							    <tr>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">#</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 12%">분류</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 55%">제목</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 13%">작성자</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">조회수</th>
-							      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 10%">작성일자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">회원번호</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">이메일</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">닉네임</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 20%">비밀번호답</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">포인트</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 12%">가입일자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">회원등급</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">회원등급</th>
 							    </tr>
 							  </thead>
 							  <tbody>
 							    <tr>
-							      <td style="padding: .45rem">1</td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem"><a href="communityDetail.do">Column</a></td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem">Column</td>
-							      <td style="padding: .45rem">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">java@gmail.com</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">포기란배승찬셀때나하는소리</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">비밀번호알려줘</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1000원</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
+								     <select class="form-control tier-select" id="membertierselect" name="ccategoryNo" style="font-size: 12px; height: 24px; padding-top:2px; padding-bottom:2px">
+	                                       <option selected="selected">2</option>
+	                                       <option>1</option>
+	                                 </select>
+							      </td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
+							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
+										변경
+									</a>
+							      </td>
 							    </tr>
-							    </tbody>
+							  </tbody>
 							</table>
 							<!-- 전체회원관리 끝 -->
 							

@@ -470,7 +470,7 @@
 					return false
 				}
 			}
-
+ 
 			function checkAttendCancel(){
 				if(confirm("참가 취소하시겠습니까"))
 					return false;

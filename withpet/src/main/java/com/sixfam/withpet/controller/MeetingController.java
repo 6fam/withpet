@@ -80,14 +80,25 @@ public class MeetingController {
 	public String meetingDetailRequest(HttpServletRequest request, HttpServletResponse response, Authentication authentication,
 			String boardNo, Model model) {
 		try {
+			int bnum = Integer.parseInt(boardNo);
 			
 			MemberDTO member = (MemberDTO) authentication.getPrincipal();
 			//조회수 증가
 			common.addHits(request, response, member.getId(), boardNo);
 			
-			MeetingDTO meetingDTO = service.getMeetingDetailByBoardNo(Integer.parseInt(boardNo));
-			MemberDTO memberDTO = service.findMemberInfoByBoradNo(Integer.parseInt(boardNo));
+			MeetingDTO meetingDTO = service.getMeetingDetailByBoardNo(bnum);
+			MemberDTO memberDTO = service.findMemberInfoByBoradNo(bnum);
 			
+			int totalCount = meetingDTO.getPeopleCount();
+			int attendCount = service.getPossibleCount(bnum);
+			int possibleCount = totalCount-attendCount;
+			
+			boolean flag=service.isAttenderMember(member.getId(), bnum);
+			
+			if(possibleCount != 0)
+				meetingDTO.setPossibleCount(possibleCount);
+			
+			model.addAttribute("flag", flag);
 			model.addAttribute("meetingDetailDTO", meetingDTO);
 			model.addAttribute("memberDetailDTO", memberDTO);
 			
@@ -98,8 +109,9 @@ public class MeetingController {
 		}
 	}
 	
+	
 	/**
-	 * 모임 등록
+	 * 모임 참여 등록
 	 */
 	@RequestMapping("meetingAttend.do")
 	public String meetingAttendRequest(int boardNo, Model model,Authentication authentication) {
@@ -125,6 +137,17 @@ public class MeetingController {
 		return "home.tiles";
 	}
 	
+	/**
+	 * 모임 참여 취소
+	 */
+	@RequestMapping("meetingAttendCancel.do")
+	public String meetingAttendCancelRequest(int boardNo, Model model, Authentication authentication) {
+		
+		MemberDTO mdto = (MemberDTO)authentication.getPrincipal();
+		service.removeAttenderMember(mdto.getId(), boardNo);
+		System.out.println("취소 되었슴다");
+		return "#";
+	}
 	
 	/**
 	 * 모임 수정

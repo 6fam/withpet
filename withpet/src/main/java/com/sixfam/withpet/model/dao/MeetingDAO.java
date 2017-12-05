@@ -61,4 +61,9 @@ public interface MeetingDAO{
 
 	public void removeReply(int replyNo);
 
+	public void removeAttenderMember(String id, int boardNo);
+	
+	public void setAttendCount(int boardNo);
+
+	public int getPossibleCount(int boardNo);
 }

@@ -130,5 +130,13 @@ public class MeetingServiceImpl implements MeetingService{
 	@Transactional
 	public int getReplyCount(int boardNo) {
 		return dao.getReplyCount(boardNo);
+	}@Override
+	public void removeAttenderMember(String id, int boardNo) {
+		dao.removeAttenderMember(id, boardNo);
+	}
+
+	@Override
+	public int getPossibleCount(int boardNo) {
+		return dao.getPossibleCount(boardNo);
 	}
 }

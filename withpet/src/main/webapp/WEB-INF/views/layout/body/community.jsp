@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="tagline-upper text-center text-heading text-shadow d-none d-lg-block"
-	style="color:white ; background-color: #303030; padding-top: 0px; border-bottom: solid 1px #cecece; height: 75px; margin-top:-20px; padding-top: 25px">
+	style="color:white ; background-image:url('resources/img/checkpettern.jpg');padding-top: 0px; border-bottom: solid 1px #cecece; height: 75px; margin-top:-20px; padding-top: 25px">
 	<div class="row">
 		<div style="margin-top:5px;" class="col-sm-1"></div>
 		<div class="col-sm-11" style="text-align:left">
@@ -47,15 +47,15 @@
 
 	<div class="row" style="padding-top: 20px; padding-bottom: 20px">
 		<div class="col-sm-12">
-			<table class="table table-hover table-border">
-			  <thead class="thead-dark">
-			    <tr>
-			      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">#</th>
-			      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 12%">분류</th>
-			      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 55%">제목</th>
-			      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 13%">작성자</th>
-			      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 5%">조회수</th>
-			      <th style="background-color: #191919; color: white; padding: .25rem; font-size: 14px; text-align: center; width: 10%">작성일자</th>
+			<table style="width: 100%">
+			  <thead>
+				<tr>
+			      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 5%">#</th>
+			      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 12%">분류</th>
+			      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 55%">제목</th>
+			      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 13%">작성자</th>
+			      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 5%">조회수</th>
+			      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">작성일자</th>
 			    </tr>
 			  </thead>
 			  <tbody>

@@ -68,7 +68,7 @@
 </script>
 
 <div class="tagline-upper text-center text-heading text-shadow d-none d-lg-block"
-	style="background-color: #303030; padding-top: 0px; border-bottom: solid 1px #cecece; height: 80px; margin-top:-20px; padding-top: 15px">
+	style="background-image:url('resources/img/checkpettern.jpg'); padding-top: 0px; border-bottom: solid 1px #cecece; height: 80px; margin-top:-20px; padding-top: 15px">
 	<div class="row">
 		<div style="margin-top:5px;" class="col-sm-1"></div>
 		<div style="margin-top:5px;margin-left:0px;padding-left:0px; text-align:left" class="col-sm-1">

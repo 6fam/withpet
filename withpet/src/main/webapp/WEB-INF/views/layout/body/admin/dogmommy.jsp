@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container" style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
 	<div class="row page-header" style="margin-top: 20px">
 		<div class="col-sm-12">
@@ -46,6 +47,7 @@
 							  </thead>
 							  <tbody>
 							  	<!-- for -->
+							  	<c:forEach items="dogmomlist.list" var="">
 							    <tr>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
@@ -62,6 +64,7 @@
 									</a>
 							      </td>
 							    </tr>
+							  	</c:forEach>
 							    <!-- for ³¡ -->
 							    
 							    <tr>

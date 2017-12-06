@@ -78,6 +78,8 @@ public class MemberDTO {
 	
 	private String role;
 	
+	private int money;
+	
 	public MemberDTO() {
 		super();
 	}
@@ -238,6 +240,12 @@ public class MemberDTO {
 	}
 	public void setPermitdate(String permitdate) {
 		this.permitdate = permitdate;
+	}
+	public int getMoney() {
+		return money;
+	}
+	public void setMoney(int money) {
+		this.money = money;
 	}
 	@Override
 	public String toString() {

@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class MeetingDTO extends BoardDTO {
 
 	
+	
+	
 	/*
 	 * 모임 장소 컬럼명 : place
 	 */
@@ -36,6 +38,16 @@ public class MeetingDTO extends BoardDTO {
 	 * 모임 참여 가능인원
 	 */
 	private int possibleCount;
+
+	/*
+	 * 모임 참여 인원
+	 */
+	private int attenderCount;
+	
+	/*
+	 * 모임 공감 인원
+	 */
+	private int sympathyCount;
 	
 	/*
 	 * 모임 썸네일 이미지 컬럼명 : img_no
@@ -148,6 +160,7 @@ public class MeetingDTO extends BoardDTO {
 		this.place = place;
 	}
 
+	
 	public int getPeopleCount() {
 		return peopleCount;
 	}
@@ -228,14 +241,27 @@ public class MeetingDTO extends BoardDTO {
 		this.possibleCount = possibleCount;
 	}
 
+	public int getAttenderCount() {
+		return attenderCount;
+	}
+	public void setAttenderCount(int attenderCount) {
+		this.attenderCount = attenderCount;
+	}
+	public int getSympathyCount() {
+		return sympathyCount;
+	}
+	public void setSympathyCount(int sympathyCount) {
+		this.sympathyCount = sympathyCount;
+	}
+
 	@Override
 	public String toString() {
 		return "MeetingDTO [place=" + place + ", detailPlace=" + detailPlace + ", peopleCount=" + peopleCount
-				+ ", possibleCount=" + possibleCount + ", imgNo=" + imgNo + ", intro=" + intro + ", categoryStateNo="
-				+ categoryStateNo + ", meetingState=" + meetingState + ", meetingType=" + meetingType + ", tel=" + tel
-				+ ", date=" + date + ", toString()=" + super.toString() + "]";
+				+ ", possibleCount=" + possibleCount + ", attenderCount=" + attenderCount + ", sympathyCount="
+				+ sympathyCount + ", imgNo=" + imgNo + ", intro=" + intro + ", categoryStateNo=" + categoryStateNo
+				+ ", meetingState=" + meetingState + ", meetingType=" + meetingType + ", tel=" + tel + ", date=" + date
+				+ ", toString()=" + super.toString() + "]";
 	}
 
-	
 	
 }

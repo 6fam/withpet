@@ -10,7 +10,7 @@ import com.sixfam.withpet.model.dto.MemberDTO;
 public interface AdminService {
 
 	//전체회원 관리 서비스
-	public ListDTO<MemberDTO> getTotalMemberList(int pageNo);
+	public ListDTO<MemberDTO> getAllMemberList(int pageNo);
 	public ListDTO<MemberDTO> getAllRoleMemberList(int pageNo);
 	public ListDTO<MemberDTO> getAllRoleDogmomList(int pageNo);
 	public ListDTO<MemberDTO> getAllRoleStandby(int pageNo);
@@ -20,14 +20,10 @@ public interface AdminService {
 	//견주 일반회원으로 강등
 	public void removeManagerDogmom(MemberDTO memberDTO);
 
-	//게시판 관리 서비스
-	public ListDTO<BoardDTO> getAllBoardList(int pageNo);
-	public ListDTO<BoardDTO> getBoardTypeList(int pageNo,int categoryNo);
+	//모임 전체 리스트
 	public ListDTO<BoardDTO> getAllMeetingList(int pageNo);
 
-	public List<BoardDTO> getAllCareList();
 
-	public List<BoardDTO> getAllShareMarketList();
 
 	//allTierList
 	public List<MemberDTO> getAllTierList();

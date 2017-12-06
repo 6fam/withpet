@@ -4,30 +4,78 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
-
-	<!--전체 회원 목록 -->
-   <select id="totalMemberList" parameterType="pagingBean" resultType="memberDTO">
-		SELECT m.id,m.nick,m.password,m.tel,m.pw_answer as pwAnswer,m.regdate,m.permitdate,t.category_no as categoryNo,c.category_name as categoryName
-		FROM (select row_number() over(order by regdate desc) as rnum,id,nick,password,tel,pw_answer,regdate,permitdate,category_no from member) m,category c,(SELECT MAX(category_no) as category_no,id FROM TIER GROUP BY id) t
-		WHERE t.category_no=c.category_no and m.id=t.id	 and rnum between #{startRowNumber} and #{endRowNumber} order by m.regdate desc
-   </select>
-   
-   <!-- 회원별 등급 목록 -->
+ 
+   <!-- 회원 등급 (Tier) 목록 -->
    <select id="tierMemberList" resultType="memberDTO">
 		SELECT t.id,t.category_no as categoryNo,c.category_name as categoryName
 		FROM TIER t,CATEGORY c		
 		WHERE t.category_no=c.category_no
    </select>
    
+	<!--전체 회원 목록 -->
+   <select id="allMemberList" parameterType="pagingBean" resultType="memberDTO">
+		SELECT m.id,m.nick,m.password,m.tel,m.pw_answer as pwAnswer,m.regdate,m.permitdate,t.category_no as categoryNo,c.category_name as categoryName,m.money
+		FROM (select row_number() over(order by regdate desc) as rnum,id,nick,password,tel,pw_answer,regdate,permitdate,category_no,money from member) m,category c,(SELECT MAX(category_no) as category_no,id FROM TIER GROUP BY id) t
+		WHERE t.category_no=c.category_no and m.id=t.id	 and rnum between #{startRowNumber} and #{endRowNumber} order by m.regdate desc
+   </select>
+  
 	<!--일반회원 목록-->
    <select id="allRoleMemberList" resultType="memberDTO"  parameterType="pagingBean" >
-		SELECT m.id,m.nick,m.password,m.tel,m.pw_answer as pwAnswer,m.regdate ,m.category_no as categoryNo,m.category_name as categoryName
-		FROM (SELECT mmm.id,mmm.nick,mmm.password,mmm.tel,mmm.pw_answer,mmm.regdate,mmm.category_no,ccc.category_name
-		FROM member mmm,category ccc WHERE mmm.category_no=ccc.category_no) m,(SELECT  row_number() over(order by t.id desc) as rnum, t.id 
-		FROM tier t, (SELECT category_no,category_name 
-		FROM category WHERE category_no='10') c WHERE t.category_no=c.category_no) cc
-		WHERE m.id=cc.id and cc.rnum between #{startRowNumber} and #{endRowNumber} order by m.regdate desc	
+		SELECT  r.id,r.nick,r.tel,r.pw_answer as pwAnswer,r.regdate, c.category_name as categoryName, t.category_no as categoryNo
+		FROM (select id, nick,tel, to_char(regdate, 'yyyy-mm-dd') as regdate, pw_answer, category_no, 
+		row_number() over(order by regdate desc) as rnum from member) r, 
+		category c, (SELECT MAX(category_no) as category_no, id FROM TIER GROUP BY id) t
+		WHERE t.category_no=10 and t.id=r.id and c.category_no=r.category_no and r.rnum between 1 and 3
+		order by rnum asc
    </select>
+   
+    <!-- 댕댕이 정보 가져오는 Result Map -->
+   <resultMap id="memberdog" type="memberDTO">
+	<collection property="dogDTO" column="id" javaType="com.sixfam.withpet.model.dto.DogDTO" 
+	ofType="dogDTO" select="allDog"></collection>
+   </resultMap>
+   
+   <!-- 예비주인 목록 리스트 -->
+   <select id="allRoleStandby" resultMap="memberdog">
+    SELECT m.id,m.nick,m.tel,m.pw_answer as pwAnswer,m.regdate,m.permitdate,m.category_no as categoryNo
+	FROM (SELECT id, row_number() over(order by reg_date desc) as rnum FROM dog) d, member m,
+    (SELECT MAX(category_no) as category_no, id FROM tier GROUP BY id) t
+	WHERE t.category_no=11 and t.id=m.id and d.id=m.id and d.rnum between 1 and 3 order by d.rnum asc
+   </select>
+    
+   <!-- 댕댕이주인님  목록 리스트-->
+   <select id="allRoleDogmom" resultMap="memberdog">
+   		SELECT m.id,m.nick,m.tel,m.pw_answer as pwAnswer,m.regdate,to_char(m.permitdate, 'yyyy-mm-dd') as permitdate,m.category_no as categoryNo
+		FROM (SELECT id, row_number() over(order by reg_date desc) as rnum FROM dog) d, member m,
+         (SELECT MAX(category_no) as category_no, id FROM tier GROUP BY id) t
+		WHERE t.category_no=12 and t.id=m.id and d.id=m.id and d.rnum between #{startRowNumber} and #{endRowNumber} order by d.rnum asc
+   </select>
+   <!-- 댕댕이 Select -->
+   <select id="allDog" parameterType="string" resultType="dogDTO">
+		SELECT d.id,d.dog_no as dogNo,d.name,to_char(d.bdate, 'yyyy-mm-dd') as bdate,d.intro,d.neutralization,d.img_no as imgNo,d.category_no as categoryno,d.category_name as gender,d.reg_date as regDate
+		FROM(SELECT dd.dog_no,dd.bdate,dd.name,dd.intro,dd.neutralization,dd.id,dd.img_no,dd.category_no,dd.reg_date,cc.category_name,ii.img_path
+		FROM DOG dd, CATEGORY cc,IMG ii WHERE dd.category_no=cc.category_no and dd.img_no=ii.img_no) d,member m
+		WHERE d.id=m.id and d.id=#{value}
+   </select>
+   
+   <!-- 탈퇴회원 목록 -->
+   <select id="allRoleExcept" resultType="memberDTO"  parameterType="pagingBean">
+   		SELECT m.*
+		FROM (SELECT id, nick, tel, money, to_char(regdate, 'yyyy-mm-dd') as regdate,
+ 		row_number() over(order by regdate desc) as rnum FROM member) m,
+		(SELECT MAX(category_no) as category_no, id FROM tier GROUP BY id) t
+		WHERE t.category_no=9 and t.id=m.id order by m.rnum asc
+   </select>
+   
+   <!-- 관리자 목록 -->
+   	 <select id="allRoleManager" resultType="memberDTO"  parameterType="pagingBean">
+   		SELECT m.*
+		FROM (SELECT id, nick, tel, money, to_char(regdate, 'yyyy-mm-dd') as regdate,
+            row_number() over(order by regdate desc) as rnum FROM member) m,
+		(SELECT MAX(category_no) as category_no, id FROM tier GROUP BY id) t
+		WHERE t.category_no=13 and t.id=m.id order by m.rnum asc
+   </select>
+   
    <!--전체 회원 총인원수 -->
    <select id="allMemberCount" resultType="int">
 		SELECT count(*) FROM member 
@@ -38,120 +86,78 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM member m,tier t 
 		WHERE m.id=t.id and t.category_no=#{categoryNo}
    </select>
-   <!-- 견주 회원목록 -->
-   <resultMap id="memberdog" type="memberDTO">
-	<collection property="dogDTO" column="id" javaType="com.sixfam.withpet.model.dto.DogDTO" 
-	ofType="dogDTO" select="allDog"></collection>
-   </resultMap>
-   <select id="allRoleStandby" resultMap="memberdog">
-     	SELECT m.id,m.nick,m.tel,m.pw_answer as pwAnswer,m.regdate,m.permitdate,m.category_no as categoryNo
-		FROM(select id,nick,password,tel,pw_answer,regdate,permitdate,category_no from member) m, 
-		(SELECT row_number() over(order by id desc) as rnum,id,category_no FROM TIER WHERE category_no='11') t
-		WHERE m.id=t.id and rnum between #{startRowNumber} and #{endRowNumber} order by m.regdate desc	
-   </select>
-   <select id="allRoleDogmom" resultMap="memberdog">
-     	SELECT m.id,m.nick,m.tel,m.pw_answer as pwAnswer,m.regdate,m.permitdate,m.category_no as categoryNo
-		FROM(select id,nick,password,tel,pw_answer,regdate,permitdate,category_no from member) m, 
-		(SELECT row_number() over(order by id desc) as rnum,id,category_no FROM TIER WHERE category_no='12') t
-		WHERE m.id=t.id and rnum between #{startRowNumber} and #{endRowNumber} order by m.regdate desc	
-   </select>
-   <select id="allDog" parameterType="string" resultType="dogDTO">
-		SELECT d.id,d.dog_no as dogNo,d.name,trunc(months_between(sysdate, bdate)/12) as bdate,d.intro,d.neutralization,d.img_no as imgNo,d.category_no as categoryno,d.category_name as gender,d.reg_date as regDate
-		FROM(SELECT dd.dog_no,dd.bdate,dd.name,dd.intro,dd.neutralization,dd.id,dd.img_no,dd.category_no,dd.reg_date,cc.category_name,ii.img_path
-		FROM DOG dd, CATEGORY cc,IMG ii WHERE dd.category_no=cc.category_no and dd.img_no=ii.img_no) d,member m
-		WHERE d.id=m.id and d.id=#{value}
-   </select>
    
-   <!-- 전체 게시물 가져오기 -->
-   <select id="allBoardList" resultType="boardDTO"  parameterType="pagingBean"> 
-   		SELECT b.board_no as boardNo,b.id,b.title,b.content,b.hits,b.wdate,c.category_no as categoryNo,c.category_name as categoryName
-		FROM (select row_number() over(order by board_no desc) as rnum, board_no ,id,title,content,hits,wdate,category_no from board where category_no between 1 and 11) b, category c 
-		WHERE b.category_no=c.category_no and rnum between #{startRowNumber} and #{endRowNumber} order by b.board_no desc
-   </select>
-   <!--전체 게시물 총 수-->
-   <select id="allBoardListCount" resultType="int">
-   		SELECT count(*) FROM board  
-   </select>
-   <!--카테고리별 총 수-->
-   <select id="boardListCount" resultType="int" parameterType="int">
-   		SELECT count(*) FROM board where category_no=#{value}
-   </select>
-   <!--모임 종류별-->
-   <select id="meetingBoardListCount" resultType="int" parameterType="int">
-   		SELECT count(*) FROM board where category_no between 20 and 23
-   </select>
    
-   <!-- 모임 게시물 가져오기 -->
-   <select id="categoryBoardList" resultType="boardDTO" parameterType="hashmap">
+   <!-- 전체 모임 리스트 -->
+	<select id="allMeetingList" resultType="boardDTO" parameterType="pagingBean">
 		SELECT b.board_no as boardNo,b.id,b.title,b.content,b.hits,b.wdate,c.category_no as categoryNo,c.category_name as categoryName
-		FROM (select row_number() over(order by board_no desc) as rnum, board_no,id,title,content,hits,wdate,category_no from board where category_no=#{categoryNo}) b, category c 
-		WHERE b.category_no=c.category_no and rnum between #{startRNum} and #{endRNum} order by b.board_no desc
-   </select>
+		FROM (select row_number() over(order by board_no desc) as rnum, board_no,id,title,content,hits, wdate,category_no 
+		FROM board where category_no = 17) b, 
+		(SELECT m.board_no,m.intro,m.people_count,m.place,m.date_no,m.img_no,m.category_no,cc.category_name
+		FROM meeting m,category cc WHERE m.category_no=cc.category_no) c 
+		WHERE b.board_no=c.board_no and rnum between #{startRowNumber} and #{endRowNumber} order by b.board_no desc
+	</select>
    
-   <select id="allMeetingList" resultType="boardDTO">
-   		SELECT b.board_no as boardNo,b.id,b.title,b.content,b.hits,b.wdate,c.category_no as categoryNo,c.category_name as categoryName
-		FROM (select row_number() over(order by board_no desc) as rnum, board_no,id,title,content,hits, wdate,category_no from board where category_no between 20 and 23) b, category c 
-		WHERE b.category_no=c.category_no and rnum between #{startRNum} and #{endRNum} order by b.board_no desc
-   
-   </select>
-   
+    <!-- 게시판 타입별로 총 게시물 수 -->
+   	<select id="boardCountPerCategory" parameterType="int" resultType="int">
+   		SELECT COUNT(*) FROM board WHERE category_no=#{categoryNo}
+   	</select>
    	<!-- 견주 승인 날짜 업데이트 -->
   	<update id="dogmomPermitDate" parameterType="memberDTO">
    		UPDATE MEMBER SET permitdate=sysdate WHERE id=#{id}
    	</update>
+   	
 	<!-- 회원 등급 등록 : 탈퇴회원 categoryNo 9 -->
 	<insert id="insertTierExcept" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},9)	
 	</insert>
+	
 	<!-- 회원 등급 등록: 일반회원  categoryNo 10 -->
 	<insert id="insertTierMember" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},10)	
 	</insert>
+	
 	<!-- 회원 등급 등록: 예비주인  StandBy 	-->
 	<insert id="insertTierStandby" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},11)	
 	</insert>
+	
 	<!-- 회원 등급 등록: 댕댕이주인님 Dogmom  -->
 	<insert id="insertTierDogmom" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},12)	
 	</insert>
-	<!-- 회원 등급 등록: Manager -->
+	
+	<!-- 회원 등급 등록: 관리자 -->
 	<insert id="insertTierManager" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},13)	
 	</insert>
-	<!-- Tier SystemAdmin -->
+	
+	<!-- 회원 등급 등록: 시스템관리자 -->
 	<insert id="insertTierSystemAdmin" parameterType="memberDTO">
 		insert into TIER(id,category_no) 
 		values(#{id},14)	
 	</insert>
+	
+	<!-- 회원이 가진 모든 등급 삭제 -->
 	<delete id="deleteMemberTier" parameterType="memberDTO">
 		delete from TIER where id=#{id}
 	</delete>
-	<!-- tier List -->
+	
+	<!-- 모든 등급 목록 -->
 	<select id="allTierList" resultType="memberDTO">
 		select category_name as categoryName, category_no as categoryNo from category where category_no between 9 and 14
 	</select>
 	
 <!-- 모금함 관리 -->	
 	<select id="allDonationList" resultType="donationDTO">
-		SELECT b.board_no as boardNo, b.id,b.title, b.content,b.hits,b.wdate,d.category_no as categoryNo,d.donation_org as donationOrg,d.bank_name as bankName,d.account_no as accountNo, d.account_host as accountHost,d.final_money as finalMoney, d.donation_flag as donationFlag
-		FROM(SELECT board_no, title, content, hits, wdate, category_no, id 
-		FROM board) b,(SELECT board_no, donation_org, bank_name,account_no,account_host,final_money,donation_flag,category_no
-		FROM donation) d
-		WHERE b.board_no=d.board_no ORDER BY d.board_no DESC
 	</select>
 <!-- 모금함 관리 -->	
 	<select id="applyDonationList" resultType="donationDTO">
-		SELECT b.board_no as boardNo, b.id,b.title, b.content,b.hits,b.wdate,d.category_no as categoryNo,d.donation_org as donationOrg,d.bank_name as bankName,d.account_no as accountNo, d.account_host as accountHost,d.final_money as finalMoney, d.donation_flag as donationFlag
-		FROM(SELECT board_no, title, content, hits, wdate, category_no, id 
-		FROM board) b,(SELECT board_no, donation_org, bank_name,account_no,account_host,final_money,donation_flag,category_no
-		FROM donation WHERE category_no=28) d
-		WHERE b.board_no=d.board_no ORDER BY d.board_no DESC
 	</select>
 <!-- 모금함 승인-->
 	<update id="acceptDonation" parameterType="int">

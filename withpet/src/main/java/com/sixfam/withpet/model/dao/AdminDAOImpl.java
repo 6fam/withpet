@@ -1,6 +1,5 @@
 package com.sixfam.withpet.model.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,9 +18,10 @@ public class AdminDAOImpl implements AdminDAO {
 	private SqlSessionTemplate template;
 	
 	@Override
-	public List<MemberDTO> getTotalMemberList(PagingBean pagingBean) {
-		return template.selectList("admin.totalMemberList",pagingBean);
+	public List<MemberDTO> getAllMemberList(PagingBean pagingBean) {
+		return template.selectList("admin.allMemberList",pagingBean);
 	}
+	
 	@Override
 	public List<MemberDTO> getAllRoleMemberList(PagingBean pagingBean) {
 		return  template.selectList("admin.allRoleMemberList",pagingBean);
@@ -29,8 +29,24 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	@Override
 	public List<MemberDTO> getAllRoleStandby(PagingBean pagingBean) {
-		return  template.selectList("admin.allRoleStandby",pagingBean);
+		List<MemberDTO> list =template.selectList("admin.allRoleStandby",pagingBean);
+		System.out.println(list);
+		return  list;
 	}
+	
+	@Override
+	public List<MemberDTO> getAllRoleDogmomList(PagingBean pagingBean) {
+		return  template.selectList("admin.allRoleDogmom",pagingBean);
+	}
+	@Override
+	public List<MemberDTO> getAllRoleExceptList(PagingBean pagingBean) {
+		return template.selectList("admin.allRoleExcept",pagingBean);
+	}
+	@Override
+	public List<MemberDTO> getAllRoleManagerList(PagingBean pagingBean) {
+		return template.selectList("admin.allRoleManager",pagingBean);
+	}
+	
 	
 	@Override
 	public int getTotalCountPerTier(int categoryNo) {
@@ -42,38 +58,21 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	
 	@Override
-	public List<MemberDTO> getTierMemberList() {
-		return template.selectList("admin.tierMemberList");
+	public int getBoardCountPerCategory(int categoryNo) {
+		return template.selectOne("admin.boardCountPerCategory",categoryNo);
+	}
+	@Override
+	public List<BoardDTO> getAllMeetingList(PagingBean pagingBean) {
+		return template.selectList("admin.allMeetingList",pagingBean);
 	}
 
 
 
-	@Override
-	public List<MemberDTO> getAllRoleDogmomList(PagingBean pagingBean) {
-		List<MemberDTO> memberList = template.selectList("admin.allRoleDogmom",pagingBean);
-		return memberList;
-	}
 
-	@Override
-	public List<BoardDTO> getAllBoardList(PagingBean pagingBean){
-		return template.selectList("admin.allBoardList",pagingBean);
-	}
-	@Override
-	public List<BoardDTO> getBoardTypeList(PagingBean pagingBean,int categoryNo){
-		HashMap<String, Object>param=new HashMap<String, Object>();
-		param.put("categoryNo",categoryNo);
-		param.put("startRNum", pagingBean.getStartRowNumber());
-		param.put("endRNum", pagingBean.getEndRowNumber());
-		return template.selectList("admin.categoryBoardList",param);
-	}
-	@Override
-	public List<BoardDTO> getAllCareList(){
-		return template.selectList("admin.allCareList");
-	}
-	@Override
-	public List<BoardDTO> getAllShareMarketList(){
-		return template.selectList("admin.allShareMarketList");
-	}
+
+
+
+
 	
 ////Tier Except	
 	@Override
@@ -113,25 +112,6 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<MemberDTO> getAllTierList() {
 		return template.selectList("admin.allTierList");
 	}
-	@Override
-	public int getAllBoardListCount() {
-		return template.selectOne("admin.allBoardListCount");
-	}
-	@Override
-	public int getBoardListCount(int categoryNo) {
-		return template.selectOne("admin.boardListCount",categoryNo);
-	}
-	@Override
-	public int getMeetingBoardListCount() {
-		return template.selectOne("admin.meetingBoardListCount");
-	}
-	@Override
-	public List<BoardDTO> getAllMeetingList(PagingBean pagingBean){
-		HashMap<String, Object>param=new HashMap<String, Object>();
-		param.put("startRNum", pagingBean.getStartRowNumber());
-		param.put("endRNum", pagingBean.getEndRowNumber());
-		return template.selectList("admin.allMeetingList",param);
-	}
 	
 	@Override
 	public List<DonationDTO> getAllDonationList(PagingBean pagingBean){
@@ -153,4 +133,5 @@ public class AdminDAOImpl implements AdminDAO {
 	public void setDogmomPermitDate(MemberDTO memberDTO) {
 		template.update("admin.dogmomPermitDate",memberDTO);
 	}
+
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container" style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
 	<div class="row page-header" style="margin-top: 20px">
 		<div class="col-sm-12">
@@ -41,21 +42,23 @@
 								</thead>
 								<tbody>
 							  		<!-- for -->
+								    <c:forEach items="${yebilist.list}" var="ye"> 
 								    <tr>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
-								      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
-								      <td style="padding: .45rem; text-align: center; font-size: 12px">Æ÷±â¶õ¹è½ÂÂù¼¿¶§³ªÇÏ´Â¼Ò¸®</td>
-								      <td style="padding: .45rem; text-align: center; font-size: 12px">´ó´óÀÌ</td>
-								      <td style="padding: .45rem; text-align: center; font-size: 12px">³²</td>
-								      <td style="padding: .45rem; text-align: center; font-size: 12px">YES</td>
-								      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-10-23</td>
-								      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px">${ye.dogDTO.id}</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px">${ye.nick}</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px">${ye.dogDTO.name}</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px">${ye.dogDTO.gender}</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px">${ye.dogDTO.neutralization}</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px">${ye.dogDTO.bdate}</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px">${ye.dogDTO.regDate}</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px">
 								      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
 											½ÂÀÎ
 										</a>
 								      </td>
 								    </tr>
+								    </c:forEach>
 							    	<!-- for -->
 							    </tbody>
 							</table>

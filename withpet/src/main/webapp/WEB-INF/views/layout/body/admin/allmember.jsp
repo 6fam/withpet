@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container" style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
 	<div class="row page-header" style="margin-top: 20px">
 		<div class="col-sm-12">
@@ -42,13 +43,14 @@
 							    </tr>
 							  </thead>
 							  <tbody>
+							  <c:forEach items="${allMember.list}" var="al">
 							    <tr>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">java@gmail.com</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">010-9966-1391</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1000원</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${al.id}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${al.nick}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${al.tel}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${al.money}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${al.regdate}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
 								     <select class="form-control tier-select" id="membertierselect" name="ccategoryNo" style="font-size: 12px; height: 24px; padding-top:2px; padding-bottom:2px">
 	                                       <option selected="selected">2</option>
@@ -61,6 +63,7 @@
 									</a>
 							      </td>
 							    </tr>
+							  </c:forEach>
 							  </tbody>
 							</table>
 							<!-- 전체회원관리 끝 -->

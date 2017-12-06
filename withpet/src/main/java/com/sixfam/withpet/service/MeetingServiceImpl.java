@@ -154,4 +154,9 @@ public class MeetingServiceImpl implements MeetingService{
 		param.put("today", today);
 		dao.setMeetingState(param);
 	}
+
+	@Override
+	public void removeAttendByFounder(String id, int boardNo) {
+		dao.removeAttendByFounder(id, boardNo);
+	}
 }

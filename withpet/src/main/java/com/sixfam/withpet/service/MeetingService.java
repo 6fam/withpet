@@ -133,4 +133,6 @@ public interface MeetingService {
 	public int getPossibleCount(int boardNo);
 
 	void setMeetingState(int categoryNo);
+
+	public void removeAttendByFounder(String id, int boardNo);
 }

@@ -69,4 +69,6 @@ public interface MeetingDAO{
 	public int getPossibleCount(int boardNo);
 
 	void setMeetingState(HashMap<String, Object> param);
+
+	public void removeAttendByFounder(String id, int boardNo);
 }

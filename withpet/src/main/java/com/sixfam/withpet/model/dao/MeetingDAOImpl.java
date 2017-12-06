@@ -184,5 +184,13 @@ public class MeetingDAOImpl implements MeetingDAO {
 		System.out.println("DAO setMeetingState");
 		template.update("meeting.setMeetingState", param);
 	}
+
+	@Override
+	public void removeAttendByFounder(String id, int boardNo) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("boardNo", boardNo);
+		template.delete("meeting.removeAttendByFounder", param);
+	}
 	
 }

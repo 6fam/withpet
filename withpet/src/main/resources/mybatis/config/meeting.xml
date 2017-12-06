@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 모임 참여 취소 -->
 	<delete id="removeAttenderMember" parameterType="hashmap">
-		delete from attender where boardNo=#{boardNo} and id=#{id}
+		delete from attender where board_no=#{boardNo} and id=#{id}
 	</delete>
 	
 	<!-- 현재 모임 참여 카운트 -->
@@ -62,7 +62,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into board(board_no, title, content, hits, wdate, category_no, id)
 		values(board_seq.nextval, #{title}, #{content}, 0, sysdate, 17, #{id})
 	</insert>
-	
 
 	<insert id="insertGathertingdate" parameterType="dateDTO">
 		insert into gatheringdate(date_no, gathering_start, gathering_end, meeting_start, meeting_end) 
@@ -230,6 +229,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			from ( select date_no from gatheringdate where gathering_end<#{today} ) d, meeting m where m.date_no=d.date_no )
 	 	]]>
 	 </update>
+	 
+	 <delete id="removeAttendByFounder" parameterType="hashmap">
+	 	delete from attender where id=#{id} and board_no=#{boardNo}
+	 </delete>
 </mapper>
  
  

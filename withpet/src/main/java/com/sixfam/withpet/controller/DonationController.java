@@ -31,9 +31,11 @@ public class DonationController {
 	@RequestMapping("togetherdog.do")
 	public String togetherDogRequest(Model model, int pageNo) {
 		List<DonationDTO> list = service.getAllDonationList(pageNo).getList();
+		System.out.println(list);
 		for(int i=0;i<list.size();i++) {
 			//로우 1개의 이미지 경로를 가져온다.
 			String imgPath = list.get(i).getImgPath();
+			System.out.println(imgPath);
 			//, 로 짜른다.
 			String[] imgPathList = imgPath.split(",");
 			

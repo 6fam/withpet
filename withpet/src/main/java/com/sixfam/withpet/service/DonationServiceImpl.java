@@ -31,15 +31,13 @@ public class DonationServiceImpl implements DonationService{
 	public ListDTO<DonationDTO> getAllDonationList(int pageNo) {
 		//전체게시물개수가져오기
 		int totalCount=donationBox.getTotalCount();
-		
+		System.out.println(totalCount);
 		
 		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(10, 5, totalCount);
 		else
 			pagingBean=new PagingBean(pageNo, 10, 5, totalCount);
-		
-		
 		
 		return new ListDTO<DonationDTO>(donationBox.getAllDonationList(pagingBean), pagingBean);
 	}

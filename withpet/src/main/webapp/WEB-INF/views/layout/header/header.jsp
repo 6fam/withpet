@@ -143,9 +143,14 @@
 									<font style="font-size: 12px">모금함 관리</font>
 								</a>
 							</div>
-							<div>
+							<div style="border-bottom: solid 1px #cecece">
 								<a class="dropdown-item" href="allcommunity.do" style="padding-top: 0px">
 									<font style="font-size: 12px">커뮤니티 관리</font>
+								</a>
+							</div>
+							<div>
+								<a class="dropdown-item" href="#" style="padding-top: 0px">
+									<font style="font-size: 12px">서비스 관리</font>
 								</a>
 							</div>
 						</div>

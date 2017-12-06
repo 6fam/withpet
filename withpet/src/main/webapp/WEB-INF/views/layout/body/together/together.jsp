@@ -40,7 +40,6 @@
 		</div>
 	</c:forEach>
 
-
 	<!-- ------------------------------------------------------------ -->
 	<!-- <div class="item block" data-bgimage="resources/img/images/1.jpg">
 		<div class="thumbs-wrapper" style="cursor: pointer">
@@ -557,7 +556,81 @@
 				cut out of an illustrated magazine and housed in a nice, gilded
 				frame.</p>
 		</div>
-	</div> -->
+	</div>
+	<div class="item block" data-bgimage="resources/img/images/12.jpg">
+		<div class="thumbs-wrapper">
+			<div class="thumbs">
+				<img src="resources/img/images/thumbs/12.jpg" /> <img
+					src="resources/img/images/thumbs/13.jpg" />
+			</div>
+		</div>
+		<h2 class="title">Fancy Project #23</h2>
+		<p class="subline">
+			Design <span class="fancy">&amp;</span> print
+		</p>
+		<div class="intro">
+			<p>
+				Nor again is there anyone who loves or pursues or desires to obtain
+				pain of itself, because it is pain, but because occasionally <a
+					href="#" class="more_link">View project</a>
+			</p>
+		</div>
+		<div class="project-descr">
+			<p>Drops of rain could be heard hitting the pane, which made him
+				feel quite sad.</p>
+			<p>"How about if I sleep a little bit longer and forget all this
+				nonsense", he thought, but that was something he was unable to do
+				because he was used to sleeping on his right, and in his present
+				state couldn't get into that position.</p>
+			<p>The bedding was hardly able to cover it and seemed ready to
+				slide off any moment. His many legs, pitifully thin compared with
+				the size of the rest of him, waved about helplessly as he looked.
+				"What's happened to me? " he thought. It wasn't a dream.</p>
+			<p>His room, a proper human room although a little too small, lay
+				peacefully between its four familiar walls. A collection of textile
+				samples lay spread out on the table - Samsa was a travelling
+				salesman - and above it there hung a picture that he had recently
+				cut out of an illustrated magazine and housed in a nice, gilded
+				frame.</p>
+		</div>
+	</div>
+	<div class="item block" data-bgimage="resources/img/images/12.jpg">
+		<div class="thumbs-wrapper">
+			<div class="thumbs">
+				<img src="resources/img/images/thumbs/12.jpg" /> <img
+					src="resources/img/images/thumbs/13.jpg" />
+			</div>
+		</div>
+		<h2 class="title">Fancy Project #23</h2>
+		<p class="subline">
+			Design <span class="fancy">&amp;</span> print
+		</p>
+		<div class="intro">
+			<p>
+				Nor again is there anyone who loves or pursues or desires to obtain
+				pain of itself, because it is pain, but because occasionally <a
+					href="#" class="more_link">View project</a>
+			</p>
+		</div>
+		<div class="project-descr">
+			<p>Drops of rain could be heard hitting the pane, which made him
+				feel quite sad.</p>
+			<p>"How about if I sleep a little bit longer and forget all this
+				nonsense", he thought, but that was something he was unable to do
+				because he was used to sleeping on his right, and in his present
+				state couldn't get into that position.</p>
+			<p>The bedding was hardly able to cover it and seemed ready to
+				slide off any moment. His many legs, pitifully thin compared with
+				the size of the rest of him, waved about helplessly as he looked.
+				"What's happened to me? " he thought. It wasn't a dream.</p>
+			<p>His room, a proper human room although a little too small, lay
+				peacefully between its four familiar walls. A collection of textile
+				samples lay spread out on the table - Samsa was a travelling
+				salesman - and above it there hung a picture that he had recently
+				cut out of an illustrated magazine and housed in a nice, gilded
+				frame.</p>
+		</div>
+	</div>	 -->
 	<div class="clr"></div>
 </div>
 

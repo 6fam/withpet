@@ -2,19 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<style>
-#sidebox {
-	background-color: #F0F0F0;
-	margin-left:50px;
-	position : absolute;
-	width: 84%;
-	top: 590px;
-	right: 108px;  
-}
-</style>
-<div id="sidebox" style="z-index: 1000;cursor:pointer " onclick="">
-	<button type="button" class="btn btn-primary btn-lg btn-block" style="background:#ff0066;border:none">기부하기</button>
-</div>
 <div class="container" style="z-index: 1; background-color: white; border: solid 1px #adadad; margin-top: 10px; padding-bottom: 30px">
 	<div class="row page-header">
 		<div class="col-sm-1"></div>
@@ -107,16 +94,18 @@
 
 <div class="container" style="z-index: 1; background-color: white; border: solid 1px #adadad; margin-top: 10px; padding-bottom: 30px">
 	<!-- 설명부분 -->
-	<div class="row" style="margin-left: 0px; margin-top: 20px">
+	<div class="row" style="margin-left: 0px; margin-top: 40px">
 		<div class="col-sm-1" ></div>
 		<div class="col-sm-10" style="font-size: 16px">
 			<p>
 				<strong>모금함 개설자 정보</strong>
 			</p>
-			모금 협회 : ${donation.donationOrg}<br>
-			모금 은행 : ${donation.bankName}<br>
-			모금 계좌 번호 : ${donation.accountNo}<br>
-			모금 계좌주 : ${donation.accountHost}<br>
+			<hr>
+			<b>모금 협회</b> : <font style="font-size: 14px">${donation.donationOrg}</font><br>
+			<b>모금 은행</b> : <font style="font-size: 14px">${donation.bankName}</font><br>
+			<b>모금 계좌 번호</b> : <font style="font-size: 14px">${donation.accountNo}</font><br>
+			<b>모금 계좌주</b> : <font style="font-size: 14px">${donation.accountHost}</font><br>
+			<button type="submit" id="sidebox" class="btn btn-primary btn-block" style="cursor: pointer; margin-top: 40px; margin-bottom: 40px">기부하기</button>
 		</div>
 		<div class="col-sm-1" ></div>
 	</div>
@@ -131,8 +120,23 @@
 				<strong>덧글</strong>
 			</p>
 			<c:forEach items="${donation.replyList}" var="reply">
-				글번호 : ${reply.replyNo} , 리플내용 : ${reply.content}, 리플작성자 : ${reply.id}<br>
+			<div class="row" style="margin-top: 15px">
+				<div class="col-sm-1">
+					<img src="resources/img/dog_profile2.png" style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px">
+				</div>	
+				<div class="col-sm-11">
+					<div class="row">
+						<div class="col-sm-12"><b>${reply.id}</b></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12" style="font-size: 14px">${reply.content}</div>
+					</div>
+				</div>			
+			</div>
 			</c:forEach>
+			<%-- <c:forEach items="${donation.replyList}" var="reply">
+				글번호 : ${reply.replyNo} , 리플내용 : ${reply.content}, 리플작성자 : ${reply.id}<br>
+			</c:forEach> --%>
 		</div>
 		<div class="col-sm-1" ></div>
 	</div>
@@ -180,13 +184,3 @@
 	<input type="hidden" value="${donation.boardNo}" name="boardNo">
 </div>
 </form>
-
-<script type="text/javascript">
-	var currentPosition = parseInt($("#sidebox").css("top"));
-	$(window).scroll(function() {
-		var position = $(window).scrollTop();
-		$("#sidebox").stop().animate({
-			"top" : position + currentPosition + "px"
-		}, 500);
-	});
-</script>

@@ -80,29 +80,7 @@
 								</div>
 							</td>
 						</tr>
-						<!-- 모임일시 -->
-						<tr>
-							<td style="width: 100px; text-align: center; font-weight: bold; padding-top: 16px">
-								<font style="color: #4f4f4f">모임일시</font>
-							</td>
-							<td>
-								<div class="row" style="text-align: center">
-									<div class="col-sm-3">
-										<input type="text" class="form-control" id="meetingStart" name="meetingStart"style="font-size: 13px"> 
-									</div>
-									<div class="col-sm-2">
-										<input type="text" class="form-control" id="meetingStartTime" name="meetingStartTime"style="font-size: 13px"> 
-									</div>
-									<div class="col-sm-2" style="text-align: center; margin-top: 5px">~</div>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" id="meetingEnd" name="meetingEnd" style="font-size: 13px">
-									</div>
-									<div class="col-sm-2">
-										<input type="text" class="form-control" id="meetingEndTime" name="meetingEndTime" style="font-size: 13px">
-									</div>
-								</div>
-							</td>
-						</tr>
+						
 						<!-- 접수기간 -->
 						<tr>
 							<td style="width: 100px; text-align: center; font-weight: bold; padding-top: 16px">
@@ -111,11 +89,35 @@
 							<td>
 								<div class="row" style="text-align: center">
 									<div class="col-sm-5">
-										<input type="text" class="form-control" id="gatheringStart" name="gatheringStart" style="font-size: 13px">
+										<input type="date" class="form-control" id="gatheringStart" name="gatheringStart" style="font-size: 13px">
 									</div>
 									<div class="col-sm-2" style="text-align: center; margin-top: 5px">~</div>
 									<div class="col-sm-5">
-										<input type="text" class="form-control" id="gatheringEnd" name="gatheringEnd" style="font-size: 13px">
+										<input type="date" class="form-control" id="gatheringEnd" name="gatheringEnd" style="font-size: 13px">
+									</div>
+								</div>
+							</td>
+						</tr>
+						
+						<!-- 모임일시 -->
+						<tr>
+							<td style="width: 100px; text-align: center; font-weight: bold; padding-top: 16px">
+								<font style="color: #4f4f4f">모임일시</font>
+							</td>
+							<td>
+								<div class="row" style="text-align: center">
+									<div class="col-sm-3">
+										<input type="date" class="form-control" id="meetingStart" name="meetingStart"style="font-size: 13px"> 
+									</div>
+									<div class="col-sm-2">
+										<input type="text" class="form-control" id="meetingStartTime" name="meetingStartTime"style="font-size: 13px"> 
+									</div>
+									<div class="col-sm-2" style="text-align: center; margin-top: 5px">~</div>
+									<div class="col-sm-3">
+										<input type="date" class="form-control" id="meetingEnd" name="meetingEnd" style="font-size: 13px">
+									</div>
+									<div class="col-sm-2">
+										<input type="text" class="form-control" id="meetingEndTime" name="meetingEndTime" style="font-size: 13px">
 									</div>
 								</div>
 							</td>
@@ -267,7 +269,7 @@
 </form>
 
 <!-- 날짜 선택 css/js -->
- <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+ <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
         <style>
             /*datepicker에서 사용한 이미지 버튼 style적용*/
             img.ui-datepicker-trigger {
@@ -277,8 +279,8 @@
         
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        <!-- datepicker 한국어로 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+        datepicker 한국어로
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script> -->
 <!-- 날짜 선택 css/js -->
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

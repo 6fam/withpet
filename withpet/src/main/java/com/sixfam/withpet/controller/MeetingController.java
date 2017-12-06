@@ -119,12 +119,22 @@ public class MeetingController {
 		boolean flag=service.isAttenderMember(mdto.getId(), boardNo);
 		model.addAttribute("boardNo",boardNo);
 		if (flag==false) {
-			return "meeting_attend_fail.tiles";
+			return "redirect:meetingAttendFail.do";
 		}
 		else
-			return "meeting_attend_ok.tiles";
+			return "redirect:meetingAttendOk.do";
 	}
 	
+	
+	@RequestMapping("meetingAttendFail.do")
+	public String meetingAttendFail() {
+		return "meeting_attend_fail.tiles";
+	}
+	
+	@RequestMapping("meetingAttendOk.do")
+	public String meetingAttendOk() {
+		return "meeting_attend_ok.tiles";
+	}
 	
 	/**
 	 * 모임 폐쇄
@@ -146,7 +156,7 @@ public class MeetingController {
 		MemberDTO mdto = (MemberDTO)authentication.getPrincipal();
 		service.removeAttenderMember(mdto.getId(), boardNo);
 		System.out.println("취소 되었슴다");
-		return "#";
+		return "meeting_detail.tiles";
 	}
 	
 	/**
@@ -264,5 +274,12 @@ public class MeetingController {
 	@ResponseBody
 	public int replyCountRequest(int boardNo) {
 		return service.getReplyCount(boardNo);
+	}
+	
+	@RequestMapping("exceptAttend.do")
+	public String removeAttendByFounder(String id, String boardNo) {
+		service.removeAttendByFounder(id, Integer.parseInt(boardNo));
+		
+		return "ok";
 	}
 }

@@ -117,6 +117,8 @@
 					<div class="row">
 						<div class="col-sm-8">
 							<font style="font-size: 20px"><b>${meetingDetailDTO.title}</b></font><br>
+							<input type="hidden" id="peopleCount" value="${meetingDetailDTO.peopleCount}">
+							<input type="hidden" id="possibleCount" value="${meetingDetailDTO.possibleCount}">
 							선착순 | 총 ${meetingDetailDTO.peopleCount}명 | <font color="red">${meetingDetailDTO.possibleCount}</font>명 신청가능
 						</div>
 						<div class="col-sm-4">
@@ -140,7 +142,7 @@
 									</form>
 								</c:when>
 								<c:otherwise>
-									<form id="cancelAttend" action="#" onsubmit="return checkAttendCancel()">
+									<form id="cancelAttend" action="meetingAttendCancel.do" onsubmit="return checkAttendCancel()">
 										<input type="hidden" name="boardNo" value="${meetingDetailDTO.boardNo}">
 										<input class="btn btn-danger" type="submit" value="모임 취소" style="width: 100%; margin-top: 15px; cursor: pointer">
 									</form>
@@ -272,8 +274,8 @@
 				<div class="row" style="margin-top: 40px; margin-bottom: 40px">
 					<div class="col-sm-4"></div>
 					<div class="col-sm-2">
-						<a href="${pageContext.request.contextPath}/meeting_update.do?boardNo=${meetingDetailDTO.boardNo}" class="btn btn-outline-danger"
-							style="width: 100px; height: 30px; font-size: 12px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px; cursor: pointer">수정</a>
+						<button type="button" class="btn btn-outline-danger" id="setBtn"
+							style="width: 100px; height: 30px; font-size: 12px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px; cursor: pointer">수정</button>
 					</div>
 					<div class="col-sm-1"></div>
 					<div class="col-sm-2">
@@ -344,12 +346,30 @@
 				}
 			}); 
 	
+			/* 승찬스 지도끝*/
+	
+			var peopleCount = $("#peopleCount").val();
+			var possibleCount = $("#possibleCount").val();
+			var boardNo = ${meetingDetailDTO.boardNo};
+	
 			$("#deleteBtn").click(function(){
 				if(confirm("게시글을 삭제하시겠습니까?"))
-					location.href="${pageContext.request.contextPath}/meeting_delete.do?boardNo=${meetingDetailDTO.boardNo}";		
+					location.href="meeting_delete.do?boardNo="+boardNo;		
 			})
 			
-			/* 승찬스 지도끝*/
+			
+			$("#setBtn").click(function(){
+				alert(peopleCount);
+				alert(possibleCount);
+				if(peopleCount == possibleCount){
+					if(confirm("게시글을 수정하시겠습니까?"))
+					location.href="meeting_update.do?boardNo="+boardNo;
+				}else{
+					alert("참여자가 있어 수정이 불가능합니다");
+				}
+			});
+			
+			
 			
 			//댓글 리스트 보기
 			listReply();
@@ -459,7 +479,6 @@
 			
 			
 			var totalCount = $("#totalCount").text();
-			var boardNo=${meetingDetailDTO.boardNo};
 			
 			function checkAttend(){
 				if(confirm("참가하시겠습니까")){
@@ -478,8 +497,19 @@
 			}
  
 			function checkAttendCancel(){
-				if(confirm("참가 취소하시겠습니까"))
-					return false;
+				if(confirm("참가 취소하시겠습니까")){
+					$.ajax({
+						type:"post",
+						url:"deleteAttend.do",
+						data:"totalCount="+totalCount+"boardNo="+boardNo,
+						success:function(data){
+							alert(data)
+							$("#possibleCount").text(data);
+						}
+					}); // ajax
+				}else{
+					return false
+				}
 			}
 			
 			$("#meetingClose").click(function(){

@@ -207,7 +207,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where board_no=#{value}
  	</select>
  	<select id="myMeetingAttender" parameterType="int" resultType="memberDTO">
- 		SELECT m.nick,m.tel
+ 		SELECT m.nick,m.tel, m.id
 		FROM MEMBER m,(SELECT b.board_no, b.title, b.content, b.hits, b.wdate, b.category_no, a.id 
 		FROM (SELECT board_no,id FROM ATTENDER) a, (SELECT board_no, title, content, hits, wdate, category_no, id 
 		FROM BOARD WHERE board_no=#{boardNo}) b WHERE a.board_no=b.board_no) ab

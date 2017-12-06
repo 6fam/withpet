@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container" style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
 	<div class="row page-header" style="margin-top: 20px">
 		<div class="col-sm-12">
@@ -42,16 +43,15 @@
 							    </tr>
 							  </thead>
 							  <tbody>
-							  
-							  
 							  	<!-- for -->
+							  	<c:forEach items="${normalMember.list}" var="nml">
 							    <tr>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">${nml.id}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">${nml.nick}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">${nml.categoryName}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">${nml.pwAnswer}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">${nml.regdate}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">
 							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
 										공감내역
@@ -68,129 +68,9 @@
 									</a>
 							      </td>
 							    </tr>
-							    <!-- for끝 -->
-							   	<tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										공감내역
-									</a>
-							      </td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										개설내역
-									</a>
-							      </td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										참여내역
-									</a>
-							      </td>
-							    </tr>
-							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										공감내역
-									</a>
-							      </td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										개설내역
-									</a>
-							      </td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										참여내역
-									</a>
-							      </td>
-							    </tr>
-							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										공감내역
-									</a>
-							      </td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										개설내역
-									</a>
-							      </td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										참여내역
-									</a>
-							      </td>
-							    </tr>
-							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										공감내역
-									</a>
-							      </td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										개설내역
-									</a>
-							      </td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										참여내역
-									</a>
-							      </td>
-							    </tr>
-							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										공감내역
-									</a>
-							      </td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										개설내역
-									</a>
-							      </td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
-										참여내역
-									</a>
-							      </td>
-							    </tr>
-							   
-							    
-							    
-							    
+							  	</c:forEach>
 							  </tbody>
 							</table>
-							
 						</div>
 					</div>
 					<div class="row" style="margin-left: 0px">

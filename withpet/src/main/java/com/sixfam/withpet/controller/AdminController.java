@@ -1,16 +1,26 @@
 package com.sixfam.withpet.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.sixfam.withpet.service.AdminService;
 
 @Controller
 public class AdminController {
 	
+	 @Resource
+	 AdminService adminService;
+	 
 	/**
 	 * 전체회원관리(총회원)
 	 */
 	@RequestMapping("allmember.do")
-	public String allMemberRequest() {
+	public String allMemberRequest(Model model) {
+		int pageNo=1;
+		model.addAttribute("allMember",adminService.getAllMemberList(pageNo));
 		return "admin/allmember.tiles";
 	}
 	
@@ -18,25 +28,32 @@ public class AdminController {
 	 * 일반회원관리(회원)
 	 */
 	@RequestMapping("normalmember.do")
-	public String normalMemberRequest() {
+	public String normalMemberRequest(Model model) {
+		int pageNo=1;
+		model.addAttribute("normalMember",adminService.getAllRoleMemberList(pageNo));
 		return "admin/normalmember.tiles";
+	}
+	
+	/**
+	 * 예비주인 관리(견주대기자)
+	 */
+	@RequestMapping("yebimommy.do")
+	public String yebiDogMommyRequest(Model model) {
+		int pageNo=1;
+		model.addAttribute("yebilist",adminService.getAllRoleStandby(pageNo));
+		return "admin/yebimommy.tiles";
 	}
 	
 	/**
 	 * 댕댕이주인 관리(견주)
 	 */
 	@RequestMapping("dogmommy.do")
-	public String dogMommyRequest() {
+	public String dogMommyRequest(Model model) {
+		int pageNo=1;
+		model.addAttribute("dogmomlist",adminService.getAllRoleDogmomList(pageNo));
 		return "admin/dogmommy.tiles";
 	}
 
-	/**
-	 * 예비주인 관리(견주대기자)
-	 */
-	@RequestMapping("yebimommy.do")
-	public String yebiDogMommyRequest() {
-		return "admin/yebimommy.tiles";
-	}
 	
 	/**
 	 * 관리자 관리(관리자)

@@ -22,14 +22,14 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	@Transactional
-	public ListDTO<MemberDTO> getTotalMemberList(int pageNo) {
+	public ListDTO<MemberDTO> getAllMemberList(int pageNo) {
 		int totalCount=adminDAO.getTotalCountAllMember();
 		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(10,4,totalCount);
 		else
 			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
-		return new ListDTO<MemberDTO>(adminDAO.getTotalMemberList(pagingBean), pagingBean);
+		return new ListDTO<MemberDTO>(adminDAO.getAllMemberList(pagingBean), pagingBean);
 	}
 	
 	@Override
@@ -73,39 +73,19 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	@Transactional
-	public ListDTO<BoardDTO> getAllBoardList(int pageNo){
-		int totalCount=adminDAO.getAllBoardListCount();
+	public ListDTO<BoardDTO> getAllMeetingList(int pageNo){
+		int categoryNo=17;
+		int totalCount=adminDAO.getBoardCountPerCategory(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(10,4,totalCount);
 		else
 			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
-		return new ListDTO<BoardDTO>(adminDAO.getAllBoardList(pagingBean), pagingBean);
+		return new ListDTO<BoardDTO>(adminDAO.getAllMeetingList(pagingBean), pagingBean);
 	}
 
-	@Override
-	@Transactional
-	public ListDTO<BoardDTO> getBoardTypeList(int pageNo,int categoryNo) {
-		int totalCount=adminDAO.getBoardListCount(categoryNo);
-		PagingBean pagingBean=null;
-		if(pageNo==1)
-			pagingBean=new PagingBean(2,4,totalCount);
-		else
-			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
-		return new ListDTO<BoardDTO>(adminDAO.getBoardTypeList(pagingBean,categoryNo), pagingBean);
-	}
 
-	@Override
-	@Transactional
-	public List<BoardDTO> getAllCareList() {
-		return adminDAO.getAllCareList();
-	}
 
-	@Override
-	@Transactional
-	public List<BoardDTO> getAllShareMarketList() {
-		return adminDAO.getAllShareMarketList();
-	}
 
 	@Override
 	@Transactional
@@ -189,17 +169,6 @@ public class AdminServiceImpl implements AdminService {
 			adminDAO.registerTierDogmom(memberDTO);
 	}
 
-	@Override
-	@Transactional
-	public ListDTO<BoardDTO> getAllMeetingList(int pageNo) {
-		int totalCount=adminDAO.getMeetingBoardListCount();
-		PagingBean pagingBean=null;
-		if(pageNo==1)
-			pagingBean=new PagingBean(2,4,totalCount);
-		else
-			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
-		return new ListDTO<BoardDTO>(adminDAO.getAllMeetingList(pagingBean), pagingBean);
-	}
 
 	@Override
 	@Transactional
@@ -233,5 +202,6 @@ public class AdminServiceImpl implements AdminService {
 	public void setAcceptDonation(int boardNo) {
 		adminDAO.setAcceptDonation(boardNo);
 	}
+
 	
 }

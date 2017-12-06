@@ -1,4 +1,4 @@
-package com.sixfam.withpet.controller;
+/*package com.sixfam.withpet.controller;
 
 import java.util.List;
 
@@ -27,9 +27,9 @@ public class ManagerController {
    @Resource
    DonationService donationService;
    
-	/*
+	
 	* **************************************회원관리**************************************
-	*/
+	
 	//전체회원관리
    	@Secured("ROLE_MANAGER")
 	@RequestMapping("manager_allmember.do")
@@ -108,9 +108,9 @@ public class ManagerController {
 	}
 	
 	
- /*
+ 
   * **************************************게시물관리**************************************
- */	
+ 	
     //전체 게시글 관리
 	@Secured("ROLE_MANAGER")
 	@RequestMapping("manager_allboard.do")
@@ -119,7 +119,7 @@ public class ManagerController {
 		return "manager_allboard.tiles";
 	}
    
-/*   
+   
     * 미팅게시글 관리
    @RequestMapping("manager_meeting.do")
    public String managerMeetingBoard(Model model,int pageNo) {
@@ -143,8 +143,8 @@ public class ManagerController {
 	   model.addAttribute("ablist",adminService.allMeetingList(pageNo,categoryNo));
 	   return "manager_sharemarket.tiles";
    }
- */ 
-/*   
+  
+   
    //타입별 게시글 목록
    @RequestMapping("manager_boardtype.do")
    public String managerBoardType(Model model,int pageNo,int categoryNo) {
@@ -165,7 +165,7 @@ public class ManagerController {
 	   }
 	   return path;
    }
-   */
+   
    
    //모임 폐쇄
    @Secured("ROLE_MANAGER")
@@ -176,9 +176,9 @@ public class ManagerController {
    }
    
    
-   /*
+   
     * **************************************모금함관리**************************************
-   */	
+   	
    	//전체 모금함 관리
    	@Secured("ROLE_MANAGER")
    	@RequestMapping("manager_alldonation.do")
@@ -204,4 +204,4 @@ public class ManagerController {
 		  
 	}
   
-}
+}*/

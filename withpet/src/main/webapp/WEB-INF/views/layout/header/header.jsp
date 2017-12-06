@@ -91,17 +91,16 @@
 				<font style="color: #ddd">|</font> 
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 				  <div class="btn-group" role="group">
-				  	<a href="#"
-				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+				  	<a href="community.do?categoryNo=31"
 				  		style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 2px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				  		커뮤니티
 				  	</a>
-				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+				    <!-- <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
 				    	<a class="dropdown-item" href="community.do?categoryNo=31" style="font-size: 13px">나눔마켓</a>
 				    	<a class="dropdown-item" href="community.do?categoryNo=34" style="font-size: 13px">돌보미</a>
 				    	<a class="dropdown-item" href="community.do?categoryNo=33" style="font-size: 13px">반려견정보</a>
 				    	<a class="dropdown-item" href="community.do?categoryNo=32" style="font-size: 13px">모임후기</a>
-				    </div>
+				    </div> -->
 				  </div>
 				</div>
 				

@@ -3,9 +3,20 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="container"
-	style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
-	<div class="row page-header" style="margin-top: 20px">
+<div class="container" style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
+	<div class="row" style="padding-bottom: 20px; margin-top: 20px">
+		<div class="col-sm-12">
+			<a href="community.do?categoryNo=31" style="font-size: 13px">나눔마켓</a>
+			<font style="font-size: 12px">|</font>
+			<a href="community.do?categoryNo=34" style="font-size: 13px">돌보미</a>
+			<font style="font-size: 12px">|</font>
+			<a href="community.do?categoryNo=33" style="font-size: 13px">반려견정보</a>
+			<font style="font-size: 12px">|</font>
+			<a href="community.do?categoryNo=32" style="font-size: 13px">모임후기</a>
+		</div>
+	</div>
+	
+	<div class="row page-header">
 		<div class="col-sm-12">
 			<h1 id="navbars">
 				<font style="font-size: 35px">나눔마켓</font>

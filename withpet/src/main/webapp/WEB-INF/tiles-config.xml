@@ -40,7 +40,7 @@
 	<!-- together.tiles로 요청 시 실행됨 -->
 	<definition name="together.tiles" template="/WEB-INF/views/layout/together.jsp">
 		<put-attribute name="title" value="같이 가치" />
-		<put-attribute name="header" value="/WEB-INF/views/layout/header/h_together.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/layout/header/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/layout/body/together/together.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/layout/footer/footer.jsp" />
 	</definition>

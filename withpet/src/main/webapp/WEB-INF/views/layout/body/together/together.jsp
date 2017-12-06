@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<div class="tagline-upper text-center text-heading text-shadow text-white d-none d-lg-block"
+	style="background-color: #ffffff; padding-top: 0px; border-bottom: solid 1px #cecece; background: url('resources/img/withtogether_logo.jpg'); height: 300px; margin-top:-20px">
+	<a href="togetherdog.do?pageNo=1"><img src="resources/img/logo_with_white.png" style="width: 400px; margin-top: 45px;margin-right:450px; margin-bottom: 5px;"></a>
+</div>
+
 <div class="container">
 	<img src="resources/img/img.png" style="margin-top: 0px; margin-left: 5px; width: 400px">
 	<a href="donationWrite.do" class="btn btn-danger" style="height: 110px; font-size: 13px; margin-top: 8px; margin-bottom: 8px; padding-top: 43px; cursor: pointer">
@@ -10,32 +15,30 @@
 
 	<!-- for -->
 	<c:forEach items="${donationList}" var="donation"  >
-	<div class="item block" data-bgimage="resources/img/images/1.jpg">
-		<div class="thumbs-wrapper" style="cursor: pointer">
-			<div class="thumbs">
-			
-				<c:forEach items="${donation.imgPathList}" var="img">
-					<img src="${pageContext.request.contextPath}/resources/upload/${img.imgPath}" style="width: 260px; height: 173px"/>
-				</c:forEach>
+		<div class="item block" data-bgimage="resources/img/images/1.jpg">
+			<div class="thumbs-wrapper" style="cursor: pointer">
+				<div class="thumbs">
+				
+					<c:forEach items="${donation.imgPathList}" var="img">
+						<img src="${pageContext.request.contextPath}/resources/upload/${img.imgPath}" style="width: 260px; height: 173px"/>
+					</c:forEach>
+				</div>
+			</div>
+			<h2 class="title">${donation.title}</h2>
+			<p class="subline">
+				${donation.donationOrg}
+			</p>
+			<div class="intro">
+				제목 : ${donation.title}<br>
+				내용 : ${donation.content}<br>
+				협회이름 : ${donation.donationOrg}<br>
+				은행 : ${donation.bankName}<br>
+				게좌번호 : ${donation.accountNo}<br>
+				계좌주 : ${donation.accountHost}<br>
+				모금액 : ${donation.dreamMoney}<br>
 			</div>
 		</div>
-		<h2 class="title">Personal Works</h2>
-		<p class="subline">
-			Concept <span class="fancy">&amp;</span> Design
-		</p>
-		<div class="intro">
-			제목 : ${donation.title}<br>
-			내용 : ${donation.content}<br>
-			협회이름 : ${donation.donationOrg}<br>
-			은행 : ${donation.bankName}<br>
-			게좌번호 : ${donation.accountNo}<br>
-			계좌주 : ${donation.accountHost}<br>
-			모금액 : ${donation.dreamMoney}<br>
-		</div>
-	</div>
 	</c:forEach>
-
-
 
 
 	<!-- ------------------------------------------------------------ -->

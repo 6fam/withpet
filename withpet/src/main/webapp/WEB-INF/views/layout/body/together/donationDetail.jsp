@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <style>
 #sidebox {
 	background-color: #F0F0F0;
@@ -24,18 +26,8 @@
 		<div class="col-sm-1"></div>
 	</div>
 	
-	<div class="row" style="margin-left: 0px; margin-top: 20px">
-		<div class="col-sm-1" ></div>
-		<div class="col-sm-10" style="font-size: 16px">
-			<p>
-				<strong>'독도는 우리 땅'</strong>
-			</p>
-		</div>
-		<div class="col-sm-1" ></div>
-	</div>
-
 	<!-- 이미지부분 -->
-	<div class="row" style="margin-top: 30px;">
+	<div class="row" style="margin-top: 0px;">
 		<div class="col-sm-1" ></div>
 		<div class="col-sm-10">
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height: 100%">
@@ -46,17 +38,20 @@
 				</ol>
 				
 				<div class="carousel-inner" role="listbox">
-					<div class="carousel-item active">
-						<img class="d-block img-fluid w-100" src="resources/img/test1.jpg" alt="" style="height:450px">
-					</div>
-				
-					<div class="carousel-item">
-						<img class="d-block img-fluid w-100" src="resources/img/test2.jpg" alt="" style="height:450px">
-					</div>
-					
-					<div class="carousel-item">
-						<img class="d-block img-fluid w-100" src="resources/img/test3.jpg" alt="" style="height:450px">
-					</div>
+					<c:forEach items="${donation.imgPathList}" var="img" varStatus="status">
+						<c:choose>
+							<c:when test="${status.index eq 0}">
+								<div class="carousel-item active">
+									<img class="d-block img-fluid w-100" src="${pageContext.request.contextPath}/resources/upload/${img.imgPath}" alt="" style="height:450px">
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="carousel-item">
+									<img class="d-block img-fluid w-100" src="${pageContext.request.contextPath}/resources/upload/${img.imgPath}" alt="" style="height:450px">
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 				</div>
 				
 				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -78,16 +73,9 @@
 		<div class="col-sm-10"
 			style="font-size: 16px">
 			<p>
-				<strong>'독도는 우리 땅'</strong>
+				<strong>${donation.title}</strong>
 			</p>
-			우리 땅 지킴이 프로젝트 디딤돌 그룹홈은 아동의 학대, 방임, 부모의 이혼 및 재혼으로 인해 친부모와 살 수 없는 아이들이
-			함께 모여 생활하는 생활시설입니다. 아동들 마다 각각의 사연을 가지고 함께 생활하게 된지 10년이 되어갑니다. 우리 아이들과
-			함께 방송매체나 학교 숙제를 할 때마나 독도는 어떤 곳인지? 우리가 갈 수 있는지? 물어보는 질문이 많았습니다. 이러한
-			아이들의 궁금증과 체험을 하고 싶다는 소망을 이루어 주고자 합니다. '백문이 불여일견' 말처럼 백번 듣는 것보다 한번 보는
-			것이 낫다는 말이 있듯이 글로만 알고 지나가는 것이 아니라 직접 몸소 체험을 통해 우리나라 영토인 독도에 대해서 직접적으로
-			체험을 통해 우리나라에 대한 자부심을 키워 주고자 합니다. 그저 방송매체로만 독도를 보았던 우리 아이들에게 독도를 직접 체험
-			할 수 있는 좋은 기회를 선물하고자 합니다. 환상의 섬 독도에 들어 가기 위한 첫 걸음 환상의 섬 독도에 들어 가기 위한 첫
-			걸음
+			${donation.content}
 		</div>
 		<div class="col-sm-1" ></div>
 	</div>
@@ -98,8 +86,8 @@
 	<div class="row" style="margin-left: 0px; margin-top: 20px">
 		<div class="col-sm-1" ></div>
 		<div class="col-sm-10" style="text-align: center; font-size: 16px">
-			<p style="font-size: 35px; color: #ff0066;">75,000,000원</p>
-			<p>목표금액 : 0000원</p>
+			<p style="font-size: 35px; color: #ff0066;">${donation.currentMoneyStr}원</p>
+			<p>목표금액 : ${donation.dreamMoneyStr}원</p>
 		</div>
 		<div class="col-sm-1" ></div>
 	</div>
@@ -123,36 +111,65 @@
 		<div class="col-sm-1" ></div>
 		<div class="col-sm-10" style="font-size: 16px">
 			<p>
-				<strong>덧글</strong>
+				<strong>모금함 개설자 정보</strong>
 			</p>
-			응원합니다!
+			모금 협회 : ${donation.donationOrg}<br>
+			모금 은행 : ${donation.bankName}<br>
+			모금 계좌 번호 : ${donation.accountNo}<br>
+			모금 계좌주 : ${donation.accountHost}<br>
 		</div>
 		<div class="col-sm-1" ></div>
 	</div>
+</div>
 
+<div class="container" style="z-index: 1; background-color: white; border: solid 1px #adadad; margin-top: 10px; padding-bottom: 30px">
+	<!-- 설명부분 -->
+	<div class="row" style="margin-left: 0px; margin-top: 20px">
+		<div class="col-sm-1" ></div>
+		<div class="col-sm-10" style="font-size: 16px">
+			<p>
+				<strong>덧글</strong>
+			</p>
+			<c:forEach items="${donation.replyList}" var="reply">
+				글번호 : ${reply.replyNo} , 리플내용 : ${reply.content}, 리플작성자 : ${reply.id}<br>
+			</c:forEach>
+		</div>
+		<div class="col-sm-1" ></div>
+	</div>
 </div>
 
 <!-- 기부 창입니다. -->
+<form action="pay.do" method="post" name="payform" id="payform">
+<sec:csrfInput/>
 <div class="setDiv">
 	<div class="mask"></div>
-	<div class="window" style="width: 350px; height: 350px; border-radius: 10px">
-		<a href="#" class="close">X&nbsp;</a>
+	<div class="window" style="width: 315px; height: 350px; border-radius: 10px">
+		<a href="#" class="close"><font style="font-size: 12px">X</font>&nbsp;</a>
 		<div style="text-align: center; margin-top:10px; margin-bottom: 10px">
 			<h2><strong>결제</strong></h2>
 			<hr>
 		</div>
-		<div style="width: 350px;height: 150px">
-			<button type="button" class="btn btn-secondary" style="margin-left: 15px; cursor: pointer">1천</button>
-			<button type="button" class="btn btn-secondary" style="cursor: pointer">5천</button>
-			<button type="button" class="btn btn-secondary" style="cursor: pointer">1만원</button>
-			<button type="button" class="btn btn-secondary" style="cursor: pointer">5만원</button>
-			<button type="button" class="btn btn-secondary" style="cursor: pointer">10만원</button>
-			<div class="row">
-				<input type="text" name="id" class="form-control" id="id" style="margin-top: 20px; margin-left: 35px; margin-right: 35px">
+		<div style="width: 315px;height: 150px">
+			<button type="button" id="cheon" class="btn btn-secondary" style="margin-left: 15px; cursor: pointer; font-size: 13px">1천</button>
+			<button type="button" id="ocheon" class="btn btn-secondary" style="cursor: pointer; font-size: 13px">5천</button>
+			<button type="button" id="manwon" class="btn btn-secondary" style="cursor: pointer; font-size: 13px">1만원</button>
+			<button type="button" id="omanwon" class="btn btn-secondary" style="cursor: pointer; font-size: 13px">5만원</button>
+			<button type="button" id="sibmanwon" class="btn btn-secondary" style="cursor: pointer; font-size: 13px">10만원</button>
+			
+			<div class="row" style="margin-top: 20px; margin-left: 25px">
+				기부 금액
 			</div>
 			
 			<div class="row">
-				<textarea name="id" class="form-control" id="id" style="margin-top: 20px; margin-left: 35px; margin-right: 35px"></textarea>
+				<input type="text" name="pay" class="form-control" id="pay" style="margin-top:0px; margin-left: 35px; margin-right: 35px">
+			</div>
+			
+			<div class="row" style="margin-top: 20px; margin-left: 25px">
+				응원메세지를 입력해주세요!
+			</div>
+			
+			<div class="row">
+				<textarea name="content" class="form-control" id="replyContent" style="margin-top:0px; margin-left: 35px; margin-right: 35px"></textarea>
 			</div>
 			
 			<div class="row">
@@ -160,9 +177,9 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" value="${donation.boardNo}" name="boardNo">
 </div>
-
-
+</form>
 
 <script type="text/javascript">
 	var currentPosition = parseInt($("#sidebox").css("top"));

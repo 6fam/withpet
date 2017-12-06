@@ -62,6 +62,11 @@ public class ReplyDTO extends UploadDTO{
 		this.nick = nick;
 		this.boardNo = boardNo;
 	}
+	public ReplyDTO(String content, String nick, int boardNo) {
+		this.content = content;
+		this.nick = nick;
+		this.boardNo = boardNo;
+	}
 	public int getReplyNo() {
 		return replyNo;
 	}

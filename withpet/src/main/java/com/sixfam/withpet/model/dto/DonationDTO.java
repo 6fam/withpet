@@ -39,13 +39,21 @@ public class DonationDTO extends BoardDTO{
 	 */
 	private String accountHost;
 	/**
-	 * 현재 목므액 : current_money
+	 * 현재 모금액 : current_money
 	 */
 	private int currentMoney;
+	/**
+	 * 현재 모금액 > 돈의 형태로 변환
+	 */
+	private String currentMoneyStr;
 	/**
 	 * 총모금액 : final_money
 	 */
 	private int dreamMoney;
+	/**
+	 * 총 모금액 > 돈의 형태로 변환
+	 */
+	private String dreamMoneyStr;
 	/**
 	 * 모금 권한 : donation_flag
 	 */
@@ -144,12 +152,26 @@ public class DonationDTO extends BoardDTO{
 		this.donationStateNo = donationStateNo;
 	}
 	
-
+	public String getCurrentMoneyStr() {
+		return currentMoneyStr;
+	}
+	
+	public void setCurrentMoneyStr(String currentMoneyStr) {
+		this.currentMoneyStr = currentMoneyStr;
+	}
+	
+	public String getDreamMoneyStr() {
+		return dreamMoneyStr;
+	}
+	
+	public void setDreamMoneyStr(String dreamMoneyStr) {
+		this.dreamMoneyStr = dreamMoneyStr;
+	}
 	@Override
 	public String toString() {
 		return "DonationDTO [thumnailNo=" + thumnailNo + ", donationOrg=" + donationOrg + ", bankName=" + bankName
 				+ ", accountNo=" + accountNo + ", accountHost=" + accountHost + ", currentMoney=" + currentMoney
-				+ ", dreamMoney=" + dreamMoney + ", donationFlag=" + donationFlag
-				+ ", donationStateNo=" + donationStateNo+", getImgPath()="+ getImgPath() + "]";
+				+ ", currentMoneyStr=" + currentMoneyStr + ", dreamMoney=" + dreamMoney + ", dreamMoneyStr="
+				+ dreamMoneyStr + ", donationFlag=" + donationFlag + ", donationStateNo=" + donationStateNo + ", getImgPath()="+ getImgPath() + "]";
 	}
 }

@@ -18,10 +18,10 @@
 		<div class="item block" data-bgimage="resources/img/images/1.jpg">
 			<div class="thumbs-wrapper" style="cursor: pointer">
 				<div class="thumbs">
-				
 					<c:forEach items="${donation.imgPathList}" var="img">
 						<img src="${pageContext.request.contextPath}/resources/upload/${img.imgPath}" style="width: 260px; height: 173px"/>
 					</c:forEach>
+					<a href="donationDetail.do?boardNo=${donation.boardNo}" class="btn btn-danger" style="position:absolute; top:130px; z-index:1000; left:0px; font-size: 13px; width: 220px; margin-left: 20px; margin-right: 20px">모금함 상세보기</a>
 				</div>
 			</div>
 			<h2 class="title">${donation.title}</h2>

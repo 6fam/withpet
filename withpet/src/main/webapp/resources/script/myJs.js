@@ -235,12 +235,13 @@ $(document).ready(function (){
 	IMP.init('imp99239962');
 	
 	$("#accountPay").click(function (){
+		var pay = $("#pay").val();
 		IMP.request_pay({
 		    pg : 'html5_inicis',
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '주문명:결제테스트',
-		    amount : 1000,
+		    amount : pay,
 		    buyer_email : 'iamport@siot.do',
 		    buyer_name : '구매자이름',
 		    buyer_tel : '010-1234-5678',
@@ -256,16 +257,32 @@ $(document).ready(function (){
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
 		        msg += '에러내용 : ' + rsp.error_msg;
-		    }
 
+		    }
 		    alert(msg);
+		    $("#payform").submit();
 		}); 
 	});
 	
-	$(".thumbs").click(function() {
-		location.href="donationDetail.do";
+	$("#cheon").click(function (){
+		$("#pay").val("1000");
 	});
 	
+	$("#ocheon").click(function (){
+		$("#pay").val("5000");
+	});
+	
+	$("#manwon").click(function (){
+		$("#pay").val("10000");
+	});
+	
+	$("#omanwon").click(function (){
+		$("#pay").val("50000");
+	});
+	
+	$("#sibmanwon").click(function (){
+		$("#pay").val("100000");
+	});
 	
 	 /**
      * 헤더 공통 ( 로그인 팝업 )

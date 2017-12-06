@@ -9,6 +9,8 @@ drop sequence dog_seq;
 drop sequence reply_seq;
 drop sequence message_seq;
 drop sequence boardimg_seq;
+drop sequence donationHistory_seq;
+drop sequence account_seq;
 
 ---시퀀스 생성
 create SEQUENCE category_seq;
@@ -19,6 +21,8 @@ create sequence boardimg_seq;
 create sequence dog_seq;
 create sequence reply_seq;
 create sequence message_seq;
+create sequence donationHistory_seq;
+create sequence account_seq;
 
 
 -- 카테고리 분류 테이블 시작

@@ -23,9 +23,22 @@
 		values(boardimg_seq.nextval, #{imgPath}, board_seq.currval)
 	</insert>
 	
-	<!-- 모금함상세보기 -->
-	<select id="selectDonationDetail" parameterType="int" resultType="donationDTO" >
+	<resultMap id="donationDetail" type="donationDTO">
+		<result property="boardNo" column="boardNo" />
+		<collection property="replyList" column="boardNo" javaType="java.util.ArrayList"
+		ofType="replyDTO" select="meeting.selectReplyByBoardNo" />
+	</resultMap>
 	
+	<!-- 모금함상세보기 -->
+	<select id="selectDonationDetail" parameterType="int" resultMap="donationDetail" >
+		SELECT dona.board_no as boardNo, dona.donation_org as donationOrg, dona.bank_name as bankName,
+		dona.account_no as accountNo, dona.account_host as accountHost, dona.current_money as currentMoney,
+		dona.final_money as dreamMoney, dona.donation_flag as donationFlag, dona.category_no as categoryNo,
+		dona.img as imgPath, bo.title, bo.content, bo.hits, bo.wdate, bo.id
+		FROM (select d.board_no, donation_org, bank_name, account_no, account_host, current_money, final_money, donation_flag, category_no, b.img
+		FROM donation d, (SELECT board_no,LISTAGG(img_path,',') WITHIN GROUP (ORDER BY board_no) as img FROM boardimg GROUP BY board_no) b
+		WHERE d.board_no = b.board_no and d.board_no = #{value}) dona, board bo
+		WHERE dona.board_no = bo.board_no
 	</select>
 	
 	<!-- 모금함 목록 -->
@@ -38,21 +51,45 @@
 		   WHERE b.board_no=d.board_no and rnum between #{startRowNumber} and #{endRowNumber} order by b.wdate desc
 	</select>
 	
-	<update id="updateDonationSuper" parameterType="donationDTO">
-		
+	<!-- 입금 -->
+	<update id="deposit" parameterType="payDTO">
+		update member set money = money+#{pay} where id = #{id}
 	</update>
 	
-	<update id="updateDonation" parameterType="donationDTO" >
-		
+	<!-- 출금 -->
+	<update id="withdraw" parameterType="payDTO">
+		update member set money = money-#{pay} where id = #{id}
 	</update>
 	
-	<delete id="deleteDonation" parameterType="int" >
-		
-	</delete>
+	<!-- 회원 입금이력 -->
+	<insert id="memberPayDepositHistory" parameterType="payDTO">
+		insert into account values(account_seq.nextval, #{id}, '입금', #{pay})
+	</insert>
+	
+	<!-- 회원 출금이력 -->
+	<insert id="memberPayWithdrawHistory" parameterType="payDTO">
+		insert into account values(account_seq.nextval, #{id}, '출금', #{pay})
+	</insert>
+	
+	<!-- 모금쪽 계좌이력 -->
+	<insert id="payHistory" parameterType="payDTO">
+		insert into donationhistory values(donationHistory_seq.nextval, #{boardNo}, #{id}, #{pay})
+	</insert>
+	
+	<!-- 모금실시 -->
+	<update id="payDonation" parameterType="payDTO">
+		update donation set current_money = current_money + #{pay} where board_no = #{boardNo}
+	</update>
+	
+	<!-- 현재잔액확인 -->
+	<select id="payLookUp" parameterType="string" resultType="int">
+		select money from member where id = #{value}
+	</select>
 	
 	<select id="getTotalCount" resultType="int">
 		select count(*) from donation where category_no between 28 and 30
 	</select>
+	
 </mapper>
  
  

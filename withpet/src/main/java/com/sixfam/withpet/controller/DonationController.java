@@ -1,5 +1,6 @@
 package com.sixfam.withpet.controller;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sixfam.withpet.common.WithPet;
+import com.sixfam.withpet.common.exception.InsufficientPay;
 import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.ImgDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
+import com.sixfam.withpet.model.dto.PayDTO;
 import com.sixfam.withpet.service.DonationService;
 import com.sixfam.withpet.upload.UploadFileImage;
 
@@ -62,7 +65,26 @@ public class DonationController {
 	 * 모금함 상세보기
 	 */
 	@RequestMapping("donationDetail.do")
-	public String donationDetailRequest() {
+	public String donationDetailRequest(Model model, int boardNo) {
+		DonationDTO donation = service.findDonationByNo(boardNo);
+		String dreamMoney = (NumberFormat.getNumberInstance().format(Integer.valueOf(donation.getDreamMoney())));
+		String currentMoney = (NumberFormat.getNumberInstance().format(Integer.valueOf(donation.getCurrentMoney())));
+		donation.setDreamMoneyStr(dreamMoney);
+		donation.setCurrentMoneyStr(currentMoney);
+		
+		String[] imgPathList = donation.getImgPath().split(",");
+		donation.setImgPathList(new ArrayList<ImgDTO>());
+		for(int i=0;i<imgPathList.length;i++) {
+			donation.getImgPathList().add(new ImgDTO(imgPathList[i]));
+		}
+
+		System.out.println(donation.getImgPathList());
+		System.out.println(donation);
+		System.out.println(donation.getReplyList());
+		System.out.println("상세보기 게시글 번호 : "+donation.getBoardNo());
+		model.addAttribute("donation", donation);
+		
+		
 		return "together/donationDetail.tiles";
 	}
 	
@@ -86,5 +108,24 @@ public class DonationController {
 		
 		service.registerDonation(donation);
 		return "redirect:togetherdog.do?pageNo=1";
+	}
+	
+	/**
+	 * 모금 결제 요청
+	 */
+	@RequestMapping(value="pay.do", method=RequestMethod.POST)
+	public String donationPayRequest(Authentication authentication, PayDTO pay) {
+		MemberDTO member = (MemberDTO)authentication.getPrincipal();
+		pay.setId(member.getId());
+		pay.setNick(member.getNick());
+		System.out.println("게시판번호 : "+pay.getBoardNo());
+		
+		try {
+			service.addDonation(pay);
+		} catch (InsufficientPay e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:donationDetail.do?boardNo="+pay.getBoardNo();
 	}
 }

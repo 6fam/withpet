@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.ImgDTO;
+import com.sixfam.withpet.model.dto.PayDTO;
 
 @Repository
 public class DonationDAOImpl implements DonationDAO{
@@ -46,5 +47,45 @@ public class DonationDAOImpl implements DonationDAO{
 	@Override
 	public List<DonationDTO> getAllDonationList(PagingBean pagingBean) {
 		return template.selectList("donation.selectDonationList", pagingBean);
+	}
+
+	@Override
+	public DonationDTO findDonationByNo(int boardNo) {
+		return template.selectOne("donation.selectDonationDetail", boardNo);
+	}
+
+	@Override
+	public void deposit(PayDTO pay) {
+		template.update("donation.deposit", pay);
+	}
+
+	@Override
+	public void withdraw(PayDTO pay) {
+		template.update("donation.withdraw", pay);
+	}
+
+	@Override
+	public void payHistory(PayDTO pay) {
+		template.insert("donation.payHistory", pay);
+	}
+	
+	@Override
+	public void payDonation(PayDTO pay) {
+		template.update("donation.payDonation", pay);
+	}
+	
+	@Override
+	public int payLookUp(String id) {
+		return template.selectOne("donation.payLookUp", id);
+	}
+
+	@Override
+	public void registerPayDepositHistory(PayDTO pay) {
+		template.insert("donation.memberPayDepositHistory", pay);
+	}
+
+	@Override
+	public void registerPayWithdrawHistory(PayDTO pay) {
+		template.insert("donation.memberPayWithdrawHistory", pay);
 	}
 }

@@ -187,11 +187,14 @@ public class MeetingController {
 	 */
 	@RequestMapping("meeting.do")
 	public String meetingListByCategoryNoRequest(Model model, int categoryNo) {
-		
+		System.out.println("////////Controller////////");
 		int meetingCountByCategory = service.findMeetingCountByCategory(categoryNo);
+		System.out.println("1 : "+meetingCountByCategory);
 		PagingBean pb = new PagingBean(12, meetingCountByCategory);
 
 		List<MeetingDTO> list = service.getAllMeetingListByCategory(pb, categoryNo);
+		System.out.println("////list 가져오기 //// ");
+		System.out.println("사이즈크기 : "+list.size());
 		ListDTO<MeetingDTO> meetingListDTO = new ListDTO<MeetingDTO>(list, pb);
 		
 		model.addAttribute("meetingList", meetingListDTO);

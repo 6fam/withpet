@@ -117,20 +117,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getMeetingSearchByCategoryType" parameterType="map" resultMap="meetingList">
-		SELECT memtca.rnum, memtca.board_no as boardNo, memtca.peopleCount, memtca.img_no, memtca.meetingState, memtca.meetingType, memtca.imgPath, b.title, b.hits, ga.gathering_start as gatheringStart, ga.gathering_end as gatheringEnd, ga.meeting_start as meetingStart, ga.meeting_end as meetingEnd
-		FROM
-			(select  row_number() over(order by meca.board_no desc) as rnum, meca.board_no, meca.people_count as peopleCount, meca.img_no, meca.meetingState, mtca.meetingType, i.img_path as imgPath, meca.date_no, mtca.typeCategoryNo
-			from 
-				(select me.board_no, me.people_count, me.img_no, ca.category_name as meetingState, me.date_no
-				from meeting me, category ca 
-				where me.category_no=ca.category_no) meca,
-				
-				(select mt.board_no, ca.category_name as meetingType, mt.category_no as typeCategoryNo
-				from meetingtype mt, category ca 
-				where mt.category_no=ca.category_no and mt.category_no=#{categoryNo}) mtca, img i
-			where meca.board_no=mtca.board_no and meca.img_no=i.img_no) memtca, board b, gatheringdate ga
-		WHERE memtca.board_no=b.board_no and memtca.date_no=ga.date_no and rnum between #{startRowNumber} and #{endRowNumber}
-		ORDER BY boardNo desc
+						
+		SELECT meee.*, b.title, a.attenderCount
+		FROM 	(
+							SELECT row_number() over(order by me.board_no desc) as rnum, i.img_path as imgPath, me.board_no as boardNo, 
+											me.people_count as peopleCount, me.meetingState, me.date_no as dateNo, mee.meetingType
+							FROM 	(	SELECT m.board_no, m.people_count, m.img_no, ca.category_name as meetingState, m.date_no
+												FROM	meeting m, category ca 
+												WHERE m.category_no=ca.category_no) me,
+											(	SELECT mt.board_no,  ca.category_name as meetingType
+												FROM	meetingtype mt, category ca 
+												WHERE mt.category_no=ca.category_no and mt.category_no=#{categoryNo}) mee, img i
+							WHERE me.board_no=mee.board_no and me.img_no=i.img_no
+						) meee, (	SELECT count(*) as attenderCount, board_no FROM	attender group by board_no)	a, board b
+		WHERE b.category_no=17 and b.board_no=meee.boardNo and a.board_no(+)=b.board_no 
+						and meee.rnum between #{startRowNumber} and #{endRowNumber} ORDER BY meee.rnum asc
 	</select>
 	
 	

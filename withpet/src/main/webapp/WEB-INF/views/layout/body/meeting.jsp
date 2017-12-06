@@ -112,7 +112,7 @@
 								</div> -->
 							</div>
 						</div>
-						<div class="row" style="margin-left: 0px; margin-right: 0px; border-top: 1px solid #cecece">
+						<!-- <div class="row" style="margin-left: 0px; margin-right: 0px; border-top: 1px solid #cecece">
 							<div style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 100px">
 								<font style="font-size: 12px"><b>일정/시간</b></font>
 							</div>
@@ -142,7 +142,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				  </div>
 				</div>
@@ -252,7 +252,7 @@
 	<div class="row" style="padding-top: 20px; padding-bottom: 20px;">
 	<c:choose>
 		<c:when test="${fn:length(meetingList.list)==0}">
-			<br><div style="text-align: center"><b>해당 카테고리에 개설된 모임이 없습니다.</b></div>
+			<br><div class="col-sm-12" style="text-align: center"><b>해당 카테고리에 개설된 모임이 없습니다.</b></div>
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${meetingList.list}" var="list" varStatus="cnt">

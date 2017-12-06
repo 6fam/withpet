@@ -42,7 +42,7 @@
 					meetingList += "</span><br><font style='font-size: 12px; margin: 20px 0 0 0; padding: 0px'>";
 					meetingList += "모집기간 :"+data[i].gatheringStart+"~"+data[i].gatheringStart+"<br>";
 					meetingList += "</font> <font style='font-size: 12px; margin: 5px 0 0 0; padding: 0px'>";
-					meetingList += "모임시간 :"+data[i].meetingStart+"<br></font></div>";
+					meetingList += "모임시간 :"+data[i].meetingStart+"~"+data[i].meetingEnd+"<br></font></div>";
 					meetingList += "<div class='row' style='margin: 5px 0 0 0; padding: 0px'>";
 					meetingList += "<font style='font-size: 12px; margin: 0px; padding: 0px'>";
 					meetingList += "참여현황 :"+ "0"+"/"+data[i].peopleCount+"</font></div></div>";
@@ -173,12 +173,12 @@
 					<font style="font-size: 12px; margin: 20px 0 0 0; padding: 0px;">
 						모집기간 : ${list.date.gatheringStart} ~ ${list.date.gatheringEnd} <br>
 					</font> <font style="font-size: 12px; margin: 5px 0 0 0; padding: 0px;">
-						모임시간 : ${list.date.meetingStart} <br>
+						모임시간 : ${list.date.meetingStart} ~ ${list.date.meetingEnd} <br>
 					</font>
 				</div>
 				<div class="row" style="margin: 5px 0 0 0; padding: 0px;">
 					<font style="font-size: 12px; margin: 0px; padding: 0px;">
-						참여현황 : 0/${list.peopleCount} </font>
+						참여현황 : ${list.attenderCount}/${list.peopleCount} 공감수 : ${list.sympathyCount} </font>
 				</div>
 			</div>
 			<!-- 끝 -->

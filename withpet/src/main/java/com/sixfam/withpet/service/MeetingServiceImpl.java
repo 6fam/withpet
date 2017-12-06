@@ -1,5 +1,8 @@
 package com.sixfam.withpet.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -138,5 +141,18 @@ public class MeetingServiceImpl implements MeetingService{
 	@Override
 	public int getPossibleCount(int boardNo) {
 		return dao.getPossibleCount(boardNo);
+	}
+	
+	@Override
+	public void setMeetingState(int categoryNo) {
+		SimpleDateFormat formatter=new SimpleDateFormat("yyyy.MM.dd");
+		String today=formatter.format(new Date());
+		HashMap<String, Object> param=new HashMap<String, Object>();
+		System.out.println("////////////////SERVICE//////////////");
+		System.out.println("today: "+today);
+		System.out.println("categoryNo: "+categoryNo);
+		param.put("categoryNo", categoryNo);
+		param.put("today", today);
+		dao.setMeetingState(param);
 	}
 }

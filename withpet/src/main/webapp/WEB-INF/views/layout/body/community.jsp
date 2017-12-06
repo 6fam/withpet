@@ -9,7 +9,7 @@
 		<div class="col-sm-12">
 			<h1 id="navbars">
 				<font style="font-size: 35px">나눔마켓</font>
-				<a href="communityWrite.do" class="btn btn-outline-danger"
+				<a href="communityWriteView.do" class="btn btn-outline-danger"
 					style="width: 100px; height: 25px; font-size: 12px; margin-left: 10px; margin-top: 14px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				글쓰기
 				</a>
@@ -35,7 +35,7 @@
 			    <tr>
 			      <td style="padding: .45rem">${cl.boardNo}</td>
 			      <td style="padding: .45rem">${cl.categoryName}</td>
-			      <td style="padding: .45rem"><a href="communityDetail.do?${cl.boardNo}">${cl.title}</a></td>
+			      <td style="padding: .45rem"><a href="communityDetail.do?boardNo=${cl.boardNo}">${cl.title}</a></td>
 			      <td style="padding: .45rem">${cl.id}</td>
 			      <td style="padding: .45rem">${cl.hits}</td>
 			      <td style="padding: .45rem">${cl.wdate}</td>

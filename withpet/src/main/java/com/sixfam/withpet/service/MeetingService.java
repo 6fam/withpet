@@ -131,4 +131,6 @@ public interface MeetingService {
 	 * @return
 	 */
 	public int getPossibleCount(int boardNo);
+
+	void setMeetingState(int categoryNo);
 }

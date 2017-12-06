@@ -26,8 +26,25 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public BoardDTO getCommunityDetailInfo(BoardDTO boardDTO) {
-		return communityDAO.getCommunityDetailInfo(boardDTO);
+	public BoardDTO getCommunityDetailInfo(int boardNo) {
+		return communityDAO.getCommunityDetailInfo(boardNo);
+	}
+
+	@Override
+	public BoardDTO registerCommunityInfo(BoardDTO boardDTO) {
+		return communityDAO.registerCommunityInfo(boardDTO);
+		
+	}
+
+	@Override
+	public void removeCommunityInfo(int boardNo) {
+		communityDAO.removeCommunityInfo(boardNo);
+		
+	}
+
+	@Override
+	public void updateCommunityInfo(BoardDTO boardDTO) {
+		communityDAO.updateCommunityInfo(boardDTO);		
 	}
 
 }

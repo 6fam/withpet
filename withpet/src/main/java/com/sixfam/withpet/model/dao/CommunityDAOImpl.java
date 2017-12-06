@@ -26,8 +26,25 @@ public class CommunityDAOImpl implements CommunityDAO {
 	}
 	
 	@Override
-	public BoardDTO getCommunityDetailInfo(BoardDTO boardDTO) {
-		return template.selectOne("community.communityDetailInfo",boardDTO.getCategoryNo());
+	public BoardDTO getCommunityDetailInfo(int boardNo) {
+		return template.selectOne("community.communityDetailInfo",boardNo);
+	}
+	
+	@Override
+	public BoardDTO registerCommunityInfo(BoardDTO boardDTO) {
+		template.insert("community.insertCommunityInfo",boardDTO);
+		return boardDTO;
 	}
 
+	@Override
+	public void removeCommunityInfo(int boardNo) {
+		template.delete("community.deleteCommunityInfo",boardNo);
+		
+	}
+
+	@Override
+	public void updateCommunityInfo(BoardDTO boardDTO) {
+		System.out.println(boardDTO);
+		template.update("community.updateCommunityInfo",boardDTO);
+	}
 }

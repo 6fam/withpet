@@ -105,13 +105,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="getMeetingDetailByBoardNo" parameterType="int" resultMap="meetingAll">
-		SELECT mbmti.id, mbmti.tel, mbmti.board_no as boardNo, mbmti.title, mbmti.content, mbmti.people_count as peopleCount, mbmti.place, i.img_path as imgPath, ga.meeting_start as meetingStart, ga.meeting_end as meetingEnd
+		SELECT mbmti.id, mbmti.tel, mbmti.board_no as boardNo, mbmti.title, mbmti.content, mbmti.people_count as peopleCount, 
+						c.category_name as meetingState, mbmti.place, i.img_path as imgPath, 
+						ga.meeting_start as meetingStart, ga.meeting_end as meetingEnd
 		FROM( 
-					SELECT mem.id, mem.tel, b.board_no, b.title, b.content, mee.people_count, mee.place, mee.date_no, mee.img_no 
+					SELECT mem.id, mem.tel, b.board_no, b.title, b.content, mee.people_count, mee.place, mee.date_no, mee.img_no, mee.category_no
 					FROM member mem, board b, meeting mee
 					WHERE mem.id=b.id and b.board_no=mee.board_no
-				) mbmti, img i, gatheringdate ga
-		WHERE mbmti.img_no=i.img_no and mbmti.date_no=ga.date_no and mbmti.board_no=#{value} 
+				) mbmti, img i, gatheringdate ga, category c
+		WHERE mbmti.img_no=i.img_no and mbmti.date_no=ga.date_no and c.category_no=mbmti.category_no and mbmti.board_no=#{value} 
 	</select>
 	
 	<select id="getMeetingSearchByCategoryType" parameterType="map" resultMap="meetingList">
@@ -193,7 +195,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 모임 상세보기에 추가 -->
 	<select id="getDateInfoByBoardNo" parameterType="int" resultType="dateDTO">
-			SELECT to_char(g.meeting_start, 'yyyy.mm.dd') as meetingStart, to_char(g.meeting_end, 'yyyy.mm.dd') as meetingEnd
+			SELECT to_char(g.meeting_start, 'yyyy.mm.dd') as meetingStart, to_char(g.meeting_end, 'yyyy.mm.dd') as meetingEnd,
+							 to_char(g.gathering_start, 'yyyy.mm.dd') as gatheringStart, to_char(g.gathering_end, 'yyyy.mm.dd') as gatheringEnd
 			FROM meeting m, gatheringdate g
 			WHERE m.date_no=g.date_no and m.board_no=#{value}
 	</select>
@@ -218,6 +221,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="replyCount" parameterType="int" resultType="int">
  		select count(*) from reply where board_no=#{value}
  	</select>
+ 	
+ 	<!-- 모임상태 변경 -->
+ 	<update id="setMeetingState" parameterType="hashmap">
+	 	<![CDATA[
+	 		update meeting set category_no=#{categoryNo} where board_no in ( select m.board_no
+			from ( select date_no from gatheringdate where gathering_end<#{today} ) d, meeting m where m.date_no=d.date_no )
+	 	]]>
+	 </update>
 </mapper>
  
  

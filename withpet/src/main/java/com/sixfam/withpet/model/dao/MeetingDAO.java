@@ -1,5 +1,6 @@
 package com.sixfam.withpet.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.sixfam.withpet.model.PagingBean;
@@ -66,4 +67,6 @@ public interface MeetingDAO{
 	public void setAttendCount(int boardNo);
 
 	public int getPossibleCount(int boardNo);
+
+	void setMeetingState(HashMap<String, Object> param);
 }

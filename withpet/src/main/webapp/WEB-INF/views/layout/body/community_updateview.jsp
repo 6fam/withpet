@@ -14,13 +14,13 @@
 		<div class="col-sm-2"></div>
 		<div class="col-sm-10">
 			<h1 id="navbars">
-				<font style="font-size: 35px">글쓰기</font>
+				<font style="font-size: 35px">글 수정</font>
 			</h1>
 		</div>
 	</div>
 	
 	<!-- form 시작> -->
-	<form action="communityWrite.do" id="frame" method="post" enctype="multipart/form-data">
+	<form action="communityUpdate.do" id="frame" method="post" enctype="multipart/form-data">
 	<sec:csrfInput/>
 	<div class="row">
 		<div class="col-sm-2"></div>
@@ -36,7 +36,7 @@
 				</div>
 				<!-- 글제목 -->
 				<div class="col-sm-8">
-					 <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+					 <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${cdinfo.title}">
 				</div>
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 		<div class="col-sm-2"></div>
 		<!-- 글내용 -->
 		<div class="col-sm-10" style="text-align: center">
-			<textarea name="content" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea>
+			<textarea name="content" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;">${cdinfo.content}</textarea>
 		</div>
 		<div class="col-sm-1"></div>
 	</div>
@@ -61,5 +61,6 @@
 	</div>
  	<sec:authentication property="principal.id" var="sessionId"/>   
 	<input type="hidden" name="id" value="${sessionId}"> 
+	<input type="hidden" name="boardNo" value="${cdinfo.boardNo}"> 
 	</form>
 </div>

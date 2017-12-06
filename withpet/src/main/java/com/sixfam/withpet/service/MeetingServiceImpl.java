@@ -114,7 +114,8 @@ public class MeetingServiceImpl implements MeetingService{
 	@Override
 	@Transactional
 	public List<MeetingDTO> getAllMeetingListByCategory(PagingBean pb, int categoryNo) {
-		return dao.getAllMeetingListByCategory(pb, categoryNo);
+		List<MeetingDTO> list=dao.getAllMeetingListByCategory(pb, categoryNo);
+		return list;
 	}
 
 	@Override
@@ -144,13 +145,11 @@ public class MeetingServiceImpl implements MeetingService{
 	}
 	
 	@Override
+	@Transactional
 	public void setMeetingState(int categoryNo) {
 		SimpleDateFormat formatter=new SimpleDateFormat("yyyy.MM.dd");
 		String today=formatter.format(new Date());
 		HashMap<String, Object> param=new HashMap<String, Object>();
-		System.out.println("////////////////SERVICE//////////////");
-		System.out.println("today: "+today);
-		System.out.println("categoryNo: "+categoryNo);
 		param.put("categoryNo", categoryNo);
 		param.put("today", today);
 		dao.setMeetingState(param);

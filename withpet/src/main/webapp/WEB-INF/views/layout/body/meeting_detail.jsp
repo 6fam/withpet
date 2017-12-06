@@ -130,14 +130,14 @@
 								</c:when>
 								
 								
+								<c:when test="${loginId==meetingDetailDTO.id}">
+									<input class="btn btn-danger" type="submit" value="모임 개설자입니다" style="width: 100%; margin-top: 15px; cursor: pointer" disabled="disabled">
+								</c:when>
 								<c:when test="${flag==true}">
 									<form id="addAttend" action="${pageContext.request.contextPath}/meetingAttend.do" onsubmit="return checkAttend()">
 										<input type="hidden" name="boardNo" value="${meetingDetailDTO.boardNo}">
 										<input class="btn btn-info" type="submit" value="모임 참여" style="width: 100%; margin-top: 15px; cursor: pointer">
 									</form>
-								</c:when>
-								<c:when test="${loginId==meetingDetailDTO.id}">
-									<input class="btn btn-danger" type="submit" value="모임 개설자입니다" style="width: 100%; margin-top: 15px; cursor: pointer" disabled="disabled">
 								</c:when>
 								<c:otherwise>
 									<form id="cancelAttend" action="#" onsubmit="return checkAttendCancel()">

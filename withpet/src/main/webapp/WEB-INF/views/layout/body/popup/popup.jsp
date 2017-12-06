@@ -15,6 +15,8 @@
 											<th>순번</th>
 											<th>참여자</th>
 											<th>연락처</th>
+											<th>아이디</th>
+											<th>관리</th>
 										</tr>
 									</thead>
 									<c:forEach items="${requestScope.atlist}" var="atl" varStatus="status">
@@ -23,7 +25,8 @@
 											<td>${status.count}</td>
 											<td>${atl.nick}</td>
 											<td>${atl.tel}</td>
-												
+											<td id="id">${atl.id}</td>
+											<td style="text-align: center;"><button type="button" class="except" value="${atl.id}">강퇴</button></td>
 										</tr>
 									</tbody>
 									</c:forEach>
@@ -33,3 +36,29 @@
 						<div class="col-sm-3"></div>
 					</div>
 </div>
+
+<script>
+	$(document).ready(function(){
+		
+		$(".row").on("click", ".except", function() {
+			var id = $(this).val();
+			//alert(id);
+			
+			if(confirm("제거하시겠습니까?")){
+				
+				//alert("클릭");
+				$.ajax({
+					type:"post",
+					url:"exceptAttend.do",
+					data:"id"+id,
+					success:function(data){
+						alert(data+"님 제거 완료");
+						$("#possibleCount").text(data);
+					}
+				}); //ajax
+				
+			}//if
+		});
+		
+	});
+</script>

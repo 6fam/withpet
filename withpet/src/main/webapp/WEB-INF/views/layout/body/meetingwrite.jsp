@@ -87,12 +87,18 @@
 							</td>
 							<td>
 								<div class="row" style="text-align: center">
-									<div class="col-sm-5">
+									<div class="col-sm-3">
 										<input type="text" class="form-control" id="meetingStart" name="meetingStart"style="font-size: 13px"> 
 									</div>
+									<div class="col-sm-2">
+										<input type="text" class="form-control" id="meetingStartTime" name="meetingStartTime"style="font-size: 13px"> 
+									</div>
 									<div class="col-sm-2" style="text-align: center; margin-top: 5px">~</div>
-									<div class="col-sm-5">
+									<div class="col-sm-3">
 										<input type="text" class="form-control" id="meetingEnd" name="meetingEnd" style="font-size: 13px">
+									</div>
+									<div class="col-sm-2">
+										<input type="text" class="form-control" id="meetingEndTime" name="meetingEndTime" style="font-size: 13px">
 									</div>
 								</div>
 							</td>

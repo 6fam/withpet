@@ -72,9 +72,8 @@
 									</a>
 							      </td>
 							    </tr>
-							    </tbody>
+							  </tbody>
 							</table>
-							
 						</div>
 					</div>
 					<div class="row" style="margin-left: 0px">

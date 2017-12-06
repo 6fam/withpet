@@ -16,8 +16,8 @@
 			<ul class="nav nav-tabs">
 				<li class="nav-item"><a class="nav-link" href="allmember.do">전체 회원</a></li>
 				<li class="nav-item"><a class="nav-link active" href="#">일반 회원</a></li>
-				<li class="nav-item"><a class="nav-link" href="dogmommy.do">견주</a></li>
 				<li class="nav-item"><a class="nav-link" href="yebimommy.do">견주 대기자</a></li>
+				<li class="nav-item"><a class="nav-link" href="dogmommy.do">견주</a></li>
 				<li class="nav-item"><a class="nav-link" href="exceptmember.do">탈퇴 회원</a></li>
 				<li class="nav-item"><a class="nav-link" href="manager.do">관리자</a></li>
 			</ul>
@@ -30,14 +30,15 @@
 							<table style="width: 100%">
 							  <thead>
 							    <tr>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">회원번호</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">이메일</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">닉네임</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 20%">연락처</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">번호</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">이메일</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">닉네임</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 20%">비밀번호질문</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 16%">비밀번호답</th>
 							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 12%">가입일자</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">공감내역</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">개설내역</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">참여내역</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">공감내역</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">개설내역</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">참여내역</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -48,7 +49,8 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">010-9966-1391</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">
 							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
@@ -67,12 +69,12 @@
 							      </td>
 							    </tr>
 							    <!-- for끝 -->
-							   	
 							   	<tr>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">010-9966-1391</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">
 							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
@@ -94,7 +96,8 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">010-9966-1391</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">
 							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
@@ -116,7 +119,8 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">010-9966-1391</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">
 							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
@@ -138,7 +142,8 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">010-9966-1391</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">
 							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
@@ -160,7 +165,8 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">java@gmail.com</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">010-9966-1391</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">당신의고향은?</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">벌교</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">
 							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
@@ -178,6 +184,7 @@
 									</a>
 							      </td>
 							    </tr>
+							   
 							    
 							    
 							    

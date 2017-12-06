@@ -16,8 +16,8 @@
 			<ul class="nav nav-tabs">
 				<li class="nav-item"><a class="nav-link" href="allmember.do">전체 회원</a></li>
 				<li class="nav-item"><a class="nav-link" href="normalmember.do">일반 회원</a></li>
-				<li class="nav-item"><a class="nav-link" href="dogmommy.do">견주</a></li>
 				<li class="nav-item"><a class="nav-link active" href="#">견주 대기자</a></li>
+				<li class="nav-item"><a class="nav-link" href="dogmommy.do">견주</a></li>
 				<li class="nav-item"><a class="nav-link" href="exceptmember.do">탈퇴 회원</a></li>
 				<li class="nav-item"><a class="nav-link" href="manager.do">관리자</a></li>
 			</ul>
@@ -28,14 +28,15 @@
 								<table style="width: 100%">
 								<thead>
 									<tr>
-									    <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">회원번호</th>
-									  	<th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">이메일</th>
-									    <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">닉네임</th>
+									    <th style="padding: .25rem; font-size: 14px; text-align: center; width: 4%">번호</th>
+									  	<th style="padding: .25rem; font-size: 14px; text-align: center; width: 14%">이메일</th>
+									    <th style="padding: .25rem; font-size: 14px; text-align: center; width: 14%">닉네임</th>
 									    <th style="padding: .25rem; font-size: 14px; text-align: center; width: 14%">댕댕이이름</th>
-									    <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">성별</th>
-								     	<th style="padding: .25rem; font-size: 14px; text-align: center; width: 13%">중성화여부</th>
+									    <th style="padding: .25rem; font-size: 14px; text-align: center; width: 4%">성별</th>
+									    <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">중성화여부</th>
+								     	<th style="padding: .25rem; font-size: 14px; text-align: center; width: 13%">댕댕이생일</th>
 									    <th style="padding: .25rem; font-size: 14px; text-align: center; width: 13%">댕댕이등록일</th>
-							     		 <th style="padding: .25rem; font-size: 14px; text-align: center; width: 14%">승인</th>
+							     		<th style="padding: .25rem; font-size: 14px; text-align: center; width: 14%">승인</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -47,6 +48,7 @@
 								      <td style="padding: .45rem; text-align: center; font-size: 12px">댕댕이</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px">남</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px">YES</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-10-23</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px">2017-12-05</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px">
 								      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">

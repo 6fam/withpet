@@ -16,8 +16,8 @@
 			<ul class="nav nav-tabs">
 				<li class="nav-item"><a class="nav-link active" href="#">전체 회원</a></li>
 				<li class="nav-item"><a class="nav-link" href="normalmember.do">일반 회원</a></li>
-				<li class="nav-item"><a class="nav-link" href="dogmommy.do">견주</a></li>
 				<li class="nav-item"><a class="nav-link" href="yebimommy.do">견주 대기자</a></li>
+				<li class="nav-item"><a class="nav-link" href="dogmommy.do">견주</a></li>
 				<li class="nav-item"><a class="nav-link" href="exceptmember.do">탈퇴 회원</a></li>
 				<li class="nav-item"><a class="nav-link" href="manager.do">관리자</a></li>
 			</ul>
@@ -31,10 +31,10 @@
 							<table style="width: 100%">
 							  <thead>
 							    <tr>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">회원번호</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 8%">번호</th>
 							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">이메일</th>
 							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">닉네임</th>
-							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 20%">비밀번호답</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 20%">연락처</th>
 							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">포인트</th>
 							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 12%">가입일자</th>
 							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">회원등급</th>
@@ -46,7 +46,7 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">java@gmail.com</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">비밀번호알려줘</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">010-9966-1391</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1000원</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">2017-12-05</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">

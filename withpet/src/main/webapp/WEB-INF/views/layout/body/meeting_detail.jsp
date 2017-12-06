@@ -101,14 +101,14 @@
 					</c:if>
 					</div>
 			</div>
-			<div class="row" style="margin-top: 10px">
+			<div class="row" style="margin-top: 10px; height: 120px">
 				<div class="col-sm-12">
 					<font style="font-size: 14px">
 						${meetingDetailDTO.content}
 					</font>
 				</div>
 			</div>
-			<div class="row" style="margin-top: 55px; border: solid 1px #cecece; height: 150px">
+			<div class="row" style="margin-top: 40px; border: solid 1px #cecece; height: 150px">
 				<div class="col-sm-12" style="margin-top: 15px; margin-left: 5px">
 					<b>신청기간</b> <font style="font-size: 12px">&nbsp;&nbsp;${meetingDetailDTO.date.gatheringStart}~${meetingDetailDTO.date.gatheringEnd}</font>
 					<hr style="margin-bottom:0px">

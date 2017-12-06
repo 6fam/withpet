@@ -14,76 +14,10 @@
 				<!-- 모임 버튼 -->
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 				  <div class="btn-group show" role="group">
-				   	<a href="#"  id="btnGroupDrop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
-					style="text-decoration:none ;color:black ;display:inline-block; height: 30px; font-size: 18px; margin-top: 2px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
+				   	<a href="meeting.do?categoryNo=20"  id="btnGroupDrop2"
+						style="text-decoration:none ;color:black ;display:inline-block; height: 30px; font-size: 18px; margin-top: 2px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 						모임
 					</a>				
-					<div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="padding-top: 0px; padding-bottom: 0px; width: 400px; border: 1px solid #757575">
-						<div class="row" style="margin-left: 0px; margin-right: 0px">
-							<div
-								style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 90px">
-								<font style="font-size: 12px"><b>카테고리</b></font>
-							</div>
-							<div
-								style="float: right; width: 248px; padding-left: 20px; padding-top: 10px">
-								<div class="row" style="margin-left: 0px; margin-right: 0px">
-									<div class="col-sm-5">
-										<font style="font-size: 12px"> <a href="meeting.do?categoryNo=20">친목</a></font>
-									</div>
-									<div class="col-sm-6">
-										<font style="font-size: 12px"><a href="meeting.do?categoryNo=21">산책</a></font>
-									</div>
-								</div>
-								<div class="row" style="margin-left: 0px; margin-right: 0px">
-									<div class="col-sm-5">
-										<font style="font-size: 12px"><a href="meeting.do?categoryNo=22">훈련</a></font>
-									</div>
-									<div class="col-sm-6">
-										<font style="font-size: 12px"><a href="meeting.do?categoryNo=23">교육</a></font>
-									</div>
-								</div>
-								<div class="row" style="margin-left: 0px; margin-right: 0px">
-									<div class="col-sm-5">
-										<font style="font-size: 12px"><a href="meeting.do?categoryNo=24">세미나</a></font>
-									</div>
-									<div class="col-sm-6">
-										<font style="font-size: 12px"><a href="meeting.do?categoryNo=25">#</a></font>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row" style="margin-left: 0px; margin-right: 0px; border-top: 1px solid #cecece">
-							<div style="float: left; padding-left: 20px; padding-right: 20px; padding-top: 10px; border-right: 1px solid #cecece; width: 100px; height: 100px">
-								<font style="font-size: 12px"><b>일정/시간</b></font>
-							</div>
-							<div style="float: right; width: 248px; padding-left: 20px; padding-top: 10px">
-								<div class="row" style="margin-left: 0px; margin-right: 0px">
-									<div class="col-sm-5">
-										<font style="font-size: 12px">오전</font>
-									</div>
-									<div class="col-sm-6">
-										<font style="font-size: 12px">새벽</font>
-									</div>
-								</div>
-								<div class="row" style="margin-left: 0px; margin-right: 0px">
-									<div class="col-sm-5">
-										<font style="font-size: 12px">오후</font>
-									</div>
-									<div class="col-sm-6">
-										<font style="font-size: 12px">주말</font>
-									</div>
-								</div>
-								<div class="row" style="margin-left: 0px; margin-right: 0px">
-									<div class="col-sm-5">
-										<font style="font-size: 12px">저녁</font>
-									</div>
-									<div class="col-sm-6">
-										<font style="font-size: 12px">주중</font>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				  </div>
 				</div>
 				

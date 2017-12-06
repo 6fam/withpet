@@ -45,6 +45,7 @@
 					<div class="row" style="padding-top: 20px; padding-bottom: 20px">
 						<div class="col-sm-12">
 							<h2>돌보미</h2>
+							
 							<!-- 전체 커뮤니티 관리 -->
 							<table style="width: 100%">
 							  <thead>

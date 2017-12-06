@@ -179,5 +179,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 <!-- 커뮤니디 (카테고리 가져오기) -->	
+	<select id="">
+	
+	</select>
 </mapper>
  

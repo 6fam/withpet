@@ -3,8 +3,8 @@ package com.sixfam.withpet.model.dao;
 import java.util.List;
 
 import com.sixfam.withpet.model.PagingBean;
-import com.sixfam.withpet.model.dto.BoardDTO;
 import com.sixfam.withpet.model.dto.DonationDTO;
+import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 
 public interface AdminDAO {
@@ -51,7 +51,7 @@ public interface AdminDAO {
 	/**
 	 * 전체 모임 리스트
 	 */
-	public List<BoardDTO> getAllMeetingList(PagingBean pagingBean);
+	public List<MeetingDTO> getAllMeetingList(PagingBean pagingBean);
 	
 	
 
@@ -72,10 +72,17 @@ public interface AdminDAO {
 
 
 	
-	////모금함
+	/**
+	 * 모금함 리스트
+	 */
 	public List<DonationDTO> getAllDonationList(PagingBean pagingBean);
 	
-	public List<DonationDTO> getApplyDonationList(PagingBean pagingBean);
+	/**
+	 * 모금함 리스트(모집 상태별)
+	 */
+	
+	public List<DonationDTO> getDonationListPerState (PagingBean pagingBean,int categoryNo);
+	
 	
 	public void setAcceptDonation(int boardNo);
 	/**

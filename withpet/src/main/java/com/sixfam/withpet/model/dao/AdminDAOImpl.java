@@ -1,5 +1,6 @@
 package com.sixfam.withpet.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,8 +9,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.sixfam.withpet.model.PagingBean;
-import com.sixfam.withpet.model.dto.BoardDTO;
 import com.sixfam.withpet.model.dto.DonationDTO;
+import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 
 @Repository
@@ -29,9 +30,7 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	@Override
 	public List<MemberDTO> getAllRoleStandby(PagingBean pagingBean) {
-		List<MemberDTO> list =template.selectList("admin.allRoleStandby",pagingBean);
-		System.out.println(list);
-		return  list;
+		return template.selectList("admin.allRoleStandby",pagingBean);
 	}
 	
 	@Override
@@ -62,11 +61,23 @@ public class AdminDAOImpl implements AdminDAO {
 		return template.selectOne("admin.boardCountPerCategory",categoryNo);
 	}
 	@Override
-	public List<BoardDTO> getAllMeetingList(PagingBean pagingBean) {
+	public List<MeetingDTO> getAllMeetingList(PagingBean pagingBean) {
 		return template.selectList("admin.allMeetingList",pagingBean);
 	}
 
-
+	@Override
+	public List<DonationDTO> getAllDonationList(PagingBean pagingBean){
+		return  template.selectList("admin.allDonationList",pagingBean);
+	}
+	
+	@Override
+	public List<DonationDTO> getDonationListPerState(PagingBean pagingBean,int categoryNo) {
+		HashMap<String, Object> param=new HashMap<String, Object>();
+		param.put("categoryNo", categoryNo);
+		param.put("startRowNumber", pagingBean.getStartRowNumber());
+		param.put("endRowNumber", pagingBean.getEndRowNumber());
+		return template.selectList("admin.donationListPerState",param);
+	}
 
 
 
@@ -113,17 +124,6 @@ public class AdminDAOImpl implements AdminDAO {
 		return template.selectList("admin.allTierList");
 	}
 	
-	@Override
-	public List<DonationDTO> getAllDonationList(PagingBean pagingBean){
-		List<DonationDTO> list= template.selectList("admin.allDonationList");
-		return list;
-	}
-	
-	@Override
-	public List<DonationDTO> getApplyDonationList(PagingBean pagingBean){
-		List<DonationDTO> list= template.selectList("admin.applyDonationList");
-		return list;
-	}
 	
 	@Override
 	public void setAcceptDonation(int boardNo) {
@@ -133,5 +133,6 @@ public class AdminDAOImpl implements AdminDAO {
 	public void setDogmomPermitDate(MemberDTO memberDTO) {
 		template.update("admin.dogmomPermitDate",memberDTO);
 	}
+
 
 }

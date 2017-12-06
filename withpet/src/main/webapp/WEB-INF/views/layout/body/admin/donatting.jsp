@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<sec:authorize access="!hasRole('ROLE_MANAGER')">
+	<script type="text/javascript">
+		alert("로그인 하세요!");
+		location.href = "${pageContext.request.contextPath}/loginForm.do";
+	</script>
+</sec:authorize>
 <div class="container" style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
 	<div class="row page-header" style="margin-top: 20px">
 		<div class="col-sm-12">
@@ -41,21 +49,23 @@
 							    </tr>
 							  </thead>
 							  <tbody>
+							  <c:forEach items="${dolist.list}" var="dl">
 							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
+    							  <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.boardNo}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.categoryName}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.title}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.id}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.currentMoney}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.dreamMoney}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">모금참여자</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.wdate}</td>
+						      	  <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
 							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
 										마감
 									</a>
 							      </td>
 							    </tr>
+							    </c:forEach>
 							    </tbody>
 							</table>
 							<!-- 전체회원관리 끝 -->

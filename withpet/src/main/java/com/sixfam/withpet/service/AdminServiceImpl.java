@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sixfam.withpet.common.WithPet;
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dao.AdminDAO;
-import com.sixfam.withpet.model.dto.BoardDTO;
 import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.ListDTO;
+import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 
 @Service
@@ -47,7 +47,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	@Transactional
-	public ListDTO<MemberDTO> getAllRoleStandby(int pageNo) {
+	public ListDTO<MemberDTO> getAllRoleStandbyList(int pageNo) {
 		int categoryNo=11;
 		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
@@ -72,8 +72,32 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
+	public ListDTO<MemberDTO> getAllRoleExceptList(int pageNo) {
+		int categoryNo=9;
+		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
+		PagingBean pagingBean=null;
+		if(pageNo==1)
+			pagingBean=new PagingBean(5,4,totalCount);
+		else
+			pagingBean=new PagingBean(pageNo, 5, 4, totalCount);
+		return new ListDTO<MemberDTO>(adminDAO.getAllRoleExceptList(pagingBean), pagingBean);
+	}
+
+	@Override
+	public ListDTO<MemberDTO> getAllRoleManager(int pageNo) {
+		int categoryNo=13;
+		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
+		PagingBean pagingBean=null;
+		if(pageNo==1)
+			pagingBean=new PagingBean(5,4,totalCount);
+		else
+			pagingBean=new PagingBean(pageNo, 5, 4, totalCount);
+		return new ListDTO<MemberDTO>(adminDAO.getAllRoleManagerList(pagingBean), pagingBean);
+	}
+
+	@Override
 	@Transactional
-	public ListDTO<BoardDTO> getAllMeetingList(int pageNo){
+	public ListDTO<MeetingDTO> getAllMeetingList(int pageNo){
 		int categoryNo=17;
 		int totalCount=adminDAO.getBoardCountPerCategory(categoryNo);
 		PagingBean pagingBean=null;
@@ -81,7 +105,7 @@ public class AdminServiceImpl implements AdminService {
 			pagingBean=new PagingBean(10,4,totalCount);
 		else
 			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
-		return new ListDTO<BoardDTO>(adminDAO.getAllMeetingList(pagingBean), pagingBean);
+		return new ListDTO<MeetingDTO>(adminDAO.getAllMeetingList(pagingBean), pagingBean);
 	}
 
 
@@ -147,13 +171,13 @@ public class AdminServiceImpl implements AdminService {
 		return totalTierList;
 	}
 
-	@Override
+/*	@Override
 	@Transactional
 	public void removeManagerMember(MemberDTO memberDTO) {
 			adminDAO.removeMemberTier(memberDTO);
 			adminDAO.registerTierExcept(memberDTO);
 	}
-
+*/
 	@Override
 	@Transactional
 	public void removeManagerDogmom(MemberDTO memberDTO) {
@@ -172,30 +196,28 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	@Transactional
-	public ListDTO<DonationDTO> getAllDonationList() {
+	public ListDTO<DonationDTO> getAllDonationList(int pageNo) {
 		int totalCount=10;
-		int pageNo=1;
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(2,4,totalCount);
+			pagingBean=new PagingBean(10,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
-		ListDTO<DonationDTO> list=new ListDTO<DonationDTO>(adminDAO.getAllDonationList(pagingBean), pagingBean);
-		return list;
+			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
+		return new ListDTO<DonationDTO>(adminDAO.getAllDonationList(pagingBean), pagingBean);
 	}
+	
 	@Override
-	@Transactional
-	public ListDTO<DonationDTO> getApplyDonationList() {
+	public ListDTO<DonationDTO> getDonationListPerState(int pageNo,int categoryNo) {
 		int totalCount=10;
-		int pageNo=1;
 		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(2,4,totalCount);
 		else
 			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
-		ListDTO<DonationDTO> list=new ListDTO<DonationDTO>(adminDAO.getApplyDonationList(pagingBean), pagingBean);
-		return list;
+		return new ListDTO<DonationDTO>(adminDAO.getDonationListPerState(pagingBean,categoryNo), pagingBean);
 	}
+	
+
 
 	@Override
 	@Transactional
@@ -203,5 +225,5 @@ public class AdminServiceImpl implements AdminService {
 		adminDAO.setAcceptDonation(boardNo);
 	}
 
-	
+
 }

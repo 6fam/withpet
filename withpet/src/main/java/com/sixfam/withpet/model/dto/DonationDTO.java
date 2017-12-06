@@ -1,5 +1,7 @@
 package com.sixfam.withpet.model.dto;
 
+import java.util.List;
+
 /**
  * @테이블정보
  * @테이블명
@@ -69,6 +71,21 @@ public class DonationDTO extends BoardDTO{
 	public DonationDTO(int thumnailNo, String donationOrg, String bankName, String accountNo, String accountHost,
 			int currentMoney, int dreamMoney, int donationFlag, int donationStateNo) {
 		super();
+		this.thumnailNo = thumnailNo;
+		this.donationOrg = donationOrg;
+		this.bankName = bankName;
+		this.accountNo = accountNo;
+		this.accountHost = accountHost;
+		this.currentMoney = currentMoney;
+		this.dreamMoney = dreamMoney;
+		this.donationFlag = donationFlag;
+		this.donationStateNo = donationStateNo;
+	}
+	
+	public DonationDTO(int boardNo, String id, String title, String content, int hits, String wdate, int categoryNo,List<ReplyDTO> replyList,
+			int thumnailNo, String donationOrg, String bankName, String accountNo, String accountHost,
+			int currentMoney, int dreamMoney, int donationFlag, int donationStateNo) {
+		super(boardNo, id, title, content, hits, wdate, categoryNo, replyList);
 		this.thumnailNo = thumnailNo;
 		this.donationOrg = donationOrg;
 		this.bankName = bankName;

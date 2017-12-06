@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<sec:authorize access="!hasRole('ROLE_MANAGER')">
+	<script type="text/javascript">
+		alert("로그인 하세요!");
+		location.href = "${pageContext.request.contextPath}/loginForm.do";
+	</script>
+</sec:authorize>
 <div class="container" style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
 	<div class="row page-header" style="margin-top: 20px">
 		<div class="col-sm-12">
@@ -41,14 +49,16 @@
 							  <tbody>
 							  
 							  	<!-- for -->
+							  	<c:forEach items="${excepterlist.list}" var="el">
 							    <tr>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">java@gmail.com</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">포기란배승찬셀때나하는소리</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">010-9966-1391</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">0</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">2017-12-05</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${el.id}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${el.nick}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${el.tel}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${el.money}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${el.regdate}</td>
 							    </tr>
+							  	</c:forEach>
 							    </tbody>
 							</table>
 							

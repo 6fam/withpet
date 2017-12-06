@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<sec:authorize access="!hasRole('ROLE_MANAGER')">
+	<script type="text/javascript">
+		alert("로그인 하세요!");
+		location.href = "${pageContext.request.contextPath}/loginForm.do";
+	</script>
+</sec:authorize>
 <div class="container" style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
 	<div class="row page-header" style="margin-top: 20px">
 		<div class="col-sm-12">
@@ -24,6 +33,8 @@
 						
 						
 							<!-- 전체모임관리 -->
+							<form action="${pageContext.request.contextPath}/managerDeleteMeeting.do" method="post">
+							<sec:csrfInput/>
 							<table style="width: 100%">
 							  <thead>
 							    <tr>
@@ -39,23 +50,27 @@
 							    </tr>
 							  </thead>
 							  <tbody>
+							  <c:forEach items="${meetinglist.list}" var="ml">
 							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">Column</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.boardNo}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.categoryName}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.title}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.id}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.peopleCount}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.place}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.hits}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.wdate}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
+							      	<button class="btn btn-default"  style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer; background-color: white"
+							      	type="submit" name="boardNo" value="${ml.boardNo}">
 										폐쇄
-									</a>
+									</button>
 							      </td>
 							    </tr>
+							  </c:forEach>
 							    </tbody>
 							</table>
+							</form>
 							<!-- 전체회원관리 끝 -->
 							
 						</div>

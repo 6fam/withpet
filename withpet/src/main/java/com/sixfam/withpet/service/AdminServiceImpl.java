@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sixfam.withpet.common.WithPet;
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dao.AdminDAO;
+import com.sixfam.withpet.model.dto.BoardDTO;
 import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.ListDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
@@ -217,13 +218,37 @@ public class AdminServiceImpl implements AdminService {
 		return new ListDTO<DonationDTO>(adminDAO.getDonationListPerState(pagingBean,categoryNo), pagingBean);
 	}
 	
-
+	
 
 	@Override
 	@Transactional
 	public void setAcceptDonation(int boardNo) {
 		adminDAO.setAcceptDonation(boardNo);
 	}
+
+	@Override
+	public ListDTO<BoardDTO> getAllCommunityList(int pageNo) {
+		int totalCount=10;
+		PagingBean pagingBean=null;
+		if(pageNo==1)
+			pagingBean=new PagingBean(10,4,totalCount);
+		else
+			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
+		return new ListDTO<BoardDTO>(adminDAO.getAllCommunityList(pagingBean), pagingBean);
+	}
+
+	@Override
+	public void registerAddCommunityType(String categoryName) {
+		adminDAO.registerAddCommunityType(categoryName);
+	}
+
+	@Override
+	public void removeCommunityType(int categoryNo) {
+		adminDAO.removeCommunityTypeBoard(categoryNo);
+		adminDAO.removeCommunityType(categoryNo);
+	}
+
+
 
 
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <sec:authorize access="!hasRole('ROLE_MEMBER')">
 	<script>
 		alert("로그인 하세요!");
@@ -20,7 +20,7 @@
 	</div>
 	
 	<!-- form 시작> -->
-	<form action="communityWrite.do" id="frame" method="post" enctype="multipart/form-data">
+	<form action="${pageContext.request.contextPath}/communityWrite.do" id="frame" method="post" enctype="multipart/form-data">
 	<sec:csrfInput/>
 	<div class="row">
 		<div class="col-sm-2"></div>

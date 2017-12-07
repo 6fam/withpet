@@ -9,34 +9,19 @@
 	<div class="row">
 		<div style="margin-top:5px;" class="col-sm-1"></div>
 		<div class="col-sm-11" style="text-align:left">
-			<a href="community.do?categoryNo=31" style="font-size: 14px;color:white">나눔마켓</a>
+			<c:forEach items="${categoryType}" var="ct">
+			<a href="community.do?categoryNo=${ct.categoryNo}&categoryName=${ct.categoryName}" style="font-size: 14px;color:white">${ct.categoryName}</a>
 			<font style="font-size: 12px">|</font>
-			<a href="community.do?categoryNo=34" style="font-size: 14px;color:white">돌보미</a>
-			<font style="font-size: 12px">|</font>
-			<a href="community.do?categoryNo=33" style="font-size: 14px;color:white">반려견정보</a>
-			<font style="font-size: 12px">|</font>
-			<a href="community.do?categoryNo=32" style="font-size: 14px;color:white">모임후기</a>
+			</c:forEach>
 		</div>
 	</div>
 </div>
 
 <div class="container" style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
-	<!-- <div class="row" style="padding-bottom: 20px; margin-top: 20px">
-		<div class="col-sm-12">
-			<a href="community.do?categoryNo=31" style="font-size: 13px">나눔마켓</a>
-			<font style="font-size: 12px">|</font>
-			<a href="community.do?categoryNo=34" style="font-size: 13px">돌보미</a>
-			<font style="font-size: 12px">|</font>
-			<a href="community.do?categoryNo=33" style="font-size: 13px">반려견정보</a>
-			<font style="font-size: 12px">|</font>
-			<a href="community.do?categoryNo=32" style="font-size: 13px">모임후기</a>
-		</div>
-	</div> -->
-	
 	<div class="row page-header">
 		<div class="col-sm-12">
 			<h1 id="navbars">
-				<font style="font-size: 35px">나눔마켓</font>
+				<font style="font-size: 35px">${cn}</font>
 				<a href="communityWriteView.do" class="btn btn-outline-danger"
 					style="width: 100px; height: 25px; font-size: 12px; margin-left: 10px; margin-top: 14px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				글쓰기
@@ -59,7 +44,7 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <c:forEach items="${cmulist}" var="cl">
+			  <c:forEach items="${cmulist.list}" var="cl">
 			    <tr>
 			      <td style="padding: .45rem">${cl.boardNo}</td>
 			      <td style="padding: .45rem">${cl.categoryName}</td>

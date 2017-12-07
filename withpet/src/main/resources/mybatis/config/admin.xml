@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM (select id, nick,tel, to_char(regdate, 'yyyy-mm-dd') as regdate, pw_answer, category_no, 
 		row_number() over(order by regdate desc) as rnum from member) r, 
 		category c, (SELECT MAX(category_no) as category_no, id FROM TIER GROUP BY id) t
-		WHERE t.category_no=10 and t.id=r.id and c.category_no=r.category_no and r.rnum between 1 and 3
+		WHERE t.category_no between 10 and 12 and t.id=r.id and c.category_no=r.category_no and r.rnum between 1 and 10
 		order by rnum asc
    </select>
    
@@ -155,7 +155,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <!-- 모금함 관리 -->	
 	<select id="allDonationList" resultType="donationDTO" parameterType="pagingBean">
-	SELECT b.board_no as boardNo, b.id,b.title, b.content,b.hits,b.wdate,d.category_no as categoryNo,d.donation_org as donationOrg,d.bank_name as bankName,d.account_no as accountNo, d.account_host as accountHost,d.final_money as finalMoney, d.donation_flag as donationFlag,d.category_name as categoryName,d.img
+		SELECT b.board_no as boardNo, b.id,b.title, b.content,b.hits,b.wdate,d.category_no as categoryNo,d.donation_org as donationOrg,d.bank_name as bankName,d.account_no as accountNo, d.account_host as accountHost,d.final_money as finalMoney, d.donation_flag as donationFlag,d.category_name as categoryName,d.img
 		FROM(SELECT row_number() over(order by dd.board_no desc) as rnum,dd.board_no, dd.donation_org, dd.bank_name,dd.account_no,dd.account_host,dd.final_money,dd.donation_flag,dd.category_no,dd.category_name,i.img
 		FROM(SELECT ddd.board_no, ddd.donation_org, ddd.bank_name,ddd.account_no,ddd.account_host,ddd.final_money,ddd.donation_flag,ddd.category_no,ccc.category_name FROM donation ddd,category ccc WHERE ddd.category_no=ccc.category_no) dd,
 		(SELECT board_no,LISTAGG(img_path,',') WITHIN GROUP (ORDER BY board_no) as img FROM boardimg GROUP BY board_no) i
@@ -178,9 +178,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE DONATION SET category_no='29' WHERE board_no=#{value}
 	</update>
 
-<!-- 커뮤니디 (카테고리 가져오기) -->	
-	<select id="">
-	
+
+<!-- 커뮤니티 (전체) -->
+	<select id="allCommunityList" resultType="boardDTO" parameterType="pagingBean">
+		SELECT cb.board_no as boardNo,cb.id,cb.title,cb.content,cb.hits,cb.wdate,cb.category_no as categoryNo,cb.category_name as categoryName
+		FROM (SELECT  row_number() over(order by b.board_no desc) as rnum,b.board_no,b.id,b.title,b.content,b.hits,b.wdate,c.category_no,c.category_name
+		FROM (select * from board) b, (select * from category where table_code='8') c
+		WHERE b.category_no=c.category_no) cb, board pb
+		WHERE cb.board_no=pb.board_no and rnum  between #{startRowNumber} and #{endRowNumber} order by cb.wdate desc
 	</select>
+	
+<!-- 커뮤니티 타입 등록 -->
+	<insert id="addCommunityType" parameterType="string">
+		INSERT INTO category(category_no,table_code,category_name) VALUES(category_seq.nextval,8,#{value})
+	</insert>
+<!-- 커뮤니티 타입 삭제 -->
+	<delete id="removeCommunityType" parameterType="int">
+		DELETE FROM category WHERE category_no=#{value}
+	</delete>
+<!-- 커뮤니티 타입에 있는 게시글 삭제-->
+	<delete id="removeCommunityTypeBoard" parameterType="int">
+		DELETE FROM board WHERE category_no=#{value}
+	</delete>
 </mapper>
  

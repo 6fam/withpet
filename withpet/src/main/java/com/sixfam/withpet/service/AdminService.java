@@ -2,6 +2,7 @@ package com.sixfam.withpet.service;
 
 import java.util.List;
 
+import com.sixfam.withpet.model.dto.BoardDTO;
 import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.ListDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
@@ -70,7 +71,12 @@ public interface AdminService {
 	 * 모금함 관리 (모금함 상태별)
 	 */
 	public ListDTO<DonationDTO> getDonationListPerState (int pageNo, int categoryNo);
-
+	
+	/**
+	 * 커뮤니티 (전체)
+	 */
+	public ListDTO<BoardDTO> getAllCommunityList(int pageNo);
+	
 	/**
 	 * 회원 회원 등급 변경
 	 */
@@ -80,5 +86,14 @@ public interface AdminService {
 	
 	
 	public void setAcceptDonation(int boardNo);
+
+	/**
+	 * 커뮤니티 (타입 추가)
+	 */
+	public void registerAddCommunityType(String categoryName);
+	/**
+	 *커뮤니티 (타입삭제) 
+	 */
+	public void removeCommunityType(int categoryNo);
 
 }

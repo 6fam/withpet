@@ -1,5 +1,6 @@
 package com.sixfam.withpet.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,6 +8,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dto.BoardDTO;
 
 @Repository
@@ -21,8 +23,12 @@ public class CommunityDAOImpl implements CommunityDAO {
 	}
 
 	@Override
-	public List<BoardDTO> getCommunityListPerCategory(int categoryNo) {
-		return template.selectList("community.communityListPerCategory",categoryNo);
+	public List<BoardDTO> getCommunityListPerCategory(PagingBean pagingBean,int categoryNo) {
+		HashMap<String, Object> param=new HashMap<String, Object>();
+		param.put("categoryNo", categoryNo);
+		param.put("startRowNumber", pagingBean.getStartRowNumber());
+		param.put("endRowNumber", pagingBean.getEndRowNumber());
+		return template.selectList("community.communityListPerCategory",param);
 	}
 	
 	@Override
@@ -44,7 +50,6 @@ public class CommunityDAOImpl implements CommunityDAO {
 
 	@Override
 	public void updateCommunityInfo(BoardDTO boardDTO) {
-		System.out.println(boardDTO);
 		template.update("community.updateCommunityInfo",boardDTO);
 	}
 }

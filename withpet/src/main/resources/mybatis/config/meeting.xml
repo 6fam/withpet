@@ -250,6 +250,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <delete id="removeAttendByFounder" parameterType="hashmap">
 	 	delete from attender where id=#{id} and board_no=#{boardNo}
 	 </delete>
+	 
+	 <select id="getLikeById" parameterType="string" resultType="likeDTO">
+	 	select id, board_no as boardNo from sympathy where id = #{value}
+	 </select>
 </mapper>
  
  

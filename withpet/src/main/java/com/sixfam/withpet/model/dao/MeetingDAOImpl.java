@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.sixfam.withpet.model.PagingBean;
+import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.model.dto.ReplyDTO;
@@ -194,6 +195,11 @@ public class MeetingDAOImpl implements MeetingDAO {
 		param.put("id", id);
 		param.put("boardNo", boardNo);
 		template.delete("meeting.removeAttendByFounder", param);
+	}
+
+	@Override
+	public List<LikeDTO> getLikeById(String id) {
+		return template.selectList("meeting.getLikeById", id);
 	}
 	
 }

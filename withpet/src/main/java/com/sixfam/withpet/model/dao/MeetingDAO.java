@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.sixfam.withpet.model.PagingBean;
+import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.model.dto.ReplyDTO;
@@ -49,6 +50,8 @@ public interface MeetingDAO{
 	public int getMeetingCount();
 	
 	public int getReplyCount(int boardNo);
+	
+	public List<LikeDTO> getLikeById(String id);
 	
 	public void removeAttenderByBoardNo(int boardNo);
 

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dao.MeetingDAO;
+import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.model.dto.ReplyDTO;
@@ -160,5 +161,10 @@ public class MeetingServiceImpl implements MeetingService{
 	@Override
 	public void removeAttendByFounder(String id, int boardNo) {
 		dao.removeAttendByFounder(id, boardNo);
+	}
+
+	@Override
+	public List<LikeDTO> getLikeById(String id) {
+		return dao.getLikeById(id);
 	}
 }

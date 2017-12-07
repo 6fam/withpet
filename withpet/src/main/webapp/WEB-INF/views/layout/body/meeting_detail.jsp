@@ -209,7 +209,7 @@
 	</div>
 	
 	<form name="replyForm" class="replyForm" method="post" id="replyForm">
-		<div class="row" style="margin-top:0px;">
+		<div class="row" style="margin-top:0px;margin-bottom:35px">
 			<div class="col-sm-12" style="margin: 0px; padding-left: 150px; padding-right: 130px">
 				<div class="row">
 					<div class="col-sm-10">
@@ -225,38 +225,40 @@
 		</div>
 	</form>	
 	
-	<div class="row" style="margin-top:20px;">
-		<table id="listReply">
-		
-		
-		</table>
-		<div class="col-sm-1" style="margin-top: 5px"></div>
-	</div>
-	
-	<%-- <div class="row" style="margin-top: 15px; border-bottom: solid 1px #cecece; padding-bottom: 10px">
-		<div class="col-sm-1"></div>
-		<div class="col-sm-12">
-			<div class="col-sm-1">
-				<img src="resources/img/dog_profile2.png" style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px">
-			</div>	
-			<div class="col-sm-11">
+		<div id="listReply" class="row" style="margin-top: 15px; padding-bottom: 10px">
+			<div class="col-sm-12">
+				<!-- 11 -->
 				<div class="row">
-					<div class="col-sm-12" style="margin-top: -5px">
-						<font style="font-size: 20px"><b>${reply.id}</b></font>
-						<font style="font-size: 12px; margin-left: 5px; color: #919191">${reply.regDate}</font>
-						<sec:authentication property="principal.id" var="sessionId"/>
-						<c:if test="${reply.id == sessionId}">
-							<img src="resources/img/trash.png" style="height: 10px; width: 10px; margin-top: 5px">
-						</c:if>
+					<div class='col-sm-2'></div>
+					<div class='col-sm-10' style='margin-left:-40px; padding-left:0px;border-bottom: solid 1px #cecece; padding-bottom:10px; margin-bottom: 10px'>
+						<div class='row'>
+								<div class='col-sm-1'>
+									<img src='resources/img/dog_profile2.png' style='height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px'>
+								</div>
+								<div class='col-sm-11'>
+									<div class='row'>
+									<div class='col-sm-12' style='margin-top: 0px'>
+										<font style='font-size: 20px'><b>123</b></font>
+										<font style='font-size: 12px; margin-left: 5px; color: #919191'>123</font>
+										<img src='resources/img/trash.png' style='height: 10px; width: 10px; margin-top: 5px'>
+									</div>
+								</div>
+								<div class='row'>
+									<div class='col-sm-12' style='font-size: 14px'>123</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-12" style="font-size: 14px">${reply.content}</div>
-				</div>
+				
+				
+				
+				
+				
 			</div>
 		</div>
-		<div class="col-sm-1"></div>		
-	</div> --%>
+		<div class="col-sm-1" style="margin-top: 5px"></div>
+	
 	
 	<div class="row" style="margin-top:100px;">
 		<div class="col-sm-1"></div>
@@ -430,20 +432,47 @@
 					url : "${pageContext.request.contextPath}/listJson.do",
 					data : "boardNo="+ boardNo+"&boardId="+idd,
 					success:function(result) {
-						var output = "<table>";
+						
+						var output = "";
 						for ( var i in result) {
-							output += "<tr>";
-							output += "<td><img src='${pageContext.request.contextPath }/resources/upload/"+result[i].imgPath+"' style='width: 45px; height: 45px'> </td>'";
+							/* output += "<td><img src='${pageContext.request.contextPath }/resources/upload/"+result[i].imgPath+"' style='width: 45px; height: 45px'> </td>'";
 							output += "<td ><b>" + result[i].nick + "님 </b><br>" + result[i].content + "</td>";
 							output += "<td > " + result[i].regDate + "<br></td>";
 							 if(result[i].flag==true){
 								output += "<td><a class='replyDelete' value="+result[i].replyNo+">";
 								output += "<img src='resources/img/trash.png' style='width: 15px; height: 15px'></a></td>";
 							}
-							output += "</tr>"; 
+							output += "</tr>";  */
+							
+							output += "<div class='row'>";
+							output += "<div class='col-sm-2'></div>";
+							output += "<div class='col-sm-8' style='margin-left:-40px; padding-left:0px;border-bottom: solid 1px #cecece; padding-bottom:10px; margin-bottom: 10px'>";
+							output += "<div class='row'>";
+							output += "<div class='col-sm-1'>";
+							output += "<img src='resources/img/dog_profile2.png' style='height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px'>";
+							output += "</div>";
+							output += "<div class='col-sm-11'>";
+							output += "<div class='row'>";
+							output += "<div class='col-sm-12' style='margin-top: 0px'>";
+							output += "<font style='font-size: 20px'><b>"+result[i].nick+"</b></font>";
+							output += "<font style='font-size: 12px; margin-left: 5px; color: #919191'>"+result[i].regDate+"님</font>";
+							if(result[i].flag==true){
+								output += "<a class='replyDelete' value='"+result[i].replyNo+"'>";
+								output += "<img src='resources/img/trash.png' style='height: 10px; width: 10px; margin-top: 5px;margin-left:5px; cursor:pointer'></a>";
+							}
+							output += "</div>";
+							output += "</div>";
+							output += "<div class='row'>";
+							output += "<div class='col-sm-12' style='font-size: 14px'>"+result[i].content+"</div>";
+							output += "</div>";
+							output += "</div>";
+							output += "</div>";
+							output += "</div>";
+							output += "</div>";
 					 	}
-						output += "</table>";
-						$("#listReply").html(output);
+						
+						$("#listReply .col-sm-12").html(output);
+						
 					} //success
 				}); //ajax 
 			} //listReply
@@ -457,8 +486,7 @@
 						url:"deleteReply.do",
 						data: "replyNo="+replyNo,
 						beforeSend : function(xhr) {
-							xhr.setRequestHeader(
-								"${_csrf.headerName}","${_csrf.token}");
+							xhr.setRequestHeader("${_csrf.headerName}","${_csrf.token}");
 						},
 						success: function(data){
 							listReply();

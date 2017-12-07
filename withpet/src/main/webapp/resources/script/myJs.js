@@ -37,6 +37,8 @@ $(document).ready(function (){
 	});
 });
 
+
+
 /**
  * 회원가입 중복체크
  */
@@ -308,8 +310,56 @@ $(document).ready(function (){
     });
     
     $(".registerPost").click(function() {
-		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
-		$("#frame").submit();
+		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+		
+		var donationOrg = $("#donationOrg").val();
+		var accountHost = $("#accountHost").val();
+		var bankName = $("#bankName").val();
+		var accountNo = $("#accountNo").val();
+		var title = $("#title").val();
+		var ir1 = $("#ir1").val();
+		var dreamMoney = $("#dreamMoney").val();
+		
+		if(donationOrg == null || donationOrg == ""){
+			alert("모금 협회명을 입력하세요.");
+			$("#donationOrg").focus();
+			return false;
+		}else if(accountHost == null || accountHost == "" ){
+			alert("모금받을 계좌주를 입력하세요.");
+			$("#accountHost").focus();
+			return false;
+		}else if(bankName == null || bankName == "" || bankName == "은행선택" ){
+			alert("모금받을 계좌은행을 입력하세요.");
+			$("#bankName").focus();
+			return false;
+		}else if(accountNo == null || accountNo == "" ){
+			alert("모금받을 계좌번호를 입력하세요.");
+			$("#accountNo").focus();
+			return false;
+		}else if(title == null || title == "" ){
+			alert("제목을 입력하세요.");
+			$("#title").focus();
+			return false;
+		}else if( ir1 == ""  || ir1 == null || ir1 == '&nbsp;' || ir1 == '<p>&nbsp;</p>' || ir1 == '<p><br></p>')  {
+			alert("내용을 입력하세요.");
+			oEditors.getById["ir1"].exec("FOCUS"); //포커싱
+			return false;
+		}else if(dreamMoney == null || dreamMoney == "" ){
+			alert("모금 희망액을 입력 해주세요.");
+			$("#dreamMoney").focus();
+			return false;
+		}else if(document.frame.uploadFileList[0].value==""){
+	        alert("1번 이미지를 올려주세요");
+	        return false;
+	    }else if(document.frame.uploadFileList[1].value==""){
+	        alert("2번 이미지를 올려주세요");
+	        return false;
+	    }else if(document.frame.uploadFileList[2].value==""){
+	        alert("3번 이미지를 올려주세요");
+	        return false;
+	    }else{
+	    	$("#frame").submit();
+	    }
 	});
     
     $(".registerCommunityPost").click(function() {

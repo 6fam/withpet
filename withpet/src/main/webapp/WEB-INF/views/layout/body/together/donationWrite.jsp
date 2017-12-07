@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<form action="donationOpen.do" method="post" enctype="multipart/form-data" id="frame" >
+<form action="donationOpen.do" method="post" enctype="multipart/form-data" id="frame" name="frame" >
 <sec:csrfInput/>
 <div class="container">
 	<div class="row">
@@ -30,15 +30,15 @@
 							<tbody>
 								<tr>
 									<td style="width: 130px; text-align: center; font-weight: bold">기부 단체</td>
-									<td><input type="text" name="donationOrg" style="font-size: 10px" class="form-control" id="exampleInputText" aria-describedby="emailHelp"></td>
+									<td><input type="text" name="donationOrg" style="font-size: 10px" class="form-control" id="donationOrg" aria-describedby="emailHelp"></td>
 								</tr>
 								<tr>
 									<td style="width: 130px; text-align: center; font-weight: bold">계좌주</td>
-									<td><input type="text" name="accountHost" style="font-size: 10px" class="form-control" id="exampleInputText" aria-describedby="emailHelp"></td>
+									<td><input type="text" name="accountHost" style="font-size: 10px" class="form-control" id="accountHost" aria-describedby="emailHelp"></td>
 								</tr>
 								<tr>
 									<td style="width: 130px; text-align: center; font-weight: bold">기부받을 은행</td>
-									<td><select class="form-control" name="bankName" id="exampleSelect1" style="width:150px; float: left; font-size: 13px">
+									<td><select class="form-control" name="bankName" id="bankName" style="width:150px; float: left; font-size: 13px">
 									        <option style="font-size: 13px">은행선택</option>
 									        <option style="font-size: 13px">국민은행</option>
 									        <option style="font-size: 13px">기업은행</option>
@@ -48,7 +48,7 @@
 								</tr>
 								<tr>
 									<td style="width: 130px; text-align: center; font-weight: bold">기부계좌</td>
-									<td><input type="text" name="accountNo" style="font-size: 10px" class="form-control" id="exampleInputText" aria-describedby="emailHelp"></td>
+									<td><input type="text" name="accountNo" style="font-size: 10px" class="form-control" id="accountNo" aria-describedby="emailHelp"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -64,7 +64,7 @@
 						<div class="row" style="margin-top: 20px;">
 							<div class="col-sm-1" style="text-align: center; margin-top: 5px;">제목</div>
 							<div class="col-sm-10">
-								<input type="text" name="title" class="form-control" id="exampleInputText" aria-describedby="emailHelp">
+								<input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
 							</div>
 						</div>
 						<div class="row" style="margin-top: 40px;">
@@ -77,7 +77,7 @@
 						<div class="row" style="margin-top: 40px;">
 							<div class="col-sm-1" style="text-align: center; margin-top: 5px;">모금 희망액</div>
 							<div class="col-sm-6" style="margin-right: 0px; padding-right: 0px">
-								<input type="text" name="dreamMoney" class="form-control" id="inputDefault">
+								<input type="text" name="dreamMoney" class="form-control" id="dreamMoney">
 							</div>
 							<div class="col-sm-1" style="text-align: center; margin-top: 5px;margin-left: 0px;padding-left: 0px">원</div>
 						</div>
@@ -86,7 +86,7 @@
 						<div class="row" style="margin-top: 40px;">
 							<div class="col-sm-1" style="text-align: center; margin-top: 5px;">이미지1</div>
 							<div class="col-sm-10" style="margin-right: 0px; padding-right: 0px">
-								<input type="file" name="uploadFileList[0]" class="form-control" id="inputDefault">
+								<input type="file" name="uploadFileList" class="form-control" id="uploadFile1">
 							</div>
 						</div>
 						
@@ -94,7 +94,7 @@
 						<div class="row" style="margin-top: 40px;">
 							<div class="col-sm-1" style="text-align: center; margin-top: 5px;">이미지2</div>
 							<div class="col-sm-10" style="margin-right: 0px; padding-right: 0px">
-								<input type="file" name="uploadFileList[1]" class="form-control" id="inputDefault">
+								<input type="file" name="uploadFileList" class="form-control" id="uploadFile2">
 							</div>
 						</div>
 						
@@ -102,7 +102,7 @@
 						<div class="row" style="margin-top: 40px;">
 							<div class="col-sm-1" style="text-align: center; margin-top: 5px;">이미지3</div>
 							<div class="col-sm-10" style="margin-right: 0px; padding-right: 0px">
-								<input type="file" name="uploadFileList[2]" class="form-control" id="inputDefault">
+								<input type="file" name="uploadFileList" class="form-control" id="uploadFile3">
 							</div>
 						</div>
 						

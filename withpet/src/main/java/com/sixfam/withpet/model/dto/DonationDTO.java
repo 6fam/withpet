@@ -64,6 +64,10 @@ public class DonationDTO extends BoardDTO{
 	 * 모금 상태 : category_no
 	 */
 	private int donationStateNo;
+	/**
+	 * 모금 진행률
+	 */
+	private float donationPercent;
 	
 	public DonationDTO() {
 		super();
@@ -184,11 +188,21 @@ public class DonationDTO extends BoardDTO{
 	public void setDreamMoneyStr(String dreamMoneyStr) {
 		this.dreamMoneyStr = dreamMoneyStr;
 	}
+	
+	public float getDonationPercent() {
+		return donationPercent;
+	}
+	
+	public void setDonationPercent(float donationPercent) {
+		this.donationPercent = donationPercent;
+	}
+	
 	@Override
 	public String toString() {
 		return "DonationDTO [thumnailNo=" + thumnailNo + ", donationOrg=" + donationOrg + ", bankName=" + bankName
 				+ ", accountNo=" + accountNo + ", accountHost=" + accountHost + ", currentMoney=" + currentMoney
 				+ ", currentMoneyStr=" + currentMoneyStr + ", dreamMoney=" + dreamMoney + ", dreamMoneyStr="
-				+ dreamMoneyStr + ", donationFlag=" + donationFlag + ", donationStateNo=" + donationStateNo + ", getImgPath()="+ getImgPath() + "]";
+				+ dreamMoneyStr + ", donationFlag=" + donationFlag + ", donationStateNo=" + donationStateNo
+				+ ", donationPercent=" + donationPercent + "getImgPathList()=" + getImgPathList()+ "]";
 	}
 }

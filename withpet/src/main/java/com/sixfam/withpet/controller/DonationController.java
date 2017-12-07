@@ -82,8 +82,15 @@ public class DonationController {
 		System.out.println(donation);
 		System.out.println(donation.getReplyList());
 		System.out.println("상세보기 게시글 번호 : "+donation.getBoardNo());
-		model.addAttribute("donation", donation);
+		System.out.println("현재 모금액 : " + donation.getCurrentMoney());
+		System.out.println("목표 모금액 : " + donation.getDreamMoney());
 		
+		int c = donation.getCurrentMoney();
+		int d = donation.getDreamMoney();
+		float donationPercent = (float)c/d;
+		
+		donation.setDonationPercent(donationPercent*100);
+		model.addAttribute("donation", donation);
 		
 		return "together/donationDetail.tiles";
 	}

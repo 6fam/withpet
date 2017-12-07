@@ -120,7 +120,21 @@
 					</tr>
 					<tr>
 						<td style="text-align: center; font-weight: bold">회원등급</td>
-						<td>${member.role }</td>
+						<td>
+							<sec:authorize access="hasRole('ROLE_MANAGER')">
+					  			<img src="resources/img/tier_blue.png" style="width: 15px; height: 15px; margin-right:5px">
+							</sec:authorize>
+							<sec:authorize access="hasRole('ROLE_DOGMOM') and !hasRole('ROLE_MANAGER')">
+					  			<img src="resources/img/tier_green.png" style="width: 15px; height: 15px; margin-right:5px">
+							</sec:authorize>
+							<sec:authorize access="hasRole('ROLE_STANDBY')">
+					  			<img src="resources/img/tier_yellow.png" style="width: 15px; height: 15px; margin-right:5px">
+							</sec:authorize>
+							<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_STANDBY') and !hasRole('ROLE_DOGMOM') and !hasRole('ROLE_MANAGER')">
+					  			<img src="resources/img/tier_red.png" style="width: 15px; height: 15px; margin-right:5px">
+							</sec:authorize>
+							${member.role }
+						</td>
 					</tr>
 					<tr>
 						<td style="text-align: center; font-weight: bold">가입날짜</td>

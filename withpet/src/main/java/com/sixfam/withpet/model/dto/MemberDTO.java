@@ -15,8 +15,13 @@ package com.sixfam.withpet.model.dto;
  * @클래스설명
  *  -회원정보를 관리하는 클래스입니다.<br>
  */
-public class MemberDTO {
+public class MemberDTO extends UploadDTO{
 	
+	@Override
+	public String toString() {
+		return "MemberDTO [id=" + id + ", nick=" + nick + ", password=" + password + ", role=" + role + ", toString()="
+				+ super.toString() + "]";
+	}
 	public String getRole() {
 		return role;
 	}
@@ -247,12 +252,5 @@ public class MemberDTO {
 	public void setMoney(int money) {
 		this.money = money;
 	}
-	@Override
-	public String toString() {
-		return "MemberDTO [id=" + id + ", nick=" + nick + ", password=" + password + ", tel=" + tel + ", pwAnswer="
-				+ pwAnswer + ", regdate=" + regdate + ", permitdate=" + permitdate + ", categoryNo=" + categoryNo
-				+ ", categoryName=" + categoryName + ", messageTotalCount=" + messageTotalCount + ", notReadTotalCount="
-				+ notReadTotalCount + ", dogDTO=" + dogDTO + ", role=" + role + "]";
-	}
-
+	
 }

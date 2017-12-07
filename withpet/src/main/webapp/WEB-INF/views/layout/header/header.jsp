@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	a{text-decoration: none;color:#000;}
 </style>
@@ -113,13 +114,41 @@
 					  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
 					  		style="cursor: pointer">
 					  		<font style="margin-right: 5px">
-					  			<img src="resources/img/tier_red.png" style="width: 15px; height: 15px; margin-right:5px"><sec:authentication property="principal.nick" /> 님
+								<sec:authorize access="hasAnyRole('ROLE_MANAGER', 'ROLE_SYSTEMADMIN')">
+					  				<img src="resources/img/tier_blue.png" style="width: 15px; height: 15px; margin-right:5px">
+								</sec:authorize>
+								<sec:authorize access="hasRole('ROLE_DOGMOM') and !hasRole('ROLE_MANAGER') and !hasRole('ROLE_SYSTEMADMIN')">
+					  				<img src="resources/img/tier_green.png" style="width: 15px; height: 15px; margin-right:5px">
+								</sec:authorize>
+								<sec:authorize access="hasRole('ROLE_STANDBY')">
+					  				<img src="resources/img/tier_yellow.png" style="width: 15px; height: 15px; margin-right:5px">
+								</sec:authorize>
+								<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_STANDBY') and !hasRole('ROLE_DOGMOM') and !hasRole('ROLE_MANAGER')">
+					  				<img src="resources/img/tier_red.png" style="width: 15px; height: 15px; margin-right:5px">
+								</sec:authorize>
+								
+					  			<sec:authentication property="principal.nick" /> 님
 					  		</font>
 					  	</a>
 					    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="margin-top:15px;margin-left: -125px; width: 360px; height: 120px; cursor: default">
 					    	<div class="row">
 								<div class="col-sm-4">
-									<img src="resources/img/dog_profile2.png" style="height:80px;width: 80px; border: solid 1px black; border-radius: 200px; margin-left: 20px; margin-top: 10px">
+									<sec:authorize access="hasRole('ROLE_MANAGER')">
+										<img src="resources/img/dog_profile2.png" style="height:80px;width: 80px; border: solid 1px black; border-radius: 200px; margin-left: 20px; margin-top: 10px">
+									</sec:authorize>
+									<sec:authorize access="hasRole('ROLE_DOGMOM') and !hasRole('ROLE_MANAGER')">
+										<sec:authentication property="principal.imgPath" var="imgPath"/>
+										<img src="${pageContext.request.contextPath }/resources/upload/${imgPath}" 
+											style="height:80px;width: 80px; border: solid 1px black; border-radius: 200px; margin-left: 20px; margin-top: 10px">
+									</sec:authorize>
+									<sec:authorize access="hasRole('ROLE_STANDBY')">
+										<sec:authentication property="principal.imgPath" var="imgPath"/>
+										<img src="${pageContext.request.contextPath }/resources/upload/${imgPath}" 
+											style="height:80px;width: 80px; border: solid 1px black; border-radius: 200px; margin-left: 20px; margin-top: 10px">
+									</sec:authorize>
+									<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_STANDBY') and !hasRole('ROLE_DOGMOM') and !hasRole('ROLE_MANAGER')">
+										<img src="resources/img/dog_profile2.png" style="height:80px;width: 80px; border: solid 1px black; border-radius: 200px; margin-left: 20px; margin-top: 10px">
+									</sec:authorize>
 								</div>
 								<div class="col-sm-7" style="margin-left: 10px">
 									<div class="row" style="margin:0px; padding: 0px; margin-top: 15px">
@@ -133,7 +162,21 @@
 										</font>
 									</div>
 									<div class="row" style="margin:0px; padding: 0px; margin-top: 7px">
-										<font style="font-size: 13px">일반회원</font><br>
+										<sec:authorize access="hasRole('ROLE_SYSTEMADMIN')">
+											<font style="font-size: 13px">운영자</font><br>
+										</sec:authorize>
+										<sec:authorize access="hasRole('ROLE_MANAGER') and !hasRole('ROLE_SYSTEMADMIN')">
+											<font style="font-size: 13px">관리자</font><br>
+										</sec:authorize>
+										<sec:authorize access="hasRole('ROLE_DOGMOM') and !hasRole('ROLE_MANAGER') and !hasRole('ROLE_SYSTEMADMIN')">
+											<font style="font-size: 13px">댕댕이주인님</font><br>
+										</sec:authorize>
+										<sec:authorize access="hasRole('ROLE_STANDBY')">
+											<font style="font-size: 13px">예비주인님</font><br>
+										</sec:authorize>
+										<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_STANDBY') and !hasRole('ROLE_DOGMOM') and !hasRole('ROLE_MANAGER')">
+											<font style="font-size: 13px">일반회원</font><br>
+										</sec:authorize>
 									</div>
 									<div class="row" style="margin:0px; padding: 0px; margin-top: 2px">
 										<a href="receivemessage.do?pageNo=1" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;font-size: 13px; margin-bottom: 8px;cursor: pointer">

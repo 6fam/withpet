@@ -201,5 +201,10 @@ public class MeetingDAOImpl implements MeetingDAO {
 	public List<LikeDTO> getLikeById(String id) {
 		return template.selectList("meeting.getLikeById", id);
 	}
+
+	@Override
+	public int getPeopleCountByBoardNo(int boardNo) {
+		return template.selectOne("meeting.getPeopleCountByBoardNo", boardNo);
+	}
 	
 }

@@ -62,7 +62,6 @@ public class MeetingServiceImpl implements MeetingService{
 	public boolean isAttenderMember(String id, int boardNo) {
 		MemberDTO memberId=dao.isAttender(id, boardNo);
 		if(memberId==null) {
-			dao.addAttenderMember(id, boardNo);
 			return true;
 		}
 		else {
@@ -167,4 +166,15 @@ public class MeetingServiceImpl implements MeetingService{
 	public List<LikeDTO> getLikeById(String id) {
 		return dao.getLikeById(id);
 	}
+
+	@Override
+	public void addAttenderMember(String id, int boardNo) {
+		dao.addAttenderMember(id, boardNo);
+	}
+
+	@Override
+	public int getPeopleCountByBoardNo(int boardNo) {
+		return dao.getPeopleCountByBoardNo(boardNo);
+	}
+
 }

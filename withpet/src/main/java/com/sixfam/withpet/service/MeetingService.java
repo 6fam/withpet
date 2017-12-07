@@ -136,6 +136,10 @@ public interface MeetingService {
 	void setMeetingState(int categoryNo);
 
 	public void removeAttendByFounder(String id, int boardNo);
+
+	public void addAttenderMember(String id, int boardNo);
 	
 	public List<LikeDTO> getLikeById(String id);
+
+	public int getPeopleCountByBoardNo(int boardNo);
 }

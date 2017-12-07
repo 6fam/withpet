@@ -94,12 +94,12 @@ public class MeetingController {
 			int possibleCount = totalCount-attendCount;
 			
 			//문제
-			//boolean flag=service.isAttenderMember(member.getId(), bnum);
+			boolean flag=service.isAttenderMember(member.getId(), bnum);
 			
-			if(possibleCount != 0)
+			if(possibleCount > 0)
 				meetingDTO.setPossibleCount(possibleCount);
 			
-			//model.addAttribute("flag", flag);
+			model.addAttribute("flag", flag);
 			model.addAttribute("meetingDetailDTO", meetingDTO);
 			model.addAttribute("memberDetailDTO", memberDTO);
 			
@@ -118,29 +118,46 @@ public class MeetingController {
 	public String meetingAttendRequest(int boardNo, Model model,Authentication authentication) {
 		System.out.println("참여 요청");
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
+
 		//내 아이디가 해당게시글에 참여했는지 확인
 		boolean flag = service.isAttenderMember(mdto.getId(), boardNo);
 		
+		int attendCount = service.getPossibleCount(boardNo);
+		System.out.println("참석 인원"+attendCount);
+		int peopleCount = service.getPeopleCountByBoardNo(boardNo);		
+		System.out.println("모임 총인원"+peopleCount);
+		int possibleCount  = peopleCount - attendCount;
+				
 		if (flag==false) {
-			System.out.println("참여실패");
-			return "redirect:meetingAttendFail.do";
+			return "redirect:meetingAttendFail.do?boardNo="+boardNo;
 		}
 		else {
-			System.out.println("참여성공");
-			return "redirect:meetingAttendOk.do";
+			if(possibleCount > 0) {
+				service.addAttenderMember(mdto.getId(), boardNo);
+				return "redirect:meetingAttendOk.do?boardNo="+boardNo;
+			}
+			return "redirect:meetingAttendOver.do?boardNo="+boardNo;
 		}
 	}
 	
-	
 	@RequestMapping("meetingAttendFail.do")
-	public String meetingAttendFail() {
+	public String meetingAttendFail(Model model, int boardNo) {
+		model.addAttribute("boardNo", boardNo);
 		return "meeting_attend_fail.tiles";
 	}
 	
 	@RequestMapping("meetingAttendOk.do")
-	public String meetingAttendOk() {
+	public String meetingAttendOk(Model model, int boardNo) {
+		model.addAttribute("boardNo", boardNo);
 		return "meeting_attend_ok.tiles";
 	}
+	
+	@RequestMapping("meetingAttendOver.do")
+	public String meetingAttendOver(Model model, int boardNo) {
+		model.addAttribute("boardNo", boardNo);
+		return "meetingAttendOver.tiles";
+	}
+	
 	
 	/**
 	 * 모임 폐쇄
@@ -160,8 +177,8 @@ public class MeetingController {
 	public String meetingAttendCancelRequest(int boardNo, Model model, Authentication authentication) {
 		MemberDTO mdto = (MemberDTO)authentication.getPrincipal();
 		service.removeAttenderMember(mdto.getId(), boardNo);
-		System.out.println("취소 되었슴다");
-		return "redirect:home.do";
+		//System.out.println("취소 되었슴다");
+		return "redirect:meetingDetail.do?boardNo="+boardNo;
 	}
 	
 	/**
@@ -271,6 +288,7 @@ public class MeetingController {
 	
 	@RequestMapping("meetingAttenderList.do")
 	public String meetingAttenderListRequest(int boardNo,Model model) {
+		model.addAttribute("boardNo", boardNo);
 		model.addAttribute("atlist",service.getMyMeetingAttender(boardNo));
 		return "popup/popup.tiles";
 	}
@@ -281,10 +299,13 @@ public class MeetingController {
 		return service.getReplyCount(boardNo);
 	}
 	
-	@RequestMapping("exceptAttend.do")
+	@RequestMapping(value = "exceptAttend.do", method = RequestMethod.POST)
+	@ResponseBody
 	public String removeAttendByFounder(String id, String boardNo) {
+		System.out.println("제거할 id:"+id);
+		System.out.println("제거할 게시물번호:"+boardNo);
 		service.removeAttendByFounder(id, Integer.parseInt(boardNo));
 		
-		return "ok";
+		return id;
 	}
 }

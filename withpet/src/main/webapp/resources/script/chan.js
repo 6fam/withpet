@@ -277,9 +277,6 @@ function submit(){
      function checkForm(){
     	 var mFrm = document.meetingFrm;
     	 
-    	 alert(mFrm.place.value);
-    	 alert(mFrm.place.disabled);
-    	 
         oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
         var ir1 = $("#ir1").val();
     	 

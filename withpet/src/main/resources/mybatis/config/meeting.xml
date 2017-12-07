@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						) meee, (	SELECT count(*) as attenderCount, board_no FROM	attender group by board_no)	a, board b
 		WHERE b.category_no=17 and b.board_no=meee.boardNo and a.board_no(+)=b.board_no 
 						and meee.rnum between #{startRowNumber} and #{endRowNumber}
-		ORDER BY meee.rnum desc
+		ORDER BY meee.rnum asc
 		
 	</select>
 
@@ -253,6 +253,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 
 	 <select id="getLikeById" parameterType="string" resultType="likeDTO">
 	 	select id, board_no as boardNo from sympathy where id = #{value}
+	 </select>
+	 
+	 <!-- 모임 총 인원 조회 쿼리 -->
+	 <select id="getPeopleCountByBoardNo" parameterType="int" resultType="int">
+	 	select people_count from meeting where board_no=#{value}
 	 </select>
 </mapper>
  

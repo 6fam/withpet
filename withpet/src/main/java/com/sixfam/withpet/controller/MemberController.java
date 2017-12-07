@@ -135,11 +135,16 @@ public class MemberController {
 	 */
 	@Secured("ROLE_MEMBER")
 	@RequestMapping("updateMemberAuth.do")
-	public String updateMemberAuthRequest(HttpServletRequest request) {
+	public String updateMemberAuthRequest(Authentication authentication, HttpServletRequest request) {
+		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
+		
 		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
 		List<GrantedAuthority> updatedAuthorities=new ArrayList<>(auth.getAuthorities());
 		updatedAuthorities.add(new SimpleGrantedAuthority("ROLE_STANDBY"));
-		Authentication newAuth=new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), updatedAuthorities);
+		
+		MemberDTO member = service.findMemberById(mdto.getId());
+		
+		Authentication newAuth=new UsernamePasswordAuthenticationToken(member, auth.getCredentials(), updatedAuthorities);
 		SecurityContextHolder.getContext().setAuthentication(newAuth);
 		return "redirect:mypage.do";
 	}
@@ -158,6 +163,11 @@ public class MemberController {
 		upload.setImageUpload(request, ddto);
 		
 		service.setDogInfo(ddto);
+		
+		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+		MemberDTO member = service.findMemberById(mdto.getId());
+		Authentication newAuth=new UsernamePasswordAuthenticationToken(member, auth.getCredentials(), auth.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(newAuth);
 		return "redirect:mypage.do";
 	}
 
@@ -195,6 +205,11 @@ public class MemberController {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		member.setId(mdto.getId());
 		service.setMemberInfo(member);
+		Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+		MemberDTO memberHeader = service.findMemberById(mdto.getId());
+		System.out.println("/////memberHeader////"+memberHeader);
+		Authentication newAuth=new UsernamePasswordAuthenticationToken(memberHeader, auth.getCredentials(), auth.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(newAuth);
 		return "redirect:mypage.do";
 	}
 	

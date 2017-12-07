@@ -6,9 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="member">
 
 	<select id="findMemberById" resultType="memberDTO">
-		 SELECT id, nick, password
-		 FROM member
-		 WHERE id=#{value}
+		SELECT m.id, m.nick, m.password, i.img_path as imgPath
+		FROM ( select img_path, id from img i, dog d where i.img_no=d.img_no) i, member m
+		WHERE m.id=i.id(+) and m.id=#{value}
 	</select>
 
 	<select id="mypageInfoById" resultType="memberDTO">

@@ -272,14 +272,68 @@ function submit(){
      
      
    /**
-    * 등록 확인 시 이벤트 
+    * 등록 확인 시 이벤트 (유효성 검사 포함)
     */
      function checkForm(){
- 		return confirm("등록하시겠습니까?");
+    	 var mFrm = document.meetingFrm;
+    	 
+    	 alert(mFrm.place.value);
+    	 alert(mFrm.place.disabled);
+    	 
+        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+        var ir1 = $("#ir1").val();
+    	 
+    	 if(mFrm.uploadFile.value==""){
+    		 alert("이미지를 올려주세요");
+    		 return false;
+    	 }else if(mFrm.title.value==""){
+    		 alert("모임명을 입력하세요");
+    		 mFrm.title.focus();
+    		 return false;
+    	 }else if(mFrm.meetingStart.value=="" && mFrm.meetingEnd.value==""){
+    		 alert("모임 일시를 입력하세요");
+    		 return false;
+    	 }else if(mFrm.gatheringStart.value=="" && mFrm.gatheringEnd.value==""){
+    		 alert("접수 기간을 입력하세요");
+    		 return false;
+    	 }else if(mFrm.peopleCount.value==""){
+    		 alert("모임 인원을 입력하세요");
+    		 mFrm.peopleCount.focus();
+    		 return false;
+    	 }else if(mFrm.place.value=="" || mFrm.detailPlace.value==""){
+    		 /*if(mFrm.place.disabled && mFrm.detailPlace.disabled){
+    			 mFrm.place.value="";
+    			 mFrm.detailPlace.value="";
+    		 }*/
+    			 alert("주소 검색 하세요");
+    			 mFrm.place.focus();
+    			 return false;
+    		 
+    	 }else if(mFrm.intro.value.length==0){
+    		 alert("간단 소개 입력하세요");
+    		 return false;
+    	 }else if( ir1 == ""  || ir1 == null || ir1 == '&nbsp;' || ir1 == '<p>&nbsp;</p>' || ir1 == '<p><br></p>')  {
+             alert("내용을 입력하세요.");
+             oEditors.getById["ir1"].exec("FOCUS"); //포커싱
+             return false;
+             
+	     }else if(mFrm.tel.value==""){
+	    	 alert("전화번호를 입력하세요");
+	    	 return false;
+	     }
+    	 
  	}
          
          
 //===============================================         
          
 //===============================================
+     
+
+     
+     
+     
+     
+     
+     
      

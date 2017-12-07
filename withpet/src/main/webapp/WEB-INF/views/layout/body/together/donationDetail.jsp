@@ -122,7 +122,14 @@
 			<c:forEach items="${donation.replyList}" var="reply">
 			<div class="row" style="margin-top: 15px; border-bottom: solid 1px #cecece; padding-bottom: 10px">
 				<div class="col-sm-1">
-					<img src="resources/img/dog_profile2.png" style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px">
+					<c:choose>
+						<c:when test="${reply.imgPath == 'dog_profile2.png'}">
+							<img src="resources/img/dog_profile2.png" style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px">
+						</c:when>
+						<c:otherwise>
+							<img src="${pageContext.request.contextPath }/resources/upload/${reply.imgPath}" style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px">
+						</c:otherwise>
+					</c:choose>
 				</div>	
 				<div class="col-sm-11">
 					<div class="row">

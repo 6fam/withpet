@@ -458,7 +458,7 @@
 							output += "<div class='col-sm-11'>";
 							output += "<div class='row'>";
 							output += "<div class='col-sm-12' style='margin-top: 0px'>";
-							output += "<font style='font-size: 20px'><b>"+result[i].nick + "</b></font>";
+							output += "<font style='font-size: 20px'><b>"+result[i].id + "</b></font>";
 							output += "<font style='font-size: 12px; margin-left: 5px; color: #919191'>"+result[i].regDate+"님</font>";
 							if(result[i].flag==true){
 								output += "<a class='replyDelete' value='"+result[i].replyNo+"'>";

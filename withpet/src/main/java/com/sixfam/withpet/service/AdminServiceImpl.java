@@ -27,9 +27,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=adminDAO.getTotalCountAllMember();
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(10,4,totalCount);
+			pagingBean=new PagingBean(4,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 4, 4, totalCount);
 		return new ListDTO<MemberDTO>(adminDAO.getAllMemberList(pagingBean), pagingBean);
 	}
 	
@@ -40,9 +40,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(10,4,totalCount);
+			pagingBean=new PagingBean(4,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo,10, 4, totalCount);
+			pagingBean=new PagingBean(pageNo,4, 4, totalCount);
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleMemberList(pagingBean), pagingBean);
 	}
 
@@ -53,9 +53,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(10,4,totalCount);
+			pagingBean=new PagingBean(4,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 4, 4, totalCount);
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleStandby(pagingBean), pagingBean);
 	}
 
@@ -66,9 +66,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(10,4,totalCount);
+			pagingBean=new PagingBean(4,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 4, 4, totalCount);
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleDogmomList(pagingBean), pagingBean);
 	}
 	
@@ -103,9 +103,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=adminDAO.getBoardCountPerCategory(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(10,4,totalCount);
+			pagingBean=new PagingBean(2,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
 		return new ListDTO<MeetingDTO>(adminDAO.getAllMeetingList(pagingBean), pagingBean);
 	}
 

@@ -37,7 +37,7 @@
 					<c:forEach items="${categoryType}" var="ct">
 					<li style="height: 30px; display: inline-block; cursor: pointer; line-height: 30px; padding: 0 15px;
 						    text-align: center; box-sizing: border-box;">
-						<a href="activecommunity.do?categoryNo=${ct.categoryNo}&categoryName=${ct.categoryName}">${ct.categoryName}</a>
+						<a href="activecommunity.do?categoryNo=${ct.categoryNo}&categoryName=${ct.categoryName}&pageNo=1">${ct.categoryName}</a>
 					</li>
 					</c:forEach>
     				<!-- for 끝 -->
@@ -94,6 +94,40 @@
 					</div>
 				</div>
 			</div>
+			<!-- 돌보미 페이징 시작 -->
+			<div class="row" style="margin-left: 0px">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-6">
+					<div>
+						<c:set value="${requestScope.comlist.pagingBean}" var="pp" />
+						<ul class="pagination">
+							<c:if test="${pp.previousPageGroup }">
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/allcommunity.do?pageNo=${pp.startPageOfPageGroup-1}">&laquo;</a></li>
+							</c:if>
+							<c:forEach var="i" begin="${pp.startPageOfPageGroup}"
+								end="${pp.endPageOfPageGroup }">
+								<c:choose>
+									<c:when test="${pp.nowPage!=i }">
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/allcommunity.do?pageNo=${i}">${i}</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item disabled"><a class="page-link"
+											href="#">${i}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${pp.nextPageGroup}">
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/allcommunity.do?pageNo=${pp.endPageOfPageGroup+1}">&raquo;</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-5"></div>
+			</div>
+			<!-- 돌보미 페이징 끝 -->
 		</div>
 	</div>
 </div>

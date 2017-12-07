@@ -82,6 +82,40 @@
 					</div>
 				</div>
 			</div>
+			<!-- 돌보미 페이징 시작 -->
+			<div class="row" style="margin-left: 0px">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-6">
+					<div>
+						<c:set value="${requestScope.meetinglist.pagingBean}" var="pp" />
+						<ul class="pagination">
+							<c:if test="${pp.previousPageGroup }">
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/allmeeting.do?pageNo=${pp.startPageOfPageGroup-1}">&laquo;</a></li>
+							</c:if>
+							<c:forEach var="i" begin="${pp.startPageOfPageGroup}"
+								end="${pp.endPageOfPageGroup }">
+								<c:choose>
+									<c:when test="${pp.nowPage!=i }">
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/allmeeting.do?pageNo=${i}">${i}</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item disabled"><a class="page-link"
+											href="#">${i}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${pp.nextPageGroup}">
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/allmeeting.do?pageNo=${pp.endPageOfPageGroup+1}">&raquo;</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-5"></div>
+			</div>
+			<!-- 돌보미 페이징 끝 -->
 		</div>
 	</div>
 </div>

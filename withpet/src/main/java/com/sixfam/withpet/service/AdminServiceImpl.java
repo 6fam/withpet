@@ -150,10 +150,10 @@ public class AdminServiceImpl implements AdminService {
 		for (int i = 0; i < totalTierList.size(); i++) {
 			switch (totalTierList.get(i).getCategoryName()) {
 			case WithPet.ROLE_STANDBY_STR :
-				totalTierList.get(i).setCategoryName("견주대기자");
+				totalTierList.get(i).setCategoryName("예비주인님");
 				break;
 			case WithPet.ROLE_DOGMOM_STR :
-				totalTierList.get(i).setCategoryName("댕댕이 맘");
+				totalTierList.get(i).setCategoryName("댕댕이 주인님");
 				break;
 			case WithPet.ROLE_MANAGER_STR :
 				totalTierList.get(i).setCategoryName("관리자");

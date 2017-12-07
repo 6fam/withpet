@@ -23,9 +23,9 @@
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
 				<li class="nav-item"><a class="nav-link" href="allmember.do">전체 회원</a></li>
-				<li class="nav-item"><a class="nav-link" href="normalmember.do">일반 회원</a></li>
-				<li class="nav-item"><a class="nav-link" href="yebimommy.do">견주 대기자</a></li>
-				<li class="nav-item"><a class="nav-link" href="dogmommy.do">견주</a></li>
+				<li class="nav-item"><a class="nav-link" href="normalmember.do">회원</a></li>
+				<li class="nav-item"><a class="nav-link" href="yebimommy.do">예비 주인님</a></li>
+				<li class="nav-item"><a class="nav-link" href="dogmommy.do">댕댕이 주인님</a></li>
 				<li class="nav-item"><a class="nav-link active" href="#">탈퇴 회원</a></li>
 				<li class="nav-item"><a class="nav-link" href="manager.do">관리자</a></li>
 			</ul>

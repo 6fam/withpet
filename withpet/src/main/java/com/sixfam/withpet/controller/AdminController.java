@@ -33,8 +33,7 @@ public class AdminController {
 	 * 전체회원관리(총회원)
 	 */
 	@RequestMapping("allmember.do")
-	public String allMemberRequest(Model model) {
-		int pageNo=1;
+	public String allMemberRequest(Model model, int pageNo) {
 		model.addAttribute("allMember",adminService.getAllMemberList(pageNo));
 		model.addAttribute("tier", adminService.getAllTierList());
 		return "admin/allmember.tiles";

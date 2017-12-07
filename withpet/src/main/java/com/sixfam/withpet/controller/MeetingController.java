@@ -156,7 +156,7 @@ public class MeetingController {
 		MemberDTO mdto = (MemberDTO)authentication.getPrincipal();
 		service.removeAttenderMember(mdto.getId(), boardNo);
 		System.out.println("취소 되었슴다");
-		return "meeting_detail.tiles";
+		return "redirect:meetingDetail.do?boardNo="+boardNo;
 	}
 	
 	/**

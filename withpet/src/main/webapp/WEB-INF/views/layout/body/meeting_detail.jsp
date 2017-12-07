@@ -478,39 +478,6 @@
 			});
 			
 			
-			var totalCount = $("#totalCount").text();
-			
-			function checkAttend(){
-				if(confirm("참가하시겠습니까")){
-					$.ajax({
-						type:"post",
-						url:"addAttend.do",
-						data:"totalCount="+totalCount+"boardNo="+boardNo,
-						success:function(data){
-							alert(data)
-							$("#possibleCount").text(data);
-						}
-					}); // ajax
-				}else{
-					return false
-				}
-			}
- 
-			function checkAttendCancel(){
-				if(confirm("참가 취소하시겠습니까")){
-					$.ajax({
-						type:"post",
-						url:"deleteAttend.do",
-						data:"totalCount="+totalCount+"boardNo="+boardNo,
-						success:function(data){
-							alert(data)
-							$("#possibleCount").text(data);
-						}
-					}); // ajax
-				}else{
-					return false
-				}
-			}
 			
 			$("#meetingClose").click(function(){
 				alert("해당 모임은 모집이 마감되었습니다.");
@@ -531,6 +498,47 @@
 	function checked() {
 		document.getElementById('exampleInputText').readOnly = true;
 	}  
+	
+	
+	
+	// 참가 등록 취소 스크립트
+	var totalCount = $("#totalCount").text();
+	
+	function checkAttend(){
+		if(confirm("참가하시겠습니까")){
+			/* $.ajax({
+				type:"post",
+				url:"addAttend.do",
+				data:"totalCount="+totalCount+"boardNo="+boardNo,
+				success:function(data){
+					alert(data)
+					$("#possibleCount").text(data);
+				}
+			}); // ajax
+		}else{
+			return false */
+			return true;
+		}
+		return false;
+	}
+
+	function checkAttendCancel(){
+		if(confirm("참가 취소하시겠습니까")){
+			/* $.ajax({
+				type:"post",
+				url:"deleteAttend.do",
+				data:"totalCount="+totalCount+"boardNo="+boardNo,
+				success:function(data){
+					alert(data)
+					$("#possibleCount").text(data);
+				}
+			}); // ajax
+		}else{
+			return false */
+			return true;
+		}
+		return false;
+	}
 	
 	
 </script>

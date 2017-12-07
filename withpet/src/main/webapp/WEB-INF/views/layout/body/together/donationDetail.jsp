@@ -120,13 +120,20 @@
 				<strong>덧글</strong>
 			</p>
 			<c:forEach items="${donation.replyList}" var="reply">
-			<div class="row" style="margin-top: 15px">
+			<div class="row" style="margin-top: 15px; border-bottom: solid 1px #cecece; padding-bottom: 10px">
 				<div class="col-sm-1">
 					<img src="resources/img/dog_profile2.png" style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px">
 				</div>	
 				<div class="col-sm-11">
 					<div class="row">
-						<div class="col-sm-12"><b>${reply.id}</b></div>
+						<div class="col-sm-12" style="margin-top: -5px">
+							<font style="font-size: 20px"><b>${reply.id}</b></font>
+							<font style="font-size: 12px; margin-left: 5px; color: #919191">${reply.regDate}</font>
+							<sec:authentication property="principal.id" var="sessionId"/>
+							<c:if test="${reply.id == sessionId}">
+								<img src="resources/img/trash.png" style="height: 10px; width: 10px; margin-top: 5px">
+							</c:if>
+						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12" style="font-size: 14px">${reply.content}</div>

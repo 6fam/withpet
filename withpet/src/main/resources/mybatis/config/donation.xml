@@ -26,7 +26,7 @@
 	<resultMap id="donationDetail" type="donationDTO">
 		<result property="boardNo" column="boardNo" />
 		<collection property="replyList" column="boardNo" javaType="java.util.ArrayList"
-		ofType="replyDTO" select="meeting.selectReplyByBoardNo" />
+		ofType="replyDTO" select="meeting.selectReply" />
 	</resultMap>
 	
 	<!-- 모금함상세보기 -->

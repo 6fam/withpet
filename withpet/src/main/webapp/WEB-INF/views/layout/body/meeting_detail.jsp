@@ -226,27 +226,37 @@
 	</form>	
 	
 	<div class="row" style="margin-top:20px;">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-1" id="replyImg">
-			<img src="${pageContext.request.contextPath }/resources/img/dog_profile2.png" 
-					style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left: 20px">
-		</div>
-		<div class="col-sm-6" id="replyContent" align="left">
-			<b>id님</b><br>냐나나나ㅏ
-		</div>
-		<div class="col-sm-3" id="replyTrash">
-			삭제
-		</div>
-		<div class="col-sm-3" id="replyTrash">
-		</div>
-		<br><br>
-			<table id="listReply">
-			</table>
-			
+		<table id="listReply">
+		
+		
+		</table>
 		<div class="col-sm-1" style="margin-top: 5px"></div>
 	</div>
 	
-	
+	<%-- <div class="row" style="margin-top: 15px; border-bottom: solid 1px #cecece; padding-bottom: 10px">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-12">
+			<div class="col-sm-1">
+				<img src="resources/img/dog_profile2.png" style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px">
+			</div>	
+			<div class="col-sm-11">
+				<div class="row">
+					<div class="col-sm-12" style="margin-top: -5px">
+						<font style="font-size: 20px"><b>${reply.id}</b></font>
+						<font style="font-size: 12px; margin-left: 5px; color: #919191">${reply.regDate}</font>
+						<sec:authentication property="principal.id" var="sessionId"/>
+						<c:if test="${reply.id == sessionId}">
+							<img src="resources/img/trash.png" style="height: 10px; width: 10px; margin-top: 5px">
+						</c:if>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12" style="font-size: 14px">${reply.content}</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1"></div>		
+	</div> --%>
 	
 	<div class="row" style="margin-top:100px;">
 		<div class="col-sm-1"></div>

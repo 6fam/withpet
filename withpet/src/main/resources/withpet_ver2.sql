@@ -72,3 +72,4 @@ insert into category(category_no,table_code,category_name) values(category_seq.n
 
 
 insert into tier values('aa', 13);
+delete tier where id='aa' and category_no=11;

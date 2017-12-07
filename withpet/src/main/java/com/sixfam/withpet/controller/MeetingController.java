@@ -93,12 +93,13 @@ public class MeetingController {
 			int attendCount = service.getPossibleCount(bnum);
 			int possibleCount = totalCount-attendCount;
 			
-			boolean flag=service.isAttenderMember(member.getId(), bnum);
+			//문제
+			//boolean flag=service.isAttenderMember(member.getId(), bnum);
 			
 			if(possibleCount != 0)
 				meetingDTO.setPossibleCount(possibleCount);
 			
-			model.addAttribute("flag", flag);
+			//model.addAttribute("flag", flag);
 			model.addAttribute("meetingDetailDTO", meetingDTO);
 			model.addAttribute("memberDetailDTO", memberDTO);
 			
@@ -115,14 +116,19 @@ public class MeetingController {
 	 */
 	@RequestMapping("meetingAttend.do")
 	public String meetingAttendRequest(int boardNo, Model model,Authentication authentication) {
+		System.out.println("참여 요청");
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
-		boolean flag=service.isAttenderMember(mdto.getId(), boardNo);
-		model.addAttribute("boardNo",boardNo);
+		//내 아이디가 해당게시글에 참여했는지 확인
+		boolean flag = service.isAttenderMember(mdto.getId(), boardNo);
+		
 		if (flag==false) {
+			System.out.println("참여실패");
 			return "redirect:meetingAttendFail.do";
 		}
-		else
+		else {
+			System.out.println("참여성공");
 			return "redirect:meetingAttendOk.do";
+		}
 	}
 	
 	
@@ -152,11 +158,10 @@ public class MeetingController {
 	 */
 	@RequestMapping("meetingAttendCancel.do")
 	public String meetingAttendCancelRequest(int boardNo, Model model, Authentication authentication) {
-		
 		MemberDTO mdto = (MemberDTO)authentication.getPrincipal();
 		service.removeAttenderMember(mdto.getId(), boardNo);
 		System.out.println("취소 되었슴다");
-		return "redirect:meetingDetail.do?boardNo="+boardNo;
+		return "redirect:home.do";
 	}
 	
 	/**

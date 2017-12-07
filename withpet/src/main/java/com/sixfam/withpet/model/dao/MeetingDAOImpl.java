@@ -166,6 +166,9 @@ public class MeetingDAOImpl implements MeetingDAO {
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("id", id);
 		param.put("boardNo", boardNo);
+		
+		System.out.println("삭제 요청 아이디 : "+param.get("id"));
+		System.out.println(""+param.get("boardNo"));
 		template.delete("meeting.removeAttenderMember", param);
 	}
 

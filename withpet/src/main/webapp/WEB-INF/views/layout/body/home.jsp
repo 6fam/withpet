@@ -169,7 +169,10 @@
 					<span class="badge badge-danger"
 						style="margin: 0px; padding: 10px 10px 5px 10px;">찜하기</span> <span
 						class="badge badge-dark"
-						style="margin: 0px 0px 0px 10px; padding: 10px 10px 5px 10px;">${list.title}</span><br>
+						style="margin: 0px 0px 0px 10px; padding: 10px 10px 5px 10px;">${list.meetingType}</span><br>
+					<font style="font-size: 15px; margin-left: 10px; margin-top: 10px;">
+						 ${list.title}<br>
+					</font>
 					<font style="font-size: 12px; margin: 20px 0 0 0; padding: 0px;">
 						모집기간 : ${list.date.gatheringStart} ~ ${list.date.gatheringEnd} <br>
 					</font> <font style="font-size: 12px; margin: 5px 0 0 0; padding: 0px;">

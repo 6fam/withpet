@@ -12,6 +12,7 @@ import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.service.AdminService;
 import com.sixfam.withpet.service.CommunityService;
 import com.sixfam.withpet.service.MeetingService;
+import com.sixfam.withpet.service.MemberService;
 
 @Controller
 public class AdminController {
@@ -25,6 +26,9 @@ public class AdminController {
 	@Resource
 	CommunityService communityService;
 	 
+	@Resource
+	MemberService memberService;
+	
 	/**
 	 * 전체회원관리(총회원)
 	 */
@@ -180,12 +184,19 @@ public class AdminController {
 		model.addAttribute("dolist",adminService.getDonationListPerState(pageNo, categoryNo));
 		return "admin/donation_finish.tiles";
 	}
+	/**
+	 * 모금함 마감-모임재개
+	 */
+
 	
 	/**
-	 * 전체 커뮤니티글 목록
+	 * 커뮤니티글 (전체)
 	 */
 	@RequestMapping("allcommunity.do")
-	public String communityRequest() {
+	public String communityRequest(Model model) {
+		int pageNo=1;
+		model.addAttribute("categoryType",communityService.getCommunityCategoryList());
+		model.addAttribute("comlist",adminService.getAllCommunityList(pageNo));
 		return "admin/allcommunity.tiles";
 	}
 	
@@ -193,17 +204,72 @@ public class AdminController {
 	 * 커뮤니티 카테고리 관리
 	 */
 	@RequestMapping("communitycategory.do")
-	public String communityCategoryRequest(Model model, int categoryNo) {
-		model.addAttribute("cmulist",communityService.getCommunityListPerCategory(categoryNo));
+	public String communityCategoryRequest(Model model) {
+		model.addAttribute("categoryType",communityService.getCommunityCategoryList());
 		return "admin/cmcategory.tiles";
 	}
 
 	/**
-	 * 커뮤니티 카테고리 관리
+	 * 커뮤니티 (카테고리별 목록)
 	 */
 	@RequestMapping("activecommunity.do")
-	public String communityActiveRequest() {
+	public String communityActiveRequest(Model model, int categoryNo,String categoryName) {
+		int pageNo=1;
+		model.addAttribute("titletype",categoryName);
+		model.addAttribute("categoryType",communityService.getCommunityCategoryList());
+		model.addAttribute("cmulist",communityService.getCommunityListPerCategory(categoryNo,pageNo));
 		return "admin/activecommunity.tiles";
 	}
-
+	
+	/**
+	 * 커뮤니티 (삭제하기)
+	 */
+	@RequestMapping("removecommunity.do")
+	public String removeCommunityRequest(int boardNo) {
+		communityService.removeCommunityInfo(boardNo);
+		return "redirect:allcommunity.do";
+	}
+	
+	/**
+	 * 커뮤니티 타입 목록
+	 */
+	@RequestMapping("communitytype.do")
+	public String communityTypeRequest(Model model) {
+		model.addAttribute("categoryType",communityService.getCommunityCategoryList());
+		return "community.tiles";
+	}
+	/**
+	 * 커뮤니티 타입 추가
+	 */
+	@RequestMapping("addcommunitytype.do")
+	public String addCommunityTypeRequest(Model model,String categoryName) {
+		 adminService.registerAddCommunityType(categoryName);
+		return "redirect:communitycategory.do";
+	}
+	/**
+	 * 커뮤니티 타입 삭제
+	 */
+	@RequestMapping("deleteCommunityType.do")
+	public String removeCommunityTypeRequest(Model model,int categoryNo) {
+		adminService.removeCommunityType(categoryNo);
+		return "redirect:communitycategory.do";
+	}
+	/**
+	 * 일반회원관리(회원-개설내역)
+	 */
+	@RequestMapping("adminmypageopened.do")
+	public String getAdminMypageOpened(String id,Model model) {
+		int pageNo=1;
+		model.addAttribute("listdto", memberService.getSetupListById(id, pageNo));
+		return "mypage_opened.tiles";
+	}
+	/**
+	 * 일반회원관리(회원-참여내역)
+	 */
+	@RequestMapping("adminmypageparticipate.do")
+	public String getAdminMypageParticipate(String id,Model model) {
+		int pageNo=1;
+		model.addAttribute("listdto", memberService.getAttenderHistoryListById(id, pageNo));
+		return "mypage_participate.tiles";
+	}
 }

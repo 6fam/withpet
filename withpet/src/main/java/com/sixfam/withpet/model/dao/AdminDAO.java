@@ -3,6 +3,7 @@ package com.sixfam.withpet.model.dao;
 import java.util.List;
 
 import com.sixfam.withpet.model.PagingBean;
+import com.sixfam.withpet.model.dto.BoardDTO;
 import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
@@ -52,8 +53,10 @@ public interface AdminDAO {
 	 * 전체 모임 리스트
 	 */
 	public List<MeetingDTO> getAllMeetingList(PagingBean pagingBean);
-	
-	
+	/**
+	 * 커뮤니티 (전체)
+	 */
+	public List<BoardDTO> getAllCommunityList(PagingBean pagingBean);
 
 	////Tier Except
 	public void registerTierExcept(MemberDTO memberDTO);
@@ -89,6 +92,15 @@ public interface AdminDAO {
 	 * 견주 승인 날짜 업데이트
 	 */
 	public void setDogmomPermitDate(MemberDTO memberDTO);
+	/**
+	 * 커뮤니티 타입 추가
+	 */
+	public void registerAddCommunityType(String categoryName);
+	/**
+	 * 커뮤니티 타입 삭제
+	 */
+	public void removeCommunityType(int categoryNo);
+	public void removeCommunityTypeBoard(int categoryNo);
 
 	
 

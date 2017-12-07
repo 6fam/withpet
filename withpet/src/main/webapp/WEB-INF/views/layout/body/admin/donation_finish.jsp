@@ -34,6 +34,7 @@
 						
 						
 							<!-- 전체회원관리 -->
+							<form action="">
 							<table style="width: 100%">
 							  <thead>
 							    <tr>
@@ -44,6 +45,7 @@
 							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 13%">모금액</th>
 							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 10%">모금참여자</th>
 							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">등록일자</th>
+							      <th style="padding: .25rem; font-size: 14px; text-align: center; width: 15%">모금재개</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -56,10 +58,17 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.currentMoney}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">모금참여자</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.wdate}</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
+	 								<button class="btn btn-default"  style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer; background-color: white"
+							      	name="boardNo" value="${dl.boardNo}">
+										진행
+									</button>
+							      </td>
 							    </tr>
 							  	</c:forEach>
 							    </tbody>
 							</table>
+							</form>
 							<!-- 전체회원관리 끝 -->
 							
 						</div>

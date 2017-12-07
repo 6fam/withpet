@@ -14,21 +14,16 @@ public class CommunityController {
 	@Resource
 	CommunityService communityService;
 	
-	/**
-	 * 커뮤니티 타입 목록
-	 */
-	@RequestMapping("communitytype.do")
-	public String communityTypeRequest(Model model) {
-		model.addAttribute("categoryType",communityService.getCommunityCategoryList());
-		return "community.tiles";
-	}
 	
 	/**
 	 * 커뮤니티 목록
 	 */
 	@RequestMapping("community.do")
-	public String communityListRequest(int categoryNo,Model model) {
-		model.addAttribute("cmulist",communityService.getCommunityListPerCategory(categoryNo));
+	public String communityListRequest(int categoryNo,String categoryName,Model model) {
+		int pageNo=1;
+		model.addAttribute("cn",categoryName);
+		model.addAttribute("cmulist",communityService.getCommunityListPerCategory(categoryNo,pageNo));
+		model.addAttribute("categoryType",communityService.getCommunityCategoryList());
 		return "community.tiles";
 	}
 

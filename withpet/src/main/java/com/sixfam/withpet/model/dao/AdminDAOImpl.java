@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.sixfam.withpet.model.PagingBean;
+import com.sixfam.withpet.model.dto.BoardDTO;
 import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
@@ -132,6 +133,26 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public void setDogmomPermitDate(MemberDTO memberDTO) {
 		template.update("admin.dogmomPermitDate",memberDTO);
+	}
+
+	@Override
+	public List<BoardDTO> getAllCommunityList(PagingBean pagingBean) {
+		return template.selectList("admin.allCommunityList",pagingBean);
+	}
+
+	@Override
+	public void registerAddCommunityType(String categoryName) {
+		template.insert("admin.addCommunityType",categoryName);
+	}
+
+	@Override
+	public void removeCommunityType(int categoryNo) {
+		template.delete("admin.removeCommunityType",categoryNo);
+	}
+	
+	@Override
+	public void removeCommunityTypeBoard(int categoryNo) {
+		template.delete("admin.removeCommunityTypeBoard",categoryNo);
 	}
 
 

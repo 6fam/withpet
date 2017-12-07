@@ -449,12 +449,16 @@
 							output += "<div class='col-sm-8' style='margin-left:-40px; padding-left:0px;border-bottom: solid 1px #cecece; padding-bottom:10px; margin-bottom: 10px'>";
 							output += "<div class='row'>";
 							output += "<div class='col-sm-1'>";
-							output += "<img src='resources/img/dog_profile2.png' style='height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px'>";
+							if(result[i].imgPath == 'dog_profile2.png'){
+								output += "<img src='resources/img/dog_profile2.png' style='height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px'>";
+							} else{
+								output += "<img src='${pageContext.request.contextPath }/resources/upload/"+result[i].imgPath+"' style='height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px'>";
+							}
 							output += "</div>";
 							output += "<div class='col-sm-11'>";
 							output += "<div class='row'>";
 							output += "<div class='col-sm-12' style='margin-top: 0px'>";
-							output += "<font style='font-size: 20px'><b>"+result[i].nick+"</b></font>";
+							output += "<font style='font-size: 20px'><b>"+result[i].nick + "</b></font>";
 							output += "<font style='font-size: 12px; margin-left: 5px; color: #919191'>"+result[i].regDate+"님</font>";
 							if(result[i].flag==true){
 								output += "<a class='replyDelete' value='"+result[i].replyNo+"'>";

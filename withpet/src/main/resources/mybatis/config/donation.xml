@@ -13,8 +13,8 @@
 
 	<!-- 모금함작성&자식 -->
 	<insert id="writeDonation" parameterType="donationDTO" >
-		insert into donation(board_no, donation_org, bank_name, account_no, account_host, final_money, category_no)
-		values(#{boardNo}, #{donationOrg}, #{bankName}, #{accountNo}, #{accountHost}, #{dreamMoney}, #{donationStateNo})
+		insert into donation(board_no, donation_org, bank_name, account_no, account_host, final_money, intro, category_no)
+		values(#{boardNo}, #{donationOrg}, #{bankName}, #{accountNo}, #{accountHost}, #{dreamMoney}, #{intro}, #{donationStateNo})
 	</insert>
 	
 	<!-- 모금함 이미지 작성 -->
@@ -43,12 +43,12 @@
 	
 	<!-- 모금함 목록 -->
 	<select id="selectDonationList" parameterType="pagingBean" resultType="donationDTO" >
-		   SELECT b.board_no as boardNo, b.id,b.title, b.content,b.hits,b.wdate,d.category_no as categoryNo,d.donation_org as donationOrg,d.bank_name as bankName,d.account_no as accountNo, d.account_host as accountHost,d.final_money as finalMoney, d.donation_flag as donationFlag,d.category_name,d.img as imgPath
-		   FROM(SELECT row_number() over(order by dd.board_no desc) as rnum,dd.board_no, dd.donation_org, dd.bank_name,dd.account_no,dd.account_host,dd.final_money,dd.donation_flag,dd.category_no,dd.category_name,i.img
-		   FROM(SELECT ddd.board_no, ddd.donation_org, ddd.bank_name,ddd.account_no,ddd.account_host,ddd.final_money,ddd.donation_flag,ddd.category_no,ccc.category_name FROM donation ddd,category ccc WHERE ddd.category_no=ccc.category_no) dd,
-		   (SELECT board_no,LISTAGG(img_path,',') WITHIN GROUP (ORDER BY board_no) as img FROM boardimg GROUP BY board_no) i
-		   WHERE dd.board_no=i.board_no) d,(SELECT board_no, title, content, hits, wdate, category_no, id FROM board WHERE category_no = 18) b
-		   WHERE b.board_no=d.board_no and rnum between #{startRowNumber} and #{endRowNumber} order by b.wdate desc
+			SELECT b.board_no as boardNo, b.id,b.title, b.content,b.hits,b.wdate,d.category_no as categoryNo,d.donation_org as donationOrg,d.bank_name as bankName,d.account_no as accountNo, d.account_host as accountHost,d.final_money as finalMoney, d.donation_flag as donationFlag,d.category_name,d.img as imgPath, d.intro
+			FROM(SELECT row_number() over(order by dd.board_no desc) as rnum,dd.board_no, dd.donation_org, dd.bank_name,dd.account_no,dd.account_host,dd.final_money,dd.donation_flag,dd.category_no,dd.category_name,dd.intro, i.img
+			FROM(SELECT ddd.board_no, ddd.donation_org, ddd.bank_name,ddd.account_no,ddd.account_host,ddd.final_money,ddd.donation_flag,ddd.category_no,ddd.intro,ccc.category_name FROM donation ddd,category ccc WHERE ddd.category_no=ccc.category_no) dd,
+			(SELECT board_no,LISTAGG(img_path,',') WITHIN GROUP (ORDER BY board_no) as img FROM boardimg GROUP BY board_no) i
+			WHERE dd.board_no=i.board_no) d,(SELECT board_no, title, content, hits, wdate, category_no, id FROM board WHERE category_no = 18) b
+			WHERE b.board_no=d.board_no and rnum between #{startRowNumber} and #{endRowNumber} order by b.wdate desc
 	</select>
 	
 	<!-- 입금 -->

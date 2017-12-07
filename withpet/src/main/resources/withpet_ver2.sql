@@ -68,3 +68,7 @@ insert into category(category_no,table_code,category_name) values(category_seq.n
 insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'모임후기');--33
 insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'반려정보');--34
 insert into category(category_no,table_code,category_name) values(category_seq.nextval,8,'돌보미');--35
+
+
+
+insert into tier values('aa', 13);

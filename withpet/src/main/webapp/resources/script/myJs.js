@@ -310,6 +310,11 @@ $(document).ready(function (){
     });
     
     $(".registerPost").click(function() {
+    	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+    	$("#frame").submit();
+    });
+    
+    $(".registerDonationPost").click(function() {
 		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
 		
 		var donationOrg = $("#donationOrg").val();
@@ -317,6 +322,7 @@ $(document).ready(function (){
 		var bankName = $("#bankName").val();
 		var accountNo = $("#accountNo").val();
 		var title = $("#title").val();
+		var intro = $("#intro").val();
 		var ir1 = $("#ir1").val();
 		var dreamMoney = $("#dreamMoney").val();
 		
@@ -339,6 +345,10 @@ $(document).ready(function (){
 		}else if(title == null || title == "" ){
 			alert("제목을 입력하세요.");
 			$("#title").focus();
+			return false;
+		}else if(intro == null || intro == "" ){
+			alert("간단소개를 입력하세요.");
+			$("#intro").focus();
 			return false;
 		}else if( ir1 == ""  || ir1 == null || ir1 == '&nbsp;' || ir1 == '<p>&nbsp;</p>' || ir1 == '<p><br></p>')  {
 			alert("내용을 입력하세요.");

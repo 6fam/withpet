@@ -67,6 +67,12 @@
 								<input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
 							</div>
 						</div>
+						<div class="row" style="margin-top: 20px;">
+							<div class="col-sm-1" style="text-align: center; margin-top: 5px;">간단소개</div>
+							<div class="col-sm-10">
+								<textarea name="intro" class="form-control" id="intro" rows="3" cols="15" style="resize: none"></textarea>
+							</div>
+						</div>
 						<div class="row" style="margin-top: 40px;">
 							<div class="col-sm-1" style="text-align: center; margin-top: 5px;">내용</div>
 							<div class="col-sm-11">
@@ -110,7 +116,7 @@
 						<div class="row" style="margin-top: 60px;">
 							<div class="col-sm-4"></div>
 							<div class="col-sm-2">
-								<button type="button" class="btn btn-outline-danger registerPost" style="width: 100px; height: 30px; font-size: 12px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px; cursor: pointer">등록</button>
+								<button type="button" class="btn btn-outline-danger registerDonationPost" style="width: 100px; height: 30px; font-size: 12px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px; cursor: pointer">등록</button>
 							</div>
 							<div class="col-sm-1"></div>
 							<div class="col-sm-2">

@@ -34,7 +34,8 @@
 						
 						
 							<!-- 전체회원관리 -->
-							<form action="">
+							<form action="${pageContext.request.contextPath}/donationstatechange.do">
+							<sec:csrfInput/>
 							<table style="width: 100%">
 							  <thead>
 							    <tr>
@@ -59,6 +60,7 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">모금참여자</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.wdate}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
+							      	<input type="hidden" name="categoryNo" value="29">
 	 								<button class="btn btn-default"  style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer; background-color: white"
 							      	name="boardNo" value="${dl.boardNo}">
 										진행

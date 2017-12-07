@@ -34,6 +34,8 @@
 						
 						
 							<!-- 전체회원관리 -->
+							<form action="${pageContext.request.contextPath}/donationstatechange.do">
+							<sec:csrfInput/>
 							<table style="width: 100%">
 							  <thead>
 							    <tr>
@@ -60,14 +62,17 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">모금참여자</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.wdate}</td>
 						      	  <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
-							      	<a href="#" class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer">
+							      <input type="hidden" name="categoryNo" value="30">
+							      <button class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer; background-color: white"
+							      	name="boardNo" value="${dl.boardNo}">
 										마감
-									</a>
+								  </button>
 							      </td>
 							    </tr>
 							    </c:forEach>
 							    </tbody>
 							</table>
+							</form>
 							<!-- 전체회원관리 끝 -->
 							
 						</div>

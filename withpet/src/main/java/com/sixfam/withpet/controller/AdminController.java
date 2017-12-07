@@ -17,11 +17,11 @@ import com.sixfam.withpet.service.MemberService;
 @Controller
 public class AdminController {
 	
-	 @Resource
-	 AdminService adminService;
+	@Resource
+	AdminService adminService;
 	 
-	 @Resource
-	 MeetingService meetingService;
+	@Resource
+	MeetingService meetingService;
 	 
 	@Resource
 	CommunityService communityService;
@@ -185,9 +185,13 @@ public class AdminController {
 		return "admin/donation_finish.tiles";
 	}
 	/**
-	 * 모금함 마감-모임재개
+	 * 모금함 상태 변경
 	 */
-
+	@RequestMapping("donationstatechange.do")
+	public String donationStateChangeRequest(Model model,int boardNo,int categoryNo) {
+		adminService.setDonationStateChange(boardNo, categoryNo);
+		return "redirect:alldonation.do";
+	}
 	
 	/**
 	 * 커뮤니티글 (전체)

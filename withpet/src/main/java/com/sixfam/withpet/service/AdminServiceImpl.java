@@ -40,9 +40,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(5,4,totalCount);
+			pagingBean=new PagingBean(10,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 5, 4, totalCount);
+			pagingBean=new PagingBean(pageNo,10, 4, totalCount);
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleMemberList(pagingBean), pagingBean);
 	}
 
@@ -53,9 +53,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(2,4,totalCount);
+			pagingBean=new PagingBean(10,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleStandby(pagingBean), pagingBean);
 	}
 
@@ -66,9 +66,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(5,4,totalCount);
+			pagingBean=new PagingBean(10,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 5, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleDogmomList(pagingBean), pagingBean);
 	}
 	
@@ -78,9 +78,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(5,4,totalCount);
+			pagingBean=new PagingBean(10,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 5, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleExceptList(pagingBean), pagingBean);
 	}
 
@@ -90,9 +90,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=adminDAO.getTotalCountPerTier(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(5,4,totalCount);
+			pagingBean=new PagingBean(10,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 5, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
 		return new ListDTO<MemberDTO>(adminDAO.getAllRoleManagerList(pagingBean), pagingBean);
 	}
 
@@ -212,9 +212,9 @@ public class AdminServiceImpl implements AdminService {
 		int totalCount=10;
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(2,4,totalCount);
+			pagingBean=new PagingBean(10,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
 		return new ListDTO<DonationDTO>(adminDAO.getDonationListPerState(pagingBean,categoryNo), pagingBean);
 	}
 	
@@ -222,8 +222,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	@Transactional
-	public void setAcceptDonation(int boardNo) {
-		adminDAO.setAcceptDonation(boardNo);
+	public void setDonationStateChange(int boardNo,int categoryNo) {
+		adminDAO.setDonationStateChange(boardNo,categoryNo);
 	}
 
 	@Override

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
     <link rel="stylesheet" type="text/css" href="resources/css/sh.css"/>
+	 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>  
 <div class="container">
 	<div class="row">
 		<div class="col-sm-1"></div>		
@@ -39,7 +40,49 @@
 								비밀번호 찾기
 							</a>
 						</form>
-					</div>
+							<a id="kakao-login-btn"></a>
+							<script type='text/javascript'>
+								// 사용할 앱의 JavaScript 키를 설정해 주세요.
+								Kakao.init('60f3879e92e754bc28595bdaf3b9390f');
+								// 카카오 로그인 버튼을 생성합니다.
+								Kakao.Auth.createLoginButton({
+									container : '#kakao-login-btn',
+									success : function(authObj) {
+										// 로그인 성공시, API를 호출합니다.
+										Kakao.API.request({
+											url : '/v1/user/me',
+											success : function(res) {
+												//alert(JSON.stringify(res));
+												$.ajax({
+													type:"post",
+													dateType:"json",
+													url:"ajaxtest.do",
+													data : "id="+res.id+"&nick="+res.properties.nickname,
+													beforeSend : function(xhr) {
+										                  xhr.setRequestHeader(
+										                     "${_csrf.headerName}","${_csrf.token}");
+										            },
+								                  	success:function(data){
+								                       if(data==""){
+								                    	   confirm("회원등록을 하시겠습니까?");
+								                       }else{
+								                    	   
+								                       }
+								                         
+								                    }
+												});
+											},
+											fail : function(error) {
+												alert(JSON.stringify(error));
+											}
+										});
+									},
+									fail : function(err) {
+										alert(JSON.stringify(err));
+									}
+								});
+							</script>
+						</div>
 					<div class="col-sm-3"></div>
 				</div>
 			</div>

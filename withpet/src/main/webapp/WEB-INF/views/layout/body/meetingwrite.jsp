@@ -80,23 +80,6 @@
 								</div>
 							</td>
 						</tr>
-						<!-- 모임일시 -->
-						<tr>
-							<td style="width: 100px; text-align: center; font-weight: bold; padding-top: 16px">
-								<font style="color: #4f4f4f">모임일시</font>
-							</td>
-							<td>
-								<div class="row" style="text-align: center">
-									<div class="col-sm-5">
-										<input type="date" class="form-control" id="meetingStart" name="meetingStart"style="font-size: 13px"> 
-									</div>
-									<div class="col-sm-2" style="text-align: center; margin-top: 5px">~</div>
-									<div class="col-sm-5">
-										<input type="date" class="form-control" id="meetingEnd" name="meetingEnd" style="font-size: 13px">
-									</div>
-								</div>
-							</td>
-						</tr>
 						<!-- 접수기간 -->
 						<tr>
 							<td style="width: 100px; text-align: center; font-weight: bold; padding-top: 16px">
@@ -110,6 +93,24 @@
 									<div class="col-sm-2" style="text-align: center; margin-top: 5px">~</div>
 									<div class="col-sm-5">
 										<input type="date" class="form-control" id="gatheringEnd" name="gatheringEnd" style="font-size: 13px">
+									</div>
+								</div>
+							</td>
+						</tr>
+						
+						<!-- 모임일시 -->
+						<tr>
+							<td style="width: 100px; text-align: center; font-weight: bold; padding-top: 16px">
+								<font style="color: #4f4f4f">모임일시</font>
+							</td>
+							<td>
+								<div class="row" style="text-align: center">
+									<div class="col-sm-5">
+										<input type="date" class="form-control" id="meetingStart" name="meetingStart"style="font-size: 13px"> 
+									</div>
+									<div class="col-sm-2" style="text-align: center; margin-top: 5px">~</div>
+									<div class="col-sm-5">
+										<input type="date" class="form-control" id="meetingEnd" name="meetingEnd" style="font-size: 13px">
 									</div>
 								</div>
 							</td>

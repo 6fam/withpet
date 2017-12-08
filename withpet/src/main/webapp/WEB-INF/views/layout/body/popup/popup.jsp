@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <div class="container" style="background-color: white">
+<input type="hidden" value="${boardNo}" name="boardNo" id="boardNo">
 					<br>
 					<p>
 						<strong>참여자 리스트</strong> 
@@ -42,7 +43,7 @@
 		
 		$(".row").on("click", ".except", function() {
 			var id = $(this).val();
-			//alert(id);
+			var boardNo = $("#boardNo").val();
 			
 			if(confirm("제거하시겠습니까?")){
 				
@@ -50,10 +51,17 @@
 				$.ajax({
 					type:"post",
 					url:"exceptAttend.do",
-					data:"id"+id,
+					data:"id="+id+"&boardNo="+boardNo,
+					beforeSend : function(xhr) {
+						xhr.setRequestHeader(
+							"${_csrf.headerName}","${_csrf.token}");
+					},
+					error:function(){
+						alert("통신 실패");
+					},
 					success:function(data){
 						alert(data+"님 제거 완료");
-						$("#possibleCount").text(data);
+						location.href="meetingAttenderList.do?boardNo="+boardNo;
 					}
 				}); //ajax
 				

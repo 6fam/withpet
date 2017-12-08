@@ -55,7 +55,18 @@
 			<div class="row" style="margin-top: 30px">
 				<div class="col-sm-12" style="padding-right: 0px">
 					<b>개설자 ID: </b>
-					<a href="#">&nbsp; ${memberDetailDTO.id}</a> <br>
+					<div class="btn-group" style="margin-left:5px" role="group" aria-label="Button group with nested dropdown">
+					  <div class="btn-group" role="group">
+					    <a id="btnGroupDrop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; text-decoration: none">
+					    ${memberDetailDTO.id}
+					    </a><br>
+					    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+					      <a class="dropdown-item" href="messageanswer.do?sender=${memberDetailDTO.id}">쪽지 보내기</a>
+					    </div>
+					  </div>
+					</div>
+					
+					
 					<hr>
 					<b>개설자 전화번호: </b>
 					&nbsp; ${memberDetailDTO.tel}<br>

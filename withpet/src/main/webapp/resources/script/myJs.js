@@ -35,6 +35,14 @@ $(document).ready(function (){
 	$(".communityBox").mouseout(function(){
 		$(".communityBox").hide();
 	});
+	
+	$(".like").click(function() {
+		alert("공감선택");
+	});
+	
+	$(".hate").click(function() {
+		alert("공감취소");
+	});
 });
 
 

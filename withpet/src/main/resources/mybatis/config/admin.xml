@@ -174,8 +174,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>	
 
 <!-- 모금함 승인-->
-	<update id="acceptDonation" parameterType="int">
-		UPDATE DONATION SET category_no='29' WHERE board_no=#{value}
+	<update id="donationStateChange" parameterType="hashmap">
+		UPDATE DONATION SET category_no=#{categoryNo} WHERE board_no=#{boardNo}
 	</update>
 
 

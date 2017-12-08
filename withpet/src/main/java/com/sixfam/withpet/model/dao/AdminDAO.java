@@ -86,8 +86,10 @@ public interface AdminDAO {
 	
 	public List<DonationDTO> getDonationListPerState (PagingBean pagingBean,int categoryNo);
 	
-	
-	public void setAcceptDonation(int boardNo);
+	/**
+	 * 모금함 상태변경 
+	 */
+	public void setDonationStateChange(int boardNo,int categoryNo);
 	/**
 	 * 견주 승인 날짜 업데이트
 	 */

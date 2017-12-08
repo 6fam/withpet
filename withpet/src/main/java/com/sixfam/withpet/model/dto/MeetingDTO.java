@@ -16,9 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @클래스설명 -모임게시판의 정보를 담고 있는 클래스입니다.<br>
  */
 public class MeetingDTO extends BoardDTO {
-
-	
-	
 	
 	/*
 	 * 모임 장소 컬럼명 : place
@@ -82,6 +79,11 @@ public class MeetingDTO extends BoardDTO {
 	 */
 	private DateDTO date;
 
+	/*
+	 * 모임 공감 여부
+	 */
+	private boolean like;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -253,6 +255,13 @@ public class MeetingDTO extends BoardDTO {
 	public void setSympathyCount(int sympathyCount) {
 		this.sympathyCount = sympathyCount;
 	}
+	public boolean isLike() {
+		return like;
+	}
+	public void setLike(boolean like) {
+		this.like = like;
+	}
+
 
 	@Override
 	public String toString() {
@@ -260,8 +269,7 @@ public class MeetingDTO extends BoardDTO {
 				+ ", possibleCount=" + possibleCount + ", attenderCount=" + attenderCount + ", sympathyCount="
 				+ sympathyCount + ", imgNo=" + imgNo + ", intro=" + intro + ", categoryStateNo=" + categoryStateNo
 				+ ", meetingState=" + meetingState + ", meetingType=" + meetingType + ", tel=" + tel + ", date=" + date
-				+ ", toString()=" + super.toString() + "]";
+				+ ", like=" + like +  ", toString()=" + super.toString() +"]";
 	}
-
 	
 }

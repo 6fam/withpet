@@ -36,8 +36,8 @@
 					meetingList += "<font size='3px'>♥ 12</font>";
 					meetingList += "<h4>"+data[i].meetingState+"</h4></div></figcaption></figure></div>";
 					meetingList += "<div class='row' style='margin: 20px 0 0 0; padding: 0px'>";
-					meetingList += "<span class='badge badge-danger' style='margin: 0px; padding: 10px 10px 5px 10px;'>찜하기</span>";
-					meetingList += "<span class='badge badge-dark' style='margin: 0px 0px 0px 10px; padding: 10px 10px 5px 10px'>";
+					meetingList += "<span class='badge badge-danger' style='margin: 0px; padding: 12px 10px 5px 10px;'>찜하기</span>";
+					meetingList += "<span class='badge badge-dark' style='margin: 0px 0px 0px 10px; padding: 12px 10px 5px 10px'>";
 					meetingList += data[i].title;
 					meetingList += "</span><br><font style='font-size: 12px; margin: 20px 0 0 0; padding: 0px'>";
 					meetingList += "모집기간 :"+data[i].gatheringStart+"~"+data[i].gatheringStart+"<br>";
@@ -166,10 +166,8 @@
 					</figure>
 				</div>
 				<div class="row" style="margin: 20px 0 0 0; padding: 0px;">
-					<span class="badge badge-danger"
-						style="margin: 0px; padding: 10px 10px 5px 10px;">찜하기</span> <span
-						class="badge badge-dark"
-						style="margin: 0px 0px 0px 10px; padding: 10px 10px 5px 10px;">${list.meetingType}</span><br>
+					<span class="badge badge-danger like" style="margin: 0px; padding: 12px 10px 5px 10px; cursor: pointer">찜하기</span>
+					<span class="badge badge-dark" style="margin: 0px 0px 0px 10px; padding: 12px 10px 5px 10px;">${list.meetingType}</span><br>
 					<font style="font-size: 15px; margin-left: 10px; margin-top: 10px;">
 						 ${list.title}<br>
 					</font>

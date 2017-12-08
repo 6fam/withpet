@@ -127,8 +127,11 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	
 	@Override
-	public void setAcceptDonation(int boardNo) {
-		template.update("admin.acceptDonation",boardNo);
+	public void setDonationStateChange(int boardNo,int categoryNo) {
+		HashMap<String, Object> param=new HashMap<String, Object>();
+		param.put("boardNo",boardNo);
+		param.put("categoryNo", categoryNo);
+		template.update("admin.donationStateChange",param);
 	}
 	@Override
 	public void setDogmomPermitDate(MemberDTO memberDTO) {

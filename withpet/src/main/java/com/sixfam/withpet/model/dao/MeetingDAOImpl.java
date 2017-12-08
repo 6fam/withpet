@@ -9,9 +9,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.sixfam.withpet.model.PagingBean;
+import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.model.dto.ReplyDTO;
+import com.sixfam.withpet.model.dto.SympathyDTO;
 
 @Repository
 public class MeetingDAOImpl implements MeetingDAO {
@@ -166,6 +168,9 @@ public class MeetingDAOImpl implements MeetingDAO {
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("id", id);
 		param.put("boardNo", boardNo);
+		
+		System.out.println("삭제 요청 아이디 : "+param.get("id"));
+		System.out.println(""+param.get("boardNo"));
 		template.delete("meeting.removeAttenderMember", param);
 	}
 
@@ -191,6 +196,21 @@ public class MeetingDAOImpl implements MeetingDAO {
 		param.put("id", id);
 		param.put("boardNo", boardNo);
 		template.delete("meeting.removeAttendByFounder", param);
+	}
+
+	@Override
+	public List<LikeDTO> getLikeById(String id) {
+		return template.selectList("meeting.getLikeById", id);
+	}
+
+	@Override
+	public int getPeopleCountByBoardNo(int boardNo) {
+		return template.selectOne("meeting.getPeopleCountByBoardNo", boardNo);
+	}
+	
+	@Override
+	public int getSympathyFlagById(SympathyDTO sympathy) {
+		return template.selectOne("common.getSympathyFlagById", sympathy);
 	}
 	
 }

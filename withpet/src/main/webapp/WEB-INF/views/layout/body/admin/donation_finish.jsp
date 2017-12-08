@@ -22,9 +22,9 @@
 		style="margin-left: 0px; margin-bottom: 60px; margin-right: 0px">
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
-				<li class="nav-item"><a class="nav-link" href="alldonation.do">전체 모금함</a></li>
-				<li class="nav-item"><a class="nav-link" href="donationwait.do">모금 대기중</a></li>
-				<li class="nav-item"><a class="nav-link" href="donatting.do">모금 진행중</a></li>
+				<li class="nav-item"><a class="nav-link" href="alldonation.do?pageNo=1">전체 모금함</a></li>
+				<li class="nav-item"><a class="nav-link" href="donationwait.do?pageNo=1">모금 대기중</a></li>
+				<li class="nav-item"><a class="nav-link" href="donatting.do?pageNo=1">모금 진행중</a></li>
 				<li class="nav-item"><a class="nav-link active" href="#">모금 마감</a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
@@ -34,7 +34,8 @@
 						
 						
 							<!-- 전체회원관리 -->
-							<form action="">
+							<form action="${pageContext.request.contextPath}/donationstatechange.do">
+							<sec:csrfInput/>
 							<table style="width: 100%">
 							  <thead>
 							    <tr>
@@ -59,6 +60,7 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">모금참여자</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.wdate}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
+							      	<input type="hidden" name="categoryNo" value="29">
 	 								<button class="btn btn-default"  style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer; background-color: white"
 							      	name="boardNo" value="${dl.boardNo}">
 										진행
@@ -80,6 +82,40 @@
 					</div>
 				</div>
 			</div>
+			<!-- 돌보미 페이징 시작 -->
+			<div class="row" style="margin-left: 0px">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-6">
+					<div>
+						<c:set value="${requestScope.dolist.pagingBean}" var="pp" />
+						<ul class="pagination">
+							<c:if test="${pp.previousPageGroup }">
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/donationfinish.do?pageNo=${pp.startPageOfPageGroup-1}">&laquo;</a></li>
+							</c:if>
+							<c:forEach var="i" begin="${pp.startPageOfPageGroup}"
+								end="${pp.endPageOfPageGroup }">
+								<c:choose>
+									<c:when test="${pp.nowPage!=i }">
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/donationfinish.do?pageNo=${i}">${i}</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item disabled"><a class="page-link"
+											href="#">${i}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${pp.nextPageGroup}">
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/donationfinish.do?pageNo=${pp.endPageOfPageGroup+1}">&raquo;</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-5"></div>
+			</div>
+			<!-- 돌보미 페이징 끝 -->
 		</div>
 	</div>
 </div>

@@ -17,11 +17,11 @@ import com.sixfam.withpet.service.MemberService;
 @Controller
 public class AdminController {
 	
-	 @Resource
-	 AdminService adminService;
+	@Resource
+	AdminService adminService;
 	 
-	 @Resource
-	 MeetingService meetingService;
+	@Resource
+	MeetingService meetingService;
 	 
 	@Resource
 	CommunityService communityService;
@@ -33,8 +33,7 @@ public class AdminController {
 	 * 전체회원관리(총회원)
 	 */
 	@RequestMapping("allmember.do")
-	public String allMemberRequest(Model model) {
-		int pageNo=1;
+	public String allMemberRequest(Model model, int pageNo) {
 		model.addAttribute("allMember",adminService.getAllMemberList(pageNo));
 		model.addAttribute("tier", adminService.getAllTierList());
 		return "admin/allmember.tiles";
@@ -52,8 +51,7 @@ public class AdminController {
 	 * 일반회원관리(회원)
 	 */
 	@RequestMapping("normalmember.do")
-	public String normalMemberRequest(Model model) {
-		int pageNo=1;
+	public String normalMemberRequest(Model model,int pageNo) {
 		model.addAttribute("normalMember",adminService.getAllRoleMemberList(pageNo));
 		return "admin/normalmember.tiles";
 	}
@@ -62,8 +60,7 @@ public class AdminController {
 	 * 예비주인 관리(견주대기자)
 	 */
 	@RequestMapping("yebimommy.do")
-	public String yebiDogMommyRequest(Model model) {
-		int pageNo=1;
+	public String yebiDogMommyRequest(Model model,int pageNo) {
 		model.addAttribute("yebilist",adminService.getAllRoleStandbyList(pageNo));
 		return "admin/yebimommy.tiles";
 	}
@@ -80,8 +77,7 @@ public class AdminController {
 	 * 댕댕이주인 관리(견주)
 	 */
 	@RequestMapping("dogmommy.do")
-	public String dogMommyRequest(Model model) {
-		int pageNo=1;
+	public String dogMommyRequest(Model model,int pageNo) {
 		model.addAttribute("dogmomlist",adminService.getAllRoleDogmomList(pageNo));
 		return "admin/dogmommy.tiles";
 	}
@@ -98,8 +94,7 @@ public class AdminController {
 	 * 관리자 관리(관리자)
 	 */
 	@RequestMapping("manager.do")
-	public String managerRequest(Model model) {
-		int pageNo=1;
+	public String managerRequest(Model model,int pageNo) {
 		model.addAttribute("managerlist",adminService.getAllRoleManager(pageNo));
 		return "admin/manager.tiles";
 	}
@@ -108,8 +103,7 @@ public class AdminController {
 	 * 탈퇴회원관리(탈퇴자 & 강퇴자)
 	 */
 	@RequestMapping("exceptmember.do")
-	public String exceptMemberRequest(Model model) {
-		int pageNo=1;
+	public String exceptMemberRequest(Model model,int pageNo) {
 		model.addAttribute("excepterlist",adminService.getAllRoleExceptList(pageNo));
 		return "admin/exceptmember.tiles";
 	}
@@ -118,8 +112,7 @@ public class AdminController {
 	 * 모임관리
 	 */
 	@RequestMapping("allmeeting.do")
-	public String allMeetingRequest(Model model) {
-		int pageNo=1;
+	public String allMeetingRequest(Model model,int pageNo) {
 		model.addAttribute("meetinglist",adminService.getAllMeetingList(pageNo));
 		return "admin/allmeeting.tiles";
 	}
@@ -185,9 +178,13 @@ public class AdminController {
 		return "admin/donation_finish.tiles";
 	}
 	/**
-	 * 모금함 마감-모임재개
+	 * 모금함 상태 변경
 	 */
-
+	@RequestMapping("donationstatechange.do")
+	public String donationStateChangeRequest(Model model,int boardNo,int categoryNo) {
+		adminService.setDonationStateChange(boardNo, categoryNo);
+		return "redirect:alldonation.do";
+	}
 	
 	/**
 	 * 커뮤니티글 (전체)
@@ -213,9 +210,9 @@ public class AdminController {
 	 * 커뮤니티 (카테고리별 목록)
 	 */
 	@RequestMapping("activecommunity.do")
-	public String communityActiveRequest(Model model, int categoryNo,String categoryName) {
-		int pageNo=1;
+	public String communityActiveRequest(Model model, int categoryNo,String categoryName,int pageNo) {
 		model.addAttribute("titletype",categoryName);
+		model.addAttribute("categoryNo",categoryNo);
 		model.addAttribute("categoryType",communityService.getCommunityCategoryList());
 		model.addAttribute("cmulist",communityService.getCommunityListPerCategory(categoryNo,pageNo));
 		return "admin/activecommunity.tiles";

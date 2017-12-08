@@ -103,8 +103,20 @@
 			<hr>
 			<b>모금 협회</b> : <font style="font-size: 14px">${donation.donationOrg}</font><br>
 			<b>모금 은행</b> : <font style="font-size: 14px">${donation.bankName}</font><br>
-			<b>모금 계좌 번호</b> : <font style="font-size: 14px">${donation.accountNo}</font><br>
 			<b>모금 계좌주</b> : <font style="font-size: 14px">${donation.accountHost}</font><br>
+			<b>모금 계좌 번호</b> : <font style="font-size: 14px">${donation.accountNo}</font><br>
+			<b>모금 개설자</b> :
+			<div class="btn-group" style="margin-left:5px" role="group" aria-label="Button group with nested dropdown">
+				<div class="btn-group" role="group">
+					<a id="btnGroupDrop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; text-decoration: none">
+					${donation.id}
+					</a>
+					<div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+						<a class="dropdown-item" href="messageanswer.do?sender=${donation.id}">쪽지 보내기</a>
+					</div>
+				</div>
+			</div>
+			<br>
 			<button type="submit" id="sidebox" class="btn btn-primary btn-block" style="cursor: pointer; margin-top: 40px; margin-bottom: 40px">기부하기</button>
 		</div>
 		<div class="col-sm-1" ></div>

@@ -12,9 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dao.MeetingDAO;
+import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.model.dto.ReplyDTO;
+import com.sixfam.withpet.model.dto.SympathyDTO;
 
 @Service
 public class MeetingServiceImpl implements MeetingService{
@@ -61,7 +63,6 @@ public class MeetingServiceImpl implements MeetingService{
 	public boolean isAttenderMember(String id, int boardNo) {
 		MemberDTO memberId=dao.isAttender(id, boardNo);
 		if(memberId==null) {
-			dao.addAttenderMember(id, boardNo);
 			return true;
 		}
 		else {
@@ -134,7 +135,9 @@ public class MeetingServiceImpl implements MeetingService{
 	@Transactional
 	public int getReplyCount(int boardNo) {
 		return dao.getReplyCount(boardNo);
-	}@Override
+	}
+	
+	@Override
 	public void removeAttenderMember(String id, int boardNo) {
 		dao.removeAttenderMember(id, boardNo);
 	}
@@ -159,4 +162,26 @@ public class MeetingServiceImpl implements MeetingService{
 	public void removeAttendByFounder(String id, int boardNo) {
 		dao.removeAttendByFounder(id, boardNo);
 	}
+
+	@Override
+	public List<LikeDTO> getLikeById(String id) {
+		return dao.getLikeById(id);
+	}
+
+	@Override
+	public void addAttenderMember(String id, int boardNo) {
+		dao.addAttenderMember(id, boardNo);
+	}
+
+	@Override
+	public int getPeopleCountByBoardNo(int boardNo) {
+		return dao.getPeopleCountByBoardNo(boardNo);
+	}
+
+	@Override
+	public int getSympathyFlagById(SympathyDTO sympathy) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

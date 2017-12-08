@@ -2,62 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script>
-
-$(document).ready(function() {
-	var pageNo = 1;
-  $(window).scroll(function() {
-		if($(window).scrollTop() == $(document).height() - $(window).height()){
-			alert("스크롤 끝에 닿았음");
-		}
-			//var totalPage = $("#totalPage").val();
-			/* alert("총 페이지: "+totalPage);
-			$.ajax({
-				type:"GET",
-				url:"ajaxCategory.do",
-				data:"pageNo="+(++pageNo),
-				dataType:"json",
-				success:function(data){
-					alert("성공");
-					var meetingList = "";
-					for(var i=0; i<data.length; i++){
-					    meetingList +=	"<div class='col-sm-3' style='padding:0;margin-left:45px ;margin-right:40px; height: 300px; border: solid 1px #adadad; margin-bottom: 20px'>";
-						meetingList +=	"<div class='row' style='margin-left:0px'>";
-						meetingList +=	"<figure class='snip1445' style='margin-top: 7px; margin-right: 7px; padding-right: 0px; width: 268px'>";
-						meetingList +=	"<img src='"+data[i].imgPath+"' alt='Not Found Default Image!' style='margin-left:0px ;width:268px; height: 175px; margin-right: 0px'/>";
-						meetingList +=	"<figcaption class='figure' style='cursor: pointer'>";
-						meetingList +=	"<div><input type='hidden' id='bNo' value='"+data[i].boardNo+"'>";
-						meetingList +=	"<font size='3px'>♥"+"12"+"</font>";
-						meetingList +=	"<h4>친목</h4>";
-						meetingList +=	"</figcaption></figure></div>";
-						meetingList +=	"<div class='row' style='margin-left:0px'>";
-						meetingList +=	"<span class='badge badge-danger' style='padding: 7px; margin-left: 10px'>"+"찜하기"+"</span>";
-						meetingList +=	"<span class='badge badge-dark' style='padding: 7px; margin-left: 4px'>"+data[i].title+"</span><br>";
-						meetingList +=	"<font style='font-size: 12px; margin-left: 10px; margin-top: 10px'>";
-						meetingList +=	"모집기간 : "+ "2017-11-10" + "~" + "2017-11-20" + "<br>";
-						meetingList +=	"모임시간 : "+ "2017-12-3" +"<br></font></div>";
-						meetingList +=	"<div class='row' style='margin-left:0px'><font style='font-size: 12px; margin-left: 10px; margin-top: 0px'>";
-						meetingList +=	"참여현황 : "+ "0"+"/"+"20</font></div></div>";
-					}
-					
-					var container = $("#meetingData .row").html();
-					
-					container += meetingList;
-					$("#meetingData .row").html(container);
-					
-					if(pageNo == totalPage){
-						$('#element').on('scroll touchmove mousewheel', function(event) {
-							event.preventDefault();
-							return false;
-						});
-					}
-				} 
-			});//ajax */
-		}
-  });
-
-</script>
-
 <div class="tagline-upper text-center text-heading text-shadow text-white d-none d-lg-block"
 	style="background-color: #ffffff; padding-top: 0px; border-bottom: solid 1px #cecece; background: url('resources/img/withtogether_logo.jpg'); height: 300px; margin-top:-20px">
 	<a href="togetherdog.do?pageNo=1"><img src="resources/img/logo_with_white.png" style="width: 400px; margin-top: 45px;margin-right:450px; margin-bottom: 5px;"></a>
@@ -68,7 +12,7 @@ $(document).ready(function() {
 	<a href="donationWrite.do" class="btn btn-danger" style="height: 110px; font-size: 13px; margin-top: 8px; margin-bottom: 8px; padding-top: 43px; cursor: pointer">
 	모금함 개설하기 </a>
 </div>
-<div class="container" id="container">
+<div class="container donationPostList" id="container">
 
 	<!-- for -->
 	<c:forEach items="${donationList}" var="donation"  >
@@ -78,25 +22,18 @@ $(document).ready(function() {
 					<c:forEach items="${donation.imgPathList}" var="img">
 						<img src="${pageContext.request.contextPath}/resources/upload/${img.imgPath}" style="width: 260px; height: 173px"/>
 					</c:forEach>
-					<a href="donationDetail.do?boardNo=${donation.boardNo}" class="btn btn-danger" style="position:absolute; top:130px; z-index:1000; left:0px; font-size: 13px; width: 220px; margin-left: 20px; margin-right: 20px">모금함 상세보기</a>
+					<a href="donationDetail.do?boardNo=${donation.boardNo}" class="btn btn-danger" style="position:absolute; top:130px; z-index:999; left:0px; font-size: 13px; width: 220px; margin-left: 20px; margin-right: 20px">모금함 상세보기</a>
 				</div>
 			</div>
-			<h2 class="title">${donation.title}</h2>
-			<p class="subline">
-				${donation.donationOrg}
-			</p>
-			<div class="intro">
-				제목 : ${donation.title}<br>
-				협회이름 : ${donation.donationOrg}<br>
-				은행 : ${donation.bankName}<br>
-				게좌번호 : ${donation.accountNo}<br>
-				계좌주 : ${donation.accountHost}<br>
+			<h2 class="title">&nbsp;</h2>
+			<div class="intro" style="margin-top: 10px">
+				<font style="float: left;">제목 : ${donation.title}</font> 
+				<font style="float: right;">협회이름 : ${donation.donationOrg}</font><br><br>
+				소개 : ${donation.intro}<br><br>
 				모금액 : ${donation.dreamMoney}<br>
 			</div>
 		</div>
 	</c:forEach>
-
-	<div class="clr"></div>
 </div>
 
 

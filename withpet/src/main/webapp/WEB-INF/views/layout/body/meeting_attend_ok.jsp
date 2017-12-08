@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 alert("참석 등록되었습니다!");
-location.href="${pageContext.request.contextPath}/meetingDetail.do?boardNo="+${requestScope.boardNo};
+location.href="${pageContext.request.contextPath}/meetingDetail.do?boardNo="+${boardNo};
 </script>

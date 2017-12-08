@@ -68,9 +68,14 @@ public interface AdminService {
 	public ListDTO<DonationDTO> getAllDonationList(int pageNo);
 	
 	/**
-	 * 모금함 관리 (모금함 상태별)
+	 * 모금함 관리 (모금함 상태별 리스트)
 	 */
 	public ListDTO<DonationDTO> getDonationListPerState (int pageNo, int categoryNo);
+	
+	/**
+	 * 모금함 관리 (모금함 상태 변경)
+	 */
+	public void setDonationStateChange (int boardNo, int categoryNo);
 	
 	/**
 	 * 커뮤니티 (전체)
@@ -84,8 +89,6 @@ public interface AdminService {
 	
 	public void setManagerDogmomPermit(MemberDTO memberDTO);
 	
-	
-	public void setAcceptDonation(int boardNo);
 
 	/**
 	 * 커뮤니티 (타입 추가)

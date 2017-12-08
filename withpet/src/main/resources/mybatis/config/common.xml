@@ -7,6 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateBoardHits" parameterType="int">
 		update board set hits=hits+1 where board_no=#{value}
 	</update>
+	
+	<!-- 해당 게시글의 공감을 했는지 안했는지 확인-->
+	<select id="getSympathyFlagById" parameterType="sympathyDTO" resultType="int">
+		select count(*) from sympathy where id = #{id} and board_no = #{boardNo}
+	</select>
 </mapper>
  
  

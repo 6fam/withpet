@@ -13,6 +13,7 @@ import com.sixfam.withpet.common.WithPet;
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dto.Authority;
 import com.sixfam.withpet.model.dto.DogDTO;
+import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 
@@ -111,8 +112,11 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public int getTotalCountById(String id) {
-		return template.selectOne("member.getTotalCountById", id);
+	public int getTotalCountById(String id, int categoryNo) {
+		HashMap<String, Object> param=new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("categoryNo", categoryNo);
+		return template.selectOne("member.getTotalCountById", param);
 	}
 	@Override
 	public int getTotalCountAttender(String id) {
@@ -121,6 +125,10 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int getTotalCountSympathy(String id) {
 		return template.selectOne("member.getTotalCountSympathy", id);
+	}
+	@Override
+	public int getTotalCountDonationHistory(String id) {
+		return template.selectOne("member.getTotalCountDonationHistory", id);
 	}
 	@Override
 	public void registerDogImg(DogDTO dog) {
@@ -168,5 +176,26 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void setMemberPW(MemberDTO member) {
 		template.update("member.updateMemberPW", member);
+	}
+	@Override
+	public List<DonationDTO> getDonationSetupListById(String id, PagingBean pagingBean) {
+		HashMap<String, Object>param=new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("startRNum", pagingBean.getStartRowNumber());
+		param.put("endRNum", pagingBean.getEndRowNumber());
+		return template.selectList("member.getDonationSetupHistory", param);
+	}
+	@Override
+	public List<DonationDTO> getDonationListById(String id, PagingBean pagingBean) {
+		System.out.println("dao시작");
+		HashMap<String, Object>param=new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("startRNum", pagingBean.getStartRowNumber());
+		param.put("endRNum", pagingBean.getEndRowNumber());
+		System.out.println("hashmap: "+param.get("id")+" "+param.get("startRNum")+" "+param.get("endRNum"));
+		List<DonationDTO> list=template.selectList("member.getDonationHistory", param);
+		for(DonationDTO l:list)
+			System.out.println("dao :"+l);
+		return template.selectList("member.getDonationHistory", param);
 	}
 }

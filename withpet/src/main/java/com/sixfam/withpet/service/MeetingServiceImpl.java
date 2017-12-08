@@ -16,7 +16,6 @@ import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.model.dto.ReplyDTO;
-import com.sixfam.withpet.model.dto.SympathyDTO;
 
 @Service
 public class MeetingServiceImpl implements MeetingService{
@@ -179,9 +178,8 @@ public class MeetingServiceImpl implements MeetingService{
 	}
 
 	@Override
-	public int getSympathyFlagById(SympathyDTO sympathy) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void registerLike(int boardNo, String id) {
+		dao.registerLike(boardNo, id);
 	}
 
 }

@@ -79,4 +79,7 @@ public interface MeetingDAO{
 	public int getPeopleCountByBoardNo(int boardNo);
 	
 	public int getSympathyFlagById(SympathyDTO sympathy);
+
+	public void registerLike(int boardNo, String id);
+
 }

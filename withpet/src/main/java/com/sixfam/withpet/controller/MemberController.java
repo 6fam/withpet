@@ -1,5 +1,6 @@
 package com.sixfam.withpet.controller;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sixfam.withpet.model.dto.DogDTO;
+import com.sixfam.withpet.model.dto.DonationDTO;
+import com.sixfam.withpet.model.dto.ListDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.service.MemberService;
 import com.sixfam.withpet.upload.UploadFileImage;
@@ -64,6 +67,69 @@ public class MemberController {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		model.addAttribute("listdto", service.getSympathyHistoryListById(mdto.getId(), pageNo));
 		return "mypage_liked.tiles";
+	}
+	
+	/**
+	 * 마이페이지>모금함 개설내역 
+	 */
+	@Secured("ROLE_DOGMOM")
+	@RequestMapping("mypage_dSetup.do")
+	public String mypage_dSetup(int pageNo, Model model, Authentication authentication) {
+		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
+		ListDTO <DonationDTO> setupDTO=service.getDonationSetupListById(mdto.getId(), pageNo);
+		List<DonationDTO> listDonation=setupDTO.getList();
+		for(DonationDTO donation:listDonation) {
+			String dreamMoney = (NumberFormat.getNumberInstance().format(Integer.valueOf(donation.getDreamMoney())));
+			String currentMoney = (NumberFormat.getNumberInstance().format(Integer.valueOf(donation.getCurrentMoney())));
+			int c = donation.getCurrentMoney();
+			int d = donation.getDreamMoney();
+			float donationPercent = (float)c/d;
+			donation.setDonationPercent(donationPercent*100);
+			donation.setDreamMoneyStr(dreamMoney);
+			donation.setCurrentMoneyStr(currentMoney);
+			
+			String[] imgPathList = donation.getImgPath().split(",");
+			donation.setImgPath(imgPathList[0]);
+			/*donation.setImgPathList(new ArrayList<ImgDTO>());
+			for(int i=0;i<imgPathList.length;i++) {
+				donation.getImgPathList().add(new ImgDTO(imgPathList[i]));*/
+			//}
+		}
+		
+		model.addAttribute("listdto", setupDTO);
+		
+		return "mypage_dSetup.tiles";
+	}
+	/**
+	 * 마이페이지> 나의 기부내역
+	 */
+	@Secured("ROLE_MEMBER")
+	@RequestMapping("mypage_dHistory.do")
+	public String mypage_dHistory(int pageNo, Model model, Authentication authentication) {
+		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
+		ListDTO <DonationDTO> listDTO=service.getDonationListById(mdto.getId(), pageNo);
+		List<DonationDTO> listDonation=listDTO.getList();
+		for(DonationDTO donation:listDonation) {
+			String dreamMoney = (NumberFormat.getNumberInstance().format(Integer.valueOf(donation.getDreamMoney())));
+			String currentMoney = (NumberFormat.getNumberInstance().format(Integer.valueOf(donation.getCurrentMoney())));
+			int c = donation.getCurrentMoney();
+			int d = donation.getDreamMoney();
+			float donationPercent = (float)c/d;
+			donation.setDonationPercent(donationPercent*100);
+			donation.setDreamMoneyStr(dreamMoney);
+			donation.setCurrentMoneyStr(currentMoney);
+			
+			String[] imgPathList = donation.getImgPath().split(",");
+			donation.setImgPath(imgPathList[0]);
+			/*donation.setImgPathList(new ArrayList<ImgDTO>());
+			for(int i=0;i<imgPathList.length;i++) {
+				donation.getImgPathList().add(new ImgDTO(imgPathList[i]));
+			}*/
+		}
+		
+		model.addAttribute("listdto", listDTO);
+		
+		return "mypage_dHistory.tiles";
 	}
 	
 	/**
@@ -288,7 +354,7 @@ public class MemberController {
 		return "redirect:member_drop_result.do";
 	}
 	
-	@Secured("ROLE_EXCEPT")
+	@Secured({"ROLE_EXCEPT", "ROLE_MEMBER"})
 	@RequestMapping("member_drop_result.do")
 	public String sendDropResultRequest(Authentication authentication) {
 		return "member_drop_result.tiles";

@@ -47,7 +47,7 @@
 				
 				<!-- 서비스 소개 -->
 				<font style="color: #ddd">|</font> 
-				<a href="#" style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
+				<a href="serviceIntroDetailView.do?boardNo=1" style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 12px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				서비스소개
 				</a>
 				
@@ -83,7 +83,7 @@
 								</a>
 							</div>
 							<div>
-								<a class="dropdown-item" href="#" style="padding-top: 0px">
+								<a class="dropdown-item" href="serviceIntroWriteView.do?boardNo=1" style="padding-top: 0px">
 									<font style="font-size: 12px">서비스 관리</font>
 								</a>
 							</div>

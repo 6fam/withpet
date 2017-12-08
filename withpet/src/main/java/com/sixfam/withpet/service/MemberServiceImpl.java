@@ -14,6 +14,7 @@ import com.sixfam.withpet.model.dao.AdminDAO;
 import com.sixfam.withpet.model.dao.MemberDAO;
 import com.sixfam.withpet.model.dto.Authority;
 import com.sixfam.withpet.model.dto.DogDTO;
+import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.ListDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
@@ -77,12 +78,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public ListDTO<MeetingDTO> getSetupListById(String id, int pageNo) {
-		int totalCount=memberDAO.getTotalCountById(id);
+		int totalCount=memberDAO.getTotalCountById(id, WithPet.BOARD_MEETING);
 		PagingBean pagingBean=null;
-		if(pageNo==1)
-			pagingBean=new PagingBean(1, 4, totalCount);
+		if(pageNo==1) 
+			pagingBean=new PagingBean(2, 5, totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 1, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 2, 5, totalCount);
 		return new ListDTO<MeetingDTO>(memberDAO.getSetupListById(id, pagingBean), pagingBean);
 	}
 	
@@ -92,9 +93,9 @@ public class MemberServiceImpl implements MemberService {
 		int totalCount=memberDAO.getTotalCountAttender(id);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(3,4,totalCount);
+			pagingBean=new PagingBean(2, 5, totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 3, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 2, 5, totalCount);
 		return new ListDTO<MeetingDTO>(memberDAO.getAttenderHistoryListById(id, pagingBean), pagingBean);
 	}
 	
@@ -104,9 +105,9 @@ public class MemberServiceImpl implements MemberService {
 		int totalCount=memberDAO.getTotalCountSympathy(id);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(2,4,totalCount);
+			pagingBean=new PagingBean(2, 5, totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 2, 5, totalCount);
 		return new ListDTO<MeetingDTO>(memberDAO.getSympathyHistoryListById(id, pagingBean), pagingBean);
 	}
 	
@@ -232,5 +233,31 @@ public class MemberServiceImpl implements MemberService {
 	public void removeExceptMember(MemberDTO member) {
 		adminDAO.removeMemberTier(member);
 		adminDAO.registerTierExcept(member);
+	}
+	
+	@Override
+	@Transactional
+	public ListDTO<DonationDTO> getDonationSetupListById(String id, int pageNo) {
+		System.out.println("마이페이지 모금함 개설내역 서비스");
+		int totalCount=memberDAO.getTotalCountById(id, WithPet.BOARD_DONATION);
+		System.out.println("서비스 : "+totalCount);
+		PagingBean pagingBean=null;
+		if(pageNo==1) 
+			pagingBean=new PagingBean(2, 5, totalCount);
+		else
+			pagingBean=new PagingBean(pageNo, 2, 5, totalCount);
+		return new ListDTO<DonationDTO>(memberDAO.getDonationSetupListById(id, pagingBean), pagingBean);
+	}
+	
+	@Override
+	@Transactional
+	public ListDTO<DonationDTO> getDonationListById(String id, int pageNo) {
+		int totalCount=memberDAO.getTotalCountDonationHistory(id);
+		PagingBean pagingBean=null;
+		if(pageNo==1) 
+			pagingBean=new PagingBean(2, 5, totalCount);
+		else
+			pagingBean=new PagingBean(pageNo, 2, 5, totalCount);
+		return new ListDTO<DonationDTO>(memberDAO.getDonationListById(id, pagingBean), pagingBean);
 	}
 }

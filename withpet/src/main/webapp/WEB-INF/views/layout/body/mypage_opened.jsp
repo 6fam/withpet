@@ -43,6 +43,12 @@
 					href="mypage_participate.do?pageNo=1">모임참여내역</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="mypage_liked.do?pageNo=1">모임공감내역</a></li>
+				<sec:authorize access="hasRole('ROLE_DOGMOM')">
+				<li class="nav-item"><a class="nav-link"
+					href="mypage_dSetup.do?pageNo=1">모금함개설내역</a></li>
+				</sec:authorize>
+				<li class="nav-item"><a class="nav-link"
+					href="mypage_dHistory.do?pageNo=1">나의기부내역</a></li>
 			</ul>
 		</div>
 	</div>
@@ -64,7 +70,7 @@
 								style="margin-left: 0px; border: 1px solid #ddd; width: 100%; margin: 0 auto; margin-bottom: 30px">
 								<!-- 섬네일시작 -->
 								<div class="col-sm-2" style="margin: 30px 0 30px 30px;">
-									<img src="${pageContext.request.contextPath }/resources/img/${listdto.imgPath}" width="150px" height="150px">
+									<img src="${pageContext.request.contextPath }/resources/upload/${listdto.imgPath}" width="150px" height="150px">
 								</div>
 								<!-- 섬네일끝 -->
 								<div class="col-sm-9" style="margin: 30px 0 0 30px">

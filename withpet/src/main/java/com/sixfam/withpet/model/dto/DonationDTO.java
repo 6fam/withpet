@@ -20,6 +20,9 @@ import java.util.List;
  *  -모금함 게시판의 정보를 담고있는 클래스입니다.	<br>
  */
 public class DonationDTO extends BoardDTO{
+	
+	
+	
 	/**
 	 * 썸네일 번호 : thumnail_no
 	 */
@@ -57,6 +60,10 @@ public class DonationDTO extends BoardDTO{
 	 */
 	private String dreamMoneyStr;
 	/**
+	 * 나의모금액 : d_money
+	 */
+	private int myDMoney;
+	/**
 	 * 모금 권한 : donation_flag
 	 */
 	private int donationFlag;
@@ -64,6 +71,10 @@ public class DonationDTO extends BoardDTO{
 	 * 모금 상태 : category_no
 	 */
 	private int donationStateNo;
+	/**
+	 * 모금 진행 상태 
+	 */
+	private String donationState;
 	/**
 	 * 모금 진행률
 	 */
@@ -104,7 +115,12 @@ public class DonationDTO extends BoardDTO{
 		this.donationFlag = donationFlag;
 		this.donationStateNo = donationStateNo;
 	}
-
+	public int getMyDMoney() {
+		return myDMoney;
+	}
+	public void setMyDMoney(int myDMoney) {
+		this.myDMoney = myDMoney;
+	}
 	public int getThumnailNo() {
 		return thumnailNo;
 	}
@@ -112,7 +128,7 @@ public class DonationDTO extends BoardDTO{
 	public void setThumnailNo(int thumnailNo) {
 		this.thumnailNo = thumnailNo;
 	}
-
+	
 	public String getDonationOrg() {
 		return donationOrg;
 	}
@@ -207,12 +223,19 @@ public class DonationDTO extends BoardDTO{
 	public void setIntro(String intro) {
 		this.intro = intro;
 	}
+	public String getDonationState() {
+		return donationState;
+	}
+	public void setDonationState(String donationState) {
+		this.donationState = donationState;
+	}
 	@Override
 	public String toString() {
 		return "DonationDTO [thumnailNo=" + thumnailNo + ", donationOrg=" + donationOrg + ", bankName=" + bankName
 				+ ", accountNo=" + accountNo + ", accountHost=" + accountHost + ", currentMoney=" + currentMoney
 				+ ", currentMoneyStr=" + currentMoneyStr + ", dreamMoney=" + dreamMoney + ", dreamMoneyStr="
 				+ dreamMoneyStr + ", donationFlag=" + donationFlag + ", donationStateNo=" + donationStateNo
-				+ ", donationPercent=" + donationPercent + ", getImgPathList()=" + getImgPathList() + ", intro=" + intro + "]";
+				+ ", donationState=" + donationState + ", donationPercent=" + donationPercent + ", intro=" + intro
+				+ ", getImgPathList()=" + getImgPathList() + "]";
 	}
 }

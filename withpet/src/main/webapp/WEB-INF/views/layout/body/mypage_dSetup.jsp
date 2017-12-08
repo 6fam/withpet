@@ -9,6 +9,7 @@
 		location.href="${pageContext.request.contextPath}/loginForm.do";
 	</script>
 </sec:authorize>
+
 <div class="container"
 	style="background-color: white; border: solid 1px #adadad; margin-top: 10px">
 
@@ -35,10 +36,10 @@
 				</sec:authorize>
 				<li class="nav-item"><a class="nav-link"
 					href="mypage_participate.do?pageNo=1">모임참여내역</a></li>
-				<li class="nav-item"><a class="nav-link active"
+				<li class="nav-item"><a class="nav-link"
 					href="mypage_liked.do?pageNo=1">모임공감내역</a></li>
 				<sec:authorize access="hasRole('ROLE_DOGMOM')">
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item"><a class="nav-link active"
 					href="mypage_dSetup.do?pageNo=1">모금함개설내역</a></li>
 				</sec:authorize>
 				<li class="nav-item"><a class="nav-link"
@@ -48,73 +49,73 @@
 	</div>
 
 	<div class="row"
-		style="margin-left: 0px; margin-right: 0px; margin-bottom: 100px">
+		style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 100px">
 		<div class="col-sm-12">
 			<!-- 반복구간 -->
 				<!-- 1 -->
 				<c:choose>
 					<c:when test="${fn:length(requestScope.listdto.list)==0 }">
-						<br><div align="center"><b>공감한 모임 내역이 없습니다. </b></div>
+						<br><div align="center"><b>모금함 개설 내역이 없습니다. </b></div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="slist" items="${requestScope.listdto.list }">
+						<c:forEach var="list" items="${requestScope.listdto.list }">
 							<div class="row"
 								style="margin-left: 0px; border: 1px solid #ddd; width: 100%; margin: 0 auto; margin-bottom: 30px">
 								<!-- 섬네일시작 -->
 								<div class="col-sm-2" style="margin: 30px 0 30px 30px;">
-									<img src="${pageContext.request.contextPath }/resources/upload/${slist.imgPath}" width="150px" height="150px">
+										<img src="${pageContext.request.contextPath}/resources/upload/${list.imgPath}" style="width: 150px; height: 150px"/>
+									<%-- <img src="${pageContext.request.contextPath }/resources/img/${list.imgPath}" width="150px" height="150px"> --%>
 								</div>
 								<!-- 섬네일끝 -->
 								<div class="col-sm-9" style="margin: 30px 0 0 30px">
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
-												<td style="text-align: center; font-weight: bold">모임제목</td>
-												<td>${slist.title }</td>
-												<td style="text-align: center; font-weight: bold">모임상태</td>
-													<td>${slist.meetingState }</td>
+												<td style="text-align: center; font-weight: bold">모금함</td>
+												<td>${list.title }</td>
+												<td style="text-align: center; font-weight: bold">모금진행상태</td>
+												<td>${list.donationState}</td>
 											</tr>
 											<tr>
-												<td style="text-align: center; font-weight: bold">모임기간</td>
-												<td>${slist.date.meetingStart } ~ ${slist.date.meetingEnd }</td>
-												<td style="text-align: center; font-weight: bold">모임종류</td>
-												<td>${slist.meetingType}</td>
+												<td style="text-align: center; font-weight: bold">모금개설기관</td>
+												<td>${list.donationOrg }</td>
+												<td style="text-align: center; font-weight: bold">모금진행률</td>
+												<td>${list.donationPercent}%</td>
 											</tr>
 											<tr>
-												<td style="text-align: center; font-weight: bold">모임장소</td>
-												<td colspan="3">${slist.place }</td>
+												<td style="text-align: center; font-weight: bold">모금목표액</td>
+												<td>${list.dreamMoneyStr }원</td>
+												<td style="text-align: center; font-weight: bold">현재모금액</td>
+												<td>${list.currentMoneyStr}원</td>
+											</tr>
+											<tr>
+												<td style="text-align: center; font-weight: bold">소개</td>
+												<td colspan="3">${list.intro }</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
-							</div>
-						</c:forEach>
+							</div> 
+						</c:forEach> 
 					</c:otherwise>
 				</c:choose>
 				<!-- 반복종료 -->
-
-
-
-
-
-
-
 
 			<!-- 총회원게시판 끝 -->
 			<!-- 돌보미 페이징 시작 -->
 			<div class="row" style="margin-left: 0px">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6" align="center">
-					<c:set var="pb" value="${requestScope.listdto.pagingBean }"/>
+						<c:set var="pb" value="${requestScope.listdto.pagingBean }"/>
 						<ul class="pagination">
 								<c:if test="${pb.previousPageGroup }">
-									<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/mypage_liked.do?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+									<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/mypage_dSetup.do?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
 								</c:if>
 								<c:forEach var="i" begin="${pb.startPageOfPageGroup }" end="${pb.endPageOfPageGroup }">
 									<c:choose>
 										<c:when test="${pb.nowPage!=i }">
-											<li class="page-item">
-												<a class="page-link" href="${pageContext.request.contextPath}/mypage_liked.do?pageNo=${i}">${i}</a></li>	
+											<li class="page-item">								
+												<a class="page-link" href="${pageContext.request.contextPath}/mypage_dSetup.do?pageNo=${i}">${i}</a></li>	
 										</c:when>
 										<c:otherwise>
 											<li class="page-item disabled"><a class="page-link" href="#">${i}</a></li>									
@@ -122,7 +123,7 @@
 									</c:choose>
 								</c:forEach>
 								<c:if test="${pb.nextPageGroup}">
-									<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/mypage_liked.do?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+									<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/mypage_dSetup.do?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
 								</c:if>
 						</ul>
 					</div>

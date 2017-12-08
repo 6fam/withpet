@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="service">
+<!-- 서비스 소개 글등록 -->
+	<insert id="insertIntro" parameterType="serviceIntroDTO">
+		<selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
+			SELECT board_seq.nextval FROM DUAL
+		</selectKey>
+		insert into intro(board_no,content) values(#{boardNo},#{content})
+	</insert>
+
+<!-- 인트로의 전체 갯수 조회 -->
+	<select id="getIntroCount" resultType="int">
+		select count(*) from intro
+	</select>
+
+<!-- 보드번호조회 -->
+	<select id="getIntroBoardNo" resultType="serviceIntroDTO">
+		select board_no as boardNo,content from intro 
+	</select>
+	<!-- select board_no as boardNo,content from intro where board_no=#{boardNo} -->
+
+<!-- 수정 -->
+	<update id="updateIntro" parameterType="serviceIntroDTO">
+		update intro set content=#{content} where board_no=#{boardNo}
+	</update>
+		 
+<!-- 디테일 -->
+	<select id="detailIntro" parameterType="int" resultType="serviceIntroDTO">
+		select board_no as boardNo,content from intro where board_no=#{value}
+	</select>
+
+</mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

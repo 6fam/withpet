@@ -44,9 +44,6 @@ public class MeetingController {
 		meeting.setCategoryNo(service.getCategoryNoByCategory(meeting.getCategoryName()));
 		meeting.setId(mdto.getId());
 		meeting.setPlace(meeting.getPlace() +" "+ meeting.getDetailPlace());
-		// 협의 클릭 시 nullnull 값 입력 -> 협의로 변경
-		if(meeting.getPlace().equals("null null"))
-			meeting.setPlace("협의");
 		
 		meeting.setDate(date);
 		service.registerMeeting(meeting);

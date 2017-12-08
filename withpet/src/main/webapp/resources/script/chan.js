@@ -166,10 +166,12 @@ function submit(){
 		   frm.place.disabled = true;
 		   frm.addressBtn.disabled = true;
 		   frm.detailPlace.disabled = true;
+		   frm.place.value = "추후 협의";
 		} else{ 
 		   frm.place.disabled = false;
 		   frm.addressBtn.disabled = false;
 		   frm.detailPlace.disabled = false;
+		   frm.place.value = "";
 		}
   }
   
@@ -297,7 +299,7 @@ function submit(){
     		 alert("모임 인원을 입력하세요");
     		 mFrm.peopleCount.focus();
     		 return false;
-    	 }else if(mFrm.place.value=="" || mFrm.detailPlace.value==""){
+    	 }else if(mFrm.place.value==""){
     		 /*if(mFrm.place.disabled && mFrm.detailPlace.disabled){
     			 mFrm.place.value="";
     			 mFrm.detailPlace.value="";

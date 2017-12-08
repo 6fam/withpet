@@ -8,6 +8,7 @@ import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.model.dto.ReplyDTO;
+import com.sixfam.withpet.model.dto.SympathyDTO;
 
 public interface MeetingDAO{
 	
@@ -76,4 +77,6 @@ public interface MeetingDAO{
 	public void removeAttendByFounder(String id, int boardNo);
 
 	public int getPeopleCountByBoardNo(int boardNo);
+	
+	public int getSympathyFlagById(SympathyDTO sympathy);
 }

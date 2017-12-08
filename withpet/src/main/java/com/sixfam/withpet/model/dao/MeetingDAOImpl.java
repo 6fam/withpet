@@ -13,6 +13,7 @@ import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.model.dto.ReplyDTO;
+import com.sixfam.withpet.model.dto.SympathyDTO;
 
 @Repository
 public class MeetingDAOImpl implements MeetingDAO {
@@ -205,6 +206,11 @@ public class MeetingDAOImpl implements MeetingDAO {
 	@Override
 	public int getPeopleCountByBoardNo(int boardNo) {
 		return template.selectOne("meeting.getPeopleCountByBoardNo", boardNo);
+	}
+	
+	@Override
+	public int getSympathyFlagById(SympathyDTO sympathy) {
+		return template.selectOne("common.getSympathyFlagById", sympathy);
 	}
 	
 }

@@ -35,6 +35,12 @@
 					href="mypage_participate.do?pageNo=1">모임참여내역</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="mypage_liked.do?pageNo=1">모임공감내역</a></li>
+					<sec:authorize access="hasRole('ROLE_DOGMOM')">
+				<li class="nav-item"><a class="nav-link"
+					href="mypage_dSetup.do?pageNo=1">모금함개설내역</a></li>
+					</sec:authorize>
+				<li class="nav-item"><a class="nav-link"
+					href="mypage_dHistory.do?pageNo=1">나의기부내역</a></li>
 			</ul>
 		</div>
 	</div>

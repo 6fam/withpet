@@ -10,6 +10,12 @@ package com.sixfam.withpet.model;
  *
  */
 public class PagingBean {
+	@Override
+	public String toString() {
+		return "PagingBean [nowPage=" + nowPage + ", contentNumberPerPage=" + contentNumberPerPage
+				+ ", pageNumberPerPageGroup=" + pageNumberPerPageGroup + ", totalContents=" + totalContents + "]";
+	}
+
 	/**
 	 * 현재 페이지
 	 */
@@ -60,6 +66,7 @@ public class PagingBean {
 		return nowPage;
 	}
 
+	
 	/**
 	 * 현재 페이지번호에 해당하는 시작 게시물의 row number를 반환 hint : 이전페이지의 마지막 번호 + 1 ((현재페이지-1)
 	 * * 페이지당 게시물수) +1

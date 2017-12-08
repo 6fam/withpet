@@ -52,10 +52,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMeetingInfoById" parameterType="hashmap" resultMap="mypage_opened">
 		SELECT b.rnum, b.board_no as boardNo, b.title, al.place, al.category_name as meetingState,
 		i.img_path as imgPath, cg.category_name as meetingType
-		FROM (select board_no, row_number() over(order by board_no desc) as rnum, title, id, category_no from board) b, category cg,
-		(select m.board_no, m.img_no, m.place, c.category_name from meeting m, category c
+		FROM (select board_no, row_number() over(order by board_no desc) as rnum, title, id from board where category_no=17) b, 
+		category cg, (select m.board_no, m.img_no, m.place, c.category_name from meeting m, category c
 		where m.category_no=c.category_no) al, img i, meetingType mt
-		WHERE b.category_no=17 and b.id=#{id} and al.board_no=b.board_no and i.img_no=al.img_no
+		WHERE b.id=#{id} and al.board_no=b.board_no and i.img_no=al.img_no
 		and mt.board_no=b.board_no and mt.category_no=cg.category_no and rnum between #{startRNum} and #{endRNum} order by rnum asc
 	</select>
 	
@@ -88,8 +88,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						and mt.board_no=b.board_no and mt.category_no=cg.category_no and rnum between #{startRNum} and #{endRNum} order by rnum asc
 	</select>
 
-	<select id="getTotalCountById" parameterType="string" resultType="int">
-		select count(*) from board where id=#{value} and category_no=17
+	<select id="getTotalCountById" parameterType="hashmap" resultType="int">
+		select count(*) from board where id=#{id} and category_no=#{categoryNo}
 	</select>
 	
 	<select id="getTotalCountAttender" parameterType="string" resultType="int">
@@ -98,6 +98,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getTotalCountSympathy" parameterType="string" resultType="int">
 		select count(*) from sympathy where id=#{value}
+	</select>
+	
+	<select id="getTotalCountDonationHistory" parameterType="string" resultType="int">
+		select count(*) from donationHistory where id=#{value}
 	</select>
 
 	<insert id="insertDogImg" parameterType="dogDTO">
@@ -143,6 +147,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- id, pwQ, pwA 확인 -->
 	<select id="checkIdPwAnswer" parameterType="memberDTO" resultType="int">
 		select count(*) from member where id=#{id} and pw_answer=#{pwAnswer} and category_no=#{categoryNo}
+	</select>
+	<!-- mypage donation setup history -->
+	<select id="getDonationSetupHistory" parameterType="hashmap" resultType="donationDTO">
+		SELECT b.board_no as boardNo, b.title, c.category_name as donationState, d.donation_org as donationOrg, 
+		d.final_money as dreamMoney, d.current_money as currentMoney, d.intro, i.imgPath
+		FROM (SELECT row_number() over(order by board_no desc) as rnum, id, title, board_no from board where category_no=18) b, 
+		(SELECT board_no, LISTAGG(img_path,',') within group(order by board_no) as imgPath FROM boardimg group by board_no) i, 
+		donation d, category c
+		WHERE b.board_no=d.board_no and b.board_no=i.board_no and c.category_no=d.category_no and b.id=#{id}
+		and b.rnum between #{startRNum} and #{endRNum} order by b.rnum asc
+	</select>
+	
+	<select id="getDonationHistory" parameterType="hashmap" resultType="donationDTO">
+		SELECT dh.rnum, b.board_no as boardNo, b.title, c.category_name as donationState, d.donation_org as donationOrg, b.id, 
+		d.final_money as dreamMoney, d.current_money as currentMoney, d.intro, i.imgPath, dh.d_money as myDMoney
+		FROM (SELECT row_number() over(order by board_no desc) as rnum, board_no, d_money from donationhistory where id=#{id}) dh, 
+		(SELECT board_no, LISTAGG(img_path,',') within group(order by board_no) as imgPath FROM boardimg group by board_no) i, donation d, 
+		category c, board b WHERE dh.board_no=b.board_no and dh.board_no=d.board_no and b.board_no=i.board_no and c.category_no=d.category_no
+		and dh.rnum between #{startRNum} and #{endRNum} order by dh.rnum asc
 	</select>
 </mapper>
  

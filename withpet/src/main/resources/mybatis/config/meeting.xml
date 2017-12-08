@@ -259,6 +259,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <select id="getPeopleCountByBoardNo" parameterType="int" resultType="int">
 	 	select people_count from meeting where board_no=#{value}
 	 </select>
+	 
+	 <insert id="registerLike" parameterType="hashmap">
+	 	insert into sympathy(id, board_no) values(#{id}, #{boardNo})
+	 </insert>
 </mapper>
  
  

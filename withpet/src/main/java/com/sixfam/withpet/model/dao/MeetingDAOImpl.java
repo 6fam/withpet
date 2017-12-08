@@ -212,5 +212,13 @@ public class MeetingDAOImpl implements MeetingDAO {
 	public int getSympathyFlagById(SympathyDTO sympathy) {
 		return template.selectOne("common.getSympathyFlagById", sympathy);
 	}
-	
+
+	@Override
+	public void registerLike(int boardNo, String id) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("boardNo", boardNo);
+		param.put("id", id);
+		template.insert("meeting.registerLike", param);
+	}
+
 }

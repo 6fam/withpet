@@ -78,7 +78,7 @@
                         <div class="col-sm-2" style="margin-left: 40px; margin-top: 5px;">
                            <input style="height: 10px;" name="gender" type="radio" value="male" class="form-check-input">수컷
                         </div>
-                        <div class="col-sm-2" style="margin-left: 40px; margin-top: 5px;">
+                        <div class="col-sm-4" style="margin-left: 40px; margin-top: 5px;">
                            <input style="height: 10px;" name="neutralization" value="neutralization" type="checkbox" class="form-check-input">중성화 수술 여부
                         </div>
                      </div>

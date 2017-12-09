@@ -88,14 +88,15 @@
 					</tbody>
 				</table>
 				<a href="${pageContext.request.contextPath }/dog_update.do" class="btn btn-outline-danger" 
-						style="width:100%;height: 30px; font-size: 13px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px; cursor: pointer">댕댕이 수정하기</a>
+						style="width:100%;height: 50px; font-size: 17px; margin-top: 8px; margin-bottom: 8px; padding-top: 15px; cursor: pointer">댕댕이 수정하기</a>
 				
 			</div>
 		</sec:authorize>
 		<sec:authorize access="hasRole('ROLE_MEMBER') and !hasRole('ROLE_STANDBY') and !hasRole('ROLE_DOGMOM')">
-			<div class="col-sm-6">
+			<div class="col-sm-6" style="text-align:center">
+				<div style="background:#ddd;height:300px;line-height:300px;font-size:17px">댕댕이 정보를 등록해 주세요!</div>
 				<a href="${pageContext.request.contextPath }/dog_check.do" class="btn btn-outline-danger" 
-						style="width:100%;height: 30px; font-size: 13px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px; cursor: pointer">댕댕이 등록하기</a>
+						style="width:100%;height: 50px; font-size: 17px; margin-top: 20px; margin-bottom: 8px; padding-top: 15px; cursor: pointer">댕댕이 등록하기</a>
 			</div>
 		</sec:authorize>
 		
@@ -149,7 +150,7 @@
 				</tbody>
 			</table>
 			<a href="information_modification.do" class="btn btn-outline-success"
-				style="width: 100%; height: 30px; font-size: 11px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px; cursor: pointer">정보수정</a>
+				style="width: 100%; height: 50px; font-size: 17px; margin-top: 8px; margin-bottom: 8px; padding-top: 15px; cursor: pointer">정보수정</a>
 		</div>
 		</sec:authorize>
 	</div>

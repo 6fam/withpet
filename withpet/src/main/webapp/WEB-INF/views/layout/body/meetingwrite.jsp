@@ -18,6 +18,7 @@
 </sec:authorize>
 
 <form action="registerMeeting.do" id="frame" method="post" enctype="multipart/form-data" onsubmit="return checkForm()" name="meetingFrm">
+<input type="hidden" id="categoryStateNo" value="">
 <sec:csrfInput/>
 <sec:authorize access="hasRole('ROLE_DOGMOM')">
 <div class="container"
@@ -92,7 +93,7 @@
 									</div>
 									<div class="col-sm-2" style="text-align: center; margin-top: 5px">~</div>
 									<div class="col-sm-5">
-										<input type="date" class="form-control" id="gatheringEnd" name="gatheringEnd" style="font-size: 13px">
+										<input type="date" class="form-control" id="gatheringEnd" name="gatheringEnd" style="font-size: 13px" onchange="checkDate()">
 									</div>
 								</div>
 							</td>

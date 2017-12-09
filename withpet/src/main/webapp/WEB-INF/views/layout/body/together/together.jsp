@@ -22,15 +22,18 @@
 					<c:forEach items="${donation.imgPathList}" var="img">
 						<img src="${pageContext.request.contextPath}/resources/upload/${img.imgPath}" style="width: 260px; height: 173px"/>
 					</c:forEach>
-					<a href="donationDetail.do?boardNo=${donation.boardNo}" class="btn btn-danger" style="position:absolute; top:130px; z-index:999; left:0px; font-size: 13px; width: 220px; margin-left: 20px; margin-right: 20px">모금함 상세보기</a>
+					<a href="donationDetail.do?boardNo=${donation.boardNo}" class="btn btn-success" style="position:absolute; top:130px; z-index:999; left:0px; font-size: 13px; width: 220px; margin-left: 20px; margin-right: 20px">모금함 상세보기</a>
 				</div>
 			</div>
 			<h2 class="title">&nbsp;</h2>
-			<div class="intro" style="margin-top: 10px">
-				<font style="float: left;">제목 : ${donation.title}</font> 
-				<font style="float: right;">협회이름 : ${donation.donationOrg}</font><br><br>
-				소개 : ${donation.intro}<br><br>
-				모금액 : ${donation.dreamMoney}<br>
+			<div class="intro" style="margin-top: 10px;overflow:hidden;word-wrap:break-word;">
+				<font style="float: left; font-size: 14px"><b>${donation.title}</b></font> 
+				<font style="float: left; font-size: 10px; color: #6b6b6b; margin-top: 4px; margin-left: 5px"><b>${donation.donationOrg}</b></font><br><br>
+				<hr style="margin-top: 0px">
+				<b>소개</b><br>
+				${donation.intro}<br><br>
+				<b>모금 목표액</b><br>
+				${donation.dreamMoney}<br>
 			</div>
 		</div>
 	</c:forEach>

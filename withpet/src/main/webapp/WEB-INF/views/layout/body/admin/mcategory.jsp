@@ -14,7 +14,7 @@
 		style="margin-left: 0px; margin-bottom: 60px; margin-right: 0px">
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
-				<li class="nav-item"><a class="nav-link" href="allmeeting.do">전체 모임 목록</a></li>
+				<li class="nav-item"><a class="nav-link" href="allmeeting.do?pageNo=1">전체 모임 목록</a></li>
 				<li class="nav-item"><a class="nav-link active" href="#">모임 카테고리 관리</a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">

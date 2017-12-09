@@ -117,7 +117,7 @@
 				</div>
 			</div>
 			<br>
-			<button type="submit" id="sidebox" class="btn btn-primary btn-block" style="cursor: pointer; margin-top: 40px; margin-bottom: 40px">기부하기</button>
+			<button type="submit" id="sidebox" class="btn btn-success btn-block" style="cursor: pointer; margin-top: 40px; margin-bottom: 40px">기부하기</button>
 		</div>
 		<div class="col-sm-1" ></div>
 	</div>

@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+	.form-group input{color:#ddd;font-weight:bold;font-family: 'Noto Sans KR', sans-serif;font-size: 14px;}
+	.form-group select.form-control,.form-group select.form-control option{color:#969696;font-weight:bold;font-family: 'Noto Sans KR', sans-serif;font-size: 14px;}
+</style>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-1"></div>		

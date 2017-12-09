@@ -56,21 +56,19 @@
 												$.ajax({
 													type:"post",
 													dateType:"json",
-													url:"ajaxtest.do",
+													url:"klogin.do",
 													data : "id="+res.id+"&nick="+res.properties.nickname,
 													beforeSend : function(xhr) {
 										                  xhr.setRequestHeader(
 										                     "${_csrf.headerName}","${_csrf.token}");
 										            },
 								                  	success:function(data){
-								                       if(data==""){
-								                    	   confirm("회원등록을 하시겠습니까?");
-								                       }else{
-								                    	   
+								                       if(data == "ok"){
+								                    	   alert("카카오회원으로 로그인 되셨습니다.");
+								                    	   location.href="home.do";
 								                       }
-								                         
-								                    }
-												});
+								                    }//success
+												});//ajax
 											},
 											fail : function(error) {
 												alert(JSON.stringify(error));

@@ -64,6 +64,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public List<Authority> getAuthorityListById(String id) {
+		System.out.println("zzzz");
 		return memberDAO.getAuthorityListById(id);
 	}
 
@@ -72,6 +73,7 @@ public class MemberServiceImpl implements MemberService {
 	public void registerMember(MemberDTO member) {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		memberDAO.registerMember(member);
+		System.out.println(member);
 		memberDAO.registerRole(new Authority(member.getId(), "ROLE_MEMBER"));
 	}
 	

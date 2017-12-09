@@ -1,14 +1,26 @@
 package com.sixfam.withpet.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sixfam.withpet.model.dto.Authority;
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.service.AdminService;
 import com.sixfam.withpet.service.CommunityService;
@@ -275,11 +287,86 @@ public class AdminController {
 	 *  
 	 */
 	@ResponseBody
-	@RequestMapping(value ="ajaxtest.do", method = RequestMethod.POST)
-	public MemberDTO ajaxTestRequest(Model model, String id, String nick) {
-		System.out.println(id+nick);
-		System.out.println("컨트롤러");
-		MemberDTO memberDTO=memberService.findMemberById(id);
-		return memberDTO;
+	@RequestMapping(value ="klogin.do", method = RequestMethod.POST)
+	public String ajaxTestRequest(HttpServletRequest request, Model model, String id, String nick,RedirectAttributes redirectAttr) {
+		MemberDTO checkid=memberService.findMemberById(id);
+		if(checkid==null) {
+			MemberDTO member=new MemberDTO(id,nick,"kakao","010","추가정보를 입력하세요",1,"ROLE_MEMBER7");
+			memberService.registerMember(member);
+
+			System.out.println("if 실행");
+
+			// 아이디값 가져오기
+			String idstr = id.toString();
+
+			// 세션생성하고
+			List<Authority> list = getUserAuth(idstr);
+
+			// 회원의 권한목록 가져오고
+			List<SimpleGrantedAuthority> authorities = createUserAuthToken(list);
+
+			// 회원정보 생성하여
+			MemberDTO member2 = memberService.findMemberById(id);
+
+			// 회원의정보와 권한으로 토큰생성하고
+			Authentication authentication = new UsernamePasswordAuthenticationToken(member2, member.getPassword(),
+					authorities);
+
+			// 시큐리티컨텍스트에서 토큰세팅하고
+			SecurityContext securityContext = SecurityContextHolder.getContext();
+			securityContext.setAuthentication(authentication);
+
+			return "ok";
+			
+			//return "redirect:login.do"; 
+		}else {
+			System.out.println("else 실행");
+			
+			//아이디값 가져오기
+			String idstr = id.toString();
+			
+			//세션생성하고
+			List<Authority> list = getUserAuth(idstr);
+			
+			//회원의 권한목록 가져오고
+			List<SimpleGrantedAuthority> authorities = createUserAuthToken(list);
+			
+			//회원정보 생성하여
+			MemberDTO member = memberService.findMemberById(id);
+			
+			//회원의정보와 권한으로 토큰생성하고
+			Authentication authentication = new UsernamePasswordAuthenticationToken(member, checkid.getPassword(), authorities);
+			
+			//시큐리티컨텍스트에서 토큰세팅하고
+			SecurityContext securityContext = SecurityContextHolder.getContext();
+			securityContext.setAuthentication(authentication);
+			
+			return "ok";
+		}
+	}
+	
+	
+	
+	public List<SimpleGrantedAuthority> createUserAuthToken(List<Authority> list) {
+		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+		for(Authority au : list){
+			authorities.add(new SimpleGrantedAuthority(au.getAuth()));
+		}
+		return authorities;
+	}
+	
+	public List<Authority> getUserAuth(String id) {
+		System.out.println("아이디 : "+id);
+		List<Authority> list = memberService.getAuthorityListById(id.toString());
+		System.out.println(list);
+		
+		if(list.size() == 0 || list.get(0).getAuth().equals("ROLE_EXCEPT"))
+			throw new UsernameNotFoundException("회원 권한이 없습니다.");
+		else {
+			for(int i=0;i<list.size();i++) {
+				System.out.println(list.get(i));
+			}
+		}
+		return list;
 	}
 }

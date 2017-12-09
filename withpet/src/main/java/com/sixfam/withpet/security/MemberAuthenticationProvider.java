@@ -29,6 +29,15 @@ public class MemberAuthenticationProvider implements AuthenticationProvider{
 	@Resource
     private BCryptPasswordEncoder passwordEncoder;
 	
+
+	public MemberAuthenticationProvider() {
+		super();
+	}
+
+	public MemberAuthenticationProvider(MemberService service) {
+		memberService = service;
+	}
+
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {		
 		//0.사용자가 입력한 ID 와 Password
@@ -77,7 +86,9 @@ public class MemberAuthenticationProvider implements AuthenticationProvider{
 	
 	//사용자 Auth 조회
 	public List<Authority> getUserAuth(String id) {
-		List<Authority> list = memberService.getAuthorityListById(id);
+		System.out.println("아이디 : "+id);
+		List<Authority> list = memberService.getAuthorityListById(id.toString());
+		System.out.println(list);
 		
 		if(list.size() == 0 || list.get(0).getAuth().equals("ROLE_EXCEPT"))
 			throw new UsernameNotFoundException("회원 권한이 없습니다.");

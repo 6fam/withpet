@@ -34,8 +34,11 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override					     
 	public List<Authority> getAuthorityListById(String id) {
+		System.out.println("권한생성");
 		List<Integer> category=template.selectList("member.selectAuthorityById", id);
+		System.out.println(1);
 		List<Authority> authList=new ArrayList<Authority>();
+		System.out.println(2);
 		for(int i=0;i<category.size();i++) {
 			switch (category.get(i)) {
 			case WithPet.ROLE_MEMBER :

@@ -10,8 +10,8 @@
 	});
 
 	$(document).ready(function() {
-		$(".row").on("click", ".figure", function() {
-			var bNo = $(this).find("#bNo").val();
+		$(".figure").click(function() {
+			var bNo = $(this).parent().find("#bNo").val();
 			location = "meetingDetail.do?boardNo=" + bNo;
 		});
 

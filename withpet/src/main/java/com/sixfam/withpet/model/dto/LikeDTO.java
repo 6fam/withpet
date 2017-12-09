@@ -37,6 +37,12 @@ public class LikeDTO {
 	public LikeDTO() {
 		super();
 	}
+	public LikeDTO(String id, int boardNo) {
+		super();
+		this.id = id;
+		this.boardNo = boardNo;
+	}
+	
 	/**
 	 * All has Constructor
 	 */

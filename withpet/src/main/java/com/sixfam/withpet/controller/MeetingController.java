@@ -1,5 +1,8 @@
 package com.sixfam.withpet.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -42,6 +45,23 @@ public class MeetingController {
 		upload.setImageUpload(request, meeting);
 		// 카테고리 넘버 받아오는 코드 작성
 		meeting.setCategoryNo(service.getCategoryNoByCategory(meeting.getCategoryName()));
+		
+		/*int categoryStateNo = 25;
+		
+		java.util.Date thisdate = new java.util.Date();	//오늘 날짜
+		java.util.Date actdate; //스트링을 date로 저장할 변수
+		
+		try { 
+			actdate = new SimpleDateFormat("yyyy-MM-dd HH-mm").parse(stractdate); 
+		}catch (Exception e) {
+			actdate = null;
+		}
+		
+		if ( (actdate != null) && (actdate.get()>thisdate.getTime()) ) {
+		
+		} */
+		
+		//meeting.setCategoryStateNo(categoryStateNo);
 		meeting.setId(mdto.getId());
 		meeting.setPlace(meeting.getPlace() +" "+ meeting.getDetailPlace());
 		
@@ -309,9 +329,22 @@ public class MeetingController {
 	@RequestMapping(value="registerLike.do", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean registerLike(int boardNo, String id) {
-		System.out.println("컨트롤러 들어오나");
+		//int likeFlag = service.getLikeCountByIdAndBoardNo(new LikeDTO(id,boardNo));
+		
+		System.out.println("찜하기");
 		service.registerLike(boardNo, id);
 		
 		return true;
 	}
+	
+	@RequestMapping(value="deleteLike.do", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean deleteLike(int boardNo, String id) {
+		System.out.println("찜하기취소");
+		service.deleteLike(boardNo, id);
+		
+		return true;
+	}
+	
+	
 }

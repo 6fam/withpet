@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import com.sixfam.withpet.common.WithPet;
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dto.ListDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
+import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.service.MeetingService;
 
 @Controller
@@ -24,19 +26,32 @@ public class ViewPagerController {
 	 * 홈페이지
 	 */
 	@RequestMapping("home.do")
-	public String homeRequest(Model model) {
+	public String homeRequest(Model model, Authentication authentication) {
+		try {
+			
+			MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
+			String id = mdto.getId();
+			System.out.println(id);
+			
+		}catch(NullPointerException e){
+			
+		}
 		
 		int meetingCount = meetingService.getMeetingCount();
 		PagingBean pb = new PagingBean(12, meetingCount);
 		
 		meetingService.setMeetingState(WithPet.MEETING_CLOSE);
 		List<MeetingDTO> list = meetingService.getAllMeetingList(pb);
+		System.out.println(list.get(0).getDate().getMeetingStart());
+		System.out.println(list.get(0).getDate().getMeetingEnd());
+		System.out.println(list.get(0).getDate().getGatheringStart());
+		System.out.println(list.get(0).getDate().getGatheringEnd());
+		System.out.println(list.get(0).getMeetingState());
 		ListDTO<MeetingDTO> meetingListDTO = new ListDTO<MeetingDTO>(list, pb);
 		
 		model.addAttribute("meetingList", meetingListDTO);
 		return "home.tiles";
 	}
-	
 	
 	/**
 	 * 회원가입 페이지

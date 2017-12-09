@@ -62,7 +62,7 @@ public class MeetingDTO extends BoardDTO {
 	private int categoryStateNo;
 	
 	/*
-	 * 모집중 상태??
+	 * 모집중 상태
 	 */
 	private String meetingState;
 	

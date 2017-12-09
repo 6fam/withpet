@@ -40,6 +40,7 @@ $(document).ready(function (){
 	
 	$(".notMemberLike").click(function() {
 		alert("로그인을 해주세요.");
+		location.href = "loginForm.do";
 	});
 	
 	$(".hate").click(function() {

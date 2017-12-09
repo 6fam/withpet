@@ -82,4 +82,10 @@ public interface MeetingDAO{
 
 	public void registerLike(int boardNo, String id);
 
+	public void deleteLike(int boardNo, String id);
+	
+	public int getLikeCountByIdAndBoardNo(LikeDTO likeDTO);
+
+	public int getCategoryStateNoByDate(HashMap<String, Object> paramh);
+
 }

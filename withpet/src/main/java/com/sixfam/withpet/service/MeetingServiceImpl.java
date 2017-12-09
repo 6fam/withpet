@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dao.MeetingDAO;
+import com.sixfam.withpet.model.dto.DateDTO;
 import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
@@ -180,6 +181,29 @@ public class MeetingServiceImpl implements MeetingService{
 	@Override
 	public void registerLike(int boardNo, String id) {
 		dao.registerLike(boardNo, id);
+	}
+
+	@Override
+	public void deleteLike(int boardNo, String id) {
+		dao.deleteLike(boardNo, id);
+	}
+
+	@Override
+	public int getLikeCountByIdAndBoardNo(LikeDTO likeDTO) {
+		return dao.getLikeCountByIdAndBoardNo(likeDTO);
+	}
+
+	/**
+	 * 모집중 모집대기 카테고리 번호 알아오는 메서드
+	 */
+	@Override
+	public int getCategoryStateNoByDate(DateDTO date) {
+		SimpleDateFormat formatter=new SimpleDateFormat("yyyy.MM.dd");
+		String today=formatter.format(new Date());
+		HashMap<String, Object> param=new HashMap<String, Object>();
+		param.put("date", date);
+		param.put("today", today);
+		return dao.getCategoryStateNoByDate(param);
 	}
 
 }

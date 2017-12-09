@@ -252,7 +252,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 </delete>
 	 
 	 <select id="getLikeById" parameterType="string" resultType="likeDTO">
-	 	select id, board_no as boardNo from sympathy where id = #{value}
+	 	select id, board_no as boardNo from sympathy where id = #{id}
 	 </select>
 	 
 	 <!-- 모임 총 인원 조회 쿼리 -->
@@ -260,9 +260,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	select people_count from meeting where board_no=#{value}
 	 </select>
 	 
+	 <select id="getLikeCountByIdAndBoardNo" parameterType="likeDTO" resultType="int">
+	 	select count(*) from sympathy where board_no = #{boardNo} and id=#{id}
+	 </select>
+	 
+	 <!-- 찜하기 등록 -->
 	 <insert id="registerLike" parameterType="hashmap">
 	 	insert into sympathy(id, board_no) values(#{id}, #{boardNo})
 	 </insert>
+	 
+	 <!-- 찜하기 취소 -->
+	 <delete id="deleteLike" parameterType="hashmap">
+	 	delete from sympathy where board_no=#{boardNo} and id=#{id}
+	 </delete>
 </mapper>
  
  

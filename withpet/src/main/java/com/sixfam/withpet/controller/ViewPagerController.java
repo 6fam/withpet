@@ -42,11 +42,6 @@ public class ViewPagerController {
 		
 		meetingService.setMeetingState(WithPet.MEETING_CLOSE);
 		List<MeetingDTO> list = meetingService.getAllMeetingList(pb);
-		System.out.println(list.get(0).getDate().getMeetingStart());
-		System.out.println(list.get(0).getDate().getMeetingEnd());
-		System.out.println(list.get(0).getDate().getGatheringStart());
-		System.out.println(list.get(0).getDate().getGatheringEnd());
-		System.out.println(list.get(0).getMeetingState());
 		ListDTO<MeetingDTO> meetingListDTO = new ListDTO<MeetingDTO>(list, pb);
 		
 		model.addAttribute("meetingList", meetingListDTO);

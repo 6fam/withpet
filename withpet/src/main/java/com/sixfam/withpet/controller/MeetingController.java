@@ -1,8 +1,5 @@
 package com.sixfam.withpet.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -46,22 +43,8 @@ public class MeetingController {
 		// 카테고리 넘버 받아오는 코드 작성
 		meeting.setCategoryNo(service.getCategoryNoByCategory(meeting.getCategoryName()));
 		
-		/*int categoryStateNo = 25;
+		System.out.println(meeting.getCategoryStateNo());
 		
-		java.util.Date thisdate = new java.util.Date();	//오늘 날짜
-		java.util.Date actdate; //스트링을 date로 저장할 변수
-		
-		try { 
-			actdate = new SimpleDateFormat("yyyy-MM-dd HH-mm").parse(stractdate); 
-		}catch (Exception e) {
-			actdate = null;
-		}
-		
-		if ( (actdate != null) && (actdate.get()>thisdate.getTime()) ) {
-		
-		} */
-		
-		//meeting.setCategoryStateNo(categoryStateNo);
 		meeting.setId(mdto.getId());
 		meeting.setPlace(meeting.getPlace() +" "+ meeting.getDetailPlace());
 		

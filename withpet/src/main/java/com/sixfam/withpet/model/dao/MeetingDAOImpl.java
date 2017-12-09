@@ -221,4 +221,18 @@ public class MeetingDAOImpl implements MeetingDAO {
 		template.insert("meeting.registerLike", param);
 	}
 
+	@Override
+	public void deleteLike(int boardNo, String id) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("boardNo", boardNo);
+		param.put("id", id);
+		template.delete("meeting.deleteLike", param);
+	}
+
+	@Override
+	public int getLikeCountByIdAndBoardNo(LikeDTO likeDTO) {
+		return template.selectOne("meeting.getLikeCountByIdAndBoardNo", likeDTO);
+		
+	}
+
 }

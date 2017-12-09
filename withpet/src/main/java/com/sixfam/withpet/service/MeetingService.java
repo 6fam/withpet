@@ -144,5 +144,9 @@ public interface MeetingService {
 	public int getPeopleCountByBoardNo(int boardNo);
 
 	public void registerLike(int boardNo, String id);
+
+	public void deleteLike(int boardNo, String id);
+	
+	public int getLikeCountByIdAndBoardNo(LikeDTO likeDTO);
 	
 }

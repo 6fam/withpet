@@ -182,4 +182,14 @@ public class MeetingServiceImpl implements MeetingService{
 		dao.registerLike(boardNo, id);
 	}
 
+	@Override
+	public void deleteLike(int boardNo, String id) {
+		dao.deleteLike(boardNo, id);
+	}
+
+	@Override
+	public int getLikeCountByIdAndBoardNo(LikeDTO likeDTO) {
+		return dao.getLikeCountByIdAndBoardNo(likeDTO);
+	}
+
 }

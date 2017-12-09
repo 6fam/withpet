@@ -1,5 +1,6 @@
 package com.sixfam.withpet.controller;
 
+import java.sql.SQLSyntaxErrorException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dto.DateDTO;
+import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.ListDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
@@ -309,9 +311,22 @@ public class MeetingController {
 	@RequestMapping(value="registerLike.do", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean registerLike(int boardNo, String id) {
-		System.out.println("컨트롤러 들어오나");
+		//int likeFlag = service.getLikeCountByIdAndBoardNo(new LikeDTO(id,boardNo));
+		
+		System.out.println("찜하기");
 		service.registerLike(boardNo, id);
 		
 		return true;
 	}
+	
+	@RequestMapping(value="deleteLike.do", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean deleteLike(int boardNo, String id) {
+		System.out.println("찜하기취소");
+		service.deleteLike(boardNo, id);
+		
+		return true;
+	}
+	
+	
 }

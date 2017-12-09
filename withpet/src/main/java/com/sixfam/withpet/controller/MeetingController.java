@@ -305,4 +305,13 @@ public class MeetingController {
 		
 		return id;
 	}
+	
+	@RequestMapping(value="registerLike.do", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean registerLike(int boardNo, String id) {
+		System.out.println("컨트롤러 들어오나");
+		service.registerLike(boardNo, id);
+		
+		return true;
+	}
 }

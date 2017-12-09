@@ -79,11 +79,11 @@
 		<div class="col-sm-1" ></div>
 	</div>
 	
-	<div style="background-image: url('http://t1.kakaocdn.net/together_image/common/bg_fund_graph.png')">
-		<div style="background-image : url('http://t1.kakaocdn.net/together_image/bicycle_move_ing.gif');height: 228px; width: 210px; margin-left: 430px"></div>
+	<div style="background-image: url('http://t1.kakaocdn.net/together_image/common/bg_fund_graph.png'); padding-bottom:39px">
+		<img src="http://t1.kakaocdn.net/together_image/bicycle_move_ing.gif" style="margin-left: 470px;height: 188px; width: 180px;margin-top:80px">
 	</div>
 	
-	<div class="row" style="margin-left: 0px; margin-top: 0px">
+	<div class="row" style="margin-left: 0px; margin-top: -40px">
 		<div class="col-sm-12">
 			<div class="progress">
 				<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: ${donation.donationPercent}%"></div>
@@ -168,6 +168,21 @@
 	</div>
 </div>
 
+<!-- footer -->
+<div class="container" style="z-index: 1; margin-top: 10px; padding-bottom: 0px; margin-bottom: -44px; background-image: url('http://t1.kakaocdn.net/together_image/common/bg_fund_graph.png')">
+	<!-- 설명부분 -->
+	<div class="row" style="margin-left: 0px; margin-top: 80px">
+		<div class="col-sm-1" ></div>
+		<div class="col-sm-10" style="font-size: 16px; padding-bottom:80px; margin-top:105px">
+			<img src="http://t1.kakaocdn.net/together_image/walk_move_end.gif" style="margin-bottom:-78px; width: 150px; height: 165px">
+			<img src="http://t1.kakaocdn.net/together_image/bicycle_move_end.gif" style="margin-bottom:-78px; width: 150px; height: 165px">
+			<img src="http://t1.kakaocdn.net/together_image/walk_move_ing.gif" style="margin-bottom:-78px; width: 150px; height: 165px; margin-left: 190px">
+		</div>
+		<div class="col-sm-1" ></div>
+	</div>
+</div>
+
+
 <!-- 기부 창입니다. -->
 <form action="pay.do" method="post" name="payform" id="payform">
 <sec:csrfInput/>
@@ -209,4 +224,6 @@
 	</div>
 	<input type="hidden" value="${donation.boardNo}" name="boardNo">
 </div>
+
+
 </form>

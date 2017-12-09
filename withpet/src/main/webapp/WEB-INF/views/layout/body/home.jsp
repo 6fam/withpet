@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <script type="text/javascript">
 	/* Demo purposes only */
@@ -29,8 +30,8 @@
 					for (var i = 0; i < data.length; i++) {
 					meetingList += "<div class='col-sm-3' style='width: 100%; max-width: 100%; padding: 20px; margin: 15px; border: 1px solid #ddd; flex: 0 0 0'>";
 					meetingList += "<div class='row' style='margin: 0px; padding: 0px;'>";
-					meetingList += "<figure class='snip1445' style='margin: 0px; padding: 0px; width: 100%; min-width: 293px; height: 200px'>";
-					meetingList += "<img src='"+data[i].imgPath+"' alt='' style='margin: 0px; padding: 0px; height: 200px; width: 100%;'/>";
+					meetingList += "<figure class='snip1445' style='margin: 0px; padding: 0px; width: 100%; min-width: 293px; height: 240px'>";
+					meetingList += "<img src='"+data[i].imgPath+"' alt='' style='margin: 0px; padding: 0px; height: 240px; width: 100%;'/>";
 					meetingList += "<figcaption class='figure' style='cursor: pointer'>";
 					meetingList += "<div><input type='hidden' id='bNo' value='"+data[i].boardNo+"'>";
 					meetingList += "<font size='3px'>♥ 12</font>";
@@ -63,11 +64,46 @@
 			});//ajax
 		}
 	});
+		
+	$(".like").click(function() {
+		var boardNo = $(this).parent().parent().find('.row .snip1445 #bNo').val();
+		var id = $("#loginId").val();
+		alert("로그인 된 아이디 : " + id);
+		alert("공감선택 공감번호 : " + boardNo);
+		
+		var chageBtn = "";
+		
+		$.ajax({
+			type:"post",
+			url:"registerLike.do",				
+			data:"id="+id+"&boardNo="+boardNo,
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(
+					"${_csrf.headerName}","${_csrf.token}");
+			},
+			error:function(request,status,error){
+	              alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	             
+	        },
+			success:function(data){
+				alert("성공"+data);
+				
+				/*alert(register);
+				if(register){
+					changeBtn += "<span class='badge badge-info hate' style='margin: 0px; padding: 12px 10px 5px 10px; cursor: pointer'>찜하기</span>";
+				}
+				//$(this).parent().find("like").html(changeBtn);
+				$(this).parent().html(changeBtn);
+				//document.all("").innerHTML=chageBtn;
+				location = register;*/
+			}
+		});
+	});
 });
 </script>
 
-<div class="row"
-	style="text-align: center; border-bottom: solid 1px #adadad; height: 625px; background-color: #261817; margin-top: -20px; padding-right: 0px; margin-right: 0px">
+
+<div class="row" style="text-align: center; border-bottom: solid 1px #adadad; height: 625px; background-color: #261817; margin-top: -20px; padding-right: 0px; margin-right: 0px">
 	<div class="col-sm-12" style="padding-right: 0px; margin-right: 0px">
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel" style="height: 100%">
@@ -114,8 +150,7 @@
 				<div class="carousel-item">
 					<p
 						style="text-align: left; position: absolute; left: 170px; top: 100px; color: white">
-						<font
-							style="font-family: 'NotoSans Light', '돋움'; font-size: 27px; font-weight: 200">
+						<font style="font-family: 'NotoSans Light', '돋움'; font-size: 27px; font-weight: 200">
 							<b>끊임없이 이동하는 우리 삶 속 함께하시개는 어떤 모습일까요?<br> 산책에 대한 댕댕이들의 모든
 								이야기들을 담았습니다.
 						</b>
@@ -148,25 +183,32 @@
 	<div class="row" style="padding: 20px 20px;">
 		<c:forEach items="${meetingList.list}" var="list" varStatus="cnt">
 			<!-- 시작 -->
-			<div class="col-sm-3"
-				style="width: 100%; max-width: 100%; padding: 20px; margin: 15px; border: 1px solid #ddd; flex: 0 0 0">
+			<div class="col-sm-3" style="width: 100%; max-width: 100%; padding: 20px; margin: 15px; border: 1px solid #ddd; flex: 0 0 0">
 				<div class="row" style="margin: 0px; padding: 0px;">
-					<figure class="snip1445"
-						style="margin: 0px; padding: 0px; width: 100%; min-width: 293px; height: 200px">
-						<img
-							src="${pageContext.request.contextPath}/resources/upload/${list.imgPath}"
-							alt="" style="margin: 0px; padding: 0px; height: 200px; width: 100%" />
+					<figure class="snip1445" style="margin: 0px; padding: 0px; width: 100%; min-width: 293px; height: 240px">
+						<input type="hidden" id="bNo" value="${list.boardNo}">
+						<img src="${pageContext.request.contextPath}/resources/upload/${list.imgPath}"
+							alt="" style="margin: 0px; padding: 0px; height: 240px; width: 100%" />
 						<figcaption class="figure" style="cursor: pointer;">
 							<div>
-								<input type="hidden" id="bNo" value="${list.boardNo}"> <font
-									size="3px">♥ 12</font>
+								<font size="3px">♥ 12</font>
 								<h4>${list.meetingState}</h4>
 							</div>
 						</figcaption>
 					</figure>
 				</div>
 				<div class="row" style="margin: 20px 0 0 0; padding: 0px;">
-					<span class="badge badge-danger like" style="margin: 0px; padding: 12px 10px 5px 10px; cursor: pointer">찜하기</span>
+				
+					<sec:authorize access="hasRole('ROLE_MEMBER')">
+						<sec:authentication property="principal.id" var="loginId"/>
+						<input type="hidden" id="loginId" value="${loginId}"/>
+						<span class="badge badge-danger like" style="margin: 0px; padding: 12px 10px 5px 10px; cursor: pointer">찜하기</span>
+					</sec:authorize>
+					<sec:authorize access="!hasRole('ROLE_MEMBER')">
+						<span class="badge badge-danger notMemberLike" style="margin: 0px; padding: 12px 10px 5px 10px; cursor: pointer">찜하기</span>
+					</sec:authorize>
+					
+					
 					<span class="badge badge-dark" style="margin: 0px 0px 0px 10px; padding: 12px 10px 5px 10px;">${list.meetingType}</span><br>
 					<font style="font-size: 15px; margin-left: 10px; margin-top: 10px;">
 						 ${list.title}<br>

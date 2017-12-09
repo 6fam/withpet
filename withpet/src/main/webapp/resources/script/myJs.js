@@ -36,8 +36,10 @@ $(document).ready(function (){
 		$(".communityBox").hide();
 	});
 	
-	$(".like").click(function() {
-		alert("공감선택");
+	
+	
+	$(".notMemberLike").click(function() {
+		alert("로그인을 해주세요.");
 	});
 	
 	$(".hate").click(function() {

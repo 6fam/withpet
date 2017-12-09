@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.service.AdminService;
@@ -268,5 +269,17 @@ public class AdminController {
 		int pageNo=1;
 		model.addAttribute("listdto", memberService.getAttenderHistoryListById(id, pageNo));
 		return "mypage_participate.tiles";
+	}
+	
+	/**
+	 *  
+	 */
+	@ResponseBody
+	@RequestMapping(value ="ajaxtest.do", method = RequestMethod.POST)
+	public MemberDTO ajaxTestRequest(Model model, String id, String nick) {
+		System.out.println(id+nick);
+		System.out.println("컨트롤러");
+		MemberDTO memberDTO=memberService.findMemberById(id);
+		return memberDTO;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sixfam.withpet.model.dto.Authority;
 import com.sixfam.withpet.model.dto.DogDTO;
+import com.sixfam.withpet.model.dto.DonationDTO;
 import com.sixfam.withpet.model.dto.ListDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
@@ -52,4 +53,8 @@ public interface MemberService {
 	public void setMemberPW(MemberDTO member);
 
 	public void removeExceptMember(MemberDTO member);
+
+	ListDTO<DonationDTO> getDonationSetupListById(String id, int pageNo);
+
+	ListDTO<DonationDTO> getDonationListById(String id, int pageNo);
 }

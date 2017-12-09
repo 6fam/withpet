@@ -30,8 +30,8 @@
 					for (var i = 0; i < data.length; i++) {
 					meetingList += "<div class='col-sm-3' style='width: 100%; max-width: 100%; padding: 20px; margin: 15px; border: 1px solid #ddd; flex: 0 0 0'>";
 					meetingList += "<div class='row' style='margin: 0px; padding: 0px;'>";
-					meetingList += "<figure class='snip1445' style='margin: 0px; padding: 0px; width: 100%; min-width: 293px; height: 200px'>";
-					meetingList += "<img src='"+data[i].imgPath+"' alt='' style='margin: 0px; padding: 0px; height: 200px; width: 100%;'/>";
+					meetingList += "<figure class='snip1445' style='margin: 0px; padding: 0px; width: 100%; min-width: 293px; height: 240px'>";
+					meetingList += "<img src='"+data[i].imgPath+"' alt='' style='margin: 0px; padding: 0px; height: 240px; width: 100%;'/>";
 					meetingList += "<figcaption class='figure' style='cursor: pointer'>";
 					meetingList += "<div><input type='hidden' id='bNo' value='"+data[i].boardNo+"'>";
 					meetingList += "<font size='3px'>♥ 12</font>";
@@ -185,10 +185,10 @@
 			<!-- 시작 -->
 			<div class="col-sm-3" style="width: 100%; max-width: 100%; padding: 20px; margin: 15px; border: 1px solid #ddd; flex: 0 0 0">
 				<div class="row" style="margin: 0px; padding: 0px;">
-					<figure class="snip1445" style="margin: 0px; padding: 0px; width: 100%; min-width: 293px; height: 200px">
+					<figure class="snip1445" style="margin: 0px; padding: 0px; width: 100%; min-width: 293px; height: 240px">
 						<input type="hidden" id="bNo" value="${list.boardNo}">
 						<img src="${pageContext.request.contextPath}/resources/upload/${list.imgPath}"
-							alt="" style="margin: 0px; padding: 0px; height: 200px; width: 100%" />
+							alt="" style="margin: 0px; padding: 0px; height: 240px; width: 100%" />
 						<figcaption class="figure" style="cursor: pointer;">
 							<div>
 								<font size="3px">♥ 12</font>

@@ -1,6 +1,8 @@
 package com.sixfam.withpet.controller;
 
-import java.sql.SQLSyntaxErrorException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sixfam.withpet.model.PagingBean;
 import com.sixfam.withpet.model.dto.DateDTO;
-import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.ListDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
@@ -44,6 +45,23 @@ public class MeetingController {
 		upload.setImageUpload(request, meeting);
 		// 카테고리 넘버 받아오는 코드 작성
 		meeting.setCategoryNo(service.getCategoryNoByCategory(meeting.getCategoryName()));
+		
+		/*int categoryStateNo = 25;
+		
+		java.util.Date thisdate = new java.util.Date();	//오늘 날짜
+		java.util.Date actdate; //스트링을 date로 저장할 변수
+		
+		try { 
+			actdate = new SimpleDateFormat("yyyy-MM-dd HH-mm").parse(stractdate); 
+		}catch (Exception e) {
+			actdate = null;
+		}
+		
+		if ( (actdate != null) && (actdate.get()>thisdate.getTime()) ) {
+		
+		} */
+		
+		//meeting.setCategoryStateNo(categoryStateNo);
 		meeting.setId(mdto.getId());
 		meeting.setPlace(meeting.getPlace() +" "+ meeting.getDetailPlace());
 		

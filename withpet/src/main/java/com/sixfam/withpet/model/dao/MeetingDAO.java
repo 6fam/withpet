@@ -86,4 +86,6 @@ public interface MeetingDAO{
 	
 	public int getLikeCountByIdAndBoardNo(LikeDTO likeDTO);
 
+	public int getCategoryStateNoByDate(HashMap<String, Object> paramh);
+
 }

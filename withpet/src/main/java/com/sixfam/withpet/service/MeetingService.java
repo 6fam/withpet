@@ -3,6 +3,7 @@ package com.sixfam.withpet.service;
 import java.util.List;
 
 import com.sixfam.withpet.model.PagingBean;
+import com.sixfam.withpet.model.dto.DateDTO;
 import com.sixfam.withpet.model.dto.LikeDTO;
 import com.sixfam.withpet.model.dto.MeetingDTO;
 import com.sixfam.withpet.model.dto.MemberDTO;
@@ -148,5 +149,7 @@ public interface MeetingService {
 	public void deleteLike(int boardNo, String id);
 	
 	public int getLikeCountByIdAndBoardNo(LikeDTO likeDTO);
+
+	public int getCategoryStateNoByDate(DateDTO date);
 	
 }

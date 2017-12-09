@@ -235,4 +235,9 @@ public class MeetingDAOImpl implements MeetingDAO {
 		
 	}
 
+	@Override
+	public int getCategoryStateNoByDate(HashMap<String, Object> param) {
+		return template.selectOne("meeting.getCategoryStateNoByDate", param);
+	}
+
 }

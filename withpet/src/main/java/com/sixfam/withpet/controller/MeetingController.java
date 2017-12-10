@@ -47,35 +47,13 @@ public class MeetingController {
 		// 카테고리 넘버 받아오는 코드 작성
 		meeting.setCategoryNo(service.getCategoryNoByCategory(meeting.getCategoryName()));
 		
-		
-		/*if ( compare > 0 ){ // 현재날짜가 삭제 시작일 후 인 경우
-
-		//System.out.println("currentDate  >  memDelStartDate");
-
-		compareVal = "N";
-
-		} else if ( compare < 0) { // 현재날짜가 삭제 시작일 전 인 경우
-
-		compareVal = "Y";
-
-		//System.out.println("currentDate  <  memDelStartDate");
-
-		} else { // 현재날짜가 삭제 시작일 인 경우
-
-		compareVal = "Y";
-
-		//System.out.println("currentDate  =  memDelStartDate");
-
-		}*/
-
-
-		System.out.println("등록시 카테고리 상태 번호: "+meeting.getCategoryStateNo());
-		
-		
 		meeting.setId(mdto.getId());
 		meeting.setPlace(meeting.getPlace() +" "+ meeting.getDetailPlace());
 		
 		meeting.setDate(date);
+		
+		if(meeting.getPlace().equals("null null"))
+			meeting.setPlace("협의");
 		
 		try {
 			Date gatheringStartDate; // 모입 접수 시작일

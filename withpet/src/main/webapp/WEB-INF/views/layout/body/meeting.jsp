@@ -11,23 +11,25 @@
 	);
 	
 	$(document).ready(function() {
+		alert("뜨나?");
 		 $(".row").on("click",".figure",function(){
 			 var bNo=$(this).find("#bNo").val();
 			 location="meetingDetail.do?boardNo="+bNo;
 		});
 		
+		 
 		var pageNo = 1;
 	   $(window).scroll(function() {
 			if($(window).scrollTop() == $(document).height() - $(window).height()){
 				var totalPage = $("#totalPage").val();
-				//alert("총 페이지: "+totalPage);
+				alert("총 페이지: "+totalPage);
 				$.ajax({
 					type:"GET",
 					url:"ajaxCategory.do",
 					data:"pageNo="+(++pageNo),
 					dataType:"json",
 					success:function(data){
-						//alert("성공");
+						alert("성공");
 						var meetingList = "";
 						for(var i=0; i<data.length; i++){
 						    meetingList +=	"<div class='col-sm-3' style='padding:0;margin-left:45px ;margin-right:40px; height: 300px; border: solid 1px #adadad; margin-bottom: 20px'>";
@@ -63,8 +65,8 @@
 					} 
 				});//ajax
 			}
-	   }); 
-	});
+	   }); //scroll
+	});//ready
 </script>
 
 <div class="tagline-upper text-center text-heading text-shadow d-none d-lg-block"

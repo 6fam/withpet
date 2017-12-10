@@ -1,6 +1,10 @@
 package com.sixfam.withpet.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -43,12 +47,67 @@ public class MeetingController {
 		// 카테고리 넘버 받아오는 코드 작성
 		meeting.setCategoryNo(service.getCategoryNoByCategory(meeting.getCategoryName()));
 		
-		System.out.println(meeting.getCategoryStateNo());
+		
+		/*if ( compare > 0 ){ // 현재날짜가 삭제 시작일 후 인 경우
+
+		//System.out.println("currentDate  >  memDelStartDate");
+
+		compareVal = "N";
+
+		} else if ( compare < 0) { // 현재날짜가 삭제 시작일 전 인 경우
+
+		compareVal = "Y";
+
+		//System.out.println("currentDate  <  memDelStartDate");
+
+		} else { // 현재날짜가 삭제 시작일 인 경우
+
+		compareVal = "Y";
+
+		//System.out.println("currentDate  =  memDelStartDate");
+
+		}*/
+
+
+		System.out.println("등록시 카테고리 상태 번호: "+meeting.getCategoryStateNo());
+		
 		
 		meeting.setId(mdto.getId());
 		meeting.setPlace(meeting.getPlace() +" "+ meeting.getDetailPlace());
 		
 		meeting.setDate(date);
+		
+		try {
+			Date gatheringStartDate; // 모입 접수 시작일
+			Date gatheringEndDate;	// 모임 접수 끝일
+			Date currentDate; // 현재날짜 Date
+
+			String oTime = ""; // 현재날짜
+
+
+			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+
+			Date currentTime = new Date();
+			oTime = mSimpleDateFormat.format ( currentTime ); //현재시간 (String)
+			
+			gatheringStartDate = mSimpleDateFormat.parse( meeting.getDate().getGatheringStart() );
+			gatheringEndDate = mSimpleDateFormat.parse( meeting.getDate().getGatheringEnd() );
+			currentDate =  mSimpleDateFormat.parse( oTime );
+			
+			int compareStart = currentDate.compareTo( gatheringStartDate ); // 날짜비교
+			int compareEnd = currentDate.compareTo( gatheringEndDate ); // 날짜비교
+
+			if(compareStart< 0 && compareEnd < 0)
+				meeting.setCategoryStateNo(25);
+			else if( compareStart < 0 && compareEnd > 0)
+				meeting.setCategoryStateNo(27);
+			else
+				meeting.setCategoryStateNo(26);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		service.registerMeeting(meeting);
 		
 		return "redirect:home.do";

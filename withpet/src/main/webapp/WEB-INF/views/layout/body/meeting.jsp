@@ -11,13 +11,14 @@
 	);
 	
 	$(document).ready(function() {
-		alert("뜨나?");
+		//alert("뜨나?");
+		var categoryNo = $("#categoryNo").val();
+		alert(categoryNo);
 		 $(".row").on("click",".figure",function(){
 			 var bNo=$(this).find("#bNo").val();
 			 location="meetingDetail.do?boardNo="+bNo;
 		});
 		
-		 
 		var pageNo = 1;
 	   $(window).scroll(function() {
 			if($(window).scrollTop() == $(document).height() - $(window).height()){
@@ -26,7 +27,7 @@
 				$.ajax({
 					type:"GET",
 					url:"ajaxCategory.do",
-					data:"pageNo="+(++pageNo),
+					data:"pageNo="+(++pageNo)+"&categoryNo="+categoryNo,
 					dataType:"json",
 					success:function(data){
 						alert("성공");
@@ -113,6 +114,7 @@
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${meetingList.list}" var="list" varStatus="cnt">
+				<input type="hidden" id="categoryNo" value="${list.categoryNo}"/>
 				<div class="col-sm-3" style="padding:0;margin-left:45px ;margin-right:40px; height: 300px; border: solid 1px #adadad; margin-bottom: 20px">
 					<div class="row" style="margin-left:0px">
 						<figure class="snip1445" style="margin-top: 7px; margin-left:7px;margin-right: 0px; padding-right: 0px; width: 268px;">

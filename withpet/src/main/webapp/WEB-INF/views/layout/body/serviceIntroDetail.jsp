@@ -15,26 +15,12 @@
 					<div class="row" style="padding-top: 0px; padding-bottom: 0px; font-size:20px;
 						padding-left: 0px; margin-left: 0px; padding-right: 0px; margin-right: 0px">
 						<div class="col-sm-12" style="padding-left: 0px; margin-left: -30px; padding-right: 0px; margin-right: 0px">
-							<img src="resources/img/2.png" style="width:1138px; height:350px">
-							<font style="font-size: 30px; position: absolute; top:100px; left:200px; color: #fff">
+							<img src="resources/img/service_banner.jpg" style="width:1138px; height:350px">
+							<font style="font-size: 30px; position: absolute; top:100px; left:110px; color: #fff">
 							${sdto.content}
 							</font>
 						</div>
 					</div>
-					
-					<!-- 제목 -->
-					<!-- <div class="row" style="padding-top: 30px; padding-bottom: 0px; font-size:20px">
-						<div class="col-sm-12">
-							♬ 서비스 내용
-						</div>
-					</div> -->
-					
-					<!-- content -->
-					<%-- <div class="row" style="padding-top: 100px; padding-bottom: 120px">
-						<div class="col-sm-12" style="text-align: center">
-							<font style="font-size: 30px">${sdto.content}</font><br>
-						</div>
-					</div> --%>
 					
 					<!-- 제목 -->
 					<div class="row" style="padding-top: 60px; padding-bottom: 0px; font-size:20px">

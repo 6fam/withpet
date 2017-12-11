@@ -92,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- category_no ==> 25(모집중) 다음에 날짜별로 상태 바꾸기 -->
 	<insert id="insertMeeting" parameterType="meetingDTO">
 		insert into meeting(board_no,intro,people_count,place,date_no,img_no,category_no)
-		values(board_seq.currval, #{intro}, #{peopleCount}, #{place}, gatheringdate_seq.currval,img_seq.currval, 25)
+		values(board_seq.currval, #{intro}, #{peopleCount}, #{place}, gatheringdate_seq.currval,img_seq.currval, ${categoryStateNo})
 	</insert>
 	
 	<insert id="insertMeetingType" parameterType="int">
@@ -137,11 +137,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT meee.*, b.title, a.attenderCount
 		FROM 	(
 							SELECT row_number() over(order by me.board_no desc) as rnum, i.img_path as imgPath, me.board_no as boardNo, 
-											me.people_count as peopleCount, me.meetingState, me.date_no as dateNo, mee.meetingType
+											me.people_count as peopleCount, me.meetingState, me.date_no as dateNo, mee.meetingType, mee.categoryNo
 							FROM 	(	SELECT m.board_no, m.people_count, m.img_no, ca.category_name as meetingState, m.date_no
 												FROM	meeting m, category ca 
 												WHERE m.category_no=ca.category_no) me,
-											(	SELECT mt.board_no,  ca.category_name as meetingType
+											(	SELECT mt.board_no,  ca.category_name as meetingType, ca.category_no as categoryNo
 												FROM	meetingtype mt, category ca 
 												WHERE mt.category_no=ca.category_no and mt.category_no=#{categoryNo}) mee, img i
 							WHERE me.board_no=mee.board_no and me.img_no=i.img_no

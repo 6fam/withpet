@@ -18,6 +18,7 @@
 </sec:authorize>
 
 <form action="registerMeeting.do" id="frame" method="post" enctype="multipart/form-data" onsubmit="return checkForm()" name="meetingFrm">
+<input type="hidden" id="categoryStateNo" value="">
 <sec:csrfInput/>
 <sec:authorize access="hasRole('ROLE_DOGMOM')">
 <div class="container"
@@ -43,7 +44,7 @@
 			<div class="col-sm-2" >
 				<!-- 이미지 미리보기 -->
                	<div style="border:solid 1px #cecece;width:180px; height: 200px; margin: 0px; padding: 0px">
-               		<img id="blah" src="" alt="모임 사진 등록" style="width: 180px; height:200px;"/>
+               		<img id="blah" src="https://static.onoffmix.com/images2/bannerPreset/thumbnail_01.jpg" alt="모임 사진 등록" style="width: 180px; height:200px;"/>
                	</div>
                	<!--  이미지 업로드 -->
                	<button type="button" class="btn btn-danger" style="position: absolute;
@@ -92,7 +93,7 @@
 									</div>
 									<div class="col-sm-2" style="text-align: center; margin-top: 5px">~</div>
 									<div class="col-sm-5">
-										<input type="date" class="form-control" id="gatheringEnd" name="gatheringEnd" style="font-size: 13px">
+										<input type="date" class="form-control" id="gatheringEnd" name="gatheringEnd" style="font-size: 13px" onchange="checkDate()">
 									</div>
 								</div>
 							</td>

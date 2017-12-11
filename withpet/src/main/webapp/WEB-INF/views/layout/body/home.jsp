@@ -19,7 +19,7 @@
 		$(window).scroll(function() {
 			if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 				var totalPage = $("#totalPage").val();
-				//alert("총 페이지: "+totalPage);
+				alert("총 페이지: "+totalPage);
 				$.ajax({
 					type : "GET",
 					url : "ajaxHome.do",
@@ -63,13 +63,13 @@
 				}
 			});//ajax
 		}
-	});
+	});//scroll
 		
 	$(".like").click(function() {
 		var boardNo = $(this).parent().parent().find('.row .snip1445 #bNo').val();
 		var id = $("#loginId").val();
-		alert("로그인 된 아이디 : " + id);
-		alert("공감선택 공감번호 : " + boardNo);
+		//alert("로그인 된 아이디 : " + id);
+		//alert("공감선택 공감번호 : " + boardNo);
 		
 		var chageBtn = "";
 		
@@ -82,11 +82,12 @@
 					"${_csrf.headerName}","${_csrf.token}");
 			},
 			error:function(request,status,error){
-	              alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	              //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	              alert("이미 찜한 모임입니다");
 	             
 	        },
 			success:function(data){
-				alert("성공"+data);
+				alert("공감");
 				
 				/*alert(register);
 				if(register){
@@ -97,9 +98,9 @@
 				//document.all("").innerHTML=chageBtn;
 				location = register;*/
 			}
-		});
+		});// ajax
 	});
-});
+});//ready
 </script>
 
 

@@ -13,9 +13,8 @@
 				url: "checkIdPwAnswer.do",
 				data: $("#checkpw").serialize(),
 				success:function(data){
-					alert(1);
-					alert(data);
 					if(data == "ok"){
+						alert("새롭게 사용할 비밀번호를 입력해주세요.");
 						location.href="f_changePw.do?id="+id;
 					}else{
 						alert("비밀번호 찾기에 대한 정보를 잘못 입력하셨습니다.");

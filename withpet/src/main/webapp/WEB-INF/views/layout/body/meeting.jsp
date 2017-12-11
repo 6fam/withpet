@@ -11,6 +11,9 @@
 	);
 	
 	$(document).ready(function() {
+		//alert("뜨나?");
+		var categoryNo = $("#categoryNo").val();
+		alert(categoryNo);
 		 $(".row").on("click",".figure",function(){
 			 var bNo=$(this).find("#bNo").val();
 			 location="meetingDetail.do?boardNo="+bNo;
@@ -20,14 +23,14 @@
 	   $(window).scroll(function() {
 			if($(window).scrollTop() == $(document).height() - $(window).height()){
 				var totalPage = $("#totalPage").val();
-				//alert("총 페이지: "+totalPage);
+				alert("총 페이지: "+totalPage);
 				$.ajax({
 					type:"GET",
 					url:"ajaxCategory.do",
-					data:"pageNo="+(++pageNo),
+					data:"pageNo="+(++pageNo)+"&categoryNo="+categoryNo,
 					dataType:"json",
 					success:function(data){
-						//alert("성공");
+						alert("성공");
 						var meetingList = "";
 						for(var i=0; i<data.length; i++){
 						    meetingList +=	"<div class='col-sm-3' style='padding:0;margin-left:45px ;margin-right:40px; height: 300px; border: solid 1px #adadad; margin-bottom: 20px'>";
@@ -43,10 +46,10 @@
 							meetingList +=	"<span class='badge badge-danger' style='padding: 7px; margin-left: 10px'>"+"찜하기"+"</span>";
 							meetingList +=	"<span class='badge badge-dark' style='padding: 7px; margin-left: 4px'>"+data[i].title+"</span><br>";
 							meetingList +=	"<font style='font-size: 12px; margin-left: 10px; margin-top: 10px'>";
-							meetingList +=	"모집기간 : "+ "2017-11-10" + "~" + "2017-11-20" + "<br>";
-							meetingList +=	"모임시간 : "+ "2017-12-3" +"<br></font></div>";
+							meetingList +=	"모집기간 : "+ data[i].date.gatheringStart + "~" + data[i].date.gatheringEnd + "<br>";
+							meetingList +=	"모임시간 : "+ data[i].date.meetingStart +"~" + data[i].date.meetingEnd + "<br></font></div>";
 							meetingList +=	"<div class='row' style='margin-left:0px'><font style='font-size: 12px; margin-left: 10px; margin-top: 0px'>";
-							meetingList +=	"참여현황 : "+ "0"+"/"+"20</font></div></div>";
+							meetingList +=	"참여현황 : "+ data[i].attenderCount+"/"+data[i].peopleCount+"</font></div></div>";
 						}
 						
 						var container = $("#meetingData .row").html();
@@ -63,8 +66,8 @@
 					} 
 				});//ajax
 			}
-	   }); 
-	});
+	   }); //scroll
+	});//ready
 </script>
 
 <div class="tagline-upper text-center text-heading text-shadow d-none d-lg-block"
@@ -111,6 +114,7 @@
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${meetingList.list}" var="list" varStatus="cnt">
+				<input type="hidden" id="categoryNo" value="${list.categoryNo}"/>
 				<div class="col-sm-3" style="padding:0;margin-left:45px ;margin-right:40px; height: 300px; border: solid 1px #adadad; margin-bottom: 20px">
 					<div class="row" style="margin-left:0px">
 						<figure class="snip1445" style="margin-top: 7px; margin-left:7px;margin-right: 0px; padding-right: 0px; width: 268px;">

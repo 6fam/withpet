@@ -68,8 +68,8 @@
 	$(".like").click(function() {
 		var boardNo = $(this).parent().parent().find('.row .snip1445 #bNo').val();
 		var id = $("#loginId").val();
-		alert("로그인 된 아이디 : " + id);
-		alert("공감선택 공감번호 : " + boardNo);
+		//alert("로그인 된 아이디 : " + id);
+		//alert("공감선택 공감번호 : " + boardNo);
 		
 		var chageBtn = "";
 		
@@ -87,7 +87,7 @@
 	             
 	        },
 			success:function(data){
-				alert("성공"+data);
+				alert("공감");
 				
 				/*alert(register);
 				if(register){

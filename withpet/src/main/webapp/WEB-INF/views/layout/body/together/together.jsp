@@ -8,8 +8,8 @@
 </div>
 
 <div class="container">
-	<img src="resources/img/img.png" style="margin-top: 0px; margin-left: 5px; width: 400px">
-	<a href="donationWrite.do" class="btn btn-danger" style="height: 110px; font-size: 13px; margin-top: 8px; margin-bottom: 8px; padding-top: 43px; cursor: pointer">
+	<img src="resources/img/donation2.png" style="margin-top: 0px; margin-left: 5px; height:110px">
+	<a href="donationWrite.do" class="btn btn-danger" style="border:1px solid #ffaf26; background:#ffaf26;height: 110px; font-size: 15px; margin-top: 8px; margin-bottom: 8px; padding-top: 43px; cursor: pointer">
 	모금함 개설하기 </a>
 </div>
 <div class="container donationPostList" id="container">

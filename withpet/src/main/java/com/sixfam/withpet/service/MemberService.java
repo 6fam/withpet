@@ -13,6 +13,8 @@ public interface MemberService {
 
 	public String isIdcheck(String id);
 	
+	public String isNickcheck(String nick);
+	
 	public String isIdPwAnswer(MemberDTO member);
 
 	public void registerMember(MemberDTO member);

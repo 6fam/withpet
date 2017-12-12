@@ -169,8 +169,6 @@ public class MeetingDAOImpl implements MeetingDAO {
 		param.put("id", id);
 		param.put("boardNo", boardNo);
 		
-		System.out.println("삭제 요청 아이디 : "+param.get("id"));
-		System.out.println(""+param.get("boardNo"));
 		template.delete("meeting.removeAttenderMember", param);
 	}
 
@@ -186,7 +184,6 @@ public class MeetingDAOImpl implements MeetingDAO {
 
 	@Override
 	public void setMeetingState(HashMap<String, Object> param) {
-		System.out.println("DAO setMeetingState");
 		template.update("meeting.setMeetingState", param);
 	}
 

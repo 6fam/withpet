@@ -38,7 +38,6 @@ public class DonationServiceImpl implements DonationService{
 	public ListDTO<DonationDTO> getAllDonationList(int pageNo) {
 		//전체게시물개수가져오기
 		int totalCount=donationBox.getTotalCount();
-		System.out.println(totalCount);
 		
 		PagingBean pagingBean=null;
 		if(pageNo==1)
@@ -58,43 +57,28 @@ public class DonationServiceImpl implements DonationService{
 	@Override
 	@Transactional
 	public void addDonation(PayDTO pay) throws InsufficientPay {
-		System.out.println("아이디 " + pay.getId());
-		System.out.println("닉네임 " + pay.getNick());
-		System.out.println("덧글내용 " + pay.getContent());
-		System.out.println("요청금액 " + pay.getPay());
-		System.out.println("요청게시물 " + pay.getBoardNo());
 		
 		//입금
-		System.out.println("1");
 		donationBox.deposit(pay);
-		System.out.println("2");
 		//입금이력기록
 		donationBox.registerPayDepositHistory(pay);
-		System.out.println("3");
 		//잔액조회
 		int money = donationBox.payLookUp(pay.getId());
-		System.out.println("4");
 		//잔액이 출금하려는 금액보다 적으면 출금 할 수 없다.
 		if(money < Integer.parseInt(pay.getPay()))
 			throw new InsufficientPay();
 		//출금
 		donationBox.withdraw(pay);
-		System.out.println("5");
 		//출금이력기록
 		donationBox.registerPayWithdrawHistory(pay);
-		System.out.println("6");
 		//기부실시
 		donationBox.payDonation(pay);
-		System.out.println("7");
 		//모금이력기록
-		System.out.println("게시글 번호"+pay.getBoardNo());
 		donationBox.payHistory(pay);
-		System.out.println("8");
 		//덧글로 응원기록
 		ReplyDTO reply = new ReplyDTO(pay.getContent(), pay.getNick(), pay.getBoardNo());
 		reply.setId(pay.getId());
 		meetingBox.registerReply(reply);
-		System.out.println("9");
 	}
 	
 }

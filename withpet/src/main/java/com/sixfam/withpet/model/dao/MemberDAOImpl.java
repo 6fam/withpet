@@ -32,13 +32,15 @@ public class MemberDAOImpl implements MemberDAO {
 		return template.selectOne("member.findAjaxMemberById", id);
 	}
 	
+	@Override
+	public int isNickcheck(String nick) {
+		return template.selectOne("member.findAjaxMemberByNick", nick);
+	}
+	
 	@Override					     
 	public List<Authority> getAuthorityListById(String id) {
-		System.out.println("권한생성");
 		List<Integer> category=template.selectList("member.selectAuthorityById", id);
-		System.out.println(1);
 		List<Authority> authList=new ArrayList<Authority>();
-		System.out.println(2);
 		for(int i=0;i<category.size();i++) {
 			switch (category.get(i)) {
 			case WithPet.ROLE_MEMBER :
@@ -152,7 +154,6 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	@Override
 	public void setDogImg(DogDTO dog) {
-		System.out.println("dog DAO imgPath: "+dog.getImgPath()+"imgNo : "+dog.getImgNo());
 		template.insert("member.updateDogImg", dog);		
 	}
 	@Override
@@ -190,12 +191,10 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	@Override
 	public List<DonationDTO> getDonationListById(String id, PagingBean pagingBean) {
-		System.out.println("dao시작");
 		HashMap<String, Object>param=new HashMap<String, Object>();
 		param.put("id", id);
 		param.put("startRNum", pagingBean.getStartRowNumber());
 		param.put("endRNum", pagingBean.getEndRowNumber());
-		System.out.println("hashmap: "+param.get("id")+" "+param.get("startRNum")+" "+param.get("endRNum"));
 		List<DonationDTO> list=template.selectList("member.getDonationHistory", param);
 		for(DonationDTO l:list)
 			System.out.println("dao :"+l);

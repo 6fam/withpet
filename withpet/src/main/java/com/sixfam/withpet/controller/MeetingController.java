@@ -153,16 +153,13 @@ public class MeetingController {
 	 */
 	@RequestMapping("meetingAttend.do")
 	public String meetingAttendRequest(int boardNo, Model model,Authentication authentication) {
-		System.out.println("참여 요청");
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 
 		//내 아이디가 해당게시글에 참여했는지 확인
 		boolean flag = service.isAttenderMember(mdto.getId(), boardNo);
 		
 		int attendCount = service.getPossibleCount(boardNo);
-		System.out.println("참석 인원"+attendCount);
 		int peopleCount = service.getPeopleCountByBoardNo(boardNo);		
-		System.out.println("모임 총인원"+peopleCount);
 		int possibleCount  = peopleCount - attendCount;
 				
 		if (flag==false) {
@@ -214,7 +211,6 @@ public class MeetingController {
 	public String meetingAttendCancelRequest(int boardNo, Model model, Authentication authentication) {
 		MemberDTO mdto = (MemberDTO)authentication.getPrincipal();
 		service.removeAttenderMember(mdto.getId(), boardNo);
-		//System.out.println("취소 되었슴다");
 		return "redirect:meetingDetail.do?boardNo="+boardNo;
 	}
 	
@@ -258,12 +254,10 @@ public class MeetingController {
 	public String meetingListByCategoryNoRequest(Model model, int categoryNo) {
 		System.out.println("////////Controller////////");
 		int meetingCountByCategory = service.findMeetingCountByCategory(categoryNo);
-		System.out.println("1 : "+meetingCountByCategory);
 		PagingBean pb = new PagingBean(12, meetingCountByCategory);
 
 		List<MeetingDTO> list = service.getAllMeetingListByCategory(pb, categoryNo);
 		System.out.println("////list 가져오기 //// ");
-		System.out.println("사이즈크기 : "+list.size());
 		ListDTO<MeetingDTO> meetingListDTO = new ListDTO<MeetingDTO>(list, pb);
 		
 		model.addAttribute("meetingList", meetingListDTO);
@@ -339,8 +333,6 @@ public class MeetingController {
 	@RequestMapping(value = "exceptAttend.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String removeAttendByFounder(String id, String boardNo) {
-		System.out.println("제거할 id:"+id);
-		System.out.println("제거할 게시물번호:"+boardNo);
 		service.removeAttendByFounder(id, Integer.parseInt(boardNo));
 		
 		return id;
@@ -349,9 +341,6 @@ public class MeetingController {
 	@RequestMapping(value="registerLike.do", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean registerLike(int boardNo, String id) {
-		//int likeFlag = service.getLikeCountByIdAndBoardNo(new LikeDTO(id,boardNo));
-		
-		System.out.println("찜하기");
 		service.registerLike(boardNo, id);
 		
 		return true;
@@ -360,7 +349,6 @@ public class MeetingController {
 	@RequestMapping(value="deleteLike.do", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean deleteLike(int boardNo, String id) {
-		System.out.println("찜하기취소");
 		service.deleteLike(boardNo, id);
 		
 		return true;

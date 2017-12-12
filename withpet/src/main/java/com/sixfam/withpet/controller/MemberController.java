@@ -54,7 +54,6 @@ public class MemberController {
 	public String mypage_partcipateRequest(int pageNo, Model model, Authentication authentication) {
 		MemberDTO mdto=(MemberDTO)authentication.getPrincipal();
 		model.addAttribute("listdto", service.getAttenderHistoryListById(mdto.getId(), pageNo));
-		System.out.println("참여내역 : "+service.getAttenderHistoryListById(mdto.getId(), pageNo).getList());
 		return "mypage_participate.tiles";
 	}
 	
@@ -142,10 +141,19 @@ public class MemberController {
 		return "redirect:home.do";
 	}
 	
+	/**
+	 * 회원가입 중복체크
+	 */
 	@RequestMapping("findMemberByIdAjax.do")
 	@ResponseBody
-	public String idcheckAjaxRequest(String id) {
+	public String idCheckAjaxRequest(String id) {
 		return service.isIdcheck(id);
+	}
+	
+	@RequestMapping("findMemberByNickAjax.do")
+	@ResponseBody
+	public String nickCheckAjaxRequest(String nick) {
+		return service.isNickcheck(nick);
 	}
 
 	/**
@@ -191,7 +199,6 @@ public class MemberController {
 		ddto.setId(mdto.getId());
 		
 		upload.setImageUpload(request, ddto);
-		System.out.println("댕댕이 등록 전 : "+ddto);
 		service.registerDogInfo(ddto);
 		return "redirect:updateMemberAuth.do";
 	}

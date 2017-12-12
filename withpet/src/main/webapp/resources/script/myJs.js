@@ -94,15 +94,14 @@ function dupleId(){
  */
 function dupleNick(){
 	var nick = $('.form-group #nick').val();
-	
 	if(0 == nick.length){
 		$('#dupleNickMessage').text('닉네임을 입력 해주세요.');
 		$('#dupleNickMessage').css("color","#c1bfbf");
-		chkJoinValue = false;
+		chkJoinNickValue = false;
 	} else if(id.length<4 || id.length>30){
 		$('#dupleNickMessage').text('4글자이상 30글자미만으로 입력해주세요.');
 		$('#dupleNickMessage').css("color","#ff6b6b");
-		chkJoinIdValue = false;
+		chkJoinNickValue = false;
 	} else{
 		$.ajax({
 			type:"GET",
@@ -112,16 +111,17 @@ function dupleNick(){
 				if(data!="fail"){
 					$('#dupleNickMessage').text('사용 가능한 닉네임입니다.');
 					$('#dupleNickMessage').css("color","#1cbeff");
-					chkJoinIdValue = true;
+					chkJoinNickValue = true;
 				}else{
 					$('#dupleNickMessage').text('중복된 닉네임입니다.');
 					$('#dupleNickMessage').css("color","#ff6b6b");
-					chkJoinIdValue = false;
+					chkJoinNickValue = false;
 				}
 			}
 		});
 	}
 }
+
 
 /**
  * 비밀번호 유효성 검사
@@ -172,49 +172,14 @@ function chkConfirmPw(){
 	}
 }
 
-/**
- * 회원가입 닉네임 중복체크
- */
-function dupleNick(){
-	var nick = $('.form-group #nick').val();
-	if(0 == nick.length){
-		$('#dupleNickMessage').text('');
-		chkJoinNickValue = false;
-	} else if(2 < nick.length){
-		$.ajax({
-			type:"get",
-			url: "DispatcherServlet",
-			data:"command=dupleNickCheck&nick="+nick,
-			success:function(data){//data로 서버의 응답 정보가 들어온다.
-				if(data == "yes"){
-					$('#dupleNickMessage').text('사용 가능한 닉네임입니다.');
-					$('#dupleNickMessage').css("color","#1cbeff");
-					chkJoinNickValue = true;
-				}else{
-					$('#dupleNickMessage').text('사용 불가능한 닉네임입니다.');
-					$('#dupleNickMessage').css("color","#ff6b6b");
-					chkJoinNickValue = false;
-				}
-			},
-			timeout: 3000,
-			error: function() {
-				alert("timeout error");
-			}
-		});
-	}else{
-		$('#dupleNickMessage').text('3글자이상 8글자미만으로 입력해주세요.');
-		$('#dupleNickMessage').css("color","#ff6b6b");
-		chkJoinNickValue = false;
-	}
-}
 
 function chkSubmit(){
 	var id = $('.form-group #id').val();
 	var pw = $('.form-group #pw').val();
 	var confirm_pw = $('.form-group #confirm_pw').val();
 	var nick = $('.form-group #nick').val();
-	var age = $('.form-group #age').val();
 	var q_answer = $('.form-group #pw_answer').val();
+	var tel = $('.form-group #tel').val();
 	
 	if(chkJoinIdValue == false || id.length == 0) {
 		alert("아이디를 정확히 입력해주세요.");
@@ -224,16 +189,10 @@ function chkSubmit(){
 		alert("비밀번호 확인을 정확히 입력해주세요.");
 	}else if(chkJoinNickValue == false || nick.length == 0) {
 		alert("닉네임을 정확히 입력해주세요.");
-	}else if(age.length == 0) {
-		alert("나이를 입력해주세요.");
-	}else if(q_answer.length == 0) {
+	}else if(q_answer.length == 0 || q_answer == "") {
 		alert("비밀번호 찾기 답변을 입력해주세요.");
-	}else if( $("input[name=tend_code]:checkbox:checked").length == 0 ) {
-		if(confirm("성향은 회원가입 후 마이페이지에서 수정가능합니다.\n회원가입을 진행합니다.")){
-			document.JoinFrame.submit();
-		}else{
-			return false;
-		}
+	}else if(tel.length == 0 || tel == ""){
+		alert("전화번호를 입력해주세요.");
 	}else{
 		if(confirm("회원가입을 진행합니다.")){
 			document.JoinFrame.submit();
@@ -385,7 +344,6 @@ $(document).ready(function (){
     
     $(".registerCommunityPost").click(function() {
     	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
-    	//alert("작성 버튼 눌렸어! myJs.js 286번째줄 확인해!");
     	var communityTitle = $("#exampleInputEmail1").val();
     	var communityContent = $("#ir1").val();
     	if(communityTitle == null || communityTitle == ""){

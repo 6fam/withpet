@@ -16,7 +16,6 @@
 		$("#submitReply").click(function() {
 			var replytext = $("#replytext").val();
 			var replyForm = $(".replyForm").serialize();
-			alert(replytext);
 			$.ajax({
 				type : "post",
 				url : "insertReply.do",
@@ -26,7 +25,6 @@
 						"${_csrf.headerName}","${_csrf.token}");
 				},
 				success : function(data) {
-					/* alert("댓글이 등록되었습니다.");*/
 					listReply();
 				}
 			});
@@ -34,7 +32,6 @@
 		
 		/* 댓글 삭제 버튼 클릭 시 이벤트 */
 		function deleteReply() {
-			alert("들어오나");
 		}
 
 
@@ -340,9 +337,7 @@
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4492fe06798cb47618534aee3cc9d20&libraries=services"></script>
 <script>
 	$(document).ready(function() {
-		//alert("뜨나?");
 		var address = $("#address").html();
-		//alert(address);
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		
 		mapOption = {

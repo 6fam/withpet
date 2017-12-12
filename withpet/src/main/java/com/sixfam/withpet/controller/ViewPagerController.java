@@ -31,7 +31,6 @@ public class ViewPagerController {
 			
 			MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
 			String id = mdto.getId();
-			System.out.println(id);
 			
 		}catch(NullPointerException e){
 			

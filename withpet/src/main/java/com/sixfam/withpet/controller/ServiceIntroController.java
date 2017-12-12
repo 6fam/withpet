@@ -21,7 +21,6 @@ public class ServiceIntroController {
 	 */
 	@RequestMapping("serviceIntroDetailView.do")
 	public String serviceIntroDetailView(Model model,int boardNo) {
-		System.out.println("header 페이지 이동 controller");
 		model.addAttribute("sdto",service.detailIntro(boardNo));
 		return "serviceIntroDetail.tiles";
 	}
@@ -31,12 +30,9 @@ public class ServiceIntroController {
 	 */
 	@RequestMapping("serviceIntroWriteView.do")
 	public String serviceIntroWriteView(Model model,int boardNo) {
-		System.out.println("관리자 서비스 서비스관리 페이지 이동 controller"+" "+boardNo);
-		
 		//작성된 게시물이 없으면 그냥
 		//작성된 게시물이 있으면 model에 게시물을 담아서 보내준다.
 		
-		System.out.println("controllerWrite1"+" "+boardNo);
 		if(service.getIntroCount() != 0) {//있으면뿌려주고 
 			model.addAttribute("sdto", service.detailIntro(boardNo));
 		}
@@ -50,8 +46,6 @@ public class ServiceIntroController {
 	 */
 	@RequestMapping(value="serviceIntroWrite.do", method=RequestMethod.POST)
 	public String serviceIntroWrite(ServiceIntroDTO dto) {
-		System.out.println("글 등록 합니다.");
-		
 		List<ServiceIntroDTO> list = service.getIntroBoardNo();
 		int bno = 0;
 		if(!(list.isEmpty())) { //비어있지 않으면 
@@ -61,7 +55,6 @@ public class ServiceIntroController {
 		if(service.getIntroCount() != 0) { //있으면
 			dto.setBoardNo(bno);
 			service.updateIntro(dto);
-			System.out.println("업데이트실행! : "+dto);
 		}else {
 			service.insertIntro(dto);
 		}

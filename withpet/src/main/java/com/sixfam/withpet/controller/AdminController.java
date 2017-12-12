@@ -356,9 +356,7 @@ public class AdminController {
 	}
 	
 	public List<Authority> getUserAuth(String id) {
-		System.out.println("아이디 : "+id);
 		List<Authority> list = memberService.getAuthorityListById(id.toString());
-		System.out.println(list);
 		
 		if(list.size() == 0 || list.get(0).getAuth().equals("ROLE_EXCEPT"))
 			throw new UsernameNotFoundException("회원 권한이 없습니다.");

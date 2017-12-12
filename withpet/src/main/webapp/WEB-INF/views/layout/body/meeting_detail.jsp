@@ -323,9 +323,7 @@
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4492fe06798cb47618534aee3cc9d20&libraries=services"></script>
 <script>
 	$(document).ready(function() {
-		//alert("뜨나?");
 		var address = $("#address").html();
-		//alert(address);
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		
 		mapOption = {
@@ -564,7 +562,6 @@
 				url:"addAttend.do",
 				data:"totalCount="+totalCount+"boardNo="+boardNo,
 				success:function(data){
-					alert(data)
 					$("#possibleCount").text(data);
 				}
 			}); // ajax
@@ -582,7 +579,6 @@
 				url:"deleteAttend.do",
 				data:"totalCount="+totalCount+"boardNo="+boardNo,
 				success:function(data){
-					alert(data)
 					$("#possibleCount").text(data);
 				}
 			}); // ajax

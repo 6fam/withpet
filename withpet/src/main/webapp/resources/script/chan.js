@@ -54,7 +54,6 @@ geocoder
 
 
 function sample5_execDaumPostcode() {
-	//alert("여기가 안되나?");
     new daum.Postcode({
         oncomplete: function(data) {
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -264,7 +263,6 @@ function submit(){
      
    /*//날짜 비교하는 스크립트
      function checkDate(){
-    	 alert("바꼈나?");
 	     var today = new Date();
 	     var gatheringStart = $("#gatheringStart").val();
 	     var gatheringEnd = $("#gatheringEnd").val();

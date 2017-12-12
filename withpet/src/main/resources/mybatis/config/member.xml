@@ -23,6 +23,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE id=#{value}
 	</select>
 	
+	<select id="findAjaxMemberByNick" parameterType="string" resultType="int">
+		 SELECT count(*)
+		 FROM member
+		 WHERE nick=#{value}
+	</select>
+	
 	<select id="selectAuthorityById" resultType="int">
 		SELECT category_no
 		FROM tier

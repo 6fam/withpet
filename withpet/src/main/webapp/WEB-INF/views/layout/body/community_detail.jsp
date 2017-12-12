@@ -8,11 +8,9 @@ function updateCommunityView(boardNo){
 	location.href = "${pageContext.request.contextPath}/communityUpdateView.do?boardNo="+boardNo;
 }
 function deleteCommunity(boardNo,categoryNo){
-	alert(boardNo);	
 	location.href = "${pageContext.request.contextPath}/communityDelete.do?boardNo="+boardNo+"&categoryNo="+categoryNo;
 }
 function communityList(categoryNo){
-	alert(categoryNo);	
 	location.href = "${pageContext.request.contextPath}/community.do?categoryNo="+categoryNo;
 }
 </script>

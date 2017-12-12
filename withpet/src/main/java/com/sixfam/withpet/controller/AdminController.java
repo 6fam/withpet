@@ -58,7 +58,7 @@ public class AdminController {
 	@RequestMapping(value = "managertierupdate.do", method = RequestMethod.POST)
 	public String managerTierUpdateRequest(Model model, MemberDTO memberDTO) {
 		adminService.setMemberTier(memberDTO);
-		return "redirect:/allmember.do";
+		return "redirect:/allmember.do?pageNo=1";
 	}
 	/**
 	 * 일반회원관리(회원)
@@ -84,7 +84,7 @@ public class AdminController {
 	@RequestMapping(value = "managerdogmompermit.do" , method = RequestMethod.POST)
 	public String managerDogmomPermitRequest(Model model, MemberDTO memberDTO) {
 		adminService.setManagerDogmomPermit(memberDTO);
-		return "redirect:yebimommy.do";
+		return "redirect:yebimommy.do?pageNo=1";
 	}
 	/**
 	 * 댕댕이주인 관리(견주)
@@ -101,7 +101,7 @@ public class AdminController {
 	@RequestMapping(value ="managerdogmomdelete.do", method = RequestMethod.POST)
 	public String managerDogmomDeleteRequest(Model model, MemberDTO memberDTO) {
 		adminService.removeManagerDogmom(memberDTO);
-		return "redirect:dogmommy.do";
+		return "redirect:dogmommy.do?pageNo=1";
 	}
 	/**
 	 * 관리자 관리(관리자)

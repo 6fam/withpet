@@ -386,8 +386,20 @@ $(document).ready(function (){
     $(".registerCommunityPost").click(function() {
     	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
     	//alert("작성 버튼 눌렸어! myJs.js 286번째줄 확인해!");
+    	var communityTitle = $("#exampleInputEmail1").val();
+    	var communityContent = $("#ir1").val();
+    	if(communityTitle == null || communityTitle == ""){
+			alert("제목을 입력하세요.");
+			$("#exampleInputEmail1").focus();
+			return false;
+    	}else if( communityContent == ""  || communityContent == null || communityContent == '&nbsp;' || communityContent == '<p>&nbsp;</p>' || communityContent == '<p><br></p>'){
+    		alert("내용을 입력하세요.");
+			$("#ir1").focus();
+			return false;
+    	}else{
     	$("#frame").submit();
-    });
+    	}
+    	});
 });
 
 

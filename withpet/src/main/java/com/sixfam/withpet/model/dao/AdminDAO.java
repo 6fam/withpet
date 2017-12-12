@@ -103,6 +103,8 @@ public interface AdminDAO {
 	 */
 	public void removeCommunityType(int categoryNo);
 	public void removeCommunityTypeBoard(int categoryNo);
+	
+	public int getAllCommunityCount();
 
 	
 

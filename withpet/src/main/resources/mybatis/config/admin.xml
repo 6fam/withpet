@@ -186,7 +186,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE b.category_no=c.category_no) cb, board pb
 		WHERE cb.board_no=pb.board_no and rnum  between #{startRowNumber} and #{endRowNumber} order by cb.wdate desc
 	</select>
-	
+<!-- 커뮤니티 전체 게시글 총 수 -->
+	<select id="allCommunityCount" resultType="int">
+		SELECT count(*) FROM board b,category c WHERE b.category_no=c.category_no and c.table_code=8
+	</select>
 <!-- 커뮤니티 타입 등록 -->
 	<insert id="addCommunityType" parameterType="string">
 		INSERT INTO category(category_no,table_code,category_name) VALUES(category_seq.nextval,8,#{value})

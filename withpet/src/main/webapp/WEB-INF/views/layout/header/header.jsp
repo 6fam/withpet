@@ -26,7 +26,7 @@
 				<font style="color: #ddd">|</font> 
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 				  <div class="btn-group" role="group">
-				  	<a href="community.do?categoryNo=31"
+				  	<a href="community.do?categoryNo=31&pageNo=1"
 				  		style="text-decoration:none ;color:black ;display:inline-block;height: 30px; font-size: 18px; margin-top: 2px; margin-bottom: 8px; padding-top: 6px; cursor: pointer">
 				  		커뮤니티
 				  	</a>

@@ -228,7 +228,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public ListDTO<BoardDTO> getAllCommunityList(int pageNo) {
-		int totalCount=10;
+		int totalCount=adminDAO.getAllCommunityCount();
 		PagingBean pagingBean=null;
 		if(pageNo==1)
 			pagingBean=new PagingBean(10,4,totalCount);

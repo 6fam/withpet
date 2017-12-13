@@ -33,7 +33,6 @@
 					meetingList += "<img src='"+data[i].imgPath+"' alt='' style='margin: 0px; padding: 0px; height: 240px; width: 100%;'/>";
 					meetingList += "<figcaption class='figure' style='cursor: pointer'>";
 					meetingList += "<div><input type='hidden' id='bNo' value='"+data[i].boardNo+"'>";
-					meetingList += "<font size='3px'>♥ 12</font>";
 					meetingList += "<h4>"+data[i].meetingState+"</h4></div></figcaption></figure></div>";
 					meetingList += "<div class='row' style='margin: 20px 0 0 0; padding: 0px'>";
 					meetingList += "<span class='badge badge-danger' style='margin: 0px; padding: 12px 10px 5px 10px;'>찜하기</span>";
@@ -186,7 +185,6 @@
 							alt="" style="margin: 0px; padding: 0px; height: 240px; width: 100%" />
 						<figcaption class="figure" style="cursor: pointer;">
 							<div>
-								<font size="3px">♥ 12</font>
 								<h4>${list.meetingState}</h4>
 							</div>
 						</figcaption>

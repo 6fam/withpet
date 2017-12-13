@@ -35,7 +35,6 @@
 							meetingList +=	"<img src='"+data[i].imgPath+"' alt='Not Found Default Image!' style='margin-left:0px ;width:268px; height: 175px; margin-right: 0px'/>";
 							meetingList +=	"<figcaption class='figure' style='cursor: pointer'>";
 							meetingList +=	"<div><input type='hidden' id='bNo' value='"+data[i].boardNo+"'>";
-							meetingList +=	"<font size='3px'>♥"+"12"+"</font>";
 							meetingList +=	"<h4>친목</h4>";
 							meetingList +=	"</figcaption></figure></div>";
 							meetingList +=	"<div class='row' style='margin-left:0px'>";
@@ -119,7 +118,6 @@
 							  <figcaption class="figure" style="cursor: pointer">
 							    <div>
 								    <input type="hidden" id="bNo" value="${list.boardNo}">
-								    <font size="3px">♥ 12</font>
 								    <h4>${list.meetingState}</h4>
 							    </div>
 							  </figcaption>

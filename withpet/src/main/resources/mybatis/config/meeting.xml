@@ -24,22 +24,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 모임 리스트 보여주기 위한 쿼리 -->
 	<select id="getAllMeetingList" parameterType="pagingbean" resultMap="meetingList">
-		<!-- SELECT a.attenderCount, memtca.rnum, memtca.board_no as boardNo, memtca.peopleCount, memtca.img_no, memtca.meetingState, memtca.meetingType, memtca.imgPath, b.title, b.hits, ga.gathering_start as gatheringStart, ga.gathering_end as gatheringEnd, ga.meeting_start as meetingStart, ga.meeting_end as meetingEnd
-		FROM
-			(select meca.rnum, meca.board_no, meca.people_count as peopleCount, meca.img_no, meca.meetingState, mtca.meetingType, i.img_path as imgPath, meca.date_no
-			from 
-				(select me.rnum, me.board_no, me.people_count, me.img_no, ca.category_name as meetingState, me.date_no
-				from 
-					(select row_number() over(order by board_no desc) as rnum, board_no, people_count, img_no, category_no, date_no
-					from meeting) me, category ca 
-				where me.category_no=ca.category_no) meca, (SELECT count(*) as attenderCount, board_no FROM	attender group by board_no) a
-				
-				(select mt.board_no, ca.category_name as meetingType
-				from meetingtype mt, category ca 
-				where mt.category_no=ca.category_no) mtca, img i
-			where meca.board_no=mtca.board_no and meca.img_no=i.img_no) memtca, board b, gatheringdate ga
-		WHERE memtca.board_no=b.board_no and memtca.date_no=ga.date_no and rnum between #{startRowNumber} and #{endRowNumber}
-		ORDER BY boardNo desc -->
 		
 		SELECT meee.*, b.title, a.attenderCount
 		FROM 	(
@@ -100,15 +84,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- 모임 개설 끝 -->
 
-
-
 	<!-- <select id="getMeetingDetail" parameterType="int" resultType="meetingDTO">
 		SELECT b.board_no as boardNo, b.id, b.title, b.content, b.hits, b.wdate, m.people_count as peoplecount, i.img_path as imgPath
 		FROM meeting m, board b, img i
 		WHERE m.board_no = b.board_no and m.img_no = i.img_no and b.board_no=#{value}
 	</select> -->
-	
-	
 	
 	<!-- 모임 상세 정보 -->
 	
@@ -121,15 +101,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="getMeetingDetailByBoardNo" parameterType="int" resultMap="meetingAll">
-		SELECT mbmti.id, mbmti.tel, mbmti.board_no as boardNo, mbmti.title, mbmti.content, mbmti.people_count as peopleCount, 
+		SELECT mbmti.id, mbmti.tel, mbmti.board_no as boardNo, mbmti.title, mbmti.intro, mbmti.content, mbmti.people_count as peopleCount, 
 						c.category_name as meetingState, mbmti.place, i.img_path as imgPath, 
 						ga.meeting_start as meetingStart, ga.meeting_end as meetingEnd
 		FROM( 
-					SELECT mem.id, mem.tel, b.board_no, b.title, b.content, mee.people_count, mee.place, mee.date_no, mee.img_no, mee.category_no
+					SELECT mem.id, mem.tel, b.board_no, b.title, b.content, mee.people_count, mee.intro, mee.place, mee.date_no, mee.img_no, mee.category_no
 					FROM member mem, board b, meeting mee
 					WHERE mem.id=b.id and b.board_no=mee.board_no
 				) mbmti, img i, gatheringdate ga, category c
-		WHERE mbmti.img_no=i.img_no and mbmti.date_no=ga.date_no and c.category_no=mbmti.category_no and mbmti.board_no=#{value} 
+		WHERE mbmti.img_no=i.img_no and mbmti.date_no=ga.date_no and c.category_no=mbmti.category_no and mbmti.board_no=#{value}
 	</select>
 	
 	<select id="getMeetingSearchByCategoryType" parameterType="map" resultMap="meetingList">

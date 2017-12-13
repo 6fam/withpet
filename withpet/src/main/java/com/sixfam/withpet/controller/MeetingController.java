@@ -85,7 +85,6 @@ public class MeetingController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		service.registerMeeting(meeting);
 		
 		return "redirect:home.do";

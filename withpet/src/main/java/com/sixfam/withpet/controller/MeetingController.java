@@ -37,7 +37,7 @@ public class MeetingController {
 	@Resource
 	CommonService common;
 	
-	
+	  
 	@Secured("ROLE_DOGMOM")
 	@RequestMapping(value = "registerMeeting.do", method = RequestMethod.POST)
 	public String registerMeetingRequest(HttpServletRequest request, Authentication authentication, MeetingDTO meeting, DateDTO date) {

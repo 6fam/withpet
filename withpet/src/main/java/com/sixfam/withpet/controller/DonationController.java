@@ -132,7 +132,7 @@ public class DonationController {
 		} catch (InsufficientPay e) {
 			e.printStackTrace();
 		}
-		
+		  
 		return "redirect:donationDetail.do?boardNo="+pay.getBoardNo();
 	}
 }

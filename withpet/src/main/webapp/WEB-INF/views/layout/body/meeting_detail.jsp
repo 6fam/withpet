@@ -115,7 +115,7 @@
 			<div class="row" style="margin-top: 10px; height: 120px">
 				<div class="col-sm-12">
 					<font style="font-size: 14px">
-						${meetingDetailDTO.content}
+						${meetingDetailDTO.intro}
 					</font>
 				</div>
 			</div>
@@ -129,7 +129,7 @@
 						<div class="col-sm-8">
 							<font style="font-size: 20px"><b>${meetingDetailDTO.title}</b></font><br>
 							<input type="hidden" id="peopleCount" value="${meetingDetailDTO.peopleCount}">
-							<input type="hidden" id="possibleCount" value="${meetingDetailDTO.possibleCount}">
+							<input type="hidden" id="possibleCountChk" value="${meetingDetailDTO.possibleCount}">
 							선착순 | 총 ${meetingDetailDTO.peopleCount}명 | <font color="red">${meetingDetailDTO.possibleCount}</font>명 신청가능
 						</div>
 						<div class="col-sm-4">
@@ -323,9 +323,7 @@
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4492fe06798cb47618534aee3cc9d20&libraries=services"></script>
 <script>
 	$(document).ready(function() {
-		//alert("뜨나?");
 		var address = $("#address").html();
-		//alert(address);
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		
 		mapOption = {
@@ -371,8 +369,6 @@
 	
 			/* 승찬스 지도끝*/
 	
-			var peopleCount = $("#peopleCount").val();
-			var possibleCount = $("#possibleCount").val();
 			var boardNo = ${meetingDetailDTO.boardNo};
 	
 			$("#deleteBtn").click(function(){
@@ -382,8 +378,10 @@
 			
 			
 			$("#setBtn").click(function(){
-				alert(peopleCount);
-				alert(possibleCount);
+				var peopleCount = $("#peopleCount").val();
+				var possibleCount = $("#possibleCountChk").val();
+				alert("총 인원: "+peopleCount);
+				alert("가능인원: "+possibleCount);
 				if(peopleCount == possibleCount){
 					if(confirm("게시글을 수정하시겠습니까?"))
 					location.href="meeting_update.do?boardNo="+boardNo;
@@ -564,7 +562,6 @@
 				url:"addAttend.do",
 				data:"totalCount="+totalCount+"boardNo="+boardNo,
 				success:function(data){
-					alert(data)
 					$("#possibleCount").text(data);
 				}
 			}); // ajax
@@ -582,7 +579,6 @@
 				url:"deleteAttend.do",
 				data:"totalCount="+totalCount+"boardNo="+boardNo,
 				success:function(data){
-					alert(data)
 					$("#possibleCount").text(data);
 				}
 			}); // ajax

@@ -19,8 +19,7 @@ public class CommunityController {
 	 * 커뮤니티 목록
 	 */
 	@RequestMapping("community.do")
-	public String communityListRequest(int categoryNo,String categoryName,Model model) {
-		int pageNo=1;
+	public String communityListRequest(int categoryNo,String categoryName,Model model,int pageNo) {
 		model.addAttribute("cn",categoryName);
 		model.addAttribute("cmulist",communityService.getCommunityListPerCategory(categoryNo,pageNo));
 		model.addAttribute("categoryType",communityService.getCommunityCategoryList());

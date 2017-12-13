@@ -39,15 +39,4 @@ public class ServiceIntroDAOImpl implements ServiceIntroDAO {
 		return template.selectOne("service.detailIntro",boardNo);
 	}
 	
-	/*@Override 
-	public void registerIntro(ServiceIntroDTO dto) {
-		template.insert("service.serviceIntroInsert",dto);
-	}*/
-	
-	/*@Override
-	public void updateServiceIntro(ServiceIntroDTO dto) {
-		System.out.println("DAO updateServiceIntro1"+dto);
-		template.update("service.UpdateServiceIntro",dto);
-		System.out.println("DAO updateServiceIntro2"+dto);
-	}	*/
 }

@@ -60,11 +60,17 @@ public class MemberServiceImpl implements MemberService {
 		int count = memberDAO.isIdcheck(id);
 		return (count == 0) ? "ok" : "fail";
 	}
+	
+	@Override
+	@Transactional
+	public String isNickcheck(String nick) {
+		int count = memberDAO.isNickcheck(nick);
+		return (count == 0) ? "ok" : "fail";
+	}
 
 	@Override
 	@Transactional
 	public List<Authority> getAuthorityListById(String id) {
-		System.out.println("zzzz");
 		return memberDAO.getAuthorityListById(id);
 	}
 
@@ -73,7 +79,6 @@ public class MemberServiceImpl implements MemberService {
 	public void registerMember(MemberDTO member) {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		memberDAO.registerMember(member);
-		System.out.println(member);
 		memberDAO.registerRole(new Authority(member.getId(), "ROLE_MEMBER"));
 	}
 	
@@ -240,9 +245,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public ListDTO<DonationDTO> getDonationSetupListById(String id, int pageNo) {
-		System.out.println("마이페이지 모금함 개설내역 서비스");
 		int totalCount=memberDAO.getTotalCountById(id, WithPet.BOARD_DONATION);
-		System.out.println("서비스 : "+totalCount);
 		PagingBean pagingBean=null;
 		if(pageNo==1) 
 			pagingBean=new PagingBean(2, 5, totalCount);

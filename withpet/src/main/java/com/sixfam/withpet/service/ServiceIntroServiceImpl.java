@@ -44,8 +44,6 @@ public class ServiceIntroServiceImpl implements ServiceIntroService {
 	}*/
 	/*@Override
 	public ServiceIntroDTO updateInsertIntro(ServiceIntroDTO dto) {
-		System.out.println("service"+dto);
-		System.out.println("service"+dto+dto.getBoardNo());
 		if(dto.getBoardNo()==0) {
 			dao.registerIntro(dto);
 		}else{

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.sixfam.withpet.model.PagingBean;
+import com.sixfam.withpet.model.dao.AdminDAO;
 import com.sixfam.withpet.model.dao.CommunityDAO;
 import com.sixfam.withpet.model.dto.BoardDTO;
 import com.sixfam.withpet.model.dto.ListDTO;
@@ -17,6 +18,9 @@ public class CommunityServiceImpl implements CommunityService {
 	@Resource
 	CommunityDAO communityDAO;
 	
+	@Resource
+	AdminDAO adminDAO;
+	
 	@Override
 	public List<BoardDTO> getCommunityCategoryList() {
 		return communityDAO.getCommunityCategoryList();
@@ -24,12 +28,12 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Override
 	public ListDTO<BoardDTO> getCommunityListPerCategory(int categoryNo,int pageNo) {
-		int totalCount=10;
+		int totalCount=adminDAO.getBoardCountPerCategory(categoryNo);
 		PagingBean pagingBean=null;
 		if(pageNo==1)
-			pagingBean=new PagingBean(2,4,totalCount);
+			pagingBean=new PagingBean(10,4,totalCount);
 		else
-			pagingBean=new PagingBean(pageNo, 2, 4, totalCount);
+			pagingBean=new PagingBean(pageNo, 10, 4, totalCount);
 		return new ListDTO<BoardDTO>(communityDAO.getCommunityListPerCategory(pagingBean,categoryNo), pagingBean);
 	}
 

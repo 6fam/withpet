@@ -42,7 +42,6 @@ function chkChangePWSubmit(){
 $(document).ready(function(){
 	$(".findPW").click(function() {
 		var id=$("#id").val();
-		alert(id);
 		location.href="f_idbyquestion.do?id="+id;
 	});
 });

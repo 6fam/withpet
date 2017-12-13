@@ -14,7 +14,7 @@
 $(document).ready(function() {
 	$(".tierupdate").click(function(){
 		var tier=$(this).parent().parent().find('select option:selected').val();
-		alert(tier);
+		confirm("회원등급을 변경 하시겠습니까?");
 		$("#categoryNo").val(tier);
 		
 	});
@@ -81,7 +81,9 @@ $(document).ready(function() {
 																	<option value="${tr.categoryNo}" selected="selected">${tr.categoryName}</option>
 																</c:when>
 																<c:otherwise>
-																	<option value="${tr.categoryNo}">${tr.categoryName}</option>
+																	<c:if test="${tr.categoryNo<14}">
+																		<option value="${tr.categoryNo}">${tr.categoryName}</option>
+																	</c:if>
 																</c:otherwise>
 															</c:choose>
 														</c:forEach>

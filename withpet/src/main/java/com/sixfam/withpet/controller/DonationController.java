@@ -34,11 +34,9 @@ public class DonationController {
 	@RequestMapping("togetherdog.do")
 	public String togetherDogRequest(Model model, int pageNo) {
 		List<DonationDTO> list = service.getAllDonationList(pageNo).getList();
-		System.out.println(list);
 		for(int i=0;i<list.size();i++) {
 			//로우 1개의 이미지 경로를 가져온다.
 			String imgPath = list.get(i).getImgPath();
-			System.out.println(imgPath);
 			//, 로 짜른다.
 			String[] imgPathList = imgPath.split(",");
 			
@@ -78,13 +76,6 @@ public class DonationController {
 			donation.getImgPathList().add(new ImgDTO(imgPathList[i]));
 		}
 
-		System.out.println(donation.getImgPathList());
-		System.out.println(donation);
-		System.out.println(donation.getReplyList());
-		System.out.println("상세보기 게시글 번호 : "+donation.getBoardNo());
-		System.out.println("현재 모금액 : " + donation.getCurrentMoney());
-		System.out.println("목표 모금액 : " + donation.getDreamMoney());
-		
 		int c = donation.getCurrentMoney();
 		int d = donation.getDreamMoney();
 		float donationPercent = (float)c/d;
@@ -125,7 +116,6 @@ public class DonationController {
 		MemberDTO member = (MemberDTO)authentication.getPrincipal();
 		pay.setId(member.getId());
 		pay.setNick(member.getNick());
-		System.out.println("게시판번호 : "+pay.getBoardNo());
 		
 		try {
 			service.addDonation(pay);

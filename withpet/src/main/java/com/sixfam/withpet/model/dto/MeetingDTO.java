@@ -127,9 +127,10 @@ public class MeetingDTO extends BoardDTO {
 	
 
 	// 모임 상세보기
-	public MeetingDTO(int boardNo, String id, String title, String content, 
+	public MeetingDTO(int boardNo, String id, String title, String content, String intro,
 			String place, int peopleCount, String tel, DateDTO date, List<ReplyDTO> replyList) {
 		super(boardNo, id, title, content, replyList);
+		this.intro = intro;
 		this.place = place;
 		this.peopleCount = peopleCount;
 		this.tel = tel;

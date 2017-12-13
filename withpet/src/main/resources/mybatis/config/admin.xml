@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="allMemberList" parameterType="pagingBean" resultType="memberDTO">
 		SELECT m.id,m.nick,m.password,m.tel,m.pw_answer as pwAnswer,m.regdate,m.permitdate,t.category_no as categoryNo,c.category_name as categoryName,m.money
 		FROM (select row_number() over(order by regdate desc) as rnum,id,nick,password,tel,pw_answer,regdate,permitdate,category_no,money from member) m,category c,(SELECT MAX(category_no) as category_no,id FROM TIER GROUP BY id) t
-		WHERE t.category_no=c.category_no and m.id=t.id	 and rnum between #{startRowNumber} and #{endRowNumber} order by m.regdate desc
+		WHERE t.category_no=c.category_no and t.category_no between 9 and 13 and m.id=t.id and rnum between #{startRowNumber} and #{endRowNumber} order by m.regdate desc
    </select>
   
 	<!--일반회원 목록-->
@@ -25,8 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM (select id, nick,tel, to_char(regdate, 'yyyy-mm-dd') as regdate, pw_answer, category_no, 
 		row_number() over(order by regdate desc) as rnum from member) r, 
 		category c, (SELECT MAX(category_no) as category_no, id FROM TIER GROUP BY id) t
-		WHERE t.category_no between 10 and 12 and t.id=r.id and c.category_no=r.category_no and r.rnum between 1 and 10
-		order by rnum asc
+		WHERE t.category_no between 10 and 12 and t.id=r.id and c.category_no=r.category_no and r.rnum  between #{startRowNumber} and #{endRowNumber} order by r.regdate desc
    </select>
    
     <!-- 댕댕이 정보 가져오는 Result Map -->
@@ -187,7 +186,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE b.category_no=c.category_no) cb, board pb
 		WHERE cb.board_no=pb.board_no and rnum  between #{startRowNumber} and #{endRowNumber} order by cb.wdate desc
 	</select>
-	
+<!-- 커뮤니티 전체 게시글 총 수 -->
+	<select id="allCommunityCount" resultType="int">
+		SELECT count(*) FROM board b,category c WHERE b.category_no=c.category_no and c.table_code=8
+	</select>
 <!-- 커뮤니티 타입 등록 -->
 	<insert id="addCommunityType" parameterType="string">
 		INSERT INTO category(category_no,table_code,category_name) VALUES(category_seq.nextval,8,#{value})

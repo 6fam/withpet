@@ -61,6 +61,12 @@ public class AdminDAOImpl implements AdminDAO {
 	public int getBoardCountPerCategory(int categoryNo) {
 		return template.selectOne("admin.boardCountPerCategory",categoryNo);
 	}
+	
+	@Override
+	public int getAllCommunityCount() {
+		return template.selectOne("admin.allCommunityCount");
+	}
+	
 	@Override
 	public List<MeetingDTO> getAllMeetingList(PagingBean pagingBean) {
 		return template.selectList("admin.allMeetingList",pagingBean);

@@ -42,7 +42,7 @@
          <div class="col-sm-2">
          		<!-- 이미지 미리보기 -->
                	<div style="border:solid 1px #cecece;width:180px; height: 200px; margin: 0px; padding: 0px">
-               		<img id="blah" src="" alt="댕댕이 사진 등록" style="width: 180px; height:200px;"/>
+               		<img id="blah" src="resources/img/dog_profile2.png" alt="댕댕이 사진 등록" style="width: 180px; height:200px;"/>
                	</div>
                	<!--  이미지 업로드 -->
                	<button type="button" class="btn btn-danger" style="position: absolute;

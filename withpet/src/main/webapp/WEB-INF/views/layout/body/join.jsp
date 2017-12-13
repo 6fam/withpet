@@ -19,7 +19,7 @@
 				<div class="row">
 					<div class="col-sm-1"></div>
 					<div class="col-sm-10" style="padding-bottom: 100px">
-						<form method="post" action="memberJoin.do">
+						<form method="post" action="memberJoin.do" name="JoinFrame">
 							<sec:csrfInput/>
 						    <div class="form-group">
 						      <label for="exampleInputEmail1"><font style="font-size: 14px"><b>이메일</b></font></label>
@@ -28,12 +28,12 @@
 						    </div>
 						    <div class="form-group">
 						      <label for="exampleInputEmail1"><font style="font-size: 14px"><b>닉네임</b></font></label>
-						      <input type="text" name="nick" class="form-control" id="nick" aria-describedby="emailHelp" placeholder="닉네임을 입력해주세요." onkeyup="">
+						      <input type="text" name="nick" class="form-control" id="nick" aria-describedby="emailHelp" placeholder="닉네임을 입력해주세요." onkeyup="dupleNick()">
 						      <small id="dupleNickMessage" class="form-text" style="color: #c1bfbf">닉네임을 입력 해주세요.</small>
 						    </div>
 						    <div class="form-group">
 						      <label for="exampleInputPassword1"><font style="font-size: 14px"><b>비밀번호</b></font></label>
-						      <input type="password" name="password" class="form-control" placeholder="비밀번호를 입력해주세요." onkeyup="chkPassword()">
+						      <input type="password" name="password" class="form-control" id="pw" placeholder="비밀번호를 입력해주세요." onkeyup="chkPassword()">
 						      <small id="checkPwMessage" class="form-text" style="color: #c1bfbf">비밀번호를 입력 해주세요.</small>
 						    </div>
 						    <div class="form-group">
@@ -50,7 +50,7 @@
 						    </div>
 						    <div class="form-group">
 						      <label for="exampleInputEmail1"><font style="font-size: 14px"><b>비밀번호 찾기 질문 답변</b></font></label>
-						      <input type="text" name="pwAnswer" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="비밀번호 찾기 답변을 입력해주세요.">
+						      <input type="text" id="pw_answer" name="pwAnswer" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="비밀번호 찾기 답변을 입력해주세요.">
 						    </div>
 						    
 						    <label for="exampleInputEmail1"><font style="font-size: 14px"><b>전화번호</b></font></label>
@@ -60,12 +60,12 @@
 						        <option>SKT</option>
 						        <option>KT</option>
 						        <option>LG</option>
-						      </select><input type="text" name="tel" style="width:600px; float: right" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="전화번호를 입력해주세요.">
+						      </select><input type="text" name="tel" id="tel" style="width:600px; float: right" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="전화번호를 입력해주세요.">
 						   	  <small id="emailHelp" class="form-text text-muted" style="clear: both">'-'없이 입력해주세요.</small>
 						    </div>
 						    
 						    <div style="text-align: center; margin-top: 50px">
-							    <button type="submit" class="btn btn-primary" style="cursor: pointer">가입</button>
+							    <button type="button" class="btn btn-primary" style="cursor: pointer" onclick="chkSubmit()">가입</button>
 							    <button type="button" class="btn btn-danger" style="cursor: pointer">취소</button>
 						    </div>
 						</form>

@@ -13,6 +13,8 @@ public interface MemberDAO {
 
 	public int isIdcheck(String id);
 	
+	public int isNickcheck(String nick);
+	
 	public int isIdPwAnswer(MemberDTO member);
 	
 	public void registerMember(MemberDTO member);

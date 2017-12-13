@@ -46,7 +46,7 @@ public class MeetingController {
 		upload.setImageUpload(request, meeting);
 		// 카테고리 넘버 받아오는 코드 작성
 		meeting.setCategoryNo(service.getCategoryNoByCategory(meeting.getCategoryName()));
-		
+		   
 		meeting.setId(mdto.getId());
 		meeting.setPlace(meeting.getPlace() +" "+ meeting.getDetailPlace());
 		

@@ -232,7 +232,7 @@
 		<div class="row" style="margin-top: 200px;margin-bottom: 100px">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10" style="text-align: center">
-				<button type="button" class="btn btn-info registerPost"
+				<button type="submit" class="btn btn-info registerPost"
 					style="width: 100px; height: 40px; font-size: 12px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px; cursor: pointer">수정</button>
 				<button type="button" class="btn btn-danger"
 					style="width: 100px; height: 40px; font-size: 12px; margin-top: 8px; margin-bottom: 8px; padding-top: 8px; cursor: pointer" onclick="cancelAll(); return false;">취소</button>

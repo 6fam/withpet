@@ -28,7 +28,7 @@ public class ViewPagerController {
 	@RequestMapping("home.do")
 	public String homeRequest(Model model, Authentication authentication) {
 		try {
-			
+			  
 			MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
 			String id = mdto.getId();
 			

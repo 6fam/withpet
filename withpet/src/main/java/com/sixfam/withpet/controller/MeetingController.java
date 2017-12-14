@@ -104,8 +104,10 @@ public class MeetingController {
 			pb = new PagingBean(12, meetingCount);
 		else
 			pb = new PagingBean(pageNo, 12, 0, meetingCount);
+		List<MeetingDTO> list = service.getAllMeetingList(pb); 
+		System.out.println(list);
 		
-		return service.getAllMeetingList(pb);
+		return list;
 	}
 	
 	

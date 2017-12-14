@@ -30,18 +30,20 @@
 					meetingList += "<div class='col-sm-3' style='width: 100%; max-width: 100%; padding: 20px; margin: 15px; border: 1px solid #ddd; flex: 0 0 0'>";
 					meetingList += "<div class='row' style='margin: 0px; padding: 0px;'>";
 					meetingList += "<figure class='snip1445' style='margin: 0px; padding: 0px; width: 100%; min-width: 293px; height: 240px'>";
-					meetingList += "<img src='"+data[i].imgPath+"' alt='' style='margin: 0px; padding: 0px; height: 240px; width: 100%;'/>";
+					meetingList += "<img src='/withpet/resources/upload/"+data[i].imgPath+"' alt='' style='margin: 0px; padding: 0px; height: 240px; width: 100%;'/>";
 					meetingList += "<figcaption class='figure' style='cursor: pointer'>";
 					meetingList += "<div><input type='hidden' id='bNo' value='"+data[i].boardNo+"'>";
 					meetingList += "<h4>"+data[i].meetingState+"</h4></div></figcaption></figure></div>";
 					meetingList += "<div class='row' style='margin: 20px 0 0 0; padding: 0px'>";
 					meetingList += "<span class='badge badge-danger' style='margin: 0px; padding: 12px 10px 5px 10px;'>찜하기</span>";
 					meetingList += "<span class='badge badge-dark' style='margin: 0px 0px 0px 10px; padding: 12px 10px 5px 10px'>";
-					meetingList += data[i].title;
-					meetingList += "</span><br><font style='font-size: 12px; margin: 20px 0 0 0; padding: 0px'>";
-					meetingList += "모집기간 :"+data[i].gatheringStart+"~"+data[i].gatheringStart+"<br>";
+					meetingList += data[i].meetingType;
+					meetingList += "</span><br>";
+					meetingList += "<font style='font-size:15px; margin-left:10px; margin-top:10px;'>"+data[i].title+"</font>";
+					meetingList += "<font style='font-size: 12px; margin: 20px 0 0 0; padding: 0px'>";
+					meetingList += "모집기간 :"+data[i].date.gatheringStart+"~"+data[i].date.gatheringStart+"<br>";
 					meetingList += "</font> <font style='font-size: 12px; margin: 5px 0 0 0; padding: 0px'>";
-					meetingList += "모임시간 :"+data[i].meetingStart+"~"+data[i].meetingEnd+"<br></font></div>";
+					meetingList += "모임시간 :"+data[i].date.meetingStart+"~"+data[i].date.meetingEnd+"<br></font></div>";
 					meetingList += "<div class='row' style='margin: 5px 0 0 0; padding: 0px'>";
 					meetingList += "<font style='font-size: 12px; margin: 0px; padding: 0px'>";
 					meetingList += "참여현황 :"+ "0"+"/"+data[i].peopleCount+"</font></div></div>";
@@ -69,29 +71,31 @@
 		
 		var chageBtn = "";
 		
-		$.ajax({
-			type:"post",
-			url:"registerLike.do",				
-			data:"id="+id+"&boardNo="+boardNo,
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader(
-					"${_csrf.headerName}","${_csrf.token}");
-			},
-			error:function(request,status,error){
-	              alert("이미 찜한 모임입니다");
-	             
-	        },
-			success:function(data){
-				/*
-				if(register){
-					changeBtn += "<span class='badge badge-info hate' style='margin: 0px; padding: 12px 10px 5px 10px; cursor: pointer'>찜하기</span>";
+		if(confirm("찜하시겠습니까?")){
+			$.ajax({
+				type:"post",
+				url:"registerLike.do",				
+				data:"id="+id+"&boardNo="+boardNo,
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(
+						"${_csrf.headerName}","${_csrf.token}");
+				},
+				error:function(request,status,error){
+		              alert("이미 찜한 모임입니다");
+		             
+		        },
+				success:function(data){
+					alert("찜완료");
+					if(register){
+						changeBtn += "<span class='badge badge-info hate' style='margin: 0px; padding: 12px 10px 5px 10px; cursor: pointer'>찜하기</span>";
+					}
+					//$(this).parent().find("like").html(changeBtn);
+					$(this).parent().html(changeBtn);
+					//document.all("").innerHTML=chageBtn;
+					location = register;
 				}
-				//$(this).parent().find("like").html(changeBtn);
-				$(this).parent().html(changeBtn);
-				//document.all("").innerHTML=chageBtn;
-				location = register;*/
-			}
-		});// ajax
+			});// ajax
+		}
 	});
 });//ready
 </script>

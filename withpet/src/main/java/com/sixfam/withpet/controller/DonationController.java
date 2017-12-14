@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +55,7 @@ public class DonationController {
 	/*
 	 * 모금함 작성 페이지로 가기
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("donationWrite.do")
 	public String donationWritePageRequest() {
 		return "together/donationWrite.tiles";
@@ -111,6 +113,7 @@ public class DonationController {
 	/**
 	 * 모금 결제 요청
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping(value="pay.do", method=RequestMethod.POST)
 	public String donationPayRequest(Authentication authentication, PayDTO pay) {
 		MemberDTO member = (MemberDTO)authentication.getPrincipal();

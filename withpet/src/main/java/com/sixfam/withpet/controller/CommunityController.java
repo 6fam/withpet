@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ public class CommunityController {
 	/**
 	 * 커뮤니티 작성폼
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("communityWriteView.do")
 	public String communityWriteViewRequest(Model model) {
 		model.addAttribute("categoryType",communityService.getCommunityCategoryList());
@@ -54,6 +56,7 @@ public class CommunityController {
 	/**
 	 * 커뮤니티 상세보기
 	 */
+	@Secured("ROLE_MEMBER")
 	@RequestMapping("communityDetail.do")
 	public String communityDetailRequest(Model model,String boardNo,Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
 		MemberDTO mdto=(MemberDTO) authentication.getPrincipal();

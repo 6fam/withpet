@@ -138,6 +138,9 @@
 						<c:when test="${reply.imgPath == 'dog_profile2.png'}">
 							<img src="resources/img/dog_profile2.png" style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px">
 						</c:when>
+						<c:when test="${reply.imgPath == null}">
+							<img src="resources/img/dog_profile2.png" style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px">
+						</c:when>
 						<c:otherwise>
 							<img src="${pageContext.request.contextPath }/resources/upload/${reply.imgPath}" style="height:50px;width: 50px; border: solid 1px black; border-radius: 200px; margin-left:0px; margin-top:0px">
 						</c:otherwise>

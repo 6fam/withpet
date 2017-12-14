@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 서비스 소개 글등록 -->
 	<insert id="insertIntro" parameterType="serviceIntroDTO">
 		<selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
-			SELECT board_seq.nextval FROM DUAL
+			SELECT intro_seq.nextval FROM DUAL
 		</selectKey>
 		insert into intro(board_no,content) values(#{boardNo},#{content})
 	</insert>

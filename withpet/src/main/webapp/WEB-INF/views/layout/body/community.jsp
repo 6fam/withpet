@@ -12,6 +12,7 @@
 			<c:forEach items="${categoryType}" var="ct">
 			<a href="community.do?categoryNo=${ct.categoryNo}&categoryName=${ct.categoryName}&pageNo=1" style="font-size: 14px;color:white">${ct.categoryName}</a>
 			<font style="font-size: 12px">|</font>
+			
 			</c:forEach>
 		</div>
 	</div>

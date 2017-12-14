@@ -60,7 +60,7 @@
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.dreamMoney}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${dl.wdate}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">
-							      <input type="hidden" name="categoryNo" value="29">
+							      <input type="hidden" name="categoryNo" value="30">
 							      <button class="btn btn-default" id="logoutAction" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;height: 24px; font-size: 12px; margin-bottom: 0px; padding-top: 5px; cursor: pointer; background-color: white"
 							      	name="boardNo" value="${dl.boardNo}">
 										½ÂÀÎ

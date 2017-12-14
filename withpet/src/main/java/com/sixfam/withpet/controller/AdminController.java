@@ -162,7 +162,7 @@ public class AdminController {
 	 */
 	@RequestMapping("donationwait.do")
 	public String donationWaitRequest(Model model) {
-		int categoryNo=28;
+		int categoryNo=29;
 		int pageNo=1;
 		model.addAttribute("dolist",adminService.getDonationListPerState(pageNo, categoryNo));
 		return "admin/donation_wait.tiles";
@@ -174,7 +174,7 @@ public class AdminController {
 	 */
 	@RequestMapping("donatting.do")
 	public String donationListRequest(Model model) {
-		int categoryNo=29;
+		int categoryNo=30;
 		int pageNo=1;
 		model.addAttribute("dolist",adminService.getDonationListPerState(pageNo, categoryNo));
 		return "admin/donatting.tiles";
@@ -185,7 +185,7 @@ public class AdminController {
 	 */
 	@RequestMapping("donationfinish.do")
 	public String donationFinishRequest(Model model) {
-		int categoryNo=30;
+		int categoryNo=31;
 		int pageNo=1;
 		model.addAttribute("dolist",adminService.getDonationListPerState(pageNo, categoryNo));
 		return "admin/donation_finish.tiles";

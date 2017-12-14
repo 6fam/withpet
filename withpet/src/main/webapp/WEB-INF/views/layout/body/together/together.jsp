@@ -27,7 +27,12 @@
 			</div>
 			<h2 class="title">&nbsp;</h2>
 			<div class="intro" style="margin-top: 10px;overflow:hidden;word-wrap:break-word;">
-				<font style="float: left; font-size: 14px"><b>${donation.title}</b></font> 
+				<c:if test="${donation.categoryNo == 30 }">
+					<font style="float: left; font-size: 14px"><b>[진행중] ${donation.title}</b></font> 
+				</c:if>
+				<c:if test="${donation.categoryNo == 31 }">
+					<font style="float: left; font-size: 14px"><b>[마감] ${donation.title}</b></font> 
+				</c:if>
 				<font style="float: left; font-size: 10px; color: #6b6b6b; margin-top: 4px; margin-left: 5px"><b>${donation.donationOrg}</b></font><br><br>
 				<hr style="margin-top: 0px">
 				<b>소개</b><br>

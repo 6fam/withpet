@@ -47,7 +47,14 @@ public class DonationController {
 				//로우 1개의 배열에 이미지를 넣어준다.
 				list.get(i).getImgPathList().add(new ImgDTO(imgPathList[j]));
 			}
+			String dreamMoney = (NumberFormat.getNumberInstance().format(Integer.valueOf(list.get(i).getDreamMoney())));
+			String currentMoney = (NumberFormat.getNumberInstance().format(Integer.valueOf(list.get(i).getCurrentMoney())));
+			list.get(i).setDreamMoneyStr(dreamMoney);
+			list.get(i).setCurrentMoneyStr(currentMoney);
 		}
+		
+		
+		
 		model.addAttribute("donationList", list);
 		return "together.tiles";
 	}

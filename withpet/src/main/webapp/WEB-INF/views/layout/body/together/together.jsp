@@ -33,7 +33,7 @@
 				<b>소개</b><br>
 				${donation.intro}<br><br>
 				<b>모금 목표액</b><br>
-				${donation.dreamMoney}<br>
+				${donation.dreamMoneyStr}원<br>
 			</div>
 		</div>
 	</c:forEach>

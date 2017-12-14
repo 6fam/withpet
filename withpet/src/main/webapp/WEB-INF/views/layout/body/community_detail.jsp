@@ -11,7 +11,7 @@ function deleteCommunity(boardNo,categoryNo){
 	location.href = "${pageContext.request.contextPath}/communityDelete.do?boardNo="+boardNo+"&categoryNo="+categoryNo;
 }
 function communityList(categoryNo){
-	location.href = "${pageContext.request.contextPath}/community.do?categoryNo="+categoryNo;
+	location.href = "${pageContext.request.contextPath}/community.do?categoryNo="+categoryNo+"&pageNo=1";
 }
 </script>
 <div class="container"

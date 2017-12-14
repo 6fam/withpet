@@ -31,10 +31,17 @@ public class ViewPagerController {
 			  
 			MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
 			String id = mdto.getId();
+			System.out.println(id);
 			
 		}catch(NullPointerException e){
 			
 		}
+		
+		int sum = 0;
+		for(int i=1; i <11;i++) {
+			sum = sum + i;
+		}
+		System.out.println(sum);
 		
 		int meetingCount = meetingService.getMeetingCount();
 		PagingBean pb = new PagingBean(12, meetingCount);

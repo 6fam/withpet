@@ -180,7 +180,7 @@
 									</div>
 									<div class="row" style="margin:0px; padding: 0px; margin-top: 2px">
 										<a href="receivemessage.do?pageNo=1" style="border-color:black ;text-decoration:none ;color:black ;display:inline-block;font-size: 13px; margin-bottom: 8px;cursor: pointer">
-											<img src="resources/img/messageico.png" style="height: 15px; width: 15px; margin-top: 5px">쪽지함 <font style="color: green"><b>0</b></font>
+											<img src="resources/img/messageico.png" style="height: 15px; width: 15px; margin-top: 5px">쪽지함 <font style="color: green"><b></b></font>
 										</a>
 									</div>
 								</div>

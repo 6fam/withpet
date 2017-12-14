@@ -4,11 +4,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sixfam.withpet.model.dto.BoardDTO;
+import com.sixfam.withpet.model.dto.MemberDTO;
 import com.sixfam.withpet.service.CommonService;
 import com.sixfam.withpet.service.CommunityService;
 
@@ -53,12 +55,12 @@ public class CommunityController {
 	 * 커뮤니티 상세보기
 	 */
 	@RequestMapping("communityDetail.do")
-	public String communityDetailRequest(Model model,int boardNo, HttpServletRequest request, HttpServletResponse response) {
-		//MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
+	public String communityDetailRequest(Model model,String boardNo,Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
+		MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
 		//조회수 증가
-				//common.hits(request, response, mdto.getId(), boardNo);
+		common.addHits(request, response, mdto.getId(), boardNo);
 		
-		model.addAttribute("cdinfo",communityService.getCommunityDetailInfo(boardNo));
+		model.addAttribute("cdinfo",communityService.getCommunityDetailInfo(Integer.parseInt(boardNo)));
 		return "community_detail.tiles";
 	}
 	

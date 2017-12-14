@@ -1,12 +1,15 @@
 package com.sixfam.withpet.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sixfam.withpet.model.dto.BoardDTO;
+import com.sixfam.withpet.service.CommonService;
 import com.sixfam.withpet.service.CommunityService;
 
 @Controller
@@ -14,6 +17,8 @@ public class CommunityController {
 	@Resource
 	CommunityService communityService;
 	
+	@Resource
+	CommonService common;
 	
 	/**
 	 * 커뮤니티 목록
@@ -48,7 +53,11 @@ public class CommunityController {
 	 * 커뮤니티 상세보기
 	 */
 	@RequestMapping("communityDetail.do")
-	public String communityDetailRequest(Model model,int boardNo) {
+	public String communityDetailRequest(Model model,int boardNo, HttpServletRequest request, HttpServletResponse response) {
+		//MemberDTO mdto=(MemberDTO) authentication.getPrincipal();
+		//조회수 증가
+				//common.hits(request, response, mdto.getId(), boardNo);
+		
 		model.addAttribute("cdinfo",communityService.getCommunityDetailInfo(boardNo));
 		return "community_detail.tiles";
 	}

@@ -48,9 +48,9 @@
 							 	</thead>
 							  	<tbody>
 								  	<!-- for -->
-								  	<c:forEach items="${managerlist.list}" var="ml">
+								  	<c:forEach items="${managerlist.list}" var="ml" varStatus="status">
 								    <tr>
-								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${status.count}</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.id}</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.nick}</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${ml.tel}</td>

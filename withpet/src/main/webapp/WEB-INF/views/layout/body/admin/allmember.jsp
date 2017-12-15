@@ -65,9 +65,9 @@ $(document).ready(function() {
 							    </tr>
 							  </thead>
 							  <tbody>
-							  <c:forEach items="${allMember.list}" var="al">
+							  <c:forEach items="${allMember.list}" var="al" varStatus="status">
 							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${status.count}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${al.id}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${al.nick}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${al.tel}</td>

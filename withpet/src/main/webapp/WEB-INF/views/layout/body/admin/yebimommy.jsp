@@ -52,9 +52,9 @@
 								</thead>
 								<tbody>
 							  		<!-- for -->
-								    <c:forEach items="${yebilist.list}" var="ye"> 
+								    <c:forEach items="${yebilist.list}" var="ye" varStatus="status"> 
 								    <tr>
-								      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
+								      <td style="padding: .45rem; text-align: center; font-size: 12px">${status.count}</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px">${ye.dogDTO.id}</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px">${ye.nick}</td>
 								      <td style="padding: .45rem; text-align: center; font-size: 12px">${ye.dogDTO.name}</td>

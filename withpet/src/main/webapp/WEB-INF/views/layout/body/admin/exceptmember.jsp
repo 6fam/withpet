@@ -49,9 +49,9 @@
 							  <tbody>
 							  
 							  	<!-- for -->
-							  	<c:forEach items="${excepterlist.list}" var="el">
+							  	<c:forEach items="${excepterlist.list}" var="el" varStatus="status">
 							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${status.count}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${el.id}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${el.nick}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px; height: 39px">${el.tel}</td>

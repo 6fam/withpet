@@ -54,9 +54,9 @@
 							  </thead>
 							  <tbody>
 							  	<!-- for -->
-							  	<c:forEach items="${dogmomlist.list}" var="dml">
+							  	<c:forEach items="${dogmomlist.list}" var="dml" varStatus="status">
 							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">${status.count}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">${dml.dogDTO.id}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">${dml.nick}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">${dml.dogDTO.name}</td>

@@ -44,9 +44,9 @@
 							  </thead>
 							  <tbody>
 							  	<!-- for -->
-							  	<c:forEach items="${normalMember.list}" var="nml">
+							  	<c:forEach items="${normalMember.list}" var="nml" varStatus="status">
 							    <tr>
-							      <td style="padding: .45rem; text-align: center; font-size: 12px">1</td>
+							      <td style="padding: .45rem; text-align: center; font-size: 12px">${status.count}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">${nml.id}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">${nml.nick}</td>
 							      <td style="padding: .45rem; text-align: center; font-size: 12px">${nml.categoryName}</td>

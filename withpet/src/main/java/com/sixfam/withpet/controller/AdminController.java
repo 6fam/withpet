@@ -136,7 +136,7 @@ public class AdminController {
 	   @RequestMapping(value="managerDeleteMeeting.do", method=RequestMethod.POST)
 	   public String managerDeleteMeetingRequest(Model model,int boardNo) {
 		   meetingService.removeMeetingInfo(boardNo);
-		   return "redirect:allmeeting.do";
+		   return "redirect:allmeeting.do?pageNo=1";
 	   }
 	   
 	/**
